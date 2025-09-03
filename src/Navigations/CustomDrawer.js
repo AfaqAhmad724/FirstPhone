@@ -12,15 +12,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Icon } from 'react-native-elements';
 // import ModalComponent from '../Components/ModalComponent';
-import { useDispatch } from 'react-redux';
 import { hp, wp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
+import { Images } from '../Assets';
 
 export default function CustomDrawer({ navigation }) {
     const scrollRef = useRef();
-    const dispatch = useDispatch()
     const [loader, setLoader] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
 

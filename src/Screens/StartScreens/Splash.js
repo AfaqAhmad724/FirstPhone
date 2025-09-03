@@ -1,14 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { Colors } from '../../Constants/Colors'
+import { Fontsize } from '../../Constants/Fontsize';
+import { Fonts } from '../../Constants/Fonts';
 
 const Splash = ({ navigation }) => {
     useEffect(() => {
-        navigation.navigate('UserRole')
-    })
+        const timer = setTimeout(() => {
+            navigation.navigate('UserRole');
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
-        <View style={{ flex: 1, backgroundColor: Colors.primary }}>
-            <Text>Splash</Text>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ fontSize: Fontsize.xl, fontFamily: Fonts.bold }}>Splash</Text>
         </View>
     )
 }
