@@ -9,5 +9,9 @@ export const Colors = {
     redOrange: '#E34426',
     mediumGrey: '#9F9F9F',
     brightYellow: '#FFC41F',
-    lightGrey: '#606060'
+    lightGrey: '#606060',
+    red: '#EA2930',
+    gray: '#808080',
+    silverGrey: 'CBCBCB',
+    black: '#000000'
 }

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     height: hp(6.5),
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: wp(2.5),
+    borderRadius: wp(2),
     alignSelf: 'center',
     marginTop: hp(2),
   },

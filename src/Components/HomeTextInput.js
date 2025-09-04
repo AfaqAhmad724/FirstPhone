@@ -9,13 +9,15 @@ import React, { useState } from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
+import { Images } from '../Assets';
+import { Colors } from '../Constants/Colors';
 
-const CustomInputText = props => {
+const HomeTextInput = props => {
     const [pass, setPass] = useState(true);
 
     return (
         <View style={styles.inputContainer}>
-            <Image style={styles.vectorstyle} source={props?.icon} />
+            <Image style={[styles.vectorstyle]} source={props?.icon} resizeMode='contain' />
             <TextInput
                 placeholder={props?.placeholder}
                 placeholderTextColor={props?.placeholderTextColor}
@@ -23,42 +25,40 @@ const CustomInputText = props => {
                 style={styles.placeholderstyle}
                 secureTextEntry={props?.isPassword ? pass : false}
             />
-            {props?.isPassword && (
-                <TouchableOpacity onPress={() => setPass(!pass)}>
-                    <Feather
-                        name={pass ? 'eye-off' : 'eye'}
-                        style={styles.passwordicon}
-                        size={wp('3.9%')}
-                    />
-                </TouchableOpacity>
-            )}
+            <TouchableOpacity onPress={() => setPass(!pass)}>
+                <Image style={styles.filterIcon} source={Images.filter} resizeMode='contain' />
+
+            </TouchableOpacity>
         </View>
     );
 };
 
-export default CustomInputText;
+export default HomeTextInput;
 
 const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: wp(1.8),
-        marginHorizontal: wp(5.7),
         marginTop: hp(1.8),
+        backgroundColor: Colors.bg,
     },
     vectorstyle: {
         marginLeft: wp(2.6),
-        width: wp(3.8),
-        height: hp(5.3),
-        resizeMode: 'contain',
-        alignSelf: 'flex-start',
+        width: wp(6),
+        height: hp(5),
+    },
+    filterIcon: {
+        marginRight: wp(1),
+        width: wp(8),
+        height: wp(8),
     },
     placeholderstyle: {
         fontFamily: Fonts.medium,
         fontSize: wp(3.6),
         color: 'black',
         flex: 1,
-        marginLeft: wp(0.8),
+        marginHorizontal: wp(0.8),
     },
     passwordicon: {
         color: '#B4B4B4',
