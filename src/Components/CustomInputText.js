@@ -42,6 +42,33 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#CBCBCB',
+        borderRadius: wp(1.8),
+        marginHorizontal: wp(5.7),
+        marginTop: hp(1.8),
+    },
+    vectorstyle: {
+        marginLeft: wp(2.6),
+        width: wp(3.8),
+        height: hp(5.3),
+        resizeMode: 'contain',
+        alignSelf: 'flex-start',
+    },
+    placeholderstyle: {
+        fontFamily: Fonts.medium,
+        fontSize: wp(3.6),
+        color: 'black',
+        flex: 1,
+        marginLeft: wp(0.8),
+    },
+    passwordicon: {
+        color: '#B4B4B4',
+        marginRight: wp(2),
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
         borderRadius: wp(1.8),
         marginHorizontal: wp(5.7),
         marginTop: hp(1.8),
