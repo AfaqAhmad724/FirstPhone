@@ -1,13 +1,13 @@
 export const Colors = {
-    bg: '#FFFFFF',
-    primary: '#4AB95A',
-    secondary: '#B2B5BE',
-    black: '#000000',
-    shadowColor: 'rgba(0, 0, 0, 0.9)',
-    darkBlue: '#111C30',
-    darkGrey: '#343434',
-    redOrange: '#E34426',
-    mediumGrey: '#9F9F9F',
-    brightYellow: '#FFC41F',
-    lightGrey: '#606060'
-}
+  bg: '#FFFFFF',
+  primary: '#4AB95A',
+  secondary: '#B2B5BE',
+  black: '#000000',
+  shadowColor: 'rgba(0, 0, 0, 0.9)',
+  darkBlue: '#111C30',
+  darkGrey: '#343434',
+  redOrange: '#E34426',
+  mediumGrey: '#9F9F9F',
+  brightYellow: '#FFC41F',
+  lightGrey: '#606060',
+};

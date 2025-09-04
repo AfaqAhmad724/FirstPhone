@@ -3,19 +3,21 @@ import React, { useState } from 'react';
 import AuthHeader from './AuthHeader';
 import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
-import { colors } from 'react-native-elements';
 import CustomInputText from './CustomInputText';
 import { Images } from '../Assets';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Fontsize } from '../Constants/Fontsize';
+import LoginDivider from './LoginDivider';
 
 const LoginBody = props => {
   const [yes, setYes] = useState(false);
 
   return (
     <View style={styles.backgroundstyle}>
+      {/* Green Header */}
       <AuthHeader label="Login" />
 
+      {/* White rounded container */}
       <View style={styles.innerContainer}>
         <Text style={styles.setheading}>{props?.status}</Text>
         <Text style={styles.smalltext}>{props?.small}</Text>
@@ -37,31 +39,54 @@ const LoginBody = props => {
           isPassword={true}
         />
 
-        {/* Remember + Forget Password Row */}
         <View style={styles.rememberContainer}>
-          {/* Left side */}
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={styles.rememberRow}>
             <TouchableOpacity onPress={() => setYes(!yes)}>
               <MaterialIcons
                 name={yes ? 'check-box' : 'check-box-outline-blank'}
                 size={wp(4.5)}
                 color="green"
-                borderColor="lightgrey"
               />
             </TouchableOpacity>
-            <Text style={styles.remember}>Remember Me</Text>
+            <Text style={styles.remember}>{props?.remember}</Text>
           </View>
 
-          <TouchableOpacity
-            style={{ justifyContent: 'center', alignItems: 'center' }}
-          >
-            <Text style={styles.forgottext}>Forget Password?</Text>
+          <TouchableOpacity style={styles.forgotContainer}>
+            <Text style={styles.forgottext}>{props?.forgot}</Text>
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.signin}>
           <Text style={styles.buttontext}>{props?.buttontext}</Text>
         </TouchableOpacity>
+
+        <LoginDivider loginwith="Or login with" />
+
+        <View style={styles.socialButtonsContainer}>
+          <TouchableOpacity
+            style={[styles.googleButton, styles.socialButtonLeft]}
+          >
+            <Image
+              source={require('../Assets/Images/google.png')}
+              style={styles.googleimage}
+            />
+            <Text style={styles.googlestyle}>{props?.google}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.googleButton, styles.socialButtonRight]}
+          >
+            <Image
+              source={require('../Assets/Images/Apple.png')}
+              style={styles.googleimage}
+            />
+            <Text style={styles.googlestyle}>{props?.apple}</Text>
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.accounttext}>
+          {props?.account} <Text style={styles.logintext}>{props?.signup}</Text>
+        </Text>
       </View>
     </View>
   );
@@ -72,9 +97,14 @@ export default LoginBody;
 const styles = StyleSheet.create({
   backgroundstyle: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: '#4AB95A',
   },
-  innerContainer: {},
+  innerContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    borderTopLeftRadius: wp(8),
+    borderTopRightRadius: wp(8),
+  },
   setheading: {
     fontFamily: Fonts.bold,
     marginLeft: wp(5.5),
@@ -92,7 +122,6 @@ const styles = StyleSheet.create({
     height: hp(15),
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginRight: wp(1.1),
     marginTop: hp(0.7),
   },
   rememberContainer: {
@@ -103,10 +132,19 @@ const styles = StyleSheet.create({
     marginLeft: wp(6),
     marginHorizontal: wp(5.7),
   },
+  rememberRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   remember: {
     fontFamily: Fonts.medium,
     fontSize: Fontsize.xs,
     marginLeft: wp(1.6),
+    color: '#64748B',
+  },
+  forgotContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   forgottext: {
     color: '#4AB95A',
@@ -126,5 +164,49 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: wp(3.5),
     fontFamily: Fonts.medium,
+  },
+  googleButton: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: wp('6.9%'),
+    paddingVertical: hp('1.6%'),
+    paddingHorizontal: wp('11.5%'),
+    marginTop: hp('1.35%'),
+    alignSelf: 'flex-start',
+  },
+  googleimage: {
+    width: wp('5.5%'),
+    marginRight: wp('2%'),
+    resizeMode: 'contain',
+  },
+  googlestyle: {
+    fontFamily: Fonts.medium,
+    color: '#64748B',
+    fontSize: wp(3.3),
+  },
+  socialButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: wp(6),
+    marginTop: hp('1.35%'),
+  },
+  socialButtonLeft: {
+    marginRight: wp(2),
+  },
+  socialButtonRight: {
+    marginLeft: wp(2),
+  },
+  accounttext: {
+    textAlign: 'center',
+    fontSize: wp(2.8),
+    color: '#64748B',
+    marginTop: hp(6),
+    fontFamily: Fonts.regular,
+  },
+  logintext: {
+    fontFamily: Fonts.regular,
+    color: '#4AB95A',
+    fontSize: wp(2.8),
   },
 });
