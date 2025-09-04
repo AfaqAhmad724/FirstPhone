@@ -4,10 +4,11 @@ import LoginBody from '../../Components/LoginBody';
 
 const Login = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <LoginBody
         status="Welcome Back "
         small="Hello there, sign in to continue"
+        buttontext="Sign in"
       />
     </SafeAreaView>
   );
