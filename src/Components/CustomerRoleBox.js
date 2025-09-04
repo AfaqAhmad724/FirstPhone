@@ -77,7 +77,7 @@ const CustomerRoleBox = () => {
         <View style={styles.cardWrapper}>
             <TouchableOpacity activeOpacity={0.8} style={styles.card}>
                 <View style={styles.cardContent}>
-                    <Image source={Images.customer} style={styles.image} resizeMode="contain" />
+                    <Image source={Images.customer} style={styles.image} resizeMode='contain' />
                     <View style={styles.textBox}>
                         <Text style={styles.cardTitle}>{Strings.customerTitle}</Text>
                         <Text style={styles.cardDesc}>{Strings.customerDesc}</Text>
@@ -96,15 +96,16 @@ const styles = StyleSheet.create({
         borderRadius: wp(3),
         borderWidth: 1.5,
         borderColor: Colors.primary,
-        marginBottom: hp(2),
+        marginHorizontal: wp(4),
     },
     card: {
-        width: '100%',
-        backgroundColor: Colors.primary,
+        width: wp(90),
+        marginLeft: wp(2),
         borderRadius: wp(3),
-        paddingVertical: hp(2.5),
+        marginBottom: hp(1),
         paddingHorizontal: wp(4),
-        top: -hp(0.7), // lift card a bit to show green border at bottom
+        paddingVertical: hp(3),
+        backgroundColor: Colors.primary,
     },
     cardContent: {
         flexDirection: 'row',

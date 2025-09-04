@@ -9,33 +9,42 @@ import Btn from '../../Components/Btn';
 import CustomDrawer from '../../Navigations/CustomDrawer';
 import VendorRoleBox from '../../Components/VendorRoleBox';
 import CustomerRoleBox from '../../Components/CustomerRoleBox';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const UserRole = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{Strings.userRoleTitle}</Text>
-            <Text style={styles.subtitle}>{Strings.userRoleSubtitle}</Text>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.headerStyle}>
+                <Text style={styles.title}>{Strings.userRoleTitle}</Text>
+                <Text style={styles.subtitle}>{Strings.userRoleSubtitle}</Text>
+            </View>
 
-            <CustomerRoleBox />
+            <View style={styles.CutomerVendor}>
 
-            <Text style={styles.orText}>{Strings.orText}</Text>
+                <CustomerRoleBox />
 
-            <VendorRoleBox />
+                <Text style={styles.orText}>{Strings.orText}</Text>
 
-            <Btn title={Strings.getStarted} />
-        </View>
+                <VendorRoleBox />
+            </View>
+
+            <View style={styles.BtnView}>
+                <Btn title={Strings.getStarted} />
+            </View>
+        </SafeAreaView>
     );
 };
 
 export default UserRole;
 
 const styles = StyleSheet.create({
+    headerStyle: {
+        paddingHorizontal: wp(5),
+    },
     container: {
         flex: 1,
         backgroundColor: Colors.bg,
-        paddingHorizontal: wp(5),
         paddingTop: hp(6),
-        alignItems: 'center',
     },
     title: {
         fontFamily: Fonts.semibold,
@@ -51,47 +60,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: wp(5),
     },
-    card: {
-        width: '100%',
-        backgroundColor: Colors.primary,
-        borderRadius: wp(3),
-        paddingVertical: hp(2.5),
-        paddingHorizontal: wp(4),
-        shadowColor: Colors.shadowColor,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.15,
-        shadowRadius: 6,
-        elevation: 5,
-        // marginBottom: hp(2),
-    },
-    cardContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    image: {
-        width: wp(30),
-        height: wp(30),
-        marginRight: wp(4),
-    },
-    textBox: {
-        flex: 1,
-    },
-    cardTitle: {
-        fontFamily: Fonts.semibold,
-        fontSize: Fontsize.m,
-        color: Colors.bg,
-        marginBottom: hp(0.8),
-    },
-    cardDesc: {
-        fontFamily: Fonts.regular,
-        fontSize: Fontsize.s,
-        color: Colors.bg,
-        lineHeight: hp(2.4),
+    CutomerVendor: {
+        marginTop: hp(3),
+        // alignItems: 'center'
     },
     orText: {
-        fontFamily: Fonts.medium,
-        fontSize: Fontsize.s,
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.sm,
         color: Colors.primary,
         marginVertical: hp(1),
     },
+    BtnView: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        marginBottom: hp(8)
+    }
 });

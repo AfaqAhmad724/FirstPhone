@@ -9,7 +9,7 @@ import { Images } from '../Assets'
 
 const VendorRoleBox = () => {
     return (
-        <View>
+        <View style={styles.cardWrapper}>
             <TouchableOpacity activeOpacity={0.8} style={styles.card}>
                 <View style={styles.cardContent}>
                     <Image source={Images.vendor} style={styles.image} resizeMode="contain" />
@@ -26,17 +26,21 @@ const VendorRoleBox = () => {
 export default VendorRoleBox
 
 const styles = StyleSheet.create({
+    cardWrapper: {
+        width: wp(90),
+        borderRadius: wp(3),
+        borderWidth: 1.5,
+        borderColor: Colors.primary,
+        // marginRight:wp(),
+        marginHorizontal: wp(4)
+    },
     card: {
         width: wp(90),
         backgroundColor: Colors.primary,
         borderRadius: wp(3),
         paddingVertical: hp(2.5),
         paddingHorizontal: wp(4),
-        shadowColor: Colors.shadowColor,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.15,
-        shadowRadius: 6,
-        elevation: 5,
+        marginTop: hp(1)
     },
     cardContent: {
         flexDirection: 'row',
