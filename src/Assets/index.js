@@ -12,6 +12,8 @@ export const Images = {
     sorting: require('./Icons/sorting.png'),
     password: require('./Icons/password.png'),
     shopName: require('./Icons/shopName.png'),
+    repairing: require('./Icons/repairing.png'),
+    colorLocation: require('./Icons/colorLocation.png'),
 
     personName: require('./Icons/person.png'),
     location: require('./Icons/location.png'),
