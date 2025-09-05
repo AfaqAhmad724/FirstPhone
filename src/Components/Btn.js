@@ -10,12 +10,19 @@ import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
 
-export default function Btn({ title, loader, btnContainer, onPress, btnTitle }) {
+export default function Btn({
+  title,
+  loader,
+  btnContainer,
+  onPress,
+  btnTitle,
+}) {
   return (
     <TouchableOpacity
       style={[styles.container, btnContainer]}
       disabled={loader}
-      onPress={onPress}>
+      onPress={onPress}
+    >
       {loader ? (
         <ActivityIndicator size={'large'} color={Colors.bg} />
       ) : (
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     color: Colors.bg,
-    fontFamily: Fonts.semibold,
+    fontFamily: Fonts.medium,
     fontSize: Fontsize.m,
   },
 });

@@ -21,7 +21,7 @@ const CustomInputText = props => {
         placeholder={props?.placeholder}
         placeholderTextColor={props?.placeholderTextColor}
         keyboardType={props?.keyboardType}
-        style={styles.placeholderStyle}
+        style={[styles.placeholderStyle, props.style]}
         secureTextEntry={props?.isPassword ? pass : false}
       />
       {props?.isPassword && (
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#CBCBCB',
     borderRadius: wp(1.8),
-    marginHorizontal: wp(5.7),
+    // marginHorizontal: wp(5.7),
     marginTop: hp(1.8),
   },
   vectorStyle: {

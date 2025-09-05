@@ -7,7 +7,7 @@ export const MyStyling = {
   container: {
     flex: 1,
     backgroundColor: Colors.bg,
-    paddingHorizontal: wp(5)
+    paddingHorizontal: wp(5),
   },
   container1: {
     flex: 1,

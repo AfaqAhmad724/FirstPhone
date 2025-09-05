@@ -13,10 +13,7 @@ const ButtonGoogleApple = props => {
       </TouchableOpacity>
 
       <TouchableOpacity style={[styles.googleButton, styles.socialButtonRight]}>
-        <Image
-          source={require('../Assets/Images/Apple.png')}
-          style={styles.googleImage}
-        />
+        <Image source={Images.apple} style={styles.googleImage} />
         <Text style={styles.googleStyle}>{props?.apple}</Text>
       </TouchableOpacity>
     </View>

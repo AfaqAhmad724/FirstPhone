@@ -15,4 +15,7 @@ export const Colors = {
   silverGrey: 'CBCBCB',
   grey: '#64748B',
   eyecolor: '#878787',
+  logblack: '#111C30',
+  emailcolor: '#9F9F9F',
+  verificationColor: '#B9B6B6',
 };
