@@ -9,18 +9,46 @@ import { hp, wp } from '../Constants/Responsive'
 const DeviceCard = (data) => {
     return (
         <View style={styles.cardMain}>
+            <View style={styles.repairingView}>
+                <Image source={Images.repairing} style={styles.reparingImg} />
+                <Text style={styles.repairing}>Repairing Services </Text>
+            </View>
+
             <Image source={data?.image} style={styles.img} resizeMode='contain' />
+
             <Text style={styles.titleText}>{data?.title}</Text>
+
             <View style={styles.shopView}>
                 <Image source={Images.shopName} />
                 <Text style={styles.shopText} numberOfLines={2}>{data?.shopName}</Text>
             </View>
+
             <View style={styles.priceView}>
-                <Text style={styles.priceText}>Rs {data?.price}</Text>
-                <View style={styles.locationView}>
-                    <Image source={Images.location} tintColor={Colors.primary} style={styles.menuIcon} resizeMode='contain' />
-                    <Text style={styles.distanceText}>{data?.distance}</Text>
+
+                <View style={styles.priceBox}>
+                    <Text style={styles.rsText}>Rs</Text>
+                    <View style={{ flexShrink: 1, }}>
+                        <Text style={styles.priceText} numberOfLines={2}>
+                            {data?.price}
+                        </Text>
+                    </View>
                 </View>
+
+                <View style={styles.locationBox}>
+                    <Image
+                        source={Images.colorLocation}
+                        tintColor={Colors.primary}
+                        style={styles.menuIcon}
+                        resizeMode="contain"
+                    />
+                    <View style={{ flexDirection: "row", flexShrink: 1, }}>
+                        <Text style={[styles.distanceText, { flexShrink: 1 }]} numberOfLines={2}>
+                            {data?.distance}
+                        </Text>
+                        <Text style={styles.distanceText}> km</Text>
+                    </View>
+                </View>
+
             </View>
         </View>
     )
@@ -46,46 +74,93 @@ const styles = StyleSheet.create({
             height: 2,
         },
     },
+
+    repairingView: {
+        flex: 1,
+        right: wp(.1),
+        padding: wp(.3),
+        alignItems: 'center',
+        position: 'absolute',
+        flexDirection: 'row',
+        paddingHorizontal: wp(.5),
+        borderTopRightRadius: wp(1),
+        backgroundColor: Colors.primary,
+    },
+
+    repairing: {
+        color: Colors.bg,
+        fontSize: Fontsize.xxxxs,
+        fontFamily: Fonts.semibold,
+        marginLeft: wp(.5)
+    },
+    reparingImg: { width: wp(1.5), height: wp(1.5) },
+
     img: {
         width: wp(25),
         height: wp(25),
         alignSelf: 'center'
     },
+
     titleText: {
         marginTop: hp(.5),
         color: Colors.black,
         fontFamily: Fonts.semibold,
         fontSize: Fontsize.xs2,
     },
+
     shopText: {
         color: Colors.gray,
         fontFamily: Fonts.medium,
         fontSize: Fontsize.xs,
         marginHorizontal: wp(1)
     },
-    priceText: {
-        color: Colors.primary,
-        fontFamily: Fonts.semibold,
-        fontSize: Fontsize.s,
-    },
+
     shopView: {
         flexDirection: 'row',
         alignItems: 'center',
     },
+
     priceView: {
         flexDirection: 'row',
-        alignItems: 'flex-start',
         justifyContent: 'space-between',
+        alignItems: 'flex-start',
     },
+
+    priceBox: {
+        width: "60%",
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+    },
+
+    priceText: {
+        color: Colors.primary,
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.s,
+        marginLeft: wp(1),
+    },
+
+    rsText: {
+        color: Colors.primary,
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.s,
+    },
+
+    locationBox: {
+        width: "40%",
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-end'
+    },
+
     distanceText: {
         color: Colors.gray,
         fontFamily: Fonts.medium,
-        fontSize: Fontsize.xs1,
+        fontSize: Fontsize.xxs,
     },
+
     menuIcon: {
         width: wp(3.5),
         height: wp(3.5),
-        marginRight: wp(1)
+        marginRight: wp(.5),
     },
-    locationView: { flexDirection: 'row', alignItems: 'center' }
 })

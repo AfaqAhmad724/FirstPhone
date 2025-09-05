@@ -7,10 +7,16 @@ import { Fontsize } from '../Constants/Fontsize'
 import { Strings } from '../Constants/Strings'
 import { Images } from '../Assets'
 
-const VendorRoleBox = () => {
+const VendorRoleBox = ({ id, selectedId, onSelect }) => {
+    const isSelected = id == selectedId
+
     return (
-        <View style={styles.cardWrapper}>
-            <TouchableOpacity activeOpacity={0.8} style={styles.card}>
+        <View style={[styles.cardWrapper, {
+            borderWidth: isSelected ? 1.5 : 0,
+            borderRadius: isSelected ? wp(3) : wp(0),
+            borderColor: isSelected ? Colors.primary : null,
+        }]}>
+            <TouchableOpacity activeOpacity={0.8} style={styles.card} onPress={() => onSelect(id)}>
                 <View style={styles.cardContent}>
                     <View style={styles.textBox}>
                         <Text style={styles.cardTitle}>{Strings.vendorTitle}</Text>

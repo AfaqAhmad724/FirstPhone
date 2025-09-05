@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
@@ -8,16 +8,21 @@ import { Fonts } from '../Constants/Fonts';
 import { Strings } from '../Constants/Strings';
 import CustomInputText from './CustomInputText';
 import HomeTextInput from './HomeTextInput';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomerHomeHeader = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.locationStyle}>
 
                 {/* Left: Menu Icon */}
-                <View style={styles.menuContainer}>
+                <TouchableOpacity
+                    style={styles.menuContainer}
+                    onPress={() => navigation.openDrawer()}
+                >
                     <Image source={Images.menu} style={styles.menuIcon} resizeMode="contain" />
-                </View>
+                </TouchableOpacity>
 
                 {/* Center: Location Icon + Text */}
                 <View style={styles.locationContainer}>
@@ -59,10 +64,10 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.primary,
         paddingHorizontal: wp(5),
-        paddingVertical: hp(1),
+        paddingVertical: hp(1.5),
         paddingTop: hp(3),
-        borderBottomRightRadius: wp(6),
-        borderBottomLeftRadius: wp(6)
+        borderBottomRightRadius: wp(8),
+        borderBottomLeftRadius: wp(8)
     },
     locationStyle: {
         flexDirection: 'row',
@@ -88,8 +93,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     locationIcon: {
-        width: wp(4),
-        height: wp(4),
+        width: wp(3.5),
+        height: wp(3.5),
         marginRight: wp(1),
         marginBottom: hp(1.5)
     },

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Strings } from '../../Constants/Strings';
 import { hp, wp } from '../../Constants/Responsive';
 import { Fonts } from '../../Constants/Fonts';
@@ -11,6 +11,8 @@ import CustomerRoleBox from '../../Components/CustomerRoleBox';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const UserRole = ({ navigation }) => {
+    const [selectedId, setSelectedId] = useState(null)
+
     return (
         <SafeAreaView style={styles.container}>
 
@@ -20,13 +22,13 @@ const UserRole = ({ navigation }) => {
             </View>
 
             <View style={styles.CutomerVendor}>
-                <CustomerRoleBox />
+                <CustomerRoleBox id={1} selectedId={selectedId} onSelect={setSelectedId} />
                 <Text style={styles.orText}>{Strings.orText}</Text>
-                <VendorRoleBox />
+                <VendorRoleBox id={2} selectedId={selectedId} onSelect={setSelectedId} />
             </View>
 
             <View style={styles.BtnView}>
-                <Btn title={Strings.getStarted} />
+                <Btn title={Strings.getStarted} onPress={() => navigation.navigate('FlowNavigation')} />
             </View>
 
         </SafeAreaView>

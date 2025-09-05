@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     },
     filterIcon: {
         marginRight: wp(1),
-        width: wp(8),
-        height: wp(8),
+        width: wp(9),
+        height: wp(9),
     },
     placeholderstyle: {
         fontFamily: Fonts.medium,

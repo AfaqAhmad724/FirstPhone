@@ -12,7 +12,6 @@ const Register = () => {
     return (
         <SafeAreaView style={styles.fullscreen}>
             <ScrollView>
-                <StatusBar backgroundColor={Colors.primary} barStyle="light-content" />
                 <SignUpBody
                     label="Sign Up"
                     setAccount="Set Up Your Account"

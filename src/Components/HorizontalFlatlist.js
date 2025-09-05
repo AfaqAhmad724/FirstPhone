@@ -6,16 +6,16 @@ import { hp, wp } from '../Constants/Responsive'
 
 const HorizontalFlatlist = () => {
     return (
-        <View style={{ paddingHorizontal: wp(5) }}>
+        <View style={{ paddingLeft: wp(5) }}>
             <FlatList
                 data={deviceData}
                 horizontal
                 keyExtractor={(_, index) => index.toString()}
-                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
-                    // <View style={{ width: wp(47) }}>
-                    <DeviceCard {...item} />
-                    // </View>
+                    <View style={{ width: wp(45) }}>
+                        <DeviceCard {...item} />
+                    </View>
                 )} />
         </View>
     )

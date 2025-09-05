@@ -1,15 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { wp } from '../Constants/Responsive';
-import { Colors } from '../Constants/Colors';
-import { Fonts } from '../Constants/Fonts';
-import { Fontsize } from '../Constants/Fontsize';
-import { Images } from '../Assets';
 import Profile from '../Screens/CommonScreens/Profile';
 import Home from '../Screens/BottomTabs/Home';
 import ProductListing from '../Screens/CommonScreens/ProductListing';
 import Chat from '../Screens/CommonScreens/Chat';
+import { hp, wp } from '../Constants/Responsive';
+import { Colors } from '../Constants/Colors';
+import { Images } from '../Assets';
+import { Fonts } from '../Constants/Fonts';
+import { Fontsize } from '../Constants/Fontsize';
 
 const BOTTOM_STACK = createBottomTabNavigator();
 

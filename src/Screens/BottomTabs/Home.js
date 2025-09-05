@@ -10,29 +10,28 @@ import { Fontsize } from '../../Constants/Fontsize'
 import { Fonts } from '../../Constants/Fonts'
 import VerticalFlatlist from '../../Components/VerticalFlatlist'
 import HorizontalFlatlist from '../../Components/HorizontalFlatlist'
+import ViewAllDevices from '../../Components/ViewAllDevices'
 
 const Home = () => {
     return (
         <SafeAreaView style={MyStyling.container1}>
             <ScrollView >
-
                 <CustomerHomeHeader />
+
                 <View style={styles.dateStyle}>
                     <Text style={styles.dateText}>Date</Text>
                     <Image source={Images.sorting} />
                 </View>
-                <View style={styles.nearbyView}>
-                    <Text style={styles.nearbyText}>Nearby</Text>
-                    <Text style={[styles.nearbyText, { color: Colors.primary }]}>View all</Text>
-                </View>
-                <VerticalFlatlist />
-                <View style={styles.nearbyView}>
-                    <Text style={styles.nearbyText}>Top Selling</Text>
-                    <Text style={[styles.nearbyText, { color: Colors.primary }]}>View all</Text>
-                </View>
-                <HorizontalFlatlist />
-            </ScrollView>
 
+                <ViewAllDevices title={'Nearby'} />
+
+                <VerticalFlatlist />
+
+                <ViewAllDevices title={'Top Selling'} />
+
+                <HorizontalFlatlist />
+
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -53,15 +52,5 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
-    nearbyText: {
-        color: Colors.black,
-        fontFamily: Fonts.semibold,
-        fontSize: Fontsize.xsm
-    },
-    nearbyView: {
-        marginTop: hp(1),
-        paddingHorizontal: wp(5),
-        justifyContent: 'space-between',
-        flexDirection: 'row'
-    }
+
 })
