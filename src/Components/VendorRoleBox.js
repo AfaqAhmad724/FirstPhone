@@ -12,11 +12,11 @@ const VendorRoleBox = () => {
         <View style={styles.cardWrapper}>
             <TouchableOpacity activeOpacity={0.8} style={styles.card}>
                 <View style={styles.cardContent}>
-                    <Image source={Images.vendor} style={styles.image} resizeMode="contain" />
                     <View style={styles.textBox}>
                         <Text style={styles.cardTitle}>{Strings.vendorTitle}</Text>
                         <Text style={styles.cardDesc}>{Strings.vendorDesc}</Text>
                     </View>
+                    <Image source={Images.vendor} style={styles.image} resizeMode='contain' />
                 </View>
             </TouchableOpacity>
         </View>
@@ -31,16 +31,16 @@ const styles = StyleSheet.create({
         borderRadius: wp(3),
         borderWidth: 1.5,
         borderColor: Colors.primary,
-        // marginRight:wp(),
         marginHorizontal: wp(4)
     },
     card: {
         width: wp(90),
         backgroundColor: Colors.primary,
         borderRadius: wp(3),
-        paddingVertical: hp(2.5),
+        paddingVertical: hp(3),
         paddingHorizontal: wp(4),
-        marginTop: hp(1)
+        marginTop: hp(1),
+        marginLeft: wp(2),
     },
     cardContent: {
         flexDirection: 'row',

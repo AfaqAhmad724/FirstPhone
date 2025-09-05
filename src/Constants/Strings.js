@@ -11,4 +11,7 @@ export const Strings = {
 
     orText: "Or",
     getStarted: "Get Started",
+
+    locationName: `Near Shaukat Khanum${'\n'}Hospital and Emporium Mall Lahore...`,
+    mobileModals: 'Enter mobile model (e.g., iPhone 12) or keywords (e.g., 64GB)'
 };

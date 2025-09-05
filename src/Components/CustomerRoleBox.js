@@ -123,12 +123,10 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.semibold,
         fontSize: Fontsize.ml,
         color: Colors.bg,
-        marginBottom: hp(0.5),
     },
     cardDesc: {
         fontFamily: Fonts.regular,
         fontSize: Fontsize.xs,
         color: Colors.bg,
-        lineHeight: hp(2.4),
     },
 })
