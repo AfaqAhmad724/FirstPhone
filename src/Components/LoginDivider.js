@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Fonts } from '../Constants/Fonts';
 import { hp, wp } from '../Constants/Responsive';
+import { Colors } from '../Constants/Colors';
 
 const LoginDivider = props => {
   return (
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     marginHorizontal: wp(2),
   },
   text: {
-    color: '#6e6e6e',
+    color: Colors.grey,
     fontSize: wp(3.0),
     fontFamily: Fonts.semibold,
   },

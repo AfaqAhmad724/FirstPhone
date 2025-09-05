@@ -8,34 +8,33 @@ import { Images } from '../Assets';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Fontsize } from '../Constants/Fontsize';
 import LoginDivider from './LoginDivider';
+import ButtonGoogleApple from './ButtonGoogleApple';
+import { Colors } from '../Constants/Colors';
 
 const LoginBody = props => {
   const [yes, setYes] = useState(false);
 
   return (
-    <View style={styles.backgroundstyle}>
-      {/* Green Header */}
+    <View style={styles.backgroundStyle}>
       <AuthHeader label="Login" />
-
-      {/* White rounded container */}
       <View style={styles.innerContainer}>
-        <Text style={styles.setheading}>{props?.status}</Text>
-        <Text style={styles.smalltext}>{props?.small}</Text>
+        <Text style={styles.setHeading}>{props?.status}</Text>
+        <Text style={styles.smallText}>{props?.small}</Text>
         <Image
           source={require('../Assets/Images/Logo.png')}
-          style={styles.firstphonestyle}
+          style={styles.firstPhoneStyle}
         />
 
         <CustomInputText
           placeholder="Email"
           icon={Images.email}
-          placeholderTextColor="#9F9F9F"
+          placeholderTextColor={Colors.secondary}
           keyboardType="email-address"
         />
         <CustomInputText
           placeholder="Password"
           icon={Images.password}
-          placeholderTextColor="#9F9F9F"
+          placeholderTextColor={Colors.secondary}
           isPassword={true}
         />
 
@@ -45,47 +44,27 @@ const LoginBody = props => {
               <MaterialIcons
                 name={yes ? 'check-box' : 'check-box-outline-blank'}
                 size={wp(4.5)}
-                color="green"
+                color={Colors.primary}
               />
             </TouchableOpacity>
             <Text style={styles.remember}>{props?.remember}</Text>
           </View>
 
           <TouchableOpacity style={styles.forgotContainer}>
-            <Text style={styles.forgottext}>{props?.forgot}</Text>
+            <Text style={styles.forgotText}>{props?.forgot}</Text>
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.signin}>
-          <Text style={styles.buttontext}>{props?.buttontext}</Text>
+        <TouchableOpacity style={styles.signIn}>
+          <Text style={styles.buttonText}>{props?.buttontext}</Text>
         </TouchableOpacity>
 
         <LoginDivider loginwith="Or login with" />
 
-        <View style={styles.socialButtonsContainer}>
-          <TouchableOpacity
-            style={[styles.googleButton, styles.socialButtonLeft]}
-          >
-            <Image
-              source={require('../Assets/Images/google.png')}
-              style={styles.googleimage}
-            />
-            <Text style={styles.googlestyle}>{props?.google}</Text>
-          </TouchableOpacity>
+        <ButtonGoogleApple google="Google" apple="Apple" />
 
-          <TouchableOpacity
-            style={[styles.googleButton, styles.socialButtonRight]}
-          >
-            <Image
-              source={require('../Assets/Images/Apple.png')}
-              style={styles.googleimage}
-            />
-            <Text style={styles.googlestyle}>{props?.apple}</Text>
-          </TouchableOpacity>
-        </View>
-
-        <Text style={styles.accounttext}>
-          {props?.account} <Text style={styles.logintext}>{props?.signup}</Text>
+        <Text style={styles.accountText}>
+          {props?.account} <Text style={styles.loginText}>{props?.signup}</Text>
         </Text>
       </View>
     </View>
@@ -95,29 +74,29 @@ const LoginBody = props => {
 export default LoginBody;
 
 const styles = StyleSheet.create({
-  backgroundstyle: {
-    flex: 1,
-    backgroundColor: '#4AB95A',
-  },
   innerContainer: {
     flex: 1,
     backgroundColor: 'white',
     borderTopLeftRadius: wp(8),
     borderTopRightRadius: wp(8),
+    overflow: 'hidden',
   },
-  setheading: {
+  backgroundStyle: {
+    flex: 1,
+    backgroundColor: Colors?.primary,
+  },
+  setHeading: {
     fontFamily: Fonts.bold,
     marginLeft: wp(5.5),
     marginTop: hp(2.5),
     fontSize: wp(5.1),
   },
-  smalltext: {
+  smallText: {
     marginLeft: wp(5.7),
     fontSize: wp(2.5),
     fontFamily: Fonts.medium,
-    color: 'black',
   },
-  firstphonestyle: {
+  firstPhoneStyle: {
     width: wp(72),
     height: hp(15),
     resizeMode: 'contain',
@@ -146,67 +125,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  forgottext: {
-    color: '#4AB95A',
+  forgotText: {
+    color: Colors.primary,
     fontSize: Fontsize.xs,
     fontFamily: Fonts.medium,
   },
-  signin: {
-    backgroundColor: '#4AB95A',
+  signIn: {
+    backgroundColor: Colors.primary,
     marginTop: hp(2.85),
     marginHorizontal: wp(6),
     paddingVertical: hp(1.7),
     borderRadius: wp(2),
     marginBottom: hp(1.2),
   },
-  buttontext: {
+  buttonText: {
     textAlign: 'center',
-    color: '#FFFFFF',
+    color: Colors.bg,
     fontSize: wp(3.5),
     fontFamily: Fonts.medium,
   },
-  googleButton: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: wp('6.9%'),
-    paddingVertical: hp('1.6%'),
-    paddingHorizontal: wp('11.5%'),
-    marginTop: hp('1.35%'),
-    alignSelf: 'flex-start',
-  },
-  googleimage: {
-    width: wp('5.5%'),
-    marginRight: wp('2%'),
-    resizeMode: 'contain',
-  },
-  googlestyle: {
-    fontFamily: Fonts.medium,
-    color: '#64748B',
-    fontSize: wp(3.3),
-  },
-  socialButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: wp(6),
-    marginTop: hp('1.35%'),
-  },
-  socialButtonLeft: {
-    marginRight: wp(2),
-  },
-  socialButtonRight: {
-    marginLeft: wp(2),
-  },
-  accounttext: {
+  accountText: {
     textAlign: 'center',
-    fontSize: wp(2.8),
-    color: '#64748B',
+    fontSize: wp(3.2),
+    color: 'black',
     marginTop: hp(6),
     fontFamily: Fonts.regular,
   },
-  logintext: {
+  loginText: {
     fontFamily: Fonts.regular,
-    color: '#4AB95A',
-    fontSize: wp(2.8),
+    color: Colors.primary,
+    fontSize: wp(3.2),
   },
 });

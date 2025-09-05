@@ -5,7 +5,7 @@ import { Fonts } from '../Constants/Fonts';
 
 const AuthHeader = props => {
   return (
-    <View style={styles.signupcontainer}>
+    <View style={styles.signupContainer}>
       <Text style={styles.label}>{props?.label}</Text>
     </View>
   );
@@ -14,7 +14,7 @@ const AuthHeader = props => {
 export default AuthHeader;
 
 const styles = StyleSheet.create({
-  signupcontainer: {
+  signupContainer: {
     backgroundColor: '#4AB95A',
     height: hp(12.3),
     justifyContent: 'center',
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.3),
     fontFamily: Fonts.semibold,
     marginTop: hp(6),
-    fontSize: 14,
+    fontSize: wp(5.3),
   },
 });

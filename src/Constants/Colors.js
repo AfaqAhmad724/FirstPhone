@@ -13,5 +13,6 @@ export const Colors = {
   red: '#EA2930',
   gray: '#808080',
   silverGrey: 'CBCBCB',
-  black: '#000000',
+  grey: '#64748B',
+  eyecolor: '#878787',
 };
