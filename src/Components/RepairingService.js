@@ -1,0 +1,57 @@
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
+import { hp, wp } from '../Constants/Responsive'
+import { Colors } from '../Constants/Colors'
+import { Fontsize } from '../Constants/Fontsize'
+import { Fonts } from '../Constants/Fonts'
+
+const RepairingService = (props) => {
+    const [isradiopress, setIsRadioPres] = useState(false)
+
+    return (
+        <View style={styles.radioContainer}>
+            <TouchableOpacity
+                onPress={() => setIsRadioPres(!isradiopress)}
+                activeOpacity={0.7}>
+                <View style={styles.radioButtonOuter}>
+                    {
+                        isradiopress &&
+                        <View style={styles.radioButtonInner} />
+                    }
+                </View>
+            </TouchableOpacity>
+            <Text style={styles.titleText}>{props?.title || 'Select'}</Text>
+        </View>
+    )
+}
+
+export default RepairingService
+
+const styles = StyleSheet.create({
+    radioContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: hp(0.5),
+        marginTop: hp(1)
+    },
+    radioButtonOuter: {
+        height: hp(2.3),
+        width: hp(2.3),
+        borderRadius: hp(2),
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: wp(2),
+        backgroundColor: Colors.grey300
+    },
+    radioButtonInner: {
+        height: hp(1),
+        width: hp(1),
+        borderRadius: hp(0.75),
+        backgroundColor: Colors.primary,
+    },
+    titleText: {
+        fontSize: Fontsize.s,
+        fontFamily: Fonts.regular,
+        color: Colors.black,
+    },
+})

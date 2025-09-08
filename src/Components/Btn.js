@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.primary,
     width: wp(90),
-    height: hp(6.5),
+    paddingVertical: wp(2.3),
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: wp(2),

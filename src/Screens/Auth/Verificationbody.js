@@ -16,7 +16,7 @@ import Btn from '../../Components/Btn';
 import { Fontsize } from '../../Constants/Fontsize';
 import { MyStyling } from '../../Constants/Styling';
 
-const Verificationbody = () => {
+const Verificationbody = ({ navigation }) => {
   return (
     <SafeAreaView style={MyStyling.container}>
       <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
@@ -33,6 +33,7 @@ const Verificationbody = () => {
         title="Continue"
         bgColor={Colors.secondary}
         btnContainer={{ backgroundColor: Colors.secondary }}
+        onPress={() => navigation.navigate('ResetPassword')}
       />
 
       <View style={styles.resendWrapper}>

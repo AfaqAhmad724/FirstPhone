@@ -10,8 +10,11 @@ import { Fontsize } from '../Constants/Fontsize';
 import LoginDivider from './LoginDivider';
 import ButtonGoogleApple from './ButtonGoogleApple';
 import { Colors } from '../Constants/Colors';
+import Btn from './Btn';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginBody = props => {
+  const navigation = useNavigation()
   const [yes, setYes] = useState(false);
 
   return (
@@ -28,14 +31,15 @@ const LoginBody = props => {
         <CustomInputText
           placeholder="Email"
           icon={Images.email}
-          placeholderTextColor={Colors.secondary}
           keyboardType="email-address"
+          inputContainer={{ marginHorizontal: wp(5) }}
+
         />
         <CustomInputText
           placeholder="Password"
           icon={Images.password}
-          placeholderTextColor={Colors.secondary}
           isPassword={true}
+          inputContainer={{ marginHorizontal: wp(5) }}
         />
 
         <View style={styles.rememberContainer}>
@@ -50,14 +54,15 @@ const LoginBody = props => {
             <Text style={styles.remember}>{props?.remember}</Text>
           </View>
 
-          <TouchableOpacity style={styles.forgotContainer}>
+          <TouchableOpacity style={styles.forgotContainer} onPress={() => navigation.navigate('ForgotPassword')}>
             <Text style={styles.forgotText}>{props?.forgot}</Text>
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.signIn}>
+        {/* <TouchableOpacity style={styles.signIn}>
           <Text style={styles.buttonText}>{props?.buttontext}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <Btn title={'Sign in'} onPress={() => navigation.navigate('FlowNavigation')} />
 
         <LoginDivider loginwith="Or login with" />
 
@@ -86,15 +91,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors?.primary,
   },
   setHeading: {
-    fontFamily: Fonts.bold,
+    height: hp(4),
+    fontFamily: Fonts.semibold,
     marginLeft: wp(5.5),
     marginTop: hp(2.5),
-    fontSize: wp(5.1),
+    fontSize: Fontsize.l,
+    color: Colors.darkBlue,
   },
   smallText: {
     marginLeft: wp(5.7),
-    fontSize: wp(2.5),
+    fontSize: Fontsize.xs,
     fontFamily: Fonts.medium,
+    color: Colors.darkGrey
   },
   firstPhoneStyle: {
     width: wp(72),
@@ -132,16 +140,16 @@ const styles = StyleSheet.create({
   },
   signIn: {
     backgroundColor: Colors.primary,
-    marginTop: hp(2.85),
-    marginHorizontal: wp(6),
-    paddingVertical: hp(1.7),
+    marginTop: hp(2.8),
+    marginHorizontal: wp(5),
+    paddingVertical: hp(1.4),
     borderRadius: wp(2),
     marginBottom: hp(1.2),
   },
   buttonText: {
     textAlign: 'center',
     color: Colors.bg,
-    fontSize: wp(3.5),
+    fontSize: Fontsize.sm,
     fontFamily: Fonts.medium,
   },
   accountText: {

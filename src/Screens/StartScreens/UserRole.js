@@ -13,6 +13,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const UserRole = ({ navigation }) => {
     const [selectedId, setSelectedId] = useState(null)
 
+    const handleUserFlow = () => {
+        if (selectedId == 1) {
+            navigation.navigate('AuthNavigation')
+        }
+        else {
+            // navigation.navigate('FlowNavigation')
+            return null
+        }
+    }
+
     return (
         <SafeAreaView style={styles.container}>
 
@@ -28,7 +38,7 @@ const UserRole = ({ navigation }) => {
             </View>
 
             <View style={styles.BtnView}>
-                <Btn title={Strings.getStarted} onPress={() => navigation.navigate('FlowNavigation')} />
+                <Btn title={Strings.getStarted} onPress={() => handleUserFlow()} />
             </View>
 
         </SafeAreaView>

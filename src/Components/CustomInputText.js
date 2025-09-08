@@ -15,14 +15,17 @@ const CustomInputText = props => {
   const [pass, setPass] = useState(true);
 
   return (
-    <View style={styles.inputContainer}>
-      <Image style={styles.vectorStyle} source={props?.icon} />
+    <View style={[styles.inputContainer, props?.inputContainer]}>
+      {props?.icon && <Image style={styles.vectorStyle} source={props?.icon} />}
       <TextInput
         placeholder={props?.placeholder}
-        placeholderTextColor={props?.placeholderTextColor}
+        placeholderTextColor={props?.placeholderTextColor || Colors.mediumGrey}
         keyboardType={props?.keyboardType}
         style={[styles.placeholderStyle, props.style]}
         secureTextEntry={props?.isPassword ? pass : false}
+        value={props?.value}
+        onChangeText={props?.onChangeText}
+
       />
       {props?.isPassword && (
         <TouchableOpacity onPress={() => setPass(!pass)}>
@@ -44,15 +47,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#CBCBCB',
+    borderColor: Colors.verificationColor,
     borderRadius: wp(1.8),
-    // marginHorizontal: wp(5.7),
     marginTop: hp(1.8),
   },
   vectorStyle: {
     marginLeft: wp(2.6),
     resizeMode: 'contain',
-    // color: '#4AB95A',
     color: Colors.primary,
     width: wp(5),
     height: wp(5),
@@ -60,9 +61,9 @@ const styles = StyleSheet.create({
   placeholderStyle: {
     fontFamily: Fonts.medium,
     fontSize: wp(3.6),
-    color: 'black',
+    color: Colors.mediumGrey,
     flex: 1,
-    marginLeft: wp(0.8),
+    marginHorizontal: wp(1),
     marginTop: 4,
   },
   passwordIcon: {

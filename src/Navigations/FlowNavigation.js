@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DeviceDetail from '../Screens/AppFlow/DeviceDetail';
 import DrawerNavigation from './DrawerNavigation';
+import SearchFilter from '../Screens/AppFlow/SearchFilter';
 
 export default function FlowNavigation() {
   const FLOW_STACk = createNativeStackNavigator();
@@ -11,6 +12,8 @@ export default function FlowNavigation() {
       initialRouteName="DrawerNavigation">
       <FLOW_STACk.Screen name="DrawerNavigation" component={DrawerNavigation} />
       <FLOW_STACk.Screen name="DeviceDetail" component={DeviceDetail} />
+      <FLOW_STACk.Screen name="SearchFilter" component={SearchFilter} />
+
 
     </FLOW_STACk.Navigator>
   );

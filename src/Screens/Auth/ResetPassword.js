@@ -11,7 +11,7 @@ import { Images } from '../../Assets';
 import Btn from '../../Components/Btn';
 import { StatusBar } from 'react-native';
 
-const ResetPassword = () => {
+const ResetPassword = ({ navigation }) => {
   return (
     <SafeAreaView style={MyStyling.container}>
       <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
@@ -38,6 +38,7 @@ const ResetPassword = () => {
         title="Continue"
         bgColor={Colors.black}
         btnContainer={{ backgroundColor: Colors.secondary }}
+        onPress={() => navigation.navigate('Login')}
       />
     </SafeAreaView>
   );

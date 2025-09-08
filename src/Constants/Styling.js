@@ -13,4 +13,9 @@ export const MyStyling = {
     flex: 1,
     backgroundColor: Colors.bg,
   },
+  title: {
+    color: Colors.black,
+    fontFamily: Fonts.medium,
+    fontSize: Fontsize.xs,
+  }
 };

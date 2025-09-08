@@ -11,7 +11,22 @@ export const Strings = {
 
     orText: "Or",
     getStarted: "Get Started",
+    resetFilter: 'Reset Filters',
+    applyFilter: 'Apply Filters',
 
     locationName: `Near Shaukat Khanum${'\n'}Hospital and Emporium Mall Lahore...`,
-    mobileModals: 'Enter mobile model (e.g., iPhone 12) or keywords (e.g., 64GB)'
+    mobileModals: 'Enter mobile model (e.g., iPhone 12) or keywords (e.g., 64GB)',
+
+    SelectSpecs: 'Select your preferred brand',
+    SelectmodelText: 'Select your preferred model',
+    selectStorageText: 'Choose capacity',
+    conditionText: 'Select condition',
+    serviceText: 'Repairing Service',
+    radiusSearch: 'Select the radius for your search',
+    searchMobiles: 'Search mobiles by city name',
+    mobileColor: "Select color of the mobile",
+
+    description: 'The iPhone 17 Pro Max features a 6.9-inch Super Retina XDR display, A19 Bionic chip, triple-camera system, and all-day battery life with 5G. Perfect for fast performance, stunning photos, and a premium user experience.',
+    addTocart: 'Add to cart',
+
 };

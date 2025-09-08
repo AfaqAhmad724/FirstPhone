@@ -6,6 +6,7 @@ import Register from '../Screens/Auth/Register';
 import ForgotPassword from '../Screens/Auth/ForgotPassword';
 import VerifyOtp from '../Screens/Auth/VerifyOtp';
 import ResetPassword from '../Screens/Auth/ResetPassword';
+import Verificationbody from '../Screens/Auth/Verificationbody';
 
 const AUTH_STACK = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ export default function AuthNavigation() {
       <AUTH_STACK.Screen name="Login" component={Login} />
       <AUTH_STACK.Screen name="Register" component={Register} />
       <AUTH_STACK.Screen name="ForgotPassword" component={ForgotPassword} />
-      <AUTH_STACK.Screen name="VerifyOtp" component={VerifyOtp} />
+      <AUTH_STACK.Screen name="Verificationbody" component={Verificationbody} />
       <AUTH_STACK.Screen name="ResetPassword" component={ResetPassword} />
     </AUTH_STACK.Navigator>
   );

@@ -5,11 +5,13 @@ import { wp, hp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
 import { Fontsize } from '../Constants/Fontsize';
+import { useNavigation } from '@react-navigation/native';
 
-const PasswordHeader = props => {
+const PasswordHeader = (props) => {
+  const navigation = useNavigation()
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={styles.vectorStyle}>
+      <TouchableOpacity style={styles.vectorStyle} onPress={() => navigation.goBack()}>
         <Image
           source={Images.arrowleft}
           style={styles.arrowIcon}

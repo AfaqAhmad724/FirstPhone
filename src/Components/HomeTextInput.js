@@ -11,9 +11,10 @@ import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
 import { Images } from '../Assets';
 import { Colors } from '../Constants/Colors';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeTextInput = props => {
-    const [pass, setPass] = useState(true);
+    const navigation = useNavigation()
 
     return (
         <View style={styles.inputContainer}>
@@ -23,9 +24,8 @@ const HomeTextInput = props => {
                 placeholderTextColor={props?.placeholderTextColor}
                 keyboardType={props?.keyboardType}
                 style={styles.placeholderstyle}
-                secureTextEntry={props?.isPassword ? pass : false}
             />
-            <TouchableOpacity onPress={() => setPass(!pass)}>
+            <TouchableOpacity onPress={() => navigation.navigate('SearchFilter')}>
                 <Image style={styles.filterIcon} source={Images.filter} resizeMode='contain' />
 
             </TouchableOpacity>

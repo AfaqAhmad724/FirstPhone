@@ -10,7 +10,7 @@ import { Fonts } from '../../Constants/Fonts';
 import Btn from '../../Components/Btn';
 import { Images } from '../../Assets';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ navigation }) => {
   return (
     <SafeAreaView>
       <PasswordHeader header="Forgot Password" islogged="Cannot log in? " />
@@ -33,6 +33,7 @@ const ForgotPassword = () => {
         title="Send Verification Code"
         bgColor={Colors.secondary}
         btnContainer={{ backgroundColor: Colors.secondary }}
+        onPress={() => navigation.navigate('Verificationbody')}
       />
     </SafeAreaView>
   );

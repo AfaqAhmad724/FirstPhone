@@ -82,7 +82,7 @@ export default function CustomDrawer({ navigation }) {
                 </TouchableOpacity>
 
                 <Image
-                    source={Images.LOGO}
+                    source={Images.sideBarImg}
                     style={styles.img}
                     resizeMode="contain"
                     tintColor={Colors.bg}
@@ -90,40 +90,45 @@ export default function CustomDrawer({ navigation }) {
 
                 <View style={styles.container}>
                     <CustomItem
-                        title={'My Profile'}
-                        icon={Images.PERSON}
+                        title={'Register As Vendor'}
+                        icon={Images.vendorregister}
                         onPress={() => handlePress('MyProfile')}
                     />
                     <CustomItem
+                        title={'My Profile'}
+                        icon={Images.profileIcon}
+                        onPress={() => handlePress('Profile')}
+                    />
+                    <CustomItem
+                        title={'Notifications'}
+                        icon={Images.notification}
+                        onPress={() => handlePress('Notifications')}
+                    />
+                    <CustomItem
                         title={'Change Password'}
-                        icon={Images.PASSWORD}
+                        icon={Images.changePassword}
                         onPress={() => handlePress('ChangePassword')}
                     />
 
                     <CustomItem
-                        title={'Notifications'}
-                        icon={Images.NOTIFICATIONS}
-                        onPress={() => handlePress('Notifications')}
-                    />
-                    <CustomItem
-                        title={'My Orders'}
-                        icon={Images.ORDERS}
-                        onPress={() => handlePress('MyOrders')}
+                        title={'Contact Us'}
+                        icon={Images.contactUs}
+                        onPress={() => handlePress('Contact Us')}
                     />
 
                     <CustomItem
-                        title={'Help Center'}
-                        icon={Images.HELP_CENTER}
-                        onPress={() => handlePress('HelpCenter')}
+                        title={'Privacy Policy'}
+                        icon={Images.privacyPolicy}
+                        onPress={() => handlePress('Privacy Policy')}
                     />
                     <CustomItem
-                        title={'Privacy Policy'}
-                        icon={Images.PRIVACY_POLICY}
+                        title={"FAQ's"}
+                        icon={Images.FAQ}
                         onPress={() => handlePress('PrivacyPolicy')}
                     />
                     <CustomItem
                         title={'Terms and Conditions'}
-                        icon={Images.TERMSCONDITIONS}
+                        icon={Images.termsAndCondition}
                         onPress={() => handlePress('TermsConditions')}
                     />
 
@@ -163,7 +168,6 @@ const styles = StyleSheet.create({
         width: wp(72),
         height: hp(28),
         alignSelf: 'center',
-        opacity: 0.66,
     },
     container: {
         marginHorizontal: wp(2.5),

@@ -1,14 +1,16 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Images } from '../Assets'
 import { Colors } from '../Constants/Colors'
 import { Fonts } from '../Constants/Fonts'
 import { Fontsize } from '../Constants/Fontsize'
 import { hp, wp } from '../Constants/Responsive'
+import { useNavigation } from '@react-navigation/native'
 
 const DeviceCard = (data) => {
+    const navigation = useNavigation()
     return (
-        <View style={styles.cardMain}>
+        <TouchableOpacity style={styles.cardMain} onPress={() => navigation.navigate('DeviceDetail')}>
             <View style={styles.repairingView}>
                 <Image source={Images.repairing} style={styles.reparingImg} />
                 <Text style={styles.repairing}>Repairing Services </Text>
@@ -50,7 +52,7 @@ const DeviceCard = (data) => {
                 </View>
 
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
