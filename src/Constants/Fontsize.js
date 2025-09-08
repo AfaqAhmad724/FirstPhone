@@ -20,6 +20,7 @@ export const Fontsize = {
   xs: wp(3),
   xxs: wp(2.8),
   xxxs: wp(2.4),
+  xm: wp(2.2),
   fm: wp('5%'),
-  xxxxxs: wp(1.3),
+  xxxxs: wp(1.3),
 };
