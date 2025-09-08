@@ -1,4 +1,10 @@
-import { SafeAreaView, StyleSheet, TextInput, View } from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 import React from 'react';
 import PasswordHeader from '../../Components/PasswordHeader';
 import { Colors } from '../../Constants/Colors';
@@ -13,13 +19,15 @@ import { MyStyling } from '../../Constants/Styling';
 const Verificationbody = () => {
   return (
     <SafeAreaView style={MyStyling.container}>
+      <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
       <PasswordHeader header="Verification" islogged="Enter OTP" />
+
       <Text style={styles.isLogged}>Enter OTP</Text>
       <Text style={styles.define}>Send OTP to mail@gmail.com</Text>
       <CustomInputText
         placeholder="XXXX"
         style={styles.verificationStyle}
-        placeholderTextColor="#B9B6B6"
+        placeholderTextColor={Colors.verificationColor}
       />
       <Btn
         title="Continue"
@@ -56,6 +64,7 @@ const styles = StyleSheet.create({
   },
   verificationStyle: {
     color: Colors.verificationColor,
+    marginLeft: wp(2),
   },
   resendWrapper: {
     flexDirection: 'row',

@@ -4,6 +4,7 @@ import { Fonts } from '../Constants/Fonts';
 import { wp, hp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
+import { Fontsize } from '../Constants/Fontsize';
 
 const PasswordHeader = props => {
   return (
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: hp(3.1),
+    marginLeft: 0.1,
   },
   vectorStyle: {
     width: wp(7.0),
@@ -36,7 +38,6 @@ const styles = StyleSheet.create({
     borderRadius: wp(2.3),
     justifyContent: 'center',
     alignItems: 'center',
-    // marginLeft: wp(5.0),
   },
   arrowIcon: {
     width: wp(3.8),
@@ -44,10 +45,10 @@ const styles = StyleSheet.create({
   },
   setHeading: {
     fontFamily: Fonts.semibold,
-    fontSize: wp(4.5),
     color: Colors.black,
+    fontSize: Fontsize.m,
   },
   space: {
-    flex: 0.2,
+    width: wp(11),
   },
 });
