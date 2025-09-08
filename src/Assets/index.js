@@ -18,6 +18,7 @@ export const Images = {
   build: require('./Icons/build.png'),
   color: require('./Icons/color.png'),
   video: require('./Icons/video.png'),
+  logOut: require('./Icons/logOut.png'),
   filter: require('./Icons/filter.png'),
   search: require('./Icons/search.png'),
   camera: require('./Icons/camera.png'),

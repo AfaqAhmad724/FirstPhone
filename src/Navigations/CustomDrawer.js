@@ -17,6 +17,7 @@ import { Colors } from '../Constants/Colors';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
 import { Images } from '../Assets';
+import { Screen } from 'react-native-screens';
 
 export default function CustomDrawer({ navigation }) {
     const scrollRef = useRef();
@@ -42,7 +43,7 @@ export default function CustomDrawer({ navigation }) {
 
     const LogoutItem = ({ title, icon, onPress }) => {
         return (
-            <Pressable style={styles.itemContainer} onPress={onPress}>
+            <Pressable style={styles.logoutContainer} onPress={onPress}>
                 <View style={styles.iconContainer}>
                     <Image source={icon} style={styles.icon} resizeMode="contain" />
                     <Text style={styles.title}>{title}</Text>
@@ -75,29 +76,29 @@ export default function CustomDrawer({ navigation }) {
                 ref={scrollRef}
                 keyboardShouldPersistTaps="handled"
                 contentContainerStyle={{ flexGrow: 1 }}>
-                <TouchableOpacity
-                    style={styles.crossContainer}
-                    onPress={() => navigation?.closeDrawer()}>
-                    <Icon type="entypo" name="cross" size={wp(7)} color={Colors.bg} />
-                </TouchableOpacity>
-
+                {/* <Image
+                    source={Images.sideBarImg}
+                    style={styles.img}
+                    resizeMode='contain'
+                    tintColor={Colors.bg}
+                /> */}
                 <Image
                     source={Images.sideBarImg}
                     style={styles.img}
                     resizeMode="contain"
-                    tintColor={Colors.bg}
                 />
+
 
                 <View style={styles.container}>
                     <CustomItem
                         title={'Register As Vendor'}
                         icon={Images.vendorregister}
-                        onPress={() => handlePress('MyProfile')}
+                    // onPress={() => handlePress('MyProfile')}
                     />
                     <CustomItem
                         title={'My Profile'}
                         icon={Images.profileIcon}
-                        onPress={() => handlePress('Profile')}
+                        onPress={() => handlePress('MyProfile')}
                     />
                     <CustomItem
                         title={'Notifications'}
@@ -107,34 +108,41 @@ export default function CustomDrawer({ navigation }) {
                     <CustomItem
                         title={'Change Password'}
                         icon={Images.changePassword}
-                        onPress={() => handlePress('ChangePassword')}
+                        // onPress={() => handlePress('AuthNavigation', { screen: 'ResetPassword' })}
+                        onPress={() =>
+                            handlePress('AuthNavigation', {
+                                screen: 'ResetPassword',
+                                index: 0, // yahan index specify kar rahe ho
+                            })
+                        }
+
                     />
 
                     <CustomItem
                         title={'Contact Us'}
                         icon={Images.contactUs}
-                        onPress={() => handlePress('Contact Us')}
+                    // onPress={() => handlePress('ContactUs')}
                     />
 
                     <CustomItem
                         title={'Privacy Policy'}
                         icon={Images.privacyPolicy}
-                        onPress={() => handlePress('Privacy Policy')}
+                    // onPress={() => handlePress('PrivacyPolicy')}
                     />
                     <CustomItem
                         title={"FAQ's"}
                         icon={Images.FAQ}
-                        onPress={() => handlePress('PrivacyPolicy')}
+                    // onPress={() => handlePress('FAQ')}
                     />
                     <CustomItem
                         title={'Terms and Conditions'}
                         icon={Images.termsAndCondition}
-                        onPress={() => handlePress('TermsConditions')}
+                    // onPress={() => handlePress('TermsConditions')}
                     />
 
                     <LogoutItem
                         title={'Logout'}
-                        icon={Images.LOGOUT}
+                        icon={Images.logOut}
                         onPress={() => setModalVisible(true)}
                     />
                 </View>
@@ -165,8 +173,8 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     img: {
-        width: wp(72),
-        height: hp(28),
+        width: wp(60),
+        height: wp(25),
         alignSelf: 'center',
     },
     container: {
@@ -177,7 +185,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: hp(3),
+        marginBottom: hp(1.5),
+    },
+    logoutContainer: {
+        flex: 1,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-end',
+        paddingBottom: hp(2)
     },
     rightIcon: {
         width: wp(4),
@@ -199,15 +213,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    btnContainer: {
-        backgroundColor: Colors.secondary,
-        width: wp('55%'),
-        // position: 'absolute',
-        bottom: hp(5),
-    },
-    btnText: {
-        fontSize: Fontsize.sm,
-        fontFamily: Fonts.semibold,
     },
 });
