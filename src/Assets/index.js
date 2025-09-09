@@ -26,6 +26,7 @@ export const Images = {
   address: require('./Icons/address.png'),
   sorting: require('./Icons/sorting.png'),
   storage: require('./Icons/storage.png'),
+  setting: require('./Icons/setting.png'),
   password: require('./Icons/password.png'),
   shopName: require('./Icons/shopName.png'),
   charging: require('./Icons/charging.png'),

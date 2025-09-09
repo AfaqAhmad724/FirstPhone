@@ -1,23 +1,22 @@
+
 import {
     ActivityIndicator,
     Image,
     Pressable,
     StyleSheet,
     Text,
-    TouchableOpacity,
     View,
 } from 'react-native';
 import React, { useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Icon } from 'react-native-elements';
-// import ModalComponent from '../Components/ModalComponent';
 import { hp, wp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
 import { Images } from '../Assets';
-import { Screen } from 'react-native-screens';
+import ConfirmModal from '../Components/CofirmModal';
+import { Divider } from 'react-native-elements';
 
 export default function CustomDrawer({ navigation }) {
     const scrollRef = useRef();
@@ -54,19 +53,24 @@ export default function CustomDrawer({ navigation }) {
         );
     };
 
-    const handlePress = screen => {
-        navigation.navigate(screen);
+    const handlePress = (screen, params) => {
+        if (screen == 'AuthNavigation' && params?.screen == 'ResetPassword') {
+            navigation.navigate('AuthNavigation', {
+                screen: 'ResetPassword',
+                params: { fromDrawer: true },
+            });
+        } else {
+            navigation.navigate(screen, params);
+        }
     };
 
-    // const HandleLogout = () => {
-    //   setModalVisible(false)
-    //   dispatch(USER_ROLE(null))
-    //   dispatch(Remove_User_Data())
-    //   navigation.reset({
-    //     index: 0,
-    //     routes: [{ name: 'AuthNavigation' }],
-    //   });
-    // }
+    const HandleLogout = () => {
+        setModalVisible(false);
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'AuthNavigation' }],
+        });
+    };
 
     return (
         <SafeAreaView style={{ backgroundColor: Colors.primary, flex: 1 }}>
@@ -76,17 +80,13 @@ export default function CustomDrawer({ navigation }) {
                 ref={scrollRef}
                 keyboardShouldPersistTaps="handled"
                 contentContainerStyle={{ flexGrow: 1 }}>
-                {/* <Image
-                    source={Images.sideBarImg}
-                    style={styles.img}
-                    resizeMode='contain'
-                    tintColor={Colors.bg}
-                /> */}
                 <Image
                     source={Images.sideBarImg}
                     style={styles.img}
                     resizeMode="contain"
                 />
+
+                <Divider style={styles.divider} />
 
 
                 <View style={styles.container}>
@@ -108,20 +108,23 @@ export default function CustomDrawer({ navigation }) {
                     <CustomItem
                         title={'Change Password'}
                         icon={Images.changePassword}
-                        // onPress={() => handlePress('AuthNavigation', { screen: 'ResetPassword' })}
                         onPress={() =>
                             handlePress('AuthNavigation', {
                                 screen: 'ResetPassword',
-                                index: 0, // yahan index specify kar rahe ho
+                                index: 3,
                             })
                         }
-
                     />
 
                     <CustomItem
                         title={'Contact Us'}
                         icon={Images.contactUs}
                     // onPress={() => handlePress('ContactUs')}
+                    />
+                    <CustomItem
+                        title={'Place Order'}
+                        icon={Images.contactUs}
+                        onPress={() => handlePress('PlaceOrder')}
                     />
 
                     <CustomItem
@@ -147,19 +150,12 @@ export default function CustomDrawer({ navigation }) {
                     />
                 </View>
 
-                {/* {modalVisible && (
-            <ModalComponent
-              visible={modalVisible}
-              icon={'logout'}
-              type={'simple-line-icon'}
-              title={'Logout'}
-              description={'Are you sure you want to logout?'}
-              selectBtnTxt={'LOGOUT'}
-              cancelBtnTxt={'CANCEL'}
-              pressCancelbtn={() => setModalVisible(false)}
-              pressSelectbtn={() => HandleLogout()}
-            />
-          )} */}
+                <ConfirmModal
+                    visible={modalVisible}
+                    title="Are you sure you want to logout?"
+                    onCancel={() => setModalVisible(false)}
+                    onConfirm={HandleLogout}
+                />
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
@@ -188,14 +184,12 @@ const styles = StyleSheet.create({
         marginBottom: hp(1.5),
     },
     logoutContainer: {
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end',
-        paddingBottom: hp(2)
+        position: 'absolute',
+        bottom: hp(1)
     },
     rightIcon: {
-        width: wp(4),
-        height: wp(4),
+        width: wp(3.5),
+        height: wp(3.5),
     },
     icon: {
         width: wp(5),
@@ -204,7 +198,7 @@ const styles = StyleSheet.create({
     title: {
         color: Colors.bg,
         fontFamily: Fonts.medium,
-        fontSize: Fontsize.s,
+        fontSize: Fontsize.sm,
         marginLeft: wp(2),
         lineHeight: Fontsize.mm,
         textTransform: 'capitalize',
@@ -214,4 +208,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    divider: {
+        width: wp(60),
+        backgroundColor: Colors.silverGrey,
+        bottom: hp(1.5),
+    }
 });

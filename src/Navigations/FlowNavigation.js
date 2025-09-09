@@ -6,6 +6,8 @@ import SearchFilter from '../Screens/AppFlow/SearchFilter';
 import MyProfile from '../Screens/CommonScreens/MyProfile';
 import Notifications from '../Screens/CommonScreens/Notifications';
 import ResetPassword from '../Screens/Auth/ResetPassword';
+import OrderPlaced from '../Components/OrderPlaced';
+import PlaceOrder from '../Screens/AppFlow/PlaceOrder';
 
 export default function FlowNavigation() {
   const FLOW_STACk = createNativeStackNavigator();
@@ -18,6 +20,8 @@ export default function FlowNavigation() {
       <FLOW_STACk.Screen name="SearchFilter" component={SearchFilter} />
       <FLOW_STACk.Screen name="MyProfile" component={MyProfile} />
       <FLOW_STACk.Screen name="Notifications" component={Notifications} />
+      <FLOW_STACk.Screen name="PlaceOrder" component={PlaceOrder} />
+
 
     </FLOW_STACk.Navigator>
   );

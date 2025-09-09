@@ -28,5 +28,6 @@ export const Strings = {
 
     description: 'The iPhone 17 Pro Max features a 6.9-inch Super Retina XDR display, A19 Bionic chip, triple-camera system, and all-day battery life with 5G. Perfect for fast performance, stunning photos, and a premium user experience.',
     addTocart: 'Add to cart',
+    address: '1901 Thorn ridge Cir. Shiloh, Hawaii 81063'
 
 };

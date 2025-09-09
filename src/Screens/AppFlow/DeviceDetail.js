@@ -1,57 +1,44 @@
 import React from 'react'
-import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import DeviceSpecifications from '../../Components/DeviceSpecifications'
-import { MyStyling } from '../../Constants/Styling'
 import { deviceFeatures, deviceSpecsData } from '../../Constants/DummyData'
 import { hp, wp } from '../../Constants/Responsive'
-import { Images } from '../../Assets'
 import WarrantyDetail from '../../Components/WarrantyDetail'
 import DeviceDescription from '../../Components/DeviceDescription'
 import AddToCartCounter from '../../Components/AddToCartCounter'
+import MainHeader from '../../Components/MainHeader'
+import CaroselAnimation from '../../Components/CaroselAnimation'
 
 const DeviceDetail = () => {
-
     return (
-        <SafeAreaView style={MyStyling.container}>
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Image
-                        source={Images.iphone}
-                        style={styles.imgStyle}
-                        resizeMode="contain"
-                    />
-
-                    {/* Slider */}
-                    {/* <Slider
-                        style={{ width: width * 0.6, height: 40, marginTop: 20 }}
-                        minimumValue={0}
-                        maximumValue={ImagesData.length - 1}
-                        step={1}
-                        value={activeIndex}
-                        minimumTrackTintColor="green"
-                        maximumTrackTintColor="lightgrey"
-                        thumbTintColor="grey"
-                        onValueChange={(val) => setActiveIndex(val)}
-                    /> */}
+        <SafeAreaView style={styles.mainContainer}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={{ paddingHorizontal: wp(5) }}>
+                    <MainHeader title={'Device Detail'} />
                 </View>
-
-                <DeviceSpecifications data={deviceSpecsData} title={'Specifications'} />
-                <DeviceSpecifications data={deviceFeatures} title={'Other Features'} />
-                <WarrantyDetail title={'Warranty Details'} />
-                <DeviceDescription title={'Description'} info={true} />
-                <AddToCartCounter />
-
+                <CaroselAnimation />
+                <View style={styles.bottomView}>
+                    <DeviceSpecifications data={deviceSpecsData} title={'Specifications'} />
+                    <DeviceSpecifications data={deviceFeatures} title={'Other Features'} />
+                    <WarrantyDetail title={'Warranty Details'} />
+                    <DeviceDescription title={'Description'} info={true} />
+                    <AddToCartCounter />
+                </View>
             </ScrollView>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 
 export default DeviceDetail
 
 const styles = StyleSheet.create({
-    imgStyle: {
-        width: wp(90),
-        height: wp(90),
+    mainContainer: {
+        flex: 1,
+        backgroundColor: 'white'
     },
+    bottomView: {
+        paddingHorizontal: wp(5),
+        marginTop: hp(2)
+    }
 })

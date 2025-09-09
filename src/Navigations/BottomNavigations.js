@@ -10,6 +10,7 @@ import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
+import Cart from '../Components/Cart';
 
 const BOTTOM_STACK = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ export const BottomNavigations = () => {
                 headerShown: false,
                 tabBarLabelPosition: 'below-icon',
                 tabBarStyle: {
-                    backgroundColor: Colors.bottomBar,
+                    backgroundColor: Colors.bg,
                     paddingBottom: hp(1),
                     height: hp(7.5),
                 },
@@ -66,18 +67,18 @@ export const BottomNavigations = () => {
                     ),
                 }}
             />
-            {/* <BOTTOM_STACK.Screen
-        name="Wishlist"
-        component={}
-        options={{
-          tabBarIcon: tabBarIcon(Images.cart),
-          tabBarButton: props => (
-            <TouchableOpacity {...props} activeOpacity={0.9} />
-          ),
-        }}
-      /> */}
             <BOTTOM_STACK.Screen
-                name="ProductListing"
+                name="Cart"
+                component={Cart}
+                options={{
+                    tabBarIcon: tabBarIcon(Images.cart),
+                    tabBarButton: props => (
+                        <TouchableOpacity {...props} activeOpacity={0.9} />
+                    ),
+                }}
+            />
+            <BOTTOM_STACK.Screen
+                name="Sell"
                 component={ProductListing}
                 options={{
                     tabBarIcon: tabBarIcon(Images.sell),
@@ -100,7 +101,7 @@ export const BottomNavigations = () => {
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarIcon: tabBarIcon(Images.profile),
+                    tabBarIcon: tabBarIcon(Images.setting),
                     tabBarButton: props => (
                         <TouchableOpacity {...props} activeOpacity={0.9} />
                     ),

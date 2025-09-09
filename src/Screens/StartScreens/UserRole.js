@@ -18,8 +18,8 @@ const UserRole = ({ navigation }) => {
             navigation.navigate('AuthNavigation')
         }
         else {
-            // navigation.navigate('FlowNavigation')
-            return null
+            navigation.navigate('AuthNavigation')
+            // return null
         }
     }
 

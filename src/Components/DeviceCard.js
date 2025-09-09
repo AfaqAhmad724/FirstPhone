@@ -21,7 +21,7 @@ const DeviceCard = (data) => {
             <Text style={styles.titleText}>{data?.title}</Text>
 
             <View style={styles.shopView}>
-                <Image source={Images.shopName} />
+                <Image source={Images.shopName} style={styles.shopImg} resizeMode='contain' />
                 <Text style={styles.shopText} numberOfLines={2}>{data?.shopName}</Text>
             </View>
 
@@ -165,4 +165,8 @@ const styles = StyleSheet.create({
         height: wp(3.5),
         marginRight: wp(.5),
     },
+    shopImg: {
+        width: wp(3.8),
+        height: wp(3.8)
+    }
 })

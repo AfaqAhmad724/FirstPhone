@@ -13,7 +13,7 @@ const AddToCartCounter = () => {
     };
 
     return (
-        <View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Btn
                 title={Strings.addTocart}
                 btnContainer={styles.btnContainer}
@@ -41,7 +41,7 @@ export default AddToCartCounter;
 
 const styles = StyleSheet.create({
     btnContainer: {
-        width: wp(43),
+        width: wp(55),
         alignSelf: 'flex-start',
     },
     counterContainer: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderWidth: 1.5,
         borderColor: '#999',
-        borderRadius: wp(4),
+        borderRadius: wp(1.5),
         overflow: 'hidden',
         width: wp(30),
         height: wp(10),
