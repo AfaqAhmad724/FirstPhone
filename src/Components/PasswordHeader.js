@@ -7,11 +7,14 @@ import { Images } from '../Assets';
 import { Fontsize } from '../Constants/Fontsize';
 import { useNavigation } from '@react-navigation/native';
 
-const PasswordHeader = (props) => {
-  const navigation = useNavigation()
+const PasswordHeader = props => {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={styles.vectorStyle} onPress={() => navigation.goBack()}>
+      <TouchableOpacity
+        style={styles.vectorStyle}
+        onPress={() => navigation.goBack()}
+      >
         <Image
           source={Images.arrowleft}
           style={styles.arrowIcon}

@@ -10,7 +10,6 @@ import CustomInputText from '../../Components/CustomInputText';
 import { Images } from '../../Assets';
 import Btn from '../../Components/Btn';
 import { StatusBar } from 'react-native';
-
 const ResetPassword = ({ navigation }) => {
   return (
     <SafeAreaView style={MyStyling.container}>
@@ -28,6 +27,7 @@ const ResetPassword = ({ navigation }) => {
         placeholderTextColor={Colors.mediumGrey}
         keyboardType="email-address"
       />
+
       <CustomInputText
         placeholder="Confirm Password"
         style={styles.emailstyle}

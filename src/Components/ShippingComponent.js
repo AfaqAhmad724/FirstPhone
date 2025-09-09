@@ -10,11 +10,11 @@ const ShippingComponent = props => {
   return (
     <View style={styles.Container}>
       <Text style={styles.textStyle}>{props?.name}</Text>
-
       <CustomInputText
         placeholder={props?.placeholder}
         placeholderTextColor={props?.placeholdertextColor}
-        style={styles.inputStyle}
+        inputContainer={styles.inputStyle}
+        keyboardType={props?.keyboardType}
       />
     </View>
   );
@@ -24,19 +24,19 @@ export default ShippingComponent;
 
 const styles = StyleSheet.create({
   Container: {
-    paddingHorizontal: wp(5),
-    marginTop: hp(4.2),
-    // marginTop: hp(2),
+    marginTop: hp(1.6),
   },
   textStyle: {
     fontFamily: Fonts.medium,
     color: Colors.black,
-    fontSize: Fontsize.s,
-    marginBottom: hp(0.1),
+    fontSize: Fontsize.xs2,
+    marginBottom: wp(0.1),
+    marginLeft: hp(0.2),
   },
   inputStyle: {
     fontSize: Fontsize.xsm,
-    color: Colors.mediumGrey,
-    // marginTop: hp(0.5), //
+    paddingHorizontal: wp(3),
+    borderColor: Colors.lightgray,
+    marginTop: hp(0.1),
   },
 });

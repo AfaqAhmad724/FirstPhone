@@ -25,7 +25,6 @@ const CustomInputText = props => {
         secureTextEntry={props?.isPassword ? pass : false}
         value={props?.value}
         onChangeText={props?.onChangeText}
-
       />
       {props?.isPassword && (
         <TouchableOpacity onPress={() => setPass(!pass)}>
