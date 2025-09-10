@@ -17,7 +17,7 @@ const HomeTextInput = props => {
     const navigation = useNavigation()
 
     return (
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer, props?.inputContainer]}>
             <Image style={[styles.vectorstyle]} source={props?.icon} resizeMode='contain' />
             <TextInput
                 placeholder={props?.placeholder}
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
         color: 'black',
         flex: 1,
         marginHorizontal: wp(0.8),
+
     },
     passwordicon: {
         color: '#B4B4B4',

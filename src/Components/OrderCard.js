@@ -3,6 +3,8 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import { wp, hp } from '../Constants/Responsive'
 import { Colors } from '../Constants/Colors'
 import { Images } from '../Assets'
+import { Fontsize } from '../Constants/Fontsize'
+import { Fonts } from '../Constants/Fonts'
 
 const OrderCard = ({ data }) => {
     return (
@@ -12,18 +14,22 @@ const OrderCard = ({ data }) => {
             </View>
 
             <View style={styles.detailsWrapper}>
-                <Text style={styles.title}>{data?.name}</Text>
+                <Text style={styles.title} numberOfLines={2}>{data?.name}</Text>
 
                 <View style={styles.storeWrapper}>
                     <Image
                         source={Images.shopName}
                         style={styles.storeIcon}
                     />
-                    <Text style={styles.storeText}>{data?.store}</Text>
+                    <Text style={styles.storeText} numberOfLines={2}>{data?.store}</Text>
                 </View>
 
-                <Text style={styles.price}>Rs {data?.price}</Text>
-                <Text style={styles.qty}>Qty: {data?.quantity}</Text>
+                <Text style={styles.price} numberOfLines={2}>Rs {data?.price}</Text>
+                <Text style={styles.qty} numberOfLines={2}>Qty: {data?.quantity}</Text>
+            </View>
+
+            <View style={styles.DetailView}>
+                <Text style={styles.detailText}>View Detail</Text>
             </View>
         </View>
     )
@@ -37,13 +43,13 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.offWhite,
         borderRadius: wp(3),
         padding: wp(3),
-        marginVertical: hp(1),
+        marginBottom: hp(2),
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
         shadowRadius: 4,
-        elevation: 3,
+        elevation: 2,
     },
     imageWrapper: {
         width: wp(20),
@@ -66,9 +72,10 @@ const styles = StyleSheet.create({
         marginLeft: wp(4),
     },
     title: {
-        fontSize: wp(4.5),
-        fontWeight: '600',
-        color: '#000',
+        width: wp(60),
+        fontFamily: Fonts.regular,
+        fontSize: Fontsize.sm,
+        color: Colors.black,
     },
     storeWrapper: {
         flexDirection: 'row',
@@ -81,20 +88,36 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     storeText: {
-        color: '#9E9E9E',
-        marginLeft: wp(2),
-        fontSize: wp(3.5),
+        width: wp(55),
+        color: Colors.mediumGrey,
+        fontSize: wp(2.8),
+        marginLeft: wp(1),
     },
     price: {
-        color: '#2ECC71',
-        fontWeight: 'bold',
-        fontSize: wp(4.5),
+        width: wp(60),
+        color: Colors.primary,
+        fontFamily: Fonts.bold,
+        fontSize: Fontsize.xsm,
         marginTop: hp(0.8),
     },
     qty: {
-        color: '#555',
-        fontWeight: '500',
-        fontSize: wp(3.8),
+        width: wp(60),
+        color: Colors.mediumGrey,
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.xs2,
         marginTop: hp(0.5),
+    },
+    DetailView: {
+        paddingVertical: wp(1),
+        paddingHorizontal: wp(2.5),
+        borderRadius: hp(5),
+        borderWidth: wp(.2),
+        borderColor: Colors.primary,
+        backgroundColor: Colors.lightGreen
+    },
+    detailText: {
+        color: Colors.primary,
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.xxm
     },
 })

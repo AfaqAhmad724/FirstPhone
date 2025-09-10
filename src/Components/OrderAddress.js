@@ -15,8 +15,8 @@ const OrderAddress = ({ address, onChange }) => {
                     <Text style={styles.label}>Address</Text>
                 </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={styles.address}>{address}</Text>
+            <View style={styles.addressView}>
+                <Text style={styles.address} numberOfLines={3}>{address}</Text>
                 <TouchableOpacity style={styles.changeBtn} onPress={onChange}>
                     <Text style={styles.changeText}>CHANGE</Text>
                 </TouchableOpacity>
@@ -43,14 +43,18 @@ const styles = StyleSheet.create({
     label: {
         fontSize: Fontsize.s,
         fontFamily: Fonts.medium,
-        color: '#000',
+        color: Colors.black,
     },
     address: {
-        fontSize: Fontsize.xs,
+        fontSize: Fontsize.xs1,
         color: Colors.mediumGrey,
         marginTop: hp(0.5),
         maxWidth: wp(60),
         fontFamily: Fonts.regular
+    },
+    addressView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     changeBtn: {
         width: wp(15),

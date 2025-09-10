@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.primary,
     width: wp(90),
-    paddingVertical: wp(2.3),
+    paddingVertical: wp(2.5),
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: wp(2),
@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.bg,
     fontFamily: Fonts.medium,
-    fontSize: Fontsize.sm,
+    fontSize: Fontsize.sm1,
   },
 });

@@ -24,4 +24,11 @@ export const Colors = {
   lightgray: '#E2E8F0',
   graylight: '#818181',
   offWhite: '#F3F4F5',
+  lightGreen: '#E6FDED',
+  neutralGrey: '#D9D9D9',
+  veryLightGray: '#EDEDED',
+  darkGrey1: '#474747',
+  dimBlack: '#121212',
+  darkNeutralGray: '#434343',
+  darkNeutralGray: '#3C3C3C'
 };

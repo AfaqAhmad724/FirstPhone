@@ -1,20 +1,24 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { Fontsize } from '../Constants/Fontsize'
+import { Colors } from '../Constants/Colors'
+import { Fonts } from '../Constants/Fonts'
+import { hp, wp } from '../Constants/Responsive'
 
 const OrderTotal = (props) => {
     return (
         <View style={styles.priceContainer}>
             <View style={styles.priceRow}>
                 <Text style={styles.label}>Subtotal:</Text>
-                <Text style={styles.value}>Rs {props?.price}</Text>
+                <Text style={styles.value} numberOfLines={2}>Rs {props?.price}</Text>
             </View>
             <View style={styles.priceRow}>
                 <Text style={styles.label}>Shipping Charges:</Text>
-                <Text style={styles.value}>Rs {props?.shippingCharges}</Text>
+                <Text style={styles.value} numberOfLines={2}>Rs {props?.shippingCharges}</Text>
             </View>
             <View style={styles.priceRow}>
-                <Text style={styles.totalLabel}>Total:</Text>
-                <Text style={styles.totalValue}>Rs {props?.total}</Text>
+                <Text style={styles.label}>Total:</Text>
+                <Text style={styles.totalValue} numberOfLines={2}>Rs {props?.total}</Text>
             </View>
         </View>
     )
@@ -24,8 +28,7 @@ export default OrderTotal
 
 const styles = StyleSheet.create({
     priceContainer: {
-        padding: 16,
-        marginTop: 16,
+        marginTop: hp(2),
     },
     priceRow: {
         flexDirection: 'row',
@@ -33,23 +36,23 @@ const styles = StyleSheet.create({
         marginVertical: 4,
     },
     label: {
-        fontSize: 16,
-        color: '#666',
-        fontWeight: '500',
+        fontSize: Fontsize.sm,
+        color: Colors.black,
+        fontFamily: Fonts.medium
     },
     value: {
-        fontSize: 16,
-        color: '#666',
-        fontWeight: '500',
-    },
-    totalLabel: {
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: '#000',
+        width: wp(40),
+        fontSize: Fontsize.xsm,
+        color: Colors.mediumGrey,
+        fontFamily: Fonts.medium,
+        textAlign: 'right',
+
     },
     totalValue: {
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: 'green',
+        width: wp(40),
+        fontSize: Fontsize.sm,
+        fontFamily: Fonts.medium,
+        color: Colors.primary,
+        textAlign: 'right',
     },
 })

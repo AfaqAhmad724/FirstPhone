@@ -5,9 +5,12 @@ import DrawerNavigation from './DrawerNavigation';
 import SearchFilter from '../Screens/AppFlow/SearchFilter';
 import MyProfile from '../Screens/CommonScreens/MyProfile';
 import Notifications from '../Screens/CommonScreens/Notifications';
-import ResetPassword from '../Screens/Auth/ResetPassword';
-import OrderPlaced from '../Components/OrderPlaced';
 import PlaceOrder from '../Screens/AppFlow/PlaceOrder';
+import MyOrders from '../Screens/CommonScreens/MyOrders';
+import OrderLists from '../Screens/CommonScreens/OrderLists';
+import TrackOrder from '../Screens/CommonScreens/TrackOrder';
+import Receipt from '../Screens/CommonScreens/Receipt';
+import SearchHistory from '../Screens/AppFlow/SearchHistory';
 
 export default function FlowNavigation() {
   const FLOW_STACk = createNativeStackNavigator();
@@ -21,6 +24,12 @@ export default function FlowNavigation() {
       <FLOW_STACk.Screen name="MyProfile" component={MyProfile} />
       <FLOW_STACk.Screen name="Notifications" component={Notifications} />
       <FLOW_STACk.Screen name="PlaceOrder" component={PlaceOrder} />
+      <FLOW_STACk.Screen name="MyOrders" component={MyOrders} />
+      <FLOW_STACk.Screen name="OrderLists" component={OrderLists} />
+      <FLOW_STACk.Screen name="TrackOrder" component={TrackOrder} />
+      <FLOW_STACk.Screen name="Receipt" component={Receipt} />
+      <FLOW_STACk.Screen name="SearchHistory" component={SearchHistory} />
+
 
 
     </FLOW_STACk.Navigator>

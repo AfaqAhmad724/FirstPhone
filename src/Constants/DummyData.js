@@ -388,6 +388,175 @@ export const orderPlaceData = [
     price: 502999,
     quantity: 2,
     image1: Images.phone1,
-    image2: Images.phone2,
+  },
+  {
+    id: 2,
+    name: 'iPhone 16 Pro',
+    store: 'Mobile Hub Lahore',
+    price: 502999,
+    quantity: 2,
+    image1: Images.phone2,
   },
 ];
+
+export const chatData = [
+  {
+    id: '1',
+    name: 'Jose Larry',
+    message: 'Hi, is this iPhone 13 still available?',
+    time: 'Now',
+    unreadCount: '1',
+    profileImage: Images.dummyProfile,
+  },
+  {
+    id: '2',
+    name: 'Emily Clark',
+    message: 'Can you share the price again?',
+    time: '2m',
+    unreadCount: '2',
+    profileImage: Images.dummyProfile1,
+  },
+  {
+    id: '3',
+    name: 'John Doe',
+    message: 'Thanks for the quick response!',
+    time: '10m',
+    unreadCount: '3',
+    profileImage: Images.dummyProfile2,
+
+  },
+  {
+    id: '4',
+    name: 'Sarah Lee',
+    message: 'I will get back to you tomorrow.',
+    time: '1h',
+    unreadCount: '4',
+    profileImage: Images.dummyProfile3,
+
+  },
+  {
+    id: '5',
+    name: 'Michael Smith',
+    message: 'Cool, let’s proceed!',
+    time: '3h',
+    unreadCount: '5',
+    profileImage: Images.dummyProfile4,
+
+  },
+]
+
+export const myOrdersData = [
+  {
+    id: 1,
+    orderId: "21324325",
+    shopName: "Mobile Hub Lahore",
+    totalPrice: "1,502,999",
+    totalProducts: "7",
+    date: "July 25, 2020",
+    status: "active",
+  },
+  // {
+  //   id: 2,
+  //   orderId: "54367342",
+  //   shopName: "Electro World Karachi",
+  //   totalPrice: "2,200,500",
+  //   totalProducts: "12",
+  //   date: "Aug 5, 2021",
+  //   status: "delivered",
+  // },
+  // {
+  //   id: 3,
+  //   orderId: "87893762",
+  //   shopName: "Tech Bazaar Islamabad",
+  //   totalPrice: "955,000",
+  //   totalProducts: "5",
+  //   date: "Sep 12, 2021",
+  //   status: "cancelled",
+  // },
+  // {
+  //   id: 4,
+  //   orderId: "78632476",
+  //   shopName: "Gadget Store Multan",
+  //   totalPrice: "1,250,000",
+  //   totalProducts: "9",
+  //   date: "Jan 20, 2022",
+  //   status: "active",
+  // },
+  // {
+  //   id: 5,
+  //   orderId: "98234678",
+  //   shopName: "Computer House Faisalabad",
+  //   totalPrice: "3,050,700",
+  //   totalProducts: "15",
+  //   date: "Mar 11, 2022",
+  //   status: "delivered",
+  // },
+]
+
+export const orderSteps = [
+  {
+    id: 1,
+    title: 'Order Placed',
+    date: '05 July 2025',
+    status: 'completed',
+    icon: Images.orderPlaced,
+  },
+  {
+    id: 2,
+    title: 'In Progress',
+    date: '06 July 2025',
+    status: 'completed',
+    icon: Images.inProgress,
+  },
+  {
+    id: 3,
+    title: 'Shipped',
+    date: '10 July 2025',
+    status: 'pending',
+    icon: Images.shipping,
+  },
+  {
+    id: 4,
+    title: 'Delivered',
+    date: '12 July 2025',
+    status: 'pending',
+    icon: Images.delivered,
+  },
+]
+
+export const recepitData = {
+  paymentStatus: 'Payment Sent',
+  dateTime: '12 May 2025, 10:30PM',
+  paymentId: 'ABCDEF0HIJKLMN',
+  orderNumber: '123456',
+  paymentMethod: 'Online',
+  to: 'Antonio Roberto',
+  from: 'Smith Gras',
+  products: 'Two',
+  items: [
+    {
+      id: '1',
+      name: 'iPhone 15 Pro Max',
+      variant: '256GB, Graphite',
+      quantity: 3,
+      price: 'Rs 502,999',
+      imeis: [
+        { id: '1', imei1: '867895432198XXX', imei2: '867819543218XXX' },
+        { id: '2', imei1: '867895432198XXX', imei2: '867819543218XXX' },
+        { id: '3', imei1: '867895432198XXX', imei2: '867819543218XXX' },
+      ],
+    },
+    {
+      id: '2',
+      name: 'iPhone 15 Pro Max',
+      variant: '256GB, Graphite',
+      quantity: 2,
+      price: 'Rs 502,999',
+      imeis: [
+        { id: '1', imei1: '867895432198XXX', imei2: '867819543218XXX' },
+        { id: '2', imei1: '867895432198XXX', imei2: '867819543218XXX' },
+      ],
+    },
+  ],
+  totalAmount: 'PKR 1,500,370',
+}
