@@ -7,6 +7,9 @@ import { hp, wp } from '../Constants/Responsive'
 import { Images } from '../Assets'
 
 const PlaceOrderCard = (props) => {
+    console.log('====================================');
+    console.log('props', props);
+    console.log('====================================');
     return (
         <View style={styles.container}>
             {/* Order ID */}
@@ -36,17 +39,37 @@ const PlaceOrderCard = (props) => {
             </Text>
 
             {/* Action Icons */}
+
             <View style={styles.iconRow}>
-                <TouchableOpacity onPress={props?.onCallPress}>
-                    <Image source={Images.whatsapp} style={styles.actionIcon} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={props?.onChatPress}>
-                    <Image source={Images.messages} style={styles.actionIcon} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={props?.onSettingPress}>
-                    <Image source={Images.whatsapp} style={styles.directionImg} />
-                </TouchableOpacity>
+                {
+                    props?.status == 'active' ? (
+                        <View style={styles.buttonsStyle}>
+                            <TouchableOpacity onPress={props?.onCallPress}>
+                                <Image source={Images.whatsapp} style={styles.actionIcon} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={props?.onChatPress}>
+                                <Image source={Images.messages} style={styles.actionIcon} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={props?.onSettingPress}>
+                                <Image source={Images.whatsapp} style={styles.directionImg} />
+                            </TouchableOpacity>
+                        </View>
+                    ) : props?.status == 'delivered' ? (
+                        <View style={styles.reOrderView}>
+                            <Text style={styles.reOrder}>Re-Order</Text>
+                        </View>
+                    ) : props?.status == 'cancelled' ? (
+                        <View style={styles.DetailView}>
+                            <Image source={Images.receipt} style={styles.img} />
+                            <Text style={styles.detailText}>View Receipt</Text>
+                        </View>
+                    ) : null
+                }
+
             </View>
+
+
+
         </View>
     )
 }
@@ -126,6 +149,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         height: hp(12),
     },
+    buttonsStyle: {
+        height: hp(10),
+        justifyContent: 'space-evenly',
+    },
     actionIcon: {
         width: hp(2.1),
         height: hp(2.1),
@@ -135,4 +162,35 @@ const styles = StyleSheet.create({
         width: hp(2.1),
         height: hp(2.1),
     },
+    reOrderView: {
+        backgroundColor: Colors.primary,
+        padding: wp(1.3),
+        paddingHorizontal: wp(2.2),
+        borderRadius: wp(1.5)
+    },
+    reOrder: {
+        color: Colors.bg,
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.xxxs
+    },
+    DetailView: {
+        flexDirection: 'row',
+        paddingVertical: wp(1),
+        paddingHorizontal: wp(2.5),
+        borderRadius: hp(5),
+        borderWidth: wp(.2),
+        borderColor: Colors.primary,
+        backgroundColor: Colors.lightGreen,
+        justifyContent: 'space-between'
+    },
+    detailText: {
+        marginLeft: wp(.5),
+        color: Colors.primary,
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.xm1
+    },
+    img: {
+        width: wp(3),
+        height: wp(3),
+    }
 })

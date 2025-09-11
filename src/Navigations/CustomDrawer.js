@@ -121,36 +121,6 @@ export default function CustomDrawer({ navigation }) {
                         icon={Images.contactUs}
                     // onPress={() => handlePress('ContactUs')}
                     />
-                    <CustomItem
-                        title={'Place Order'}
-                        icon={Images.contactUs}
-                        onPress={() => handlePress('PlaceOrder')}
-                    />
-                    <CustomItem
-                        title={'My Order'}
-                        icon={Images.contactUs}
-                        onPress={() => handlePress('MyOrders')}
-                    />
-                    <CustomItem
-                        title={'Order Lists'}
-                        icon={Images.contactUs}
-                        onPress={() => handlePress('OrderLists')}
-                    />
-                    <CustomItem
-                        title={'Track Order'}
-                        icon={Images.contactUs}
-                        onPress={() => handlePress('TrackOrder')}
-                    />
-                    <CustomItem
-                        title={'Receipt'}
-                        icon={Images.contactUs}
-                        onPress={() => handlePress('Receipt')}
-                    />
-                    <CustomItem
-                        title={'SearchHistory'}
-                        icon={Images.contactUs}
-                        onPress={() => handlePress('SearchHistory')}
-                    />
 
                     <CustomItem
                         title={'Privacy Policy'}

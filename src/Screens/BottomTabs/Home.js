@@ -16,6 +16,7 @@ const Home = () => {
     return (
         <SafeAreaView style={MyStyling.container1}>
             <ScrollView >
+
                 <CustomerHomeHeader />
 
                 <View style={styles.dateStyle}>
@@ -25,7 +26,9 @@ const Home = () => {
 
                 <ViewAllDevices title={'Nearby'} />
 
-                <VerticalFlatlist />
+                <View style={{ paddingHorizontal: wp(5) }}>
+                    <VerticalFlatlist />
+                </View>
 
                 <ViewAllDevices title={'Top Selling'} />
 

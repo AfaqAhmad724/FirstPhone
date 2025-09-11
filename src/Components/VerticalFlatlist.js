@@ -6,7 +6,7 @@ import { hp, wp } from '../Constants/Responsive'
 
 const VerticalFlatlist = () => {
     return (
-        <View style={{ paddingHorizontal: wp(5) }}>
+        <View style={{ paddingHorizontal: wp(0) }}>
             <FlatList
                 data={deviceData}
                 numColumns={2}

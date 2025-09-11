@@ -5,8 +5,11 @@ import { Fonts } from '../Constants/Fonts';
 import { Colors } from '../Constants/Colors';
 import { Fontsize } from '../Constants/Fontsize';
 import Btn from './Btn';
+import { useNavigation } from '@react-navigation/native';
+import { Screen } from 'react-native-screens';
 
 const OrderPlaced = props => {
+  const navigation = useNavigation()
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -28,6 +31,7 @@ const OrderPlaced = props => {
           title="Back To Home"
           bgColor={Colors.secondary}
           btnContainer={{ backgroundColor: Colors.primary }}
+        // onPress={() => navigation.navigate('BottomNavigations', { screen: 'Home' })}
         />
       </View>
     </ScrollView>

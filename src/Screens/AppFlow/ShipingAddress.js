@@ -14,8 +14,10 @@ import MainHeader from '../../Components/MainHeader';
 import Btn from '../../Components/Btn';
 import { MyStyling } from '../../Constants/Styling';
 import { hp } from '../../Constants/Responsive';
+import { useNavigation } from '@react-navigation/native';
 
 const ShipingAddress = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={MyStyling.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -58,7 +60,7 @@ const ShipingAddress = () => {
           />
 
           <View style={styles.btnContainer}>
-            <Btn title="Save & Continue" />
+            <Btn title="Save & Continue" onPress={() => navigation.navigate('PlaceOrder')} />
           </View>
         </View>
       </ScrollView>

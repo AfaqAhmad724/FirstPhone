@@ -455,24 +455,24 @@ export const myOrdersData = [
     date: "July 25, 2020",
     status: "active",
   },
-  // {
-  //   id: 2,
-  //   orderId: "54367342",
-  //   shopName: "Electro World Karachi",
-  //   totalPrice: "2,200,500",
-  //   totalProducts: "12",
-  //   date: "Aug 5, 2021",
-  //   status: "delivered",
-  // },
-  // {
-  //   id: 3,
-  //   orderId: "87893762",
-  //   shopName: "Tech Bazaar Islamabad",
-  //   totalPrice: "955,000",
-  //   totalProducts: "5",
-  //   date: "Sep 12, 2021",
-  //   status: "cancelled",
-  // },
+  {
+    id: 2,
+    orderId: "54367342",
+    shopName: "Electro World Karachi",
+    totalPrice: "2,200,500",
+    totalProducts: "12",
+    date: "Aug 5, 2021",
+    status: "delivered",
+  },
+  {
+    id: 3,
+    orderId: "87893762",
+    shopName: "Tech Bazaar Islamabad",
+    totalPrice: "955,000",
+    totalProducts: "5",
+    date: "Sep 12, 2021",
+    status: "cancelled",
+  },
   // {
   //   id: 4,
   //   orderId: "78632476",
@@ -560,3 +560,36 @@ export const recepitData = {
   ],
   totalAmount: 'PKR 1,500,370',
 }
+
+export const devicePreviewData = [
+  {
+    id: 1,
+    image: Images.brand,
+    brandTitle: 'Brand',
+    productTitle: 'Apple',
+  },
+  {
+    id: 2,
+    image: Images.model,
+    brandTitle: 'Model',
+    productTitle: 'iPhone 17 Pro Max',
+  },
+  {
+    id: 3,
+    image: Images.storage,
+    brandTitle: 'Storage',
+    productTitle: '256GB',
+  },
+  {
+    id: 4,
+    image: Images.price,
+    brandTitle: 'Price (PKR)',
+    productTitle: '502,999',
+  },
+  {
+    id: 5,
+    image: Images.condition,
+    brandTitle: 'Condition',
+    productTitle: 'Used',
+  },
+]

@@ -10,7 +10,12 @@ const DeviceSpecsBox = ({ title, index, selectedIndex, onSelect }) => {
 
     return (
         <TouchableOpacity onPress={() => onSelect(index)}>
-            <Text style={[styles.boxText, { color: isSelected ? Colors.bg : Colors.black, backgroundColor: isSelected ? Colors.primary : Colors.transparentBlack, fontFamily: isSelected ? Fonts.semibold : Fonts.regular }]}>
+            <Text style={[styles.boxText,
+            {
+                color: isSelected ? Colors.bg : Colors.black,
+                backgroundColor: isSelected ? Colors.primary : Colors.transparentBlack,
+                fontFamily: isSelected ? Fonts.semibold : Fonts.regular
+            }]}>
                 {title}
             </Text>
         </TouchableOpacity>

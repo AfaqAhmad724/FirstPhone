@@ -13,6 +13,7 @@ import { Fonts } from '../../Constants/Fonts';
 import { hp, wp } from '../../Constants/Responsive';
 import { Images } from '../../Assets';
 import Btn from '../../Components/Btn';
+import { useNavigation } from '@react-navigation/native';
 
 const shippingData = [
   {
@@ -37,6 +38,7 @@ const shippingData = [
 ];
 
 const ChooseShipping = () => {
+  const navigation = useNavigation()
   const renderItem = ({ item }) => (
     <ChooseShippingComponent
       icon={item.icon}
@@ -61,12 +63,12 @@ const ChooseShipping = () => {
         contentContainerStyle={{ paddingBottom: hp(5) }}
       />
 
-      <TouchableOpacity style={styles.addBtn}>
+      <TouchableOpacity style={styles.addBtn} onPress={() => navigation.navigate('ShipingAddress')}>
         <Text style={styles.plusIcon}>＋</Text>
         <Text style={styles.addBtnText}>Add New Shipping Address</Text>
       </TouchableOpacity>
 
-      <Btn title={'Continue'} />
+      <Btn title={'Continue'} onPress={() => navigation.navigate('PlaceOrder')} />
     </SafeAreaView>
   );
 };

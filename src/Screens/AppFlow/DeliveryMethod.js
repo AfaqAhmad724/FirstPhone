@@ -8,8 +8,10 @@ import { Colors } from '../../Constants/Colors';
 import { hp, wp } from '../../Constants/Responsive';
 import Btn from '../../Components/Btn';
 import { options } from '../../Constants/DummyData';
+import { useNavigation } from '@react-navigation/native';
 
 const DeliveryMethod = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={styles.innerContainer}>
       <Text style={styles.heading}>Payment Options</Text>
@@ -25,7 +27,7 @@ const DeliveryMethod = () => {
       />
 
       <View style={styles.btncontainer}>
-        <Btn title={'Proceed to Payment'} />
+        <Btn title={'Proceed to Payment'} onPress={() => navigation.navigate('ChooseShipping')} />
       </View>
     </SafeAreaView>
   );

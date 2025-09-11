@@ -12,7 +12,7 @@ const DeviceSpecFlatlist = (props) => {
     const [selectedIndex, setSelectedIndex] = useState(null);
     return (
         <View style={{ marginTop: props?.marginTop || hp(1.5) }}>
-            <Text style={[styles.title, { fontFamily: props?.fontFamily || Fonts.medium, fontSize: props?.fontSize || Fontsize.s }]}>{props?.title}</Text>
+            <Text style={[styles.title, { fontFamily: props?.fontFamily || Fonts.medium, fontSize: props?.fontSize || Fontsize.xsm }]}>{props?.title}</Text>
             <FlatList
                 data={props?.data}
                 horizontal

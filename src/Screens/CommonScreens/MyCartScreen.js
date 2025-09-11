@@ -15,8 +15,10 @@ import { Fonts } from '../../Constants/Fonts';
 import Btn from '../../Components/Btn';
 import { Images } from '../../Assets';
 import { Fontsize } from '../../Constants/Fontsize';
+import { useNavigation } from '@react-navigation/native';
 
 const MyCartScreen = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
@@ -46,7 +48,7 @@ const MyCartScreen = () => {
           <Text style={styles.subtotalstyle}>Subtotal:</Text>
           <Text style={styles.rupees}>Rs 4,979,988</Text>
         </View>
-        <Btn title={'Checkout'} />
+        <Btn title={'Checkout'} onPress={() => navigation.navigate('DeliveryMethod')} />
       </View>
     </SafeAreaView>
   );

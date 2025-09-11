@@ -13,8 +13,10 @@ import { Colors } from '../../Constants/Colors'
 import { Fonts } from '../../Constants/Fonts'
 import { Fontsize } from '../../Constants/Fontsize'
 import { hp } from '../../Constants/Responsive'
+import { useNavigation } from '@react-navigation/native'
 
 const PlaceOrder = () => {
+    const navigation = useNavigation()
     return (
         <SafeAreaView style={MyStyling.container}>
             <MainHeader title={'Place Order'} />
@@ -26,7 +28,7 @@ const PlaceOrder = () => {
             <Text style={styles.orderListText}>Order List</Text>
             <OrderCardFlatList />
             <OrderTotal price={'1,508,997'} shippingCharges={'500'} total={'1,509,497'} />
-            <Btn title={'Place Order'} />
+            <Btn title={'Place Order'} onPress={() => navigation.navigate('Order')} />
         </SafeAreaView>
     )
 }

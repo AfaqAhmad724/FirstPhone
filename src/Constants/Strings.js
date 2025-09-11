@@ -30,8 +30,12 @@ export const Strings = {
     addTocart: 'Add to cart',
     address: '1901 Thorn ridge Cir. Shiloh, Hawaii 81063',
     activeOrder: 'Your orders are being processed and will be ready soon.',
+    delieveredOrder: 'Your orders has been delivered successfully. Enjoy your new mobile!',
+    cancelledOrder: 'This orders has been canceled. For details, please check with the vendor.',
     expecteddRates: 'Expected Delivery Date',
     expectedDate: '12 July 2025',
     orderId: '548923',
-    idText: "Order ID"
+    idText: "Order ID",
+
+    priceRange: 'Price Range (PKR)',
 };

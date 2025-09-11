@@ -5,13 +5,15 @@ import SearchHistoryBody from '../../Components/SearchHistoryBody'
 import MainHeader from '../../Components/MainHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { MyStyling } from '../../Constants/Styling'
+import VerticalFlatlist from '../../Components/VerticalFlatlist'
 
 const SearchHistory = () => {
     return (
         <SafeAreaView style={MyStyling.container}>
-            <MainHeader />
+            <MainHeader title={'Search History '} />
             <HistorySearchBar />
             <SearchHistoryBody />
+            <VerticalFlatlist />
         </SafeAreaView>
     )
 }

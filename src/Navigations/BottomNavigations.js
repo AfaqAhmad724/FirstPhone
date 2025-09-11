@@ -10,7 +10,7 @@ import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
-import Cart from '../Components/Cart';
+import MyCartScreen from '../Screens/CommonScreens/MyCartScreen';
 
 const BOTTOM_STACK = createBottomTabNavigator();
 
@@ -69,7 +69,7 @@ export const BottomNavigations = () => {
             />
             <BOTTOM_STACK.Screen
                 name="Cart"
-                component={Cart}
+                component={MyCartScreen}
                 options={{
                     tabBarIcon: tabBarIcon(Images.cart),
                     tabBarButton: props => (

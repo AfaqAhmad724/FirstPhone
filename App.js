@@ -5,6 +5,7 @@ import MainNavigation from './src/Navigations/MainNavigation'
 import Home from './src/Screens/BottomTabs/Home'
 import { Colors } from './src/Constants/Colors'
 import Login from './src/Screens/Auth/Login'
+import Receipt from './src/Screens/CommonScreens/Receipt'
 
 const App = () => {
   return (
