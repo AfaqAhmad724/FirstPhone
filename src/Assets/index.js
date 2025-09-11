@@ -3,6 +3,7 @@ export const Images = {
   FAQ: require('./Icons/FAQ.png'),
   pta: require('./Icons/pta.png'),
   ram: require('./Icons/ram.png'),
+  add: require('./Icons/add.png'),
   home: require('./Icons/home.png'),
   cart: require('./Icons/cart.png'),
   sell: require('./Icons/sell.png'),
@@ -25,6 +26,7 @@ export const Images = {
   search: require('./Icons/search.png'),
   camera: require('./Icons/camera.png'),
   goShop: require('./Icons/goShop.png'),
+  receipt: require('./Icons/receipt.png'),
   address: require('./Icons/address.png'),
   sorting: require('./Icons/sorting.png'),
   storage: require('./Icons/storage.png'),
@@ -87,5 +89,6 @@ export const Images = {
   dummyProfile2: require('../Assets/Images/dummyProfile2.png'),
   dummyProfile3: require('../Assets/Images/dummyProfile3.png'),
   dummyProfile4: require('../Assets/Images/dummyProfile4.png'),
-
+  delete: require('../Assets/Images/delete.png'),
+  addressLocation: require('../Assets/Images/location.png'),
 };
