@@ -81,7 +81,6 @@ export const Images = {
   profile: require('../Assets/Images/MyProfile.png'),
   SadMobile: require('../Assets/Images/SadMobile.png'),
   phone4: require('../Assets/Images/phone4.png'),
-  delete: require('../Assets/Images/Delete.png'),
   mobile: require('../Assets/Images/MobileHub.png'),
   sideBarImg: require('../Assets/Images/sideBarImg.png'),
   dummyProfile: require('../Assets/Images/dummyProfile.png'),
