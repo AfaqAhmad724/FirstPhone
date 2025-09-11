@@ -19,7 +19,7 @@ const ShipingAddress = () => {
   return (
     <SafeAreaView style={MyStyling.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <MainHeader title="Shipping Address" />
+        {/* <MainHeader title="Shipping Address" /> */}
         <View style={styles.innerContainer}>
           <ShippingComponent
             name="Name"

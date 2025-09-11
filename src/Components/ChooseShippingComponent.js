@@ -1,28 +1,50 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { Fonts } from '../Constants/Fonts';
-import { Fontsize } from '../Constants/Fontsize';
-import { Colors } from '../Constants/Colors';
 import { hp, wp } from '../Constants/Responsive';
+import { Fonts } from '../Constants/Fonts';
+import { Colors } from '../Constants/Colors';
+import { Images } from '../Assets';
 
 const ChooseShippingComponent = props => {
   return (
     <View>
-      <View style={styles.innerContainer}>
-        <Text style={styles.header}>{props?.heading}</Text>
-
-        <View style={styles.direction}>
-          <Image
-            source={require('../Assets/Images/location.png')}
-            style={styles.imagestyle}
-          />
-          <Text style={styles.addressText}>{props?.addressText}</Text>
-        </View>
-        <View style={styles.define}>
-          <Text style={styles.textStyle}>{props?.status}</Text>
-          <Image source={require('../Assets/Images/Delete.png')} />
-        </View>
+      <View style={styles.tagStyle}>
+        <Image
+          source={props.icon || Images.addressLocation}
+          style={[
+            styles.locationStyle,
+            props.iconColor && { tintColor: props.iconColor },
+          ]}
+          resizeMode="contain"
+        />
+        <Text
+          style={[
+            styles.title,
+            props.addressColor && { color: props.addressColor },
+          ]}
+        >
+          {props?.address}
+        </Text>
       </View>
+
+      <View style={styles.innerDefine}>
+        <Text
+          style={[
+            styles.addressStyle,
+            props.statusColor && { color: props.statusColor },
+          ]}
+        >
+          {props?.status}
+        </Text>
+        <Image source={Images.delete} style={styles.deleteStyle} />
+      </View>
+
+      <View
+        style={[
+          styles.divider,
+          props.dividerColor && { borderBottomColor: props.dividerColor },
+        ]}
+      />
     </View>
   );
 };
@@ -30,36 +52,45 @@ const ChooseShippingComponent = props => {
 export default ChooseShippingComponent;
 
 const styles = StyleSheet.create({
-  header: {
-    fontFamily: Fonts.semibold,
-    fontSize: Fontsize.m,
-    color: Colors.black,
-    marginTop: hp(4.5),
+  tagStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: wp(6.7),
+    marginTop: wp(4.6),
   },
-  imagestyle: {
-    width: wp(4.5),
-    height: hp(2.6),
-    marginLeft: wp(1.6),
+  locationStyle: {
+    width: wp(5),
+    height: hp(3),
+    marginRight: wp(2),
+  },
+  title: {
+    fontFamily: Fonts.medium,
+    fontSize: wp(3.5),
+    color: Colors.primary,
+  },
+  innerDefine: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: wp(14),
+    marginRight: wp(5.3),
+    marginTop: hp(0.2),
+  },
+  addressStyle: {
+    fontFamily: Fonts.regular,
+    fontSize: wp(3.1),
+    color: Colors.primary,
+    width: wp(53.3),
+    flexWrap: 'wrap',
+  },
+  deleteStyle: {
+    width: wp(6),
+    height: hp(3),
     resizeMode: 'contain',
   },
-  direction: {
-    flexDirection: 'row',
-    marginTop: wp(4.3),
-  },
-  addressText: {
-    color: Colors.primary,
-    fontFamily: Fonts.medium,
-    fontSize: Fontsize.s,
-    marginLeft: wp(1.8),
-  },
-  innerContainer: {
-    marginLeft: wp(4.7),
-  },
-  textStyle: {
-    fontFamily: Fonts.regular,
-    fontSize: wp(3.2),
-    marginLeft: wp(7.5),
-    color: Colors.primary,
-    width: wp(56),
+  divider: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: Colors.primary,
+    marginTop: hp(1.8),
+    marginHorizontal: wp(6),
   },
 });
