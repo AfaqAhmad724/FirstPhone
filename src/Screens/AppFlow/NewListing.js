@@ -15,8 +15,10 @@ import { MyStyling } from '../../Constants/Styling'
 import MainHeader from '../../Components/MainHeader'
 import PickImage from '../../Components/PickImage'
 import Btn from '../../Components/Btn'
+import { useNavigation } from '@react-navigation/native'
 
 const NewListing = () => {
+    const navigation = useNavigation()
     return (
         <SafeAreaView style={MyStyling.container}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
@@ -31,7 +33,7 @@ const NewListing = () => {
                     <CustomInputText inputContainer={styles.inputContainer1} multiline={true} placeholder={'Enter Description'} />
                     <Text style={styles.titleText}>Add Photos Or Video</Text>
                     <PickImage />
-                    <Btn title={'Preview'} btnContainer={{ marginTop: hp(5) }} />
+                    <Btn title={'Preview'} btnContainer={{ marginTop: hp(5) }} onPress={() => navigation.navigate('Preview')} />
                 </View>
             </ScrollView>
         </SafeAreaView>

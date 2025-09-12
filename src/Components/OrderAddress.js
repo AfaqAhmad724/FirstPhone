@@ -5,6 +5,7 @@ import { Images } from '../Assets'
 import { Fontsize } from '../Constants/Fontsize'
 import { Fonts } from '../Constants/Fonts'
 import { Colors } from '../Constants/Colors'
+import { BottomRouteNavigation, navigate } from '../Navigations/RootNavigation'
 
 const OrderAddress = ({ address, onChange }) => {
     return (
@@ -17,7 +18,7 @@ const OrderAddress = ({ address, onChange }) => {
             </View>
             <View style={styles.addressView}>
                 <Text style={styles.address} numberOfLines={3}>{address}</Text>
-                <TouchableOpacity style={styles.changeBtn} onPress={onChange}>
+                <TouchableOpacity style={styles.changeBtn} onPress={() => navigate('ChooseShipping')}>
                     <Text style={styles.changeText}>CHANGE</Text>
                 </TouchableOpacity>
             </View>

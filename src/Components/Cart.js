@@ -63,12 +63,10 @@ export default Cart;
 const styles = StyleSheet.create({
   box: {
     flexDirection: 'row',
-    backgroundColor: Colors.lg,
-    width: wp('90.6%'),
-    height: hp('15.2%'),
-    marginTop: hp('2.9%'),
-    borderRadius: wp('2.1%'),
-    padding: wp('3%'),
+    backgroundColor: Colors.offWhite,
+    marginTop: hp(1.5),
+    borderRadius: wp(3),
+    padding: wp(3),
   },
   imagestyle: {
     width: wp('20%'),
@@ -78,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: wp('1.2%'),
     justifyContent: 'space-between',
+    height: hp(10.5),
   },
   topRow: {
     flexDirection: 'row',
@@ -87,7 +86,6 @@ const styles = StyleSheet.create({
   phonetext: {
     fontFamily: Fonts.semibold,
     color: Colors.black,
-    marginTop: 3,
     fontSize: Fontsize.xsm,
   },
   deleteIcon: {
@@ -95,6 +93,7 @@ const styles = StyleSheet.create({
     height: wp('6%'),
   },
   shopName: {
+    marginLeft: wp(0.5),
     fontFamily: Fonts.regular,
     fontSize: Fontsize.xs,
     color: Colors.eyecolor,
@@ -107,10 +106,9 @@ const styles = StyleSheet.create({
   quantityBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: .5,
     borderRadius: wp('1'),
-    backgroundColor: Colors.lg,
-    marginBottom: hp('1.2%'),
+    backgroundColor: Colors.offWhite,
     padding: wp('0.5%'),
     borderColor: Colors.lf,
     marginLeft: wp(0.2),
@@ -124,24 +122,27 @@ const styles = StyleSheet.create({
   qtyText: {
     fontSize: Fontsize.xxxs,
     fontFamily: Fonts.semibold,
-    color: 'white',
+    color: Colors.bg,
     textAlign: 'center',
   },
   qtyNumber: {
     fontSize: Fontsize.xs,
     fontFamily: Fonts.semibold,
     marginHorizontal: wp('4%'),
-    color: '#000',
+    color: Colors.black,
   },
 
   price: {
     fontFamily: Fonts.semibold,
-    color: '#000',
+    color: Colors.black,
+    fontSize: Fontsize.sm
   },
   imgmobile: {
-    marginTop: hp('0.3%'),
+    width: wp(3),
+    height: wp(3)
   },
   boxone: {
     flexDirection: 'row',
+    alignItems: 'center'
   },
 });

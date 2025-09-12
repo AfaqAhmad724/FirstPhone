@@ -15,8 +15,10 @@ import Btn from '../../Components/Btn'
 import { Strings } from '../../Constants/Strings'
 import { Images } from '../../Assets'
 import { ConditionData } from '../../Constants/DummyData'
+import { useNavigation } from '@react-navigation/native'
 
 const RequestForm = () => {
+    const navigation = useNavigation()
     return (
         <SafeAreaView style={MyStyling.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -31,7 +33,7 @@ const RequestForm = () => {
                     <DeviceSpecFlatlist title={'Condition'} data={ConditionData} selectionText={Strings.conditionText} />
                     <Text style={styles.titleText}>Description</Text>
                     <CustomInputText inputContainer={styles.inputContainer} multiline={true} placeholder={'Enter Description'} />
-                    <Btn title={' Submit Request'} />
+                    <Btn title={' Submit Request'} onPress={() => navigation.navigate('Order', { type: 'request' })} />
                 </View>
             </ScrollView>
         </SafeAreaView>

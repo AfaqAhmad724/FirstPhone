@@ -9,7 +9,7 @@ import MainHeader from '../../Components/MainHeader'
 const ProductListing = () => {
     return (
         <SafeAreaView style={MyStyling.container}>
-            <MainHeader />
+            <MainHeader title={'My Listing'} />
             <AddListingSection />
             <MyListingFlatlist />
         </SafeAreaView>

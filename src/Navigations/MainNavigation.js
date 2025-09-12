@@ -5,11 +5,12 @@ import StartNavigation from './StartNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigation from './AuthNavigation';
 import FlowNavigation from './FlowNavigation';
+import { navigationRef } from './RootNavigation';
 
 export default function MainNavigation() {
   const MAIN_STACK = createNativeStackNavigator();
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <MAIN_STACK.Navigator
         screenOptions={{ headerShown: false }}
         initialRouteName="StartNavigation">

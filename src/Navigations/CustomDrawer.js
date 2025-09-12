@@ -3,11 +3,12 @@ import {
     ActivityIndicator,
     Image,
     Pressable,
+    StatusBar,
     StyleSheet,
     Text,
     View,
 } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { hp, wp } from '../Constants/Responsive';
@@ -88,17 +89,15 @@ export default function CustomDrawer({ navigation }) {
 
                 <Divider style={styles.divider} />
 
-
                 <View style={styles.container}>
                     <CustomItem
                         title={'Register As Vendor'}
                         icon={Images.vendorregister}
-                    // onPress={() => handlePress('MyProfile')}
                     />
                     <CustomItem
                         title={'My Profile'}
                         icon={Images.profileIcon}
-                        onPress={() => handlePress('MyProfile')}
+                        onPress={() => handlePress('Profile')}
                     />
                     <CustomItem
                         title={'Notifications'}

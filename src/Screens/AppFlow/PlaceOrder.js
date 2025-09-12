@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { MyStyling } from '../../Constants/Styling'
@@ -19,16 +19,20 @@ const PlaceOrder = () => {
     const navigation = useNavigation()
     return (
         <SafeAreaView style={MyStyling.container}>
-            <MainHeader title={'Place Order'} />
-            <Text style={styles.orderText}>Shipping Address</Text>
-            <OrderAddress
-                icon={Images.location}
-                address={Strings.address}
-            />
-            <Text style={styles.orderListText}>Order List</Text>
-            <OrderCardFlatList />
-            <OrderTotal price={'1,508,997'} shippingCharges={'500'} total={'1,509,497'} />
-            <Btn title={'Place Order'} onPress={() => navigation.navigate('Order')} />
+            <ScrollView contentContainerStyle={{ paddingBottom: hp(5) }} showsVerticalScrollIndicator={false}>
+
+                <MainHeader title={'Place Order'} />
+                <Text style={styles.orderText}>Shipping Address</Text>
+                <OrderAddress
+                    icon={Images.location}
+                    address={Strings.address}
+                />
+                <Text style={styles.orderListText}>Order List</Text>
+                <OrderCardFlatList />
+                <OrderTotal price={'1,508,997'} shippingCharges={'500'} total={'1,509,497'} />
+                <Btn title={'Place Order'} onPress={() => navigation.navigate('Order', { type: 'order' })} />
+            </ScrollView>
+
         </SafeAreaView>
     )
 }

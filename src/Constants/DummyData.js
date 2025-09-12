@@ -593,3 +593,40 @@ export const devicePreviewData = [
     productTitle: 'Used',
   },
 ]
+
+export const myListingData = [
+  {
+    id: 1,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    quantity: 2,
+    image1: Images.phone1,
+    status: 'pending'
+
+  },
+  {
+    id: 2,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    image1: Images.phone2,
+    status: 'pending'
+  },
+  {
+    id: 3,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    image1: Images.phone2,
+    status: 'sold'
+  },
+  {
+    id: 4,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    image1: Images.phone2,
+    status: 'approved'
+  },
+];

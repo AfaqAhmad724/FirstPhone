@@ -9,8 +9,10 @@ import DeviceSpecifications from '../../Components/DeviceSpecifications'
 import CaroselAnimation from '../../Components/CaroselAnimation'
 import { devicePreviewData } from '../../Constants/DummyData'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useNavigation } from '@react-navigation/native'
 
 const Preview = () => {
+    const navigation = useNavigation()
     return (
         <SafeAreaView style={styles.mainContainer}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -22,7 +24,7 @@ const Preview = () => {
                     <DeviceSpecifications data={devicePreviewData} title={'Specifications'} />
                     <DeviceDescription title={'Description'} info={true} />
                 </View>
-                <Btn title={' List Now'} />
+                <Btn title={' List Now'} onPress={() => navigation.navigate('Order', { type: 'listing' })} />
             </ScrollView>
         </SafeAreaView >
     )

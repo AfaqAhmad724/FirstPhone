@@ -1,6 +1,5 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { Images } from '../../Assets'
 import { MyStyling } from '../../Constants/Styling'
 import { Colors } from '../../Constants/Colors'
@@ -11,11 +10,12 @@ import { Fonts } from '../../Constants/Fonts'
 import VerticalFlatlist from '../../Components/VerticalFlatlist'
 import HorizontalFlatlist from '../../Components/HorizontalFlatlist'
 import ViewAllDevices from '../../Components/ViewAllDevices'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Home = () => {
     return (
         <SafeAreaView style={MyStyling.container1}>
-            <ScrollView >
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
 
                 <CustomerHomeHeader />
 

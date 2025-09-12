@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, FlatList, View } from 'react-native';
+import { StyleSheet, Text, FlatList, View } from 'react-native';
 import React from 'react';
 import DeliveryMethodComponent from '../../Components/DeliveryMethodComponent';
 import { Images } from '../../Assets';
@@ -9,26 +9,34 @@ import { hp, wp } from '../../Constants/Responsive';
 import Btn from '../../Components/Btn';
 import { options } from '../../Constants/DummyData';
 import { useNavigation } from '@react-navigation/native';
+import MainHeader from '../../Components/MainHeader';
+import { MyStyling } from '../../Constants/Styling';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DeliveryMethod = () => {
   const navigation = useNavigation()
   return (
-    <SafeAreaView style={styles.innerContainer}>
-      <Text style={styles.heading}>Payment Options</Text>
-      <Text style={styles.define}>
-        Select how you want to receive your mobile.
-      </Text>
+    <SafeAreaView style={MyStyling.container}>
+      <MainHeader title={'Delivery Method'} />
+      <View style={styles.innerContainer}>
 
-      <FlatList
-        data={options}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => <DeliveryMethodComponent item={item} />}
-        showsVerticalScrollIndicator={false}
-      />
+        <Text style={styles.heading}>Payment Options</Text>
+        <Text style={styles.define}>
+          Select how you want to receive your mobile.
+        </Text>
 
-      <View style={styles.btncontainer}>
-        <Btn title={'Proceed to Payment'} onPress={() => navigation.navigate('ChooseShipping')} />
+        <FlatList
+          data={options}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <DeliveryMethodComponent item={item} />}
+          showsVerticalScrollIndicator={false}
+        />
+
+        <View style={styles.btncontainer}>
+          <Btn title={'Proceed to Payment'} onPress={() => navigation.navigate('ChooseShipping')} />
+        </View>
       </View>
+
     </SafeAreaView>
   );
 };
@@ -37,9 +45,9 @@ export default DeliveryMethod;
 
 const styles = StyleSheet.create({
   innerContainer: {
-    marginTop: hp(10),
-    marginLeft: wp(5.3),
-    marginRight: wp(5.3),
+    marginTop: hp(5),
+    // marginLeft: wp(5.3),
+    // marginRight: wp(5.3),
   },
   heading: {
     fontFamily: Fonts.semibold,

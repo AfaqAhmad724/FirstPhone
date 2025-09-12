@@ -11,17 +11,7 @@ const Login = () => {
           backgroundColor={Colors.primary}
           barStyle={'light-content'}
         />
-        <LoginBody
-          status="Welcome Back "
-          small="Hello there, sign in to continue"
-          remember="Remember me"
-          buttontext="Sign in"
-          forgot="Forget Password?"
-          google="Google"
-          apple="Apple"
-          account="If you Don't have an account"
-          signup="Sign Up Now"
-        />
+        <LoginBody />
       </ScrollView>
     </SafeAreaView>
   );

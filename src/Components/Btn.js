@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -16,6 +17,7 @@ export default function Btn({
   btnContainer,
   onPress,
   btnTitle,
+  image
 }) {
   return (
     <TouchableOpacity
@@ -23,6 +25,7 @@ export default function Btn({
       disabled={loader}
       onPress={onPress}
     >
+      <Image source={image} style={styles.imgStyle} />
       {loader ? (
         <ActivityIndicator size={'large'} color={Colors.bg} />
       ) : (
@@ -42,11 +45,18 @@ const styles = StyleSheet.create({
     borderRadius: wp(2),
     alignSelf: 'center',
     marginTop: hp(2),
+    flexDirection: 'row'
   },
   title: {
+    marginLeft: wp(2),
     textAlign: 'center',
     color: Colors.bg,
     fontFamily: Fonts.medium,
     fontSize: Fontsize.sm1,
   },
+  imgStyle: {
+    marginBottom: hp(.6),
+    width: wp(4.3),
+    height: wp(4.3)
+  }
 });

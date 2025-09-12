@@ -3,6 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { wp } from '../Constants/Responsive';
 import CustomDrawer from './CustomDrawer';
 import { BottomNavigations } from './BottomNavigations';
+import { StatusBar } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
@@ -15,7 +16,12 @@ export default function DrawerNavigation() {
                 drawerStyle: {
                     width: wp(63),
                 },
-            }}>
+            }}
+            screenListeners={{
+                drawerOpen: () => StatusBar.setHidden(true, 'fade'),
+                drawerClose: () => StatusBar.setHidden(false, 'fade'),
+            }}
+        >
             <Drawer.Screen
                 name="BottomNavigations"
                 component={BottomNavigations}

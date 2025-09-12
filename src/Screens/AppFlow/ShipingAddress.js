@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -15,13 +14,14 @@ import Btn from '../../Components/Btn';
 import { MyStyling } from '../../Constants/Styling';
 import { hp } from '../../Constants/Responsive';
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ShipingAddress = () => {
   const navigation = useNavigation()
   return (
     <SafeAreaView style={MyStyling.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* <MainHeader title="Shipping Address" /> */}
+        <MainHeader title="Shipping Address" />
         <View style={styles.innerContainer}>
           <ShippingComponent
             name="Name"

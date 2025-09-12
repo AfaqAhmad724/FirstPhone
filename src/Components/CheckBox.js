@@ -4,6 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
 import { Colors } from '../Constants/Colors';
+import { Fontsize } from '../Constants/Fontsize';
 
 const CheckBox = props => {
     const [yes, setYes] = useState(false);
@@ -27,14 +28,6 @@ const CheckBox = props => {
                     <Text style={styles.linkText}>{props?.policytext}</Text>
                 </Text>
             </View>
-            <TouchableOpacity style={styles.signin}>
-                <Text style={styles.buttontext}>{props?.buttontext}</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.lowertext}>
-                If you have an account{' '}
-                <Text style={styles.logintext}>{props?.logintext}</Text>
-            </Text>
         </View>
     );
 };
@@ -45,13 +38,11 @@ const styles = StyleSheet.create({
     rememberContainer: {
         flexDirection: 'row',
         marginTop: hp(2.3),
-        marginLeft: wp(5.9),
     },
     remember: {
         fontFamily: Fonts.medium,
-        fontSize: wp(3.0),
+        fontSize: Fontsize.s,
         marginLeft: wp(0.5),
-        width: wp(59),
     },
     linkText: {
         color: 'green',
@@ -75,13 +66,5 @@ const styles = StyleSheet.create({
         fontSize: wp(3.5),
         fontFamily: Fonts.medium,
     },
-    lowertext: {
-        textAlign: 'center',
-        fontSize: wp(2.7),
-        marginTop: hp(2.96),
-        fontFamily: Fonts.medium,
-    },
-    logintext: {
-        color: Colors.primary,
-    },
+
 });

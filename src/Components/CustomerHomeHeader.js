@@ -35,12 +35,12 @@ const CustomerHomeHeader = () => {
                 </View>
 
                 {/* Right: Notification Bell with Badge */}
-                <View style={styles.notificationContainer}>
+                <TouchableOpacity style={styles.notificationContainer} onPress={() => navigation.navigate('Notifications')}>
                     <Image source={Images.notificationSimple} style={styles.bellIcon} resizeMode="contain" />
                     <View style={styles.badge}>
                         <Text style={styles.badgeText}>5</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
 
 

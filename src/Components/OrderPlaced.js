@@ -1,15 +1,38 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
 import { Colors } from '../Constants/Colors';
 import { Fontsize } from '../Constants/Fontsize';
 import Btn from './Btn';
-import { useNavigation } from '@react-navigation/native';
-import { Screen } from 'react-native-screens';
+import { CommonActions, useNavigation } from '@react-navigation/native';
+import { Strings } from '../Constants/Strings';
 
 const OrderPlaced = props => {
   const navigation = useNavigation()
+  const [data, setData] = useState({ title: '', description: '' })
+
+  useEffect(() => {
+    handleContent()
+  }, [])
+
+  const handleContent = () => {
+    if (props?.type == 'order') {
+      setData({
+        title: Strings.orderPlacedText,
+        description: Strings.orderPlacedDescription
+      })
+    }
+    else if (props?.type == 'listing') {
+      setData({
+        title: Strings.listingText,
+        description: Strings.listingDescription
+      })
+    }
+    else {
+      return null
+    }
+  }
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -24,14 +47,22 @@ const OrderPlaced = props => {
           />
         </View>
 
-        <Text style={styles.heading}>{props?.order}</Text>
+        <Text style={styles.heading}>{data?.title}</Text>
 
-        <Text style={styles.subText}>{props?.define}</Text>
+        <Text style={styles.subText}>{data?.description}</Text>
         <Btn
           title="Back To Home"
           bgColor={Colors.secondary}
           btnContainer={{ backgroundColor: Colors.primary }}
-        // onPress={() => navigation.navigate('BottomNavigations', { screen: 'Home' })}
+          // onPress={() => navigation.replace('DrawerNavigation', { screen: 'BottomNavigations' })}
+          onPress={() => navigation.dispatch(CommonActions.reset({
+            index: 0,
+            routes: [{
+              name: 'FlowNavigation'
+            }]
+          }))}
+
+
         />
       </View>
     </ScrollView>
@@ -67,7 +98,7 @@ const styles = StyleSheet.create({
     marginTop: hp(2),
     marginBottom: hp(1),
     fontFamily: Fonts.semibold,
-    fontSize: Fontsize.fs,
+    fontSize: Fontsize.ml,
     textAlign: 'center',
     color: Colors.black,
   },

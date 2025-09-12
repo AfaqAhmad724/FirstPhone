@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import CustomInputText from './CustomInputText';
 import CheckBox from './CheckBox';
@@ -7,6 +7,9 @@ import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
 import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
+import Btn from './Btn';
+import { Fontsize } from '../Constants/Fontsize';
+import { navigate } from '../Navigations/RootNavigation';
 
 const SignUpBody = props => {
     return (
@@ -63,6 +66,16 @@ const SignUpBody = props => {
                     condition="Terms & Conditions"
                     andthe="and the"
                 />
+                <Btn title={'Sign Up'} onPress={() => navigate('Verificationbody', { register: true })} />
+                <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center', marginTop: hp(3) }}>
+                    <Text style={styles.lowertext}>
+                        If you have an account{' '}
+                    </Text>
+                    <TouchableOpacity onPress={() => navigate('Login')}>
+                        <Text style={styles.logintext}>Login Now</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </View>
     );
@@ -86,31 +99,33 @@ const styles = StyleSheet.create({
     },
 
     setheading: {
-        fontFamily: Fonts.bold,
-        marginLeft: wp(5.5),
+        fontFamily: Fonts.semibold,
+        // marginLeft: wp(5),
         marginTop: hp(2.5),
         fontSize: wp(5.3),
+        color: Colors.black
     },
 
     smalltext: {
-        marginLeft: wp(5.7),
+        // marginLeft: wp(5.7),
         fontSize: wp(3.1),
     },
 
     firstphonestyle: {
         width: wp(72),
-        height: hp(15),
+        height: wp(34),
         resizeMode: 'contain',
         alignSelf: 'center',
-        marginRight: wp(1.1),
+        // marginRight: wp(1.1),
         marginTop: hp(0.7),
     },
 
     innerContainer: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: Colors.bg,
         borderTopLeftRadius: wp(8),
         borderTopRightRadius: wp(8),
+        paddingHorizontal: wp(5),
     },
     inputContainer: {
         flexDirection: 'row',
@@ -118,7 +133,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#CBCBCB',
         borderRadius: wp(1.8),
-        marginHorizontal: wp(5.7),
     },
     vectorstyle: {
         marginLeft: wp(2.4),
@@ -137,5 +151,16 @@ const styles = StyleSheet.create({
     backgroundstyle: {
         flex: 1,
         backgroundColor: '#4AB95A',
+    },
+    lowertext: {
+        fontSize: Fontsize.xs,
+        fontFamily: Fonts.regular,
+        color: Colors.black,
+    },
+    logintext: {
+        marginLeft: wp(0.3),
+        color: Colors.primary,
+        fontFamily: Fonts.medium,
+        fontSize: Fontsize.xs
     },
 });

@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import Btn from './Btn';
 import { Strings } from '../Constants/Strings';
 import { hp, wp } from '../Constants/Responsive';
+import { useNavigation } from '@react-navigation/native';
+import { BottomNavigation, BottomRouteNavigation } from '../Navigations/RootNavigation';
 
 const AddToCartCounter = () => {
+    const navigation = useNavigation()
     const [count, setCount] = useState(1);
 
     const increment = () => setCount(prev => prev + 1);
@@ -17,7 +20,7 @@ const AddToCartCounter = () => {
             <Btn
                 title={Strings.addTocart}
                 btnContainer={styles.btnContainer}
-                onPress={() => { }}
+                onPress={() => BottomRouteNavigation('DrawerNavigation', 'BottomNavigations', 'Cart')}
             />
 
             <View style={styles.counterContainer}>

@@ -7,7 +7,7 @@ import { Images } from '../Assets';
 
 const ChooseShippingComponent = props => {
   return (
-    <View>
+    <View style={{ paddingHorizontal: wp(2) }}>
       <View style={styles.tagStyle}>
         <Image
           source={props.icon || Images.addressLocation}
@@ -55,12 +55,11 @@ const styles = StyleSheet.create({
   tagStyle: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: wp(6.7),
     marginTop: wp(4.6),
   },
   locationStyle: {
     width: wp(5),
-    height: hp(3),
+    height: wp(5),
     marginRight: wp(2),
   },
   title: {
@@ -71,15 +70,13 @@ const styles = StyleSheet.create({
   innerDefine: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft: wp(14),
-    marginRight: wp(5.3),
     marginTop: hp(0.2),
   },
   addressStyle: {
     fontFamily: Fonts.regular,
     fontSize: wp(3.1),
     color: Colors.primary,
-    width: wp(53.3),
+    width: wp(55),
     flexWrap: 'wrap',
   },
   deleteStyle: {
@@ -91,6 +88,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: Colors.primary,
     marginTop: hp(1.8),
-    marginHorizontal: wp(6),
+    marginHorizontal: wp(5),
   },
 });

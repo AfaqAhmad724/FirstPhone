@@ -12,8 +12,9 @@ import ButtonGoogleApple from './ButtonGoogleApple';
 import { Colors } from '../Constants/Colors';
 import Btn from './Btn';
 import { useNavigation } from '@react-navigation/native';
+import { navigate } from '../Navigations/RootNavigation';
 
-const LoginBody = props => {
+const LoginBody = () => {
   const navigation = useNavigation()
   const [yes, setYes] = useState(false);
 
@@ -21,8 +22,8 @@ const LoginBody = props => {
     <View style={styles.backgroundStyle}>
       <AuthHeader label="Login" />
       <View style={styles.innerContainer}>
-        <Text style={styles.setHeading}>{props?.status}</Text>
-        <Text style={styles.smallText}>{props?.small}</Text>
+        <Text style={styles.setHeading}>Welcome Back</Text>
+        <Text style={styles.smallText}>Hello there, sign in to continue</Text>
         <Image
           source={require('../Assets/Images/Logo.png')}
           style={styles.firstPhoneStyle}
@@ -51,26 +52,29 @@ const LoginBody = props => {
                 color={Colors.primary}
               />
             </TouchableOpacity>
-            <Text style={styles.remember}>{props?.remember}</Text>
+            <Text style={styles.remember}>Remember me</Text>
           </View>
 
           <TouchableOpacity style={styles.forgotContainer} onPress={() => navigation.navigate('ForgotPassword')}>
-            <Text style={styles.forgotText}>{props?.forgot}</Text>
+            <Text style={styles.forgotText}>Forget Password?</Text>
           </TouchableOpacity>
         </View>
 
-        {/* <TouchableOpacity style={styles.signIn}>
-          <Text style={styles.buttonText}>{props?.buttontext}</Text>
-        </TouchableOpacity> */}
         <Btn title={'Sign in'} onPress={() => navigation.navigate('FlowNavigation')} />
 
         <LoginDivider loginwith="Or login with" />
 
         <ButtonGoogleApple google="Google" apple="Apple" />
 
-        <Text style={styles.accountText}>
-          {props?.account} <Text style={styles.loginText}>{props?.signup}</Text>
-        </Text>
+        <View style={styles.signUpView}>
+          <Text style={styles.accountText}>
+            If you Don't have an account
+          </Text>
+          <TouchableOpacity style={{}} onPress={() => navigate('Register')}>
+            <Text style={styles.signUpText}>Sign Up Now</Text>
+          </TouchableOpacity>
+
+        </View>
       </View>
     </View>
   );
@@ -115,9 +119,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: hp(3.5),
-    marginLeft: wp(6),
-    marginHorizontal: wp(5.7),
+    marginTop: hp(2),
+    marginHorizontal: wp(5),
   },
   rememberRow: {
     flexDirection: 'row',
@@ -138,30 +141,22 @@ const styles = StyleSheet.create({
     fontSize: Fontsize.xs,
     fontFamily: Fonts.medium,
   },
-  signIn: {
-    backgroundColor: Colors.primary,
-    marginTop: hp(2.8),
-    marginHorizontal: wp(5),
-    paddingVertical: hp(1.4),
-    borderRadius: wp(2),
-    marginBottom: hp(1.2),
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: Colors.bg,
-    fontSize: Fontsize.sm,
-    fontFamily: Fonts.medium,
-  },
   accountText: {
     textAlign: 'center',
     fontSize: wp(3.2),
     color: 'black',
-    marginTop: hp(6),
     fontFamily: Fonts.regular,
   },
-  loginText: {
-    fontFamily: Fonts.regular,
+  signUpText: {
+    marginLeft: wp(1),
+    fontFamily: Fonts.semibold,
     color: Colors.primary,
-    fontSize: wp(3.2),
+    fontSize: Fontsize.xs1,
   },
+  signUpView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: hp(5),
+    justifyContent: 'center'
+  }
 });

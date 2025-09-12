@@ -1,13 +1,23 @@
-import { StatusBar, StyleSheet } from 'react-native'
-import React from 'react'
+import { LogBox, StatusBar, StyleSheet } from 'react-native'
+import React, { useEffect } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import MainNavigation from './src/Navigations/MainNavigation'
-import Home from './src/Screens/BottomTabs/Home'
 import { Colors } from './src/Constants/Colors'
-import Login from './src/Screens/Auth/Login'
-import Receipt from './src/Screens/CommonScreens/Receipt'
 
 const App = () => {
+  useEffect(() => {
+    try {
+      console.log('✅ App Started Successfully');
+    } catch (error) {
+      console.log('❌ App Error:', error);
+    }
+
+    // 🔇 Hide all yellow-box warnings
+    // LogBox.ignoreAllLogs(true);
+
+    // 🔇 Hide red-box errors in dev mode (not recommended for debugging)
+    // console.error = () => { };
+  }, []);
   return (
     <SafeAreaProvider>
       <StatusBar backgroundColor={Colors.primary} barStyle={'dark-content'} />

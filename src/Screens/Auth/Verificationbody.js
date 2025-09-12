@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   TextInput,
@@ -15,8 +14,12 @@ import CustomInputText from '../../Components/CustomInputText';
 import Btn from '../../Components/Btn';
 import { Fontsize } from '../../Constants/Fontsize';
 import { MyStyling } from '../../Constants/Styling';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRoute } from '@react-navigation/native';
 
 const Verificationbody = ({ navigation }) => {
+  const route = useRoute()
+  const register = route?.params?.register
   return (
     <SafeAreaView style={MyStyling.container}>
       <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
@@ -33,7 +36,7 @@ const Verificationbody = ({ navigation }) => {
         title="Continue"
         bgColor={Colors.secondary}
         btnContainer={{ backgroundColor: Colors.secondary }}
-        onPress={() => navigation.navigate('ResetPassword')}
+        onPress={() => navigation.navigate(register ? 'Login' : 'ResetPassword')}
       />
 
       <View style={styles.resendWrapper}>

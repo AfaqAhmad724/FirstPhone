@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { hp, wp } from '../Constants/Responsive';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Fonts } from '../Constants/Fonts';
 import { Colors } from '../Constants/Colors';
 
-const ProfileComponent = ({ icon, title, iconColor }) => {
+const ProfileComponent = ({ icon, title, iconColor, onPress }) => {
   return (
-    <View style={styles.box1}>
+    <TouchableOpacity style={styles.box1} onPress={onPress}>
       <MaterialIcons name={icon} size={wp(6.5)} color={iconColor} />
       <Text style={styles.title}>{title}</Text>
       <MaterialIcons
@@ -15,7 +15,7 @@ const ProfileComponent = ({ icon, title, iconColor }) => {
         size={wp(7)}
         color={Colors.black}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

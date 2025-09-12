@@ -5,10 +5,23 @@ import { Colors } from '../Constants/Colors'
 import { Fonts } from '../Constants/Fonts'
 import { Fontsize } from '../Constants/Fontsize'
 import { Images } from '../Assets'
+import { Strings } from '../Constants/Strings'
 
 const MyDevicesCard = ({ data }) => {
+    const status = data?.status
+    const handleStatus = (status) => {
+        return status == 'pending' ? Strings.pending : status == 'approved' ? Strings.approved : Strings?.soldOut
+    }
     return (
         <View style={styles.card}>
+            <View style={[styles.repairingView, { backgroundColor: status == 'approved' ? Colors.primary : Colors.redOrange }]}>
+                <Text style={styles.repairing}>{handleStatus(data?.status)}</Text>
+            </View>
+            {status == 'approved' &&
+                <View style={styles.soldMarkView}>
+                    <Text style={styles.repairing}>{Strings.markSold}</Text>
+                </View>
+            }
             <View style={styles.imageWrapper}>
                 <Image source={Images.phone1} style={styles.backImage} />
             </View>
@@ -18,19 +31,18 @@ const MyDevicesCard = ({ data }) => {
 
                 <View style={styles.storeWrapper}>
                     <Image
-                        source={Images.shopName}
+                        source={Images.personName}
                         style={styles.storeIcon}
                     />
-                    <Text style={styles.storeText} numberOfLines={2}>{data?.store}</Text>
+                    <Text style={styles.personText} numberOfLines={2}>{data?.personName}</Text>
                 </View>
 
                 <Text style={styles.price} numberOfLines={2}>Rs {data?.price}</Text>
-                <Text style={styles.qty} numberOfLines={2}>Qty: {data?.quantity}</Text>
             </View>
 
-            {/* <View style={styles.DetailView}>
-                <Text style={styles.detailText}>View Detail</Text>
-            </View> */}
+            <View style={styles.DetailView}>
+                <Image source={Images.options} style={styles.imgStyle} resizeMode='contain' />
+            </View>
         </View>
     )
 }
@@ -42,14 +54,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: Colors.offWhite,
         borderRadius: wp(3),
-        padding: wp(3),
+        padding: wp(4.5),
         marginBottom: hp(2),
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        elevation: 2,
+        // alignItems: 'center',
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2 },
+        // shadowOpacity: 0.05,
+        // shadowRadius: 4,
+        // elevation: 2,
     },
     imageWrapper: {
         width: wp(20),
@@ -58,6 +70,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     backImage: {
+        width: wp(23),
+        height: wp(23),
         resizeMode: 'contain',
     },
     frontImage: {
@@ -73,7 +87,7 @@ const styles = StyleSheet.create({
     },
     title: {
         width: wp(60),
-        fontFamily: Fonts.regular,
+        fontFamily: Fonts.medium,
         fontSize: Fontsize.sm,
         color: Colors.black,
     },
@@ -87,37 +101,58 @@ const styles = StyleSheet.create({
         height: wp(4),
         resizeMode: 'contain',
     },
-    storeText: {
+    personText: {
         width: wp(55),
         color: Colors.mediumGrey,
-        fontSize: wp(2.8),
-        marginLeft: wp(1),
+        fontFamily: Fonts.medium,
+        fontSize: Fontsize.xs,
+        marginLeft: wp(.5),
     },
     price: {
         width: wp(60),
         color: Colors.primary,
-        fontFamily: Fonts.bold,
+        fontFamily: Fonts.semibold,
         fontSize: Fontsize.xsm,
         marginTop: hp(0.8),
     },
-    qty: {
-        width: wp(60),
-        color: Colors.mediumGrey,
-        fontFamily: Fonts.semibold,
-        fontSize: Fontsize.xs2,
-        marginTop: hp(0.5),
-    },
     DetailView: {
-        paddingVertical: wp(1),
-        paddingHorizontal: wp(2.5),
-        borderRadius: hp(5),
-        borderWidth: wp(.2),
-        borderColor: Colors.primary,
-        backgroundColor: Colors.lightGreen
+        justifyContent: 'center'
+
     },
     detailText: {
         color: Colors.primary,
         fontFamily: Fonts.semibold,
         fontSize: Fontsize.xxm
     },
+    imgStyle: {
+        width: wp(5),
+        height: wp(5),
+    },
+    soldMarkView: {
+        right: wp(2),
+        padding: wp(.4),
+        position: 'absolute',
+        flexDirection: 'row',
+        paddingHorizontal: wp(1.5),
+        borderRadius: wp(3),
+        backgroundColor: Colors.primary,
+        marginTop: hp(2.5)
+    },
+    repairingView: {
+        right: wp(.1),
+        padding: wp(.2),
+        position: 'absolute',
+        flexDirection: 'row',
+        paddingHorizontal: wp(.7),
+        borderTopRightRadius: wp(1.5),
+        backgroundColor: Colors.redOrange,
+    },
+
+    repairing: {
+        color: Colors.bg,
+        fontSize: Fontsize.xxxs,
+        fontFamily: Fonts.medium,
+        marginLeft: wp(.5)
+    },
+    reparingImg: { width: wp(1.5), height: wp(1.5) },
 })

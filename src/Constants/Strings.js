@@ -38,4 +38,14 @@ export const Strings = {
     idText: "Order ID",
 
     priceRange: 'Price Range (PKR)',
+    pending: 'Approval Pending',
+    soldOut: 'Sold Out',
+    markSold: 'Mark As Sold',
+    approved: 'Approved By Admin',
+
+    orderPlacedDescription: "Thank you! Your order has been placed and is now being processed. You can track your order now.",
+    orderPlacedText: "ORDER PLACED SUCCESSFULLY!",
+
+    listingText: ' Listing Submitted Successfully!',
+    listingDescription: 'Your mobile listing has been submitted and is now pending admin approval. Once approved, your listing will go live, and buyers will be able to view and contact you.'
 };

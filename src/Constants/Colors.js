@@ -39,4 +39,5 @@ export const Colors = {
   statusColor: '#8F8F8F',
   whiteColor: "#F8F7F7'",
   dividerColor: '#D0D0D0',
+  lf: '#636363'
 };

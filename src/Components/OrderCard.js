@@ -5,8 +5,11 @@ import { Colors } from '../Constants/Colors'
 import { Images } from '../Assets'
 import { Fontsize } from '../Constants/Fontsize'
 import { Fonts } from '../Constants/Fonts'
+import { useRoute } from '@react-navigation/native'
 
 const OrderCard = ({ data }) => {
+    const route = useRoute()
+    const viewDetail = route?.params?.viewDetail
     return (
         <View style={styles.card}>
             <View style={styles.imageWrapper}>
@@ -27,10 +30,12 @@ const OrderCard = ({ data }) => {
                 <Text style={styles.price} numberOfLines={2}>Rs {data?.price}</Text>
                 <Text style={styles.qty} numberOfLines={2}>Qty: {data?.quantity}</Text>
             </View>
-
-            <View style={styles.DetailView}>
-                <Text style={styles.detailText}>View Detail</Text>
-            </View>
+            {
+                viewDetail &&
+                <View style={styles.DetailView}>
+                    <Text style={styles.detailText}>View Detail</Text>
+                </View>
+            }
         </View>
     )
 }
@@ -90,8 +95,9 @@ const styles = StyleSheet.create({
     storeText: {
         width: wp(55),
         color: Colors.mediumGrey,
-        fontSize: wp(2.8),
+        fontSize: Fontsize.xxs,
         marginLeft: wp(1),
+        fontFamily: Fonts.regular
     },
     price: {
         width: wp(60),
