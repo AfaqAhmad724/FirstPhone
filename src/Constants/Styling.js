@@ -17,5 +17,5 @@ export const MyStyling = {
     color: Colors.black,
     fontFamily: Fonts.medium,
     fontSize: Fontsize.xs,
-  }
+  },
 };
