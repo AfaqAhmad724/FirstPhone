@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { hp, wp } from '../Constants/Responsive';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -8,7 +8,20 @@ import { Colors } from '../Constants/Colors';
 const ProfileComponent = ({ icon, title, iconColor, onPress }) => {
   return (
     <TouchableOpacity style={styles.box1} onPress={onPress}>
-      <MaterialIcons name={icon} size={wp(6.5)} color={iconColor} />
+      {typeof icon === 'string' ? (
+        <MaterialIcons
+          name={icon}
+          size={wp(6.5)}
+          color={iconColor || Colors.black}
+        />
+      ) : (
+        <Image
+          source={icon}
+          style={[styles.iconImage, { tintColor: Colors.primary }]}
+          resizeMode="contain"
+        />
+      )}
+
       <Text style={styles.title}>{title}</Text>
       <MaterialIcons
         name="keyboard-arrow-right"
@@ -40,5 +53,9 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.semibold,
     fontSize: wp(3.8),
     color: '#000',
+  },
+  iconImage: {
+    width: wp(6.5),
+    height: wp(6.5),
   },
 });
