@@ -1,4 +1,4 @@
-import { StyleSheet, Text, FlatList, View } from 'react-native';
+import { StyleSheet, Text, FlatList, View, StatusBar } from 'react-native';
 import React from 'react';
 import DeliveryMethodComponent from '../../Components/DeliveryMethodComponent';
 import { Images } from '../../Assets';
@@ -14,12 +14,11 @@ import { MyStyling } from '../../Constants/Styling';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DeliveryMethod = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={MyStyling.container}>
       <MainHeader title={'Delivery Method'} />
       <View style={styles.innerContainer}>
-
         <Text style={styles.heading}>Payment Options</Text>
         <Text style={styles.define}>
           Select how you want to receive your mobile.
@@ -33,10 +32,12 @@ const DeliveryMethod = () => {
         />
 
         <View style={styles.btncontainer}>
-          <Btn title={'Proceed to Payment'} onPress={() => navigation.navigate('ChooseShipping')} />
+          <Btn
+            title={'Proceed to Payment'}
+            onPress={() => navigation.navigate('ChooseShipping')}
+          />
         </View>
       </View>
-
     </SafeAreaView>
   );
 };
@@ -46,8 +47,6 @@ export default DeliveryMethod;
 const styles = StyleSheet.create({
   innerContainer: {
     marginTop: hp(5),
-    // marginLeft: wp(5.3),
-    // marginRight: wp(5.3),
   },
   heading: {
     fontFamily: Fonts.semibold,
@@ -58,7 +57,6 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.regular,
     fontSize: Fontsize.fz,
     color: Colors.shadowgray,
-    marginBottom: hp(2),
   },
   btncontainer: {
     marginTop: hp(1.3),

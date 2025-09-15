@@ -12,7 +12,7 @@ const PasswordHeader = props => {
   return (
     <View style={styles.header}>
       <TouchableOpacity
-        style={styles.vectorStyle}
+        style={[styles.vectorStyle, props.iconStyle]}
         onPress={() => navigation.goBack()}
       >
         <Image
@@ -33,20 +33,20 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: hp(2),
+    marginTop: hp(4),
     marginLeft: 0.1,
   },
   vectorStyle: {
     width: wp(7.0),
     height: wp(7),
     backgroundColor: Colors.primary,
-    borderRadius: wp(2.3),
+    borderRadius: wp(2.1),
     justifyContent: 'center',
     alignItems: 'center',
   },
   arrowIcon: {
     width: wp(3.8),
-    height: wp(3.8),
+    height: hp(2.2),
   },
   setHeading: {
     fontFamily: Fonts.semibold,
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
     fontSize: Fontsize.m,
   },
   space: {
-    width: wp(11),
+    width: wp(10),
   },
 });

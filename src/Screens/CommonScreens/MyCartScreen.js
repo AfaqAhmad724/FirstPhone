@@ -1,8 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Colors } from '../../Constants/Colors';
 import { hp, wp } from '../../Constants/Responsive';
@@ -17,12 +13,11 @@ import { MyStyling } from '../../Constants/Styling';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyCartScreen = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={MyStyling.container}>
       <MainHeader title={'My Cart'} />
       <View style={styles.innerContainer}>
-
         <Cart
           image={Images.phone2}
           phone="iPhone 16 Pro"
@@ -43,10 +38,32 @@ const MyCartScreen = () => {
         />
 
         <View style={styles.total}>
-          <Text style={styles.subtotalstyle}>Subtotal:</Text>
-          <Text style={styles.rupees}>Rs 4,979,988</Text>
+          <Text
+            style={[
+              styles.subtotalstyle,
+              { flexShrink: 1, maxWidth: wp('40%') },
+            ]}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            Subtotal:
+          </Text>
+          <Text
+            style={[
+              styles.subtotalstyle,
+              { flexShrink: 1, maxWidth: wp('40%'), color: Colors.primary },
+            ]}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            Rs 4,979,988
+          </Text>
         </View>
-        <Btn title={'Checkout'} image={Images.checkout} onPress={() => navigation.navigate('DeliveryMethod')} />
+        <Btn
+          title={'Checkout'}
+          image={Images.checkout}
+          onPress={() => navigation.navigate('DeliveryMethod')}
+        />
       </View>
     </SafeAreaView>
   );
@@ -56,7 +73,7 @@ export default MyCartScreen;
 
 const styles = StyleSheet.create({
   innerContainer: {
-    marginTop: hp(1.5)
+    marginTop: hp(1.5),
   },
   total: {
     flexDirection: 'row',

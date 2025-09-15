@@ -5,9 +5,6 @@ import NotificationComponent from '../../Components/NotfificationComponent';
 
 const Notifications = () => {
   return (
-    // <View>
-    //   <Text>Notifications</Text>
-    // </View>
     <SafeAreaView>
       <View style={styles.Notifications}>
         <PasswordHeader header={'Notifications'} />

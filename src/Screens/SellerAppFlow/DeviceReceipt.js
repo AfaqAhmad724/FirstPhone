@@ -45,11 +45,11 @@ const DeviceReceipt = () => {
 
           <TouchableOpacity style={styles.addBtn}>
             <Text style={styles.plusIcon}>＋</Text>
-            <Text style={styles.addBtnText}>Add New Shipping Address</Text>
+            <Text style={styles.addBtnText}>Add More device</Text>
           </TouchableOpacity>
 
           <View style={styles.btnContainer}>
-            <Btn title="Save & Continue" />
+            <Btn title="Create Receipt" />
           </View>
         </View>
       </ScrollView>

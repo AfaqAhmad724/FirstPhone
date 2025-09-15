@@ -7,8 +7,8 @@ import { Images } from '../Assets';
 
 const ChooseShippingComponent = props => {
   return (
-    <View style={{ paddingHorizontal: wp(2) }}>
-      <View style={styles.tagStyle}>
+    <View>
+      <View style={[styles.tagStyle, props.id === '2' && { marginTop: hp(4) }]}>
         <Image
           source={props.icon || Images.addressLocation}
           style={[
@@ -55,12 +55,13 @@ const styles = StyleSheet.create({
   tagStyle: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: wp(4.6),
+    marginTop: wp(5),
   },
   locationStyle: {
     width: wp(5),
     height: wp(5),
     marginRight: wp(2),
+    marginLeft: 7,
   },
   title: {
     fontFamily: Fonts.medium,
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: wp(3.1),
     color: Colors.primary,
     width: wp(55),
-    flexWrap: 'wrap',
+    marginLeft: 32.6,
   },
   deleteStyle: {
     width: wp(6),
@@ -88,6 +89,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: Colors.primary,
     marginTop: hp(1.8),
-    marginHorizontal: wp(5),
+    marginLeft: wp(1),
   },
 });

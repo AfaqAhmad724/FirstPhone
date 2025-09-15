@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import PasswordHeader from '../../Components/PasswordHeader';
 import { MyStyling } from '../../Constants/Styling';
@@ -22,24 +22,26 @@ const ResetPassword = ({ navigation }) => {
       </Text>
       <CustomInputText
         placeholder="abc"
-        style={styles.emailstyle}
+        style={[styles.emailstyle, { color: 'black' }]}
         icon={Images.password}
-        placeholderTextColor={Colors.mediumGrey}
         keyboardType="email-address"
+        placeholderTextColor={Colors.mediumGrey}
       />
 
       <CustomInputText
         placeholder="Confirm Password"
-        style={styles.emailstyle}
+        style={[styles.emailstyle, { color: 'black' }]}
         icon={Images.password}
         placeholderTextColor={Colors.mediumGrey}
       />
-      <Btn
-        title="Continue"
-        bgColor={Colors.black}
-        btnContainer={{ backgroundColor: Colors.secondary }}
-        onPress={() => navigation.navigate('Login')}
-      />
+      <View style={styles.btnbox}>
+        <Btn
+          title="Continue"
+          bgColor={Colors.black}
+          btnContainer={{ backgroundColor: Colors.secondary }}
+          onPress={() => navigation.navigate('Login')}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -58,5 +60,8 @@ const styles = StyleSheet.create({
     width: wp(88),
     fontFamily: Fonts.regular,
     color: Colors.mediumGrey,
+  },
+  btnbox: {
+    marginTop: wp(3.3),
   },
 });

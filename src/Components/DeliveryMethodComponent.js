@@ -12,12 +12,28 @@ const DeliveryMethodComponent = ({ item }) => {
         <View style={styles.iconContainerGray}>
           <Image
             source={item.icon}
-            style={styles.imageStyle}
+            style={[
+              styles.imageStyle,
+
+              item.subtitle === 'Secure online payment' && {
+                width: wp(6.5),
+                height: wp(6.5),
+              },
+            ]}
             resizeMode="contain"
           />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.paystyleBlack}>{item.title}</Text>
+          <Text
+            style={[
+              styles.paystyleBlack,
+              item.subtitle === 'Secure online payment' && {
+                color: Colors.primary,
+              },
+            ]}
+          >
+            {item.title}
+          </Text>
           <Text
             style={[
               styles.statusStyleGray,
@@ -30,7 +46,15 @@ const DeliveryMethodComponent = ({ item }) => {
           </Text>
         </View>
       </View>
-      <View style={styles.borderstyle} />
+
+      <View
+        style={[
+          styles.borderstyle,
+          item.subtitle === 'Secure online payment'
+            ? { borderBottomColor: Colors.primary, opacity: 0.6 }
+            : { borderBottomColor: Colors.shadowgray, opacity: 0.2 },
+        ]}
+      />
     </View>
   );
 };
@@ -87,8 +111,7 @@ const styles = StyleSheet.create({
   },
   borderstyle: {
     borderBottomWidth: 1,
-    opacity: 0.1,
-    marginLeft: wp(2),
+    marginLeft: wp(0),
     marginVertical: hp(1),
   },
 });

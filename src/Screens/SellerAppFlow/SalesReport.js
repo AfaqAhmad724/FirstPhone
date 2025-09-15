@@ -1,14 +1,15 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Fonts } from '../../Constants/Fonts';
-import { hp, wp } from '../../Constants/Responsive'; // <-- import hp, wp
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'; // <-- import icon library
+import { hp, wp } from '../../Constants/Responsive';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Fontsize } from '../../Constants/Fontsize';
 import SalesComponent from '../../Components/SalesComponent';
+import { MyStyling } from '../../Constants/Styling';
 
 const SalesReport = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={MyStyling.container}>
       <View style={styles.innerContainer}>
         <Text style={styles.salesStyle}>Sales Report</Text>
         <View style={styles.lineContainer}>
@@ -21,7 +22,11 @@ const SalesReport = () => {
           />
         </View>
       </View>
-      <SalesComponent />
+
+      <SalesComponent width={wp(45)} />
+      <SalesComponent width={wp(45)} />
+      <SalesComponent width={wp(45)} />
+      <SalesComponent width={wp(45)} />
     </SafeAreaView>
   );
 };
@@ -29,11 +34,6 @@ const SalesReport = () => {
 export default SalesReport;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: 'red',
-  },
-
   innerContainer: {
     marginTop: hp(10),
     flexDirection: 'row',
@@ -42,18 +42,14 @@ const styles = StyleSheet.create({
   salesStyle: {
     fontFamily: Fonts.semibold,
     fontSize: Fontsize.xsm1,
-    marginLeft: 17,
   },
   lineContainer: {
     flexDirection: 'row',
   },
   todayStyle: {
     fontFamily: Fonts.medium,
-    color: '#9B9B9B',
+    // color: '#9B9B9B',
     fontSize: wp(3.5),
     marginRight: 3,
-  },
-  iconStyle: {
-    marginRight: 10,
   },
 });

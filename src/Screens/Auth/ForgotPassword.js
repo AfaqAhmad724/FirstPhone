@@ -13,7 +13,11 @@ import { Images } from '../../Assets';
 const ForgotPassword = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <PasswordHeader header="Forgot Password" islogged="Cannot log in? " />
+      <PasswordHeader
+        header="Forgot Password"
+        islogged="Cannot log in? "
+        iconStyle={{ marginLeft: wp(5) }}
+      />
 
       <Text style={styles.isLogged}>Cannot log In?</Text>
 
@@ -23,18 +27,20 @@ const ForgotPassword = ({ navigation }) => {
 
       <CustomInputText
         placeholder="Email"
-        style={styles.emailstyle}
         icon={Images.email}
         placeholderTextColor={'#9F9F9F'}
         keyboardType="email-address"
+        inputContainer={{ marginHorizontal: wp(6) }}
       />
 
-      <Btn
-        title="Send Verification Code"
-        bgColor={Colors.secondary}
-        btnContainer={{ backgroundColor: Colors.secondary }}
-        onPress={() => navigation.navigate('Verificationbody')}
-      />
+      <View style={{ marginTop: 11 }}>
+        <Btn
+          title="Send Verification Code"
+          bgColor={Colors.secondary}
+          btnContainer={{ backgroundColor: Colors.secondary }}
+          onPress={() => navigation.navigate('Verificationbody')}
+        />
+      </View>
     </SafeAreaView>
   );
 };

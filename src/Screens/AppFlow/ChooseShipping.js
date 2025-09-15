@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  View,
 } from 'react-native';
 import React from 'react';
 import ChooseShippingComponent from '../../Components/ChooseShippingComponent';
@@ -41,7 +42,8 @@ const shippingData = [
 ];
 
 const ChooseShipping = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+
   const renderItem = ({ item }) => (
     <ChooseShippingComponent
       icon={item.icon}
@@ -57,25 +59,33 @@ const ChooseShipping = () => {
 
   return (
     <SafeAreaView style={MyStyling.container}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
-
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: hp(5) }}
+      >
         <MainHeader title={'Choose Shipping'} />
         <Text style={styles.headingStyle}>Shipping Address</Text>
         <FlatList
           data={shippingData}
           keyExtractor={item => item.id}
           renderItem={renderItem}
-          contentContainerStyle={{ paddingBottom: hp(5) }}
+          ListFooterComponent={() => (
+            <TouchableOpacity
+              style={styles.addBtn}
+              onPress={() => navigation.navigate('ShipingAddress')}
+            >
+              <Text style={styles.plusIcon}>＋</Text>
+              <Text style={styles.addBtnText}>Add New Shipping Address</Text>
+            </TouchableOpacity>
+          )}
+          contentContainerStyle={{ paddingBottom: hp(0.4) }}
         />
 
-        <TouchableOpacity style={styles.addBtn} onPress={() => navigation.navigate('ShipingAddress')}>
-          <Text style={styles.plusIcon}>＋</Text>
-          <Text style={styles.addBtnText}>Add New Shipping Address</Text>
-        </TouchableOpacity>
-
-        <Btn title={'Continue'} onPress={() => navigation.navigate('PlaceOrder')} />
+        <Btn
+          title={'Continue'}
+          onPress={() => navigation.navigate('PlaceOrder')}
+        />
       </ScrollView>
-
     </SafeAreaView>
   );
 };
@@ -87,7 +97,7 @@ const styles = StyleSheet.create({
     marginTop: hp(4),
     fontFamily: Fonts.semibold,
     color: Colors.black,
-    fontSize: Fontsize.sm
+    fontSize: Fontsize.sm,
   },
   addBtn: {
     flexDirection: 'row',
@@ -99,6 +109,7 @@ const styles = StyleSheet.create({
     paddingVertical: hp(1.7),
     borderRadius: wp(2),
     backgroundColor: Colors.offWhite,
+    marginTop: hp(4.3),
   },
   plusIcon: {
     fontSize: wp(4),

@@ -17,7 +17,7 @@ export default function Btn({
   btnContainer,
   onPress,
   btnTitle,
-  image
+  image,
 }) {
   return (
     <TouchableOpacity
@@ -25,11 +25,19 @@ export default function Btn({
       disabled={loader}
       onPress={onPress}
     >
-      <Image source={image} style={styles.imgStyle} />
+      {image && <Image source={image} style={styles.imgStyle} />}
       {loader ? (
         <ActivityIndicator size={'large'} color={Colors.bg} />
       ) : (
-        <Text style={[styles.title, btnTitle]}>{title}</Text>
+        <Text
+          style={[
+            styles.title,
+            btnTitle,
+            { marginLeft: image ? wp(2) : wp(0) },
+          ]}
+        >
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );
@@ -45,18 +53,18 @@ const styles = StyleSheet.create({
     borderRadius: wp(2),
     alignSelf: 'center',
     marginTop: hp(2),
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   title: {
-    marginLeft: wp(2),
+    // marginLeft: wp(2),
     textAlign: 'center',
     color: Colors.bg,
     fontFamily: Fonts.medium,
     fontSize: Fontsize.sm1,
   },
   imgStyle: {
-    marginBottom: hp(.6),
+    marginBottom: hp(0.6),
     width: wp(4.3),
-    height: wp(4.3)
-  }
+    height: wp(4.3),
+  },
 });

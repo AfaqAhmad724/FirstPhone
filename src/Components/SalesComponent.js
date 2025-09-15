@@ -1,124 +1,98 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+// // import { StyleSheet, Text, View } from 'react-native';
+// // import React from 'react';
+// // import { hp, wp } from '../Constants/Responsive';
+
+// // const SalesComponent = () => {
+// //   return (
+// //     <View>
+// //       <View style={styles.innerContainer}></View>
+// //     </View>
+// //   );
+// // };
+
+// // export default SalesComponent;
+
+// // const styles = StyleSheet.create({
+// //   innerContainer: {
+// //     backgroundColor: 'red',
+// //     width: wp(47),
+// //     height: hp(15),
+// //     flexDirection: 'row',
+// //   },
+// // });
+
+// import { StyleSheet, Text, View } from 'react-native';
+// import React from 'react';
+// import { hp, wp } from '../Constants/Responsive';
+
+// const SalesComponent = () => {
+//   return (
+//     <View style={styles.innerContainer}>
+//       <View style={styles.box1}></View>
+//       <View style={styles.box2}>
+//         <Text style={styles.textStyle}>Total Sales</Text>
+//         <Text style={styles.textStyle}>123</Text>
+//       </View>
+//     </View>
+//   );
+// };
+
+// export default SalesComponent;
+
+// const styles = StyleSheet.create({
+//   innerContainer: {
+//     backgroundColor: 'white',
+//     width: wp(47),
+//     height: hp(15),
+//     flexDirection: 'row',
+//     alignItems: 'center', // vertically center children
+//     paddingHorizontal: wp(3),
+//     marginVertical: hp(1),
+//     borderWidth: 1,
+//   },
+//   box1: {
+//     width: wp(16),
+//     height: wp(17),
+//     backgroundColor: 'blue',
+//   },
+//   box2: {
+//     marginLeft: wp(4),
+//   },
+//   textStyle: {
+//     color: 'white',
+//     fontSize: wp(3.5),
+//   },
+// });
+
 import React from 'react';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { hp, wp } from '../Constants/Responsive';
-import { Fonts } from '../Constants/Fonts';
-import { Images } from '../Assets';
-import { Colors } from '../Constants/Colors';
+import { StyleSheet, Text, View } from 'react-native';
+import { wp } from '../Constants/Responsive';
 
-const SalesComponent = () => {
-  const data = [
-    {
-      id: 1,
-      title: 'Total Sales',
-      value: 'PKR 1,543,788',
-      color: Colors.primary,
-      icon: Images.growth,
-    },
-    {
-      id: 2,
-      title: 'Pay Online',
-      value: 'PKR 343,788',
-      color: '#EA2930',
-      icon: Images.payOnline,
-    },
-    {
-      id: 3,
-      title: 'Cash On Delivery',
-      value: 'PKR 543,788',
-      color: '#E5C530',
-      icon: Images.COD,
-    },
-    {
-      id: 4,
-      title: 'GoShop',
-      value: 'PKR 243,788',
-      color: '#555555',
-      icon: Images.goShop,
-    },
-  ];
-
+const FourBoxes = () => {
   return (
-    <View style={styles.grid}>
-      {data.map(item => (
-        <View key={item.id} style={styles.card}>
-          <View style={[styles.iconBox, { backgroundColor: item.color }]}>
-            {typeof item.icon === 'string' ? (
-              <MaterialIcons name={item.icon} size={wp(7)} color="#fff" />
-            ) : (
-              <Image
-                source={item.icon}
-                style={{ width: wp(7), height: wp(7), tintColor: '#fff' }}
-                resizeMode="contain"
-              />
-            )}
-          </View>
-          <View style={styles.textBox}>
-            <Text
-              style={[
-                styles.title,
-                (item.title === 'GoShop' || item.title === 'Pay Online') &&
-                  styles.shiftTitle,
-                item.title === 'Cash On Delivery' && styles.cashTitle,
-              ]}
-            >
-              {item.title}
-            </Text>
-            <Text style={styles.value}>{item.value}</Text>
-          </View>
-        </View>
-      ))}
+    <View style={styles.container}>
+      <View style={styles.box}></View>
     </View>
   );
 };
 
-export default SalesComponent;
+export default FourBoxes;
 
 const styles = StyleSheet.create({
-  grid: {
+  container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginTop: 15,
-    paddingHorizontal: 16,
+
+    marginTop: wp(6),
   },
-  card: {
-    width: '48%',
-    backgroundColor: '#fff',
-    padding: wp(1.7),
-    marginBottom: hp(2),
-    flexDirection: 'row',
-    alignItems: 'center',
-    elevation: 0.3,
-    height: hp(14),
-    marginHorizontal: 3.11,
-  },
-  iconBox: {
-    width: wp(13),
-    height: wp(12),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textBox: {
-    marginLeft: wp(3),
-  },
-  title: {
-    fontFamily: Fonts.robotoBold,
-    fontSize: wp(3.2),
-    color: '#000',
-    marginLeft: 13,
-  },
-  value: {
-    fontFamily: Fonts.medium,
-    fontSize: wp(3.5),
-    color: '#B5B5B5',
-    marginTop: hp(0.9),
-  },
-  shiftTitle: {
-    marginLeft: wp(3.6),
-  },
-  cashTitle: {
-    fontSize: wp(2.8),
-    marginLeft: wp(0.1),
+  box: {
+    width: '49%',
+    height: 100,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // marginBottom: 10,
+    elevation: 1,
+    backgroundColor: 'red',
   },
 });

@@ -1,10 +1,4 @@
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Colors } from '../../Constants/Colors';
 import ShippingComponent from '../../Components/ShippingComponent';
@@ -17,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ShipingAddress = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={MyStyling.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -26,7 +20,7 @@ const ShipingAddress = () => {
           <ShippingComponent
             name="Name"
             placeholder="Enter your name"
-            placeholdertextColor={Colors.mediumGrey}
+            placeholdertextColor={Colors.black}
           />
 
           <ShippingComponent
@@ -51,6 +45,7 @@ const ShipingAddress = () => {
             name="Postal Code"
             placeholder="Enter your postal code"
             placeholdertextColor={Colors.mediumGrey}
+            keyboardType="numeric"
           />
           <ShippingComponent
             name="Phone Number"
@@ -60,7 +55,10 @@ const ShipingAddress = () => {
           />
 
           <View style={styles.btnContainer}>
-            <Btn title="Save & Continue" onPress={() => navigation.navigate('PlaceOrder')} />
+            <Btn
+              title="Save & Continue"
+              onPress={() => navigation.navigate('PlaceOrder')}
+            />
           </View>
         </View>
       </ScrollView>
@@ -80,6 +78,6 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     marginBottom: hp(13),
-    marginTop: hp(3.2),
+    marginTop: hp(2.3),
   },
 });

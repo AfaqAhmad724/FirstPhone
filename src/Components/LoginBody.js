@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../Navigations/RootNavigation';
 
 const LoginBody = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const [yes, setYes] = useState(false);
 
   return (
@@ -34,13 +34,16 @@ const LoginBody = () => {
           icon={Images.email}
           keyboardType="email-address"
           inputContainer={{ marginHorizontal: wp(5) }}
-
+          placeholderTextColor={Colors.emailcolor}
+          style={[styles.emailstyle, { color: 'black' }]}
         />
         <CustomInputText
           placeholder="Password"
           icon={Images.password}
           isPassword={true}
+          placeholderTextColor={Colors.emailcolor}
           inputContainer={{ marginHorizontal: wp(5) }}
+          style={[styles.emailstyle, { color: 'black' }]}
         />
 
         <View style={styles.rememberContainer}>
@@ -48,32 +51,35 @@ const LoginBody = () => {
             <TouchableOpacity onPress={() => setYes(!yes)}>
               <MaterialIcons
                 name={yes ? 'check-box' : 'check-box-outline-blank'}
-                size={wp(4.5)}
+                size={wp(4.2)}
                 color={Colors.primary}
               />
             </TouchableOpacity>
             <Text style={styles.remember}>Remember me</Text>
           </View>
 
-          <TouchableOpacity style={styles.forgotContainer} onPress={() => navigation.navigate('ForgotPassword')}>
+          <TouchableOpacity
+            style={styles.forgotContainer}
+            onPress={() => navigation.navigate('ForgotPassword')}
+          >
             <Text style={styles.forgotText}>Forget Password?</Text>
           </TouchableOpacity>
         </View>
 
-        <Btn title={'Sign in'} onPress={() => navigation.navigate('FlowNavigation')} />
+        <Btn
+          title={'Sign in'}
+          onPress={() => navigation.navigate('FlowNavigation')}
+        />
 
         <LoginDivider loginwith="Or login with" />
 
         <ButtonGoogleApple google="Google" apple="Apple" />
 
         <View style={styles.signUpView}>
-          <Text style={styles.accountText}>
-            If you Don't have an account
-          </Text>
+          <Text style={styles.accountText}>If you Don't have an account</Text>
           <TouchableOpacity style={{}} onPress={() => navigate('Register')}>
             <Text style={styles.signUpText}>Sign Up Now</Text>
           </TouchableOpacity>
-
         </View>
       </View>
     </View>
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
     marginLeft: wp(5.7),
     fontSize: Fontsize.xs,
     fontFamily: Fonts.medium,
-    color: Colors.darkGrey
+    color: Colors.darkGrey,
   },
   firstPhoneStyle: {
     width: wp(72),
@@ -119,31 +125,36 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: hp(2),
+    marginTop: hp(1),
     marginHorizontal: wp(5),
   },
   rememberRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 2,
   },
   remember: {
     fontFamily: Fonts.medium,
-    fontSize: Fontsize.xs,
-    marginLeft: wp(1.6),
+    fontSize: Fontsize.xs2,
+    marginLeft: wp(0.8),
     color: '#64748B',
+    marginTop: wp(0.8),
   },
   forgotContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   forgotText: {
     color: Colors.primary,
-    fontSize: Fontsize.xs,
+    fontSize: Fontsize.xs2,
     fontFamily: Fonts.medium,
+    marginTop: 7,
   },
   accountText: {
     textAlign: 'center',
-    fontSize: wp(3.2),
+    fontSize: Fontsize.xs2,
     color: 'black',
     fontFamily: Fonts.regular,
   },
@@ -151,12 +162,12 @@ const styles = StyleSheet.create({
     marginLeft: wp(1),
     fontFamily: Fonts.semibold,
     color: Colors.primary,
-    fontSize: Fontsize.xs1,
+    fontSize: Fontsize.xs,
   },
   signUpView: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: hp(5),
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });

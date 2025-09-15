@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp(3),
     borderColor: Colors.lightgray,
     marginTop: hp(0.1),
+    borderRadius: wp(2.7),
   },
 });

@@ -1,9 +1,4 @@
-import {
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native';
+import { StatusBar, StyleSheet, TextInput, View } from 'react-native';
 import React from 'react';
 import PasswordHeader from '../../Components/PasswordHeader';
 import { Colors } from '../../Constants/Colors';
@@ -18,8 +13,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
 
 const Verificationbody = ({ navigation }) => {
-  const route = useRoute()
-  const register = route?.params?.register
+  const route = useRoute();
+  const register = route?.params?.register;
   return (
     <SafeAreaView style={MyStyling.container}>
       <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
@@ -29,16 +24,20 @@ const Verificationbody = ({ navigation }) => {
       <Text style={styles.define}>Send OTP to mail@gmail.com</Text>
       <CustomInputText
         placeholder="XXXX"
-        style={styles.verificationStyle}
+        style={[styles.verificationStyle, { color: 'black' }]}
         placeholderTextColor={Colors.verificationColor}
+        keyboardType="numeric"
       />
-      <Btn
-        title="Continue"
-        bgColor={Colors.secondary}
-        btnContainer={{ backgroundColor: Colors.secondary }}
-        onPress={() => navigation.navigate(register ? 'Login' : 'ResetPassword')}
-      />
-
+      <View style={{ marginTop: hp(1.9) }}>
+        <Btn
+          title="Continue"
+          bgColor={Colors.secondary}
+          btnContainer={{ backgroundColor: Colors.secondary }}
+          onPress={() =>
+            navigation.navigate(register ? 'Login' : 'ResetPassword')
+          }
+        />
+      </View>
       <View style={styles.resendWrapper}>
         <Text style={styles.resendContainer}>
           Resend

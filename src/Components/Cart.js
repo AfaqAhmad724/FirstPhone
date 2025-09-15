@@ -25,7 +25,9 @@ const Cart = props => {
       />
       <View style={styles.rightContent}>
         <View style={styles.topRow}>
-          <Text style={styles.phonetext}>{props?.phone}</Text>
+          <Text style={styles.phonetext} numberOfLines={2}>
+            {props?.phone}
+          </Text>
           <Image
             source={Images.delete}
             style={styles.deleteIcon}
@@ -35,7 +37,13 @@ const Cart = props => {
 
         <View style={styles.boxone}>
           <Image source={Images.mobile} style={styles.imgmobile} />
-          <Text style={styles.shopName}> {props?.mobile}</Text>
+          <Text
+            style={[styles.shopName, { flexShrink: 1, maxWidth: wp('55%') }]}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            {props?.mobile}
+          </Text>
         </View>
 
         <View style={styles.bottomRow}>
@@ -51,7 +59,9 @@ const Cart = props => {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.price}>{props?.priceprop}</Text>
+          <Text style={styles.price} numberOfLines={2}>
+            {props?.priceprop}
+          </Text>
         </View>
       </View>
     </View>
@@ -76,24 +86,28 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: wp('1.2%'),
     justifyContent: 'space-between',
-    height: hp(10.5),
+    // height: hp(10.5),
+    // backgroundColor: 'red',
   },
   topRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   phonetext: {
     fontFamily: Fonts.semibold,
     color: Colors.black,
     fontSize: Fontsize.xsm,
+    flex: 1,
+    marginRight: wp(2),
   },
   deleteIcon: {
     width: wp('6%'),
     height: wp('6%'),
+    marginLeft: wp(2),
   },
   shopName: {
-    marginLeft: wp(0.5),
+    marginLeft: wp(1),
     fontFamily: Fonts.regular,
     fontSize: Fontsize.xs,
     color: Colors.eyecolor,
@@ -101,12 +115,13 @@ const styles = StyleSheet.create({
   bottomRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    marginTop: hp(2.4),
   },
   quantityBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: .5,
+    borderWidth: 0.5,
     borderRadius: wp('1'),
     backgroundColor: Colors.offWhite,
     padding: wp('0.5%'),
@@ -131,18 +146,20 @@ const styles = StyleSheet.create({
     marginHorizontal: wp('4%'),
     color: Colors.black,
   },
-
   price: {
     fontFamily: Fonts.semibold,
     color: Colors.black,
-    fontSize: Fontsize.sm
+    fontSize: Fontsize.sm,
+    flexShrink: 1,
+    maxWidth: wp('35%'),
+    marginTop: hp(1),
   },
   imgmobile: {
-    width: wp(3),
-    height: wp(3)
+    resizeMode: 'contain',
   },
   boxone: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 10,
   },
 });

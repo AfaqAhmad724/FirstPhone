@@ -50,6 +50,8 @@ const styles = StyleSheet.create({
     borderColor: Colors.verificationColor,
     borderRadius: wp(1.8),
     marginTop: hp(1.8),
+    includeFontPadding: false,
+    paddingVertical: hp(0.6),
   },
   vectorStyle: {
     marginLeft: wp(2.6),
@@ -64,7 +66,8 @@ const styles = StyleSheet.create({
     color: Colors.mediumGrey,
     flex: 1,
     marginHorizontal: wp(1),
-    marginTop: 4,
+    includeFontPadding: false,
+    paddingVertical: wp(2),
   },
   passwordIcon: {
     color: Colors.eyecolor,
