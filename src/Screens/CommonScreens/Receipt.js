@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { hp, wp } from '../../Constants/Responsive'
 import { Colors } from '../../Constants/Colors'
@@ -12,14 +12,32 @@ import { MyStyling } from '../../Constants/Styling'
 import OnlyBackArrow from '../../Components/OnlyBackArrow'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Btn from '../../Components/Btn'
+import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 const Receipt = () => {
+    const [text, setText] = useState('')
+    const navigation = useNavigation()
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+
+    useEffect(() => {
+        textSelection()
+    }, [])
+
+    const textSelection = () => {
+        if (userRole == 'Customer') {
+            setText('Payment Sent')
+        }
+        else {
+            setText('Payment Received!')
+        }
+    }
     return (
         <SafeAreaView style={[MyStyling.container, { backgroundColor: Colors.veryLightGray, }]}>
             <ScrollView style={{ paddingVertical: hp(2) }} showsVerticalScrollIndicator={false}>
                 <OnlyBackArrow />
                 <View style={[MyStyling.container, { marginVertical: hp(3), borderRadius: wp(3) }]}>
-                    <PaymentStatus paymentStatus={recepitData.paymentStatus} dateTime={recepitData.dateTime} />
+                    <PaymentStatus paymentStatus={text} dateTime={recepitData.dateTime} />
                     <View style={styles.divider} />
                     <PaymentDetail data={recepitData} />
                     <DeviceDetailPayment items={recepitData.items} />

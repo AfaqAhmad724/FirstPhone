@@ -7,12 +7,15 @@ import { hp, wp } from '../../Constants/Responsive'
 import { Colors } from '../../Constants/Colors'
 import { Fonts } from '../../Constants/Fonts'
 import { Fontsize } from '../../Constants/Fontsize'
+import { useSelector } from 'react-redux'
 
 const ActiveTabs = () => {
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+    const selectedText = userRole == 'Customer' ? Strings.activeOrder : Strings.sellerActiveOrder
     const renderItem = ({ item }) => (
         <View>
             <Text style={styles.orderText}>Active Orders</Text>
-            <Text style={styles.address}>{Strings.activeOrder}</Text>
+            <Text style={styles.address}>{selectedText}</Text>
             <PlaceOrderCard
                 orderId={item.orderId}
                 shopName={item.shopName}

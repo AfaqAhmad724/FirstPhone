@@ -7,9 +7,11 @@ import { Fontsize } from '../Constants/Fontsize';
 import Btn from './Btn';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { Strings } from '../Constants/Strings';
+import { useSelector } from 'react-redux';
 
 const OrderPlaced = props => {
   const navigation = useNavigation()
+  const userRole = useSelector((state) => state?.ROLE?.userData)
   const [data, setData] = useState({ title: '', description: '' })
 
   useEffect(() => {
@@ -33,9 +35,25 @@ const OrderPlaced = props => {
       return null
     }
   }
+
+  const handleNavigation = () => {
+    {
+      userRole == 'Customer' ?
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'FlowNavigation' }],
+        })
+        :
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'SellerFlowNavigation' }],
+        })
+    }
+  }
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View>
+
         <View style={styles.innerContainer}>
           <Image
             source={require('../Assets/Images/greencircle.png')}
@@ -50,22 +68,15 @@ const OrderPlaced = props => {
         <Text style={styles.heading}>{data?.title}</Text>
 
         <Text style={styles.subText}>{data?.description}</Text>
-        <Btn
-          title="Back To Home"
-          bgColor={Colors.secondary}
-          btnContainer={{ backgroundColor: Colors.primary }}
-          // onPress={() => navigation.replace('DrawerNavigation', { screen: 'BottomNavigations' })}
-          onPress={() => navigation.dispatch(CommonActions.reset({
-            index: 0,
-            routes: [{
-              name: 'FlowNavigation'
-            }]
-          }))}
-
-
-        />
       </View>
-    </ScrollView>
+
+      <Btn
+        title="Back To Home"
+        bgColor={Colors.secondary}
+        btnContainer={{ backgroundColor: Colors.primary, bottom: hp(10) }}
+        onPress={() => handleNavigation()}
+      />
+    </View>
   );
 };
 
@@ -76,6 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginTop: hp(32),
+    justifyContent: 'space-between'
   },
 
   innerContainer: {
@@ -96,7 +108,7 @@ const styles = StyleSheet.create({
 
   heading: {
     marginTop: hp(2),
-    marginBottom: hp(1),
+    marginBottom: hp(.4),
     fontFamily: Fonts.semibold,
     fontSize: Fontsize.ml,
     textAlign: 'center',
@@ -105,11 +117,9 @@ const styles = StyleSheet.create({
 
   subText: {
     textAlign: 'center',
-    fontSize: 12.33,
-    fontFamily: Fonts.medium,
+    fontSize: Fontsize.xs1,
+    fontFamily: Fonts.regular,
     color: Colors.eyecolor,
-    marginBottom: hp(17),
-    width: wp(88),
   },
 
   btnText: {

@@ -20,7 +20,10 @@ const CustomDropdown = props => {
             {/* Title + Radio button */}
             <View style={styles.radioContainer}>
                 <TouchableOpacity
-                    onPress={() => setIsRadioPres(!isradiopress)}
+                    onPress={() => {
+                        setIsRadioPres(!isradiopress);
+                        props?.onRadioPress && props.onRadioPress(!isradiopress); // 🔹 send value to parent
+                    }}
                     activeOpacity={0.7}>
                     {
                         radioChecked &&
@@ -34,7 +37,6 @@ const CustomDropdown = props => {
                 </TouchableOpacity>
                 <Text style={styles.titleText}>{props?.title || 'Select'}</Text>
             </View>
-
 
             {/* Dropdown */}
             <Dropdown
@@ -56,6 +58,12 @@ const CustomDropdown = props => {
                 placeholderStyle={[
                     styles.placeholderStyle,
                     { color: props?.placeholderColor || Colors.mediumGrey },
+                    {
+                        color:
+                            radioChecked
+                                ? (isradiopress ? Colors.mediumGrey : Colors.silverGrey)
+                                : Colors.mediumGrey
+                    }
                 ]}
                 selectedTextStyle={[
                     styles.selectedTextStyle,
@@ -114,7 +122,14 @@ const CustomDropdown = props => {
                     );
                 }}
             />
-            <Text style={styles.selection}>{props?.selectionText || Strings.SelectmodelText}</Text>
+            <Text style={[styles.selection,
+            {
+                color:
+                    radioChecked
+                        ? (isradiopress ? Colors.mediumGrey : Colors.silverGrey)
+                        : Colors.mediumGrey
+            }
+            ]}>{props?.selectionText || Strings.SelectmodelText}</Text>
 
 
             {props?.errorMessage && (

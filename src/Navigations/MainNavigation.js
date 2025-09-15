@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigation from './AuthNavigation';
 import FlowNavigation from './FlowNavigation';
 import { navigationRef } from './RootNavigation';
+import SellerFlowNavigation from './SellerFlowNavigation';
 
 export default function MainNavigation() {
   const MAIN_STACK = createNativeStackNavigator();
@@ -17,7 +18,7 @@ export default function MainNavigation() {
         <MAIN_STACK.Screen name="StartNavigation" component={StartNavigation} />
         <MAIN_STACK.Screen name="AuthNavigation" component={AuthNavigation} />
         <MAIN_STACK.Screen name="FlowNavigation" component={FlowNavigation} />
-        {/* <MAIN_STACK.Screen name="SellerFlowNavigation" component={SellerFlowNavigation} /> */}
+        <MAIN_STACK.Screen name="SellerFlowNavigation" component={SellerFlowNavigation} />
       </MAIN_STACK.Navigator>
     </NavigationContainer>
   );

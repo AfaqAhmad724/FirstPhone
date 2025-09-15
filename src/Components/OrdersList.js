@@ -4,7 +4,7 @@ import PlaceOrderCard from './PlaceOrderCard'
 import { myOrdersData } from '../Constants/DummyData'
 import { hp } from '../Constants/Responsive'
 
-const OrdersList = () => {
+const OrdersList = ({ data }) => {
     const renderItem = ({ item }) => (
         <View style={{ marginTop: hp(.5) }}>
             <PlaceOrderCard
@@ -15,7 +15,7 @@ const OrdersList = () => {
     return (
         <View>
             <FlatList
-                data={myOrdersData}
+                data={data}
                 keyExtractor={(item) => item.id}
                 renderItem={renderItem}
                 contentContainerStyle={{ paddingVertical: hp(1.5) }}

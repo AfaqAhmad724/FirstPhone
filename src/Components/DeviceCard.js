@@ -6,23 +6,46 @@ import { Fonts } from '../Constants/Fonts'
 import { Fontsize } from '../Constants/Fontsize'
 import { hp, wp } from '../Constants/Responsive'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 const DeviceCard = (data) => {
     const navigation = useNavigation()
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+
+    const handleNavigation = () => {
+        if (userRole == 'Customer') {
+            navigation.navigate('DeviceDetail')
+        }
+        else {
+            navigation.navigate('Preview')
+        }
+    }
     return (
-        <TouchableOpacity style={styles.cardMain} onPress={() => navigation.navigate('DeviceDetail')}>
-            <View style={styles.repairingView}>
-                <Image source={Images.repairing} style={styles.reparingImg} />
-                <Text style={styles.repairing}>Repairing Services </Text>
-            </View>
+        <TouchableOpacity style={styles.cardMain} onPress={() => handleNavigation()}>
+            {userRole == 'Customer' &&
+                <View style={styles.repairingView}>
+                    <Image source={Images.repairing} style={styles.reparingImg} />
+                    <Text style={styles.repairing}>Repairing Services </Text>
+                </View>
+            }
 
             <Image source={data?.image} style={styles.img} resizeMode='contain' />
 
             <Text style={styles.titleText}>{data?.title}</Text>
 
             <View style={styles.shopView}>
-                <Image source={Images.shopName} style={styles.shopImg} resizeMode='contain' />
-                <Text style={styles.shopText} numberOfLines={2}>{data?.shopName}</Text>
+                {
+                    userRole == 'Customer' ?
+                        <View style={styles.ShopAndPerson}>
+                            <Image source={Images.shopName} style={styles.shopImg} resizeMode='contain' />
+                            <Text style={styles.shopText} numberOfLines={2}>{data?.shopName}</Text>
+                        </View>
+                        :
+                        <View style={styles.ShopAndPerson}>
+                            <Image source={Images.personName} style={styles.personImg} resizeMode='contain' />
+                            <Text style={styles.shopText} numberOfLines={2}>{data?.personName}</Text>
+                        </View>
+                }
             </View>
 
             <View style={styles.priceView}>
@@ -168,5 +191,13 @@ const styles = StyleSheet.create({
     shopImg: {
         width: wp(3.8),
         height: wp(3.8)
+    },
+    personImg: {
+        width: wp(3.3),
+        height: wp(3.3)
+    },
+    ShopAndPerson: {
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 })

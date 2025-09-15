@@ -6,13 +6,24 @@ import { Fontsize } from '../Constants/Fontsize'
 import { Images } from '../Assets'
 import { hp, wp } from '../Constants/Responsive'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 const AddListingSection = () => {
+    const userRole = useSelector((state) => state?.ROLE?.userData)
     const navigation = useNavigation()
+
+    const handleNavigation = () => {
+        if (userRole == 'Customer') {
+            navigation.navigate('NewListing')
+        }
+        else {
+            navigation.navigate('SellerNewListing')
+        }
+    }
     return (
         <View style={styles.mainView}>
             <Text style={styles.devices}>Devices</Text>
-            <TouchableOpacity style={styles.addView} onPress={() => navigation.navigate('NewListing')}>
+            <TouchableOpacity style={styles.addView} onPress={() => handleNavigation()}>
                 <Image source={Images.add} style={styles.img} />
                 <Text style={styles.addNewText}>Add New</Text>
             </TouchableOpacity>

@@ -7,6 +7,7 @@ export const deviceData = [
     shopName: 'Madina Mobile Market',
     price: '502,999',
     distance: '5.0',
+    personName: 'Alex',
     repairing: false,
   },
   {
@@ -15,6 +16,7 @@ export const deviceData = [
     shopName: 'Madina Mobile Market',
     price: '502,999',
     distance: '10.0',
+    personName: 'Smith',
     repairing: true,
   },
   {
@@ -23,6 +25,7 @@ export const deviceData = [
     shopName: 'Madina Mobile Market',
     price: '502,999',
     distance: '5.0',
+    personName: 'Adam',
     repairing: false,
   },
   {
@@ -31,6 +34,7 @@ export const deviceData = [
     shopName: 'Madina Mobile Market',
     price: '502,999',
     distance: '5.0',
+    personName: 'Rolex',
     repairing: false,
   },
 ];
@@ -122,6 +126,66 @@ export const ConditionData = [
   },
 ];
 
+export const refreshRateData = [
+  {
+    id: 1,
+    name: '60Hz',
+  },
+  {
+    id: 2,
+    name: '90Hz',
+  },
+  {
+    id: 3,
+    name: '120Hz',
+  },
+];
+
+export const buildData = [
+  {
+    id: 1,
+    name: 'Glass',
+  },
+  {
+    id: 2,
+    name: 'Plastic',
+  },
+  {
+    id: 3,
+    name: 'Metal',
+  },
+];
+
+export const wirelessData = [
+  {
+    id: 1,
+    name: 'Wi-Fi',
+  },
+  {
+    id: 2,
+    name: 'Bluetooth',
+  },
+  {
+    id: 3,
+    name: 'NFC',
+  },
+];
+
+export const osVersionData = [
+  {
+    id: 1,
+    name: 'Android',
+  },
+  {
+    id: 2,
+    name: 'iOS',
+  },
+  {
+    id: 3,
+    name: 'Windows',
+  },
+];
+
 export const searchRadiusData = [
   {
     id: 1,
@@ -188,6 +252,50 @@ export const ColorsData = [
   },
 ];
 
+export const ColorsData1 = [
+  {
+    label: 'Red',
+    value: 'Red',
+  },
+  {
+    label: 'Pink',
+    value: 'Pink',
+  },
+  {
+    label: 'White',
+    value: 'White',
+  },
+  {
+    label: 'Blue',
+    value: 'Blue',
+  },
+  {
+    label: 'Orange',
+    value: 'Orange',
+  },
+  {
+    label: 'Black',
+    value: 'black',
+  },
+];
+
+export const ChargingData = [
+  {
+    label: 'A Type',
+    value: 'aType',
+  },
+  {
+    label: 'B Type',
+    value: 'bType',
+  },
+  {
+    label: 'C Type',
+    value: 'cType',
+  },
+
+];
+
+
 export const modelData = [
   {
     id: 1,
@@ -213,6 +321,44 @@ export const modelData = [
     id: 5,
     label: 'Oppo F16',
     value: 'oppof16',
+  },
+];
+
+export const CityData = [
+  {
+    id: 1,
+    label: 'Lahore',
+    value: 'lahore',
+  },
+  {
+    id: 2,
+    label: 'Islamabad',
+    value: 'islamabad',
+  },
+  {
+    id: 3,
+    label: 'Karachi',
+    value: 'karachi',
+  },
+  {
+    id: 4,
+    label: 'Peshawar',
+    value: 'peshawar',
+  },
+  {
+    id: 5,
+    label: 'Muridke',
+    value: 'muridke',
+  },
+  {
+    id: 6,
+    label: 'Sheikhpura',
+    value: 'sheikhpura',
+  },
+  {
+    id: 7,
+    label: 'Faisalabad',
+    value: 'faisalabad',
   },
 ];
 
@@ -493,6 +639,38 @@ export const myOrdersData = [
   // },
 ]
 
+export const myOrdersVendorData = [
+  {
+    id: 1,
+    orderId: "21324325",
+    shopName: "Mobile Hub Lahore",
+    totalPrice: "1,502,999",
+    totalProducts: "7",
+    date: "July 25, 2020",
+    status: "cancelled",
+  },
+  {
+    id: 2,
+    orderId: "54367342",
+    shopName: "Electro World Karachi",
+    totalPrice: "2,200,500",
+    totalProducts: "12",
+    date: "Aug 5, 2021",
+    status: "cancelled",
+  },
+  {
+    id: 3,
+    orderId: "87893762",
+    shopName: "Tech Bazaar Islamabad",
+    totalPrice: "955,000",
+    totalProducts: "5",
+    date: "Sep 12, 2021",
+    status: "cancelled",
+  },
+
+]
+
+
 export const orderSteps = [
   {
     id: 1,
@@ -525,7 +703,6 @@ export const orderSteps = [
 ]
 
 export const recepitData = {
-  paymentStatus: 'Payment Sent',
   dateTime: '12 May 2025, 10:30PM',
   paymentId: 'ABCDEF0HIJKLMN',
   orderNumber: '123456',

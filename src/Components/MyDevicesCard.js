@@ -41,7 +41,7 @@ const MyDevicesCard = ({ data }) => {
             </View>
 
             <View style={styles.DetailView}>
-                <Image source={Images.options} style={styles.imgStyle} resizeMode='contain' />
+                <Image source={Images.option} style={styles.imgStyle} resizeMode='contain' />
             </View>
         </View>
     )

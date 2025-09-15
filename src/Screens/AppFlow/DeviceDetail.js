@@ -9,11 +9,18 @@ import DeviceDescription from '../../Components/DeviceDescription'
 import AddToCartCounter from '../../Components/AddToCartCounter'
 import MainHeader from '../../Components/MainHeader'
 import CaroselAnimation from '../../Components/CaroselAnimation'
+import { useSelector } from 'react-redux'
+import Btn from '../../Components/Btn'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 const DeviceDetail = () => {
+    const route = useRoute()
+    const flag = route?.params?.check
+    const navigation = useNavigation()
+    const userRole = useSelector((state) => state?.ROLE?.userData)
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
                 <View style={{ paddingHorizontal: wp(5) }}>
                     <MainHeader title={'Device Detail'} />
                 </View>
@@ -23,7 +30,12 @@ const DeviceDetail = () => {
                     <DeviceSpecifications data={deviceFeatures} title={'Other Features'} />
                     <WarrantyDetail title={'Warranty Details'} />
                     <DeviceDescription title={'Description'} info={true} />
-                    <AddToCartCounter />
+                    {userRole == 'Customer' ?
+                        <AddToCartCounter />
+                        :
+                        !flag &&
+                        <Btn title={'List Now'} onPress={() => navigation.navigate('Order', { type: 'listing' })} />
+                    }
                 </View>
             </ScrollView>
         </SafeAreaView >

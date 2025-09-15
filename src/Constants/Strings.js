@@ -5,6 +5,8 @@ export const Strings = {
 
     customerTitle: "Customer",
     customerDesc: "Find and buy the mobiles you need from trusted vendors.",
+    signUpText: 'Hello there, sign up to continue',
+    setUpAccount: 'Set Up Your Account',
 
     vendorTitle: "Vendor",
     vendorDesc: "List your mobiles and reach interested buyers easily",
@@ -20,11 +22,21 @@ export const Strings = {
     SelectSpecs: 'Select your preferred brand',
     SelectmodelText: 'Select your preferred model',
     selectStorageText: 'Choose capacity',
+    storageOptionText: 'Select storage option',
+
     conditionText: 'Select condition',
     serviceText: 'Repairing Service',
+    PTaApproved: 'PTA Approved',
+    selectRam: 'Select RAM option',
+    processorInfo: "Enter Processor Info",
+    displayInfo: "Enter Display Info",
+    charginOption: "Select charging option",
+    refreshRate: 'Select refresh rate',
+
     radiusSearch: 'Select the radius for your search',
     searchMobiles: 'Search mobiles by city name',
     mobileColor: "Select color of the mobile",
+    selectColor: 'Select color',
 
     description: 'The iPhone 17 Pro Max features a 6.9-inch Super Retina XDR display, A19 Bionic chip, triple-camera system, and all-day battery life with 5G. Perfect for fast performance, stunning photos, and a premium user experience.',
     addTocart: 'Add to cart',
@@ -47,5 +59,29 @@ export const Strings = {
     orderPlacedText: "ORDER PLACED SUCCESSFULLY!",
 
     listingText: ' Listing Submitted Successfully!',
-    listingDescription: 'Your mobile listing has been submitted and is now pending admin approval. Once approved, your listing will go live, and buyers will be able to view and contact you.'
+    listingDescription: 'Your mobile listing has been submitted and is now pending admin approval. Once approved, your listing will go live, and buyers will be able to view and contact you.',
+
+    mainCamera: 'Enter Main Camera Specs',
+    ultraWideCamera: 'Enter Ultra Wide Camera Specs',
+    telephotoCamera: 'Enter Telephoto Camera Specs',
+    frontCamera: 'Enter Front Camera Specs',
+
+    bulidMaterial: 'Select build material',
+    wirelessFeature: 'Select wireless features',
+    osVersion: 'Select OS version',
+    noOfProducts: 'Enter Number of Products',
+
+    aiFeature: 'AI Features (Optional)',
+    aiFeatureText: 'Enter AI Features',
+    batteryHealth: 'Battery Health (Hours)',
+    batteryLife: 'Enter Battery Life',
+    warrantyStart: 'Warranty Start Date',
+    warrantyEnd: 'Warranty End Date',
+    selectDate: 'Select Date',
+    enterDescription: 'Enter Description',
+    addPhotos: 'Add Photos Or Video',
+
+    sellerActiveOrder: 'Orders currently being processed .',
+    sellerDeliveredOrder: 'Orders successfully delivered to the customer.',
+    sellerCancelledOrder: 'Orders that were placed but later canceled before delivery.',
 };

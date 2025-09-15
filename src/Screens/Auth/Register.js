@@ -1,7 +1,6 @@
 import {
     SafeAreaView,
     ScrollView,
-    StatusBar,
     StyleSheet,
 } from 'react-native';
 import React from 'react';
@@ -15,10 +14,7 @@ const Register = () => {
                 <SignUpBody
                     label="Sign Up"
                     setAccount="Set Up Your Account"
-                    small="Hello there, sign up to continue"
-                    placeholder="Name"
-                    placeholderTextColor="#CBCBCB"
-                    color="black"
+                    small="Hello there, sign up to continue asdfsadfasdfasd"
                 />
             </ScrollView>
         </SafeAreaView>

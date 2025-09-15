@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import CustomInputText from './CustomInputText';
 import CheckBox from './CheckBox';
@@ -10,6 +10,7 @@ import { Images } from '../Assets';
 import Btn from './Btn';
 import { Fontsize } from '../Constants/Fontsize';
 import { navigate } from '../Navigations/RootNavigation';
+import { Strings } from '../Constants/Strings';
 
 const SignUpBody = props => {
     return (
@@ -17,8 +18,8 @@ const SignUpBody = props => {
             <AuthHeader label="Sign Up" />
 
             <View style={styles.innerContainer}>
-                <Text style={styles.setheading}>{props?.setAccount}</Text>
-                <Text style={styles.smalltext}>{props?.small}</Text>
+                <Text style={styles.setheading}>{Strings.setUpAccount}</Text>
+                <Text style={styles.smalltext}>{Strings.signUpText}</Text>
 
                 <Image
                     source={Images.Logo}
@@ -26,35 +27,35 @@ const SignUpBody = props => {
                 />
 
                 <CustomInputText
-                    placeholder="Name"
+                    placeholder="Enter Name"
                     icon={Images.personName}
-                    placeholderTextColor="#9F9F9F"
                 />
 
                 <CustomInputText
-                    placeholder="Email"
+                    placeholder="Enter Email"
                     icon={Images.email}
-                    placeholderTextColor="#9F9F9F"
                     keyboardType="email-address"
                 />
 
                 <CustomInputText
-                    placeholder="Phone Number"
+                    placeholder="Enter Phone Number"
                     icon={Images.phone}
-                    placeholderTextColor="#9F9F9F"
                     keyboardType="numeric"
                 />
                 <CustomInputText
-                    placeholder="Password"
+                    placeholder="Enter Password"
                     icon={Images.password}
-                    placeholderTextColor="#9F9F9F"
                     isPassword={true}
                 />
 
                 <CustomInputText
-                    placeholder="Confirm Password"
+                    placeholder="Enter Confirm Password"
                     icon={Images.password}
-                    placeholderTextColor="#9F9F9F"
+                    isPassword={true}
+                />
+                <CustomInputText
+                    placeholder="Enter Location"
+                    icon={Images.colorLocation}
                     isPassword={true}
                 />
 
@@ -67,7 +68,7 @@ const SignUpBody = props => {
                     andthe="and the"
                 />
                 <Btn title={'Sign Up'} onPress={() => navigate('Verificationbody', { register: true })} />
-                <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center', marginTop: hp(3) }}>
+                <View style={styles.accountStyle}>
                     <Text style={styles.lowertext}>
                         If you have an account{' '}
                     </Text>
@@ -163,4 +164,10 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.medium,
         fontSize: Fontsize.xs
     },
+    accountStyle: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: hp(3)
+    }
 });

@@ -8,14 +8,15 @@ import { Fonts } from '../../Constants/Fonts'
 import { Fontsize } from '../../Constants/Fontsize'
 import { Strings } from '../../Constants/Strings'
 import { Text } from 'react-native'
+import { useSelector } from 'react-redux'
 
 const CancelledTabs = () => {
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+    const selectedText = userRole == 'Customer' ? Strings.cancelledOrder : Strings.sellerCancelledOrder;
     const renderItem = ({ item }) => (
-        console.log('item', item),
-
         <View>
             <Text style={styles.orderText}>Canceled Orders</Text>
-            <Text style={styles.address}>{Strings.cancelledOrder}</Text>
+            <Text style={styles.address}>{selectedText}</Text>
             <PlaceOrderCard
                 orderId={item.orderId}
                 shopName={item.shopName}

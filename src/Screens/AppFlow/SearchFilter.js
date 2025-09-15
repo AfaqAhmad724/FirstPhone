@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { MyStyling } from '../../Constants/Styling'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MainHeader from '../../Components/MainHeader'
@@ -8,7 +8,7 @@ import CustomDropdown from '../../Components/CustomDropdown'
 import CustomInputText from '../../Components/CustomInputText'
 import { Colors } from '../../Constants/Colors'
 import { Images } from '../../Assets'
-import { ConditionData, deviceBrands, modelData, RamData, searchRadiusData, storageCapacity } from '../../Constants/DummyData'
+import { CityData, ConditionData, deviceBrands, modelData, RamData, searchRadiusData, storageCapacity } from '../../Constants/DummyData'
 import PriceRangeSlider from '../../Components/PriceRangeSlider'
 import { hp, wp } from '../../Constants/Responsive'
 import { Fontsize } from '../../Constants/Fontsize'
@@ -22,6 +22,11 @@ import { useNavigation } from '@react-navigation/native'
 import DualButton from '../../Components/DualButton'
 
 const SearchFilter = () => {
+    const [searchCity, setSearchCity] = useState(false)
+
+    console.log('====================================');
+    console.log('serachcity', searchCity);
+    console.log('====================================');
     return (
         <SafeAreaView style={MyStyling.container}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
@@ -35,8 +40,8 @@ const SearchFilter = () => {
                 <DeviceSpecFlatlist title={'Condition'} marginTop={hp(0.6)} selectionText={Strings.conditionText} data={ConditionData} />
                 <NumberOfColors />
                 <RepairingService radioChecked={true} title={Strings.serviceText} />
-                <DeviceSpecFlatlist title={'Search Radius'} marginTop={hp(0.6)} selectionText={Strings.radiusSearch} data={searchRadiusData} fontSize={Fontsize.sm} />
-                <CustomDropdown data={modelData} radioChecked={true} title={'Search By City'} selectionText={Strings.searchMobiles} position={'top'} areaImage={Images.city} />
+                <DeviceSpecFlatlist title={'Search Radius'} marginTop={hp(0.6)} selectionText={Strings.radiusSearch} data={searchRadiusData} fontSize={Fontsize.sm} isCitySelected={searchCity} />
+                <CustomDropdown data={CityData} radioChecked={true} title={'Search By City'} selectionText={Strings.searchMobiles} position={'top'} areaImage={Images.city} onRadioPress={setSearchCity} />
                 <DualButton />
             </ScrollView>
 

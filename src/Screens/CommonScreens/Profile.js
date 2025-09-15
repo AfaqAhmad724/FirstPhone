@@ -13,8 +13,10 @@ import { Colors } from '../../Constants/Colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ProfileComponent from '../../Components/ProfileComponent';
 import { Images } from '../../Assets';
+import { useNavigation } from '@react-navigation/native';
 
 const Profile = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -49,6 +51,7 @@ const Profile = () => {
           icon={Images.orders}
           title="My Orders"
           iconColor={Colors.primary}
+          onPress={() => navigation.navigate('MyOrders')}
         />
         <ProfileComponent
           icon={Images.contactUs}

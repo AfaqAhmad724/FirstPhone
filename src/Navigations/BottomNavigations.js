@@ -11,10 +11,15 @@ import { Images } from '../Assets';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
 import MyCartScreen from '../Screens/CommonScreens/MyCartScreen';
+import Dashboard from '../Screens/SellerBottomTabs/Dashboard';
+import { useSelector } from 'react-redux';
+import Toast from 'react-native-simple-toast'
 
 const BOTTOM_STACK = createBottomTabNavigator();
 
 export const BottomNavigations = () => {
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+
     const tabBarIcon =
         imageSource =>
             ({ focused }) =>
@@ -43,7 +48,7 @@ export const BottomNavigations = () => {
 
     return (
         <BOTTOM_STACK.Navigator
-            initialRouteName="Home"
+            initialRouteName={userRole == 'Customer' ? 'Home' : 'Dashboard'}
             screenOptions={{
                 headerShown: false,
                 tabBarLabelPosition: 'below-icon',
@@ -57,23 +62,45 @@ export const BottomNavigations = () => {
                 tabBarHideOnKeyboard: true,
                 tabBarLabelStyle: styles.text,
             }}>
-            <BOTTOM_STACK.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    tabBarIcon: tabBarIcon(Images.home),
-                    tabBarButton: props => (
-                        <TouchableOpacity {...props} activeOpacity={0.9} />
-                    ),
-                }}
-            />
+            {
+                userRole == 'Customer' &&
+                <BOTTOM_STACK.Screen
+                    name="Home"
+                    component={Home}
+                    options={{
+                        tabBarIcon: tabBarIcon(Images.home),
+                        tabBarButton: props => (
+                            <TouchableOpacity {...props} activeOpacity={0.9} />
+                        ),
+                    }}
+                />
+            }
+            {userRole == 'Seller' &&
+                <BOTTOM_STACK.Screen
+                    name="Dashboard"
+                    component={Dashboard}
+                    options={{
+                        tabBarIcon: tabBarIcon(Images.dashboard),
+                        tabBarButton: props => (
+                            <TouchableOpacity {...props} activeOpacity={0.9} />
+                        ),
+                    }}
+                />
+            }
             <BOTTOM_STACK.Screen
                 name="Cart"
                 component={MyCartScreen}
                 options={{
                     tabBarIcon: tabBarIcon(Images.cart),
                     tabBarButton: props => (
-                        <TouchableOpacity {...props} activeOpacity={0.9} />
+                        userRole == 'Seller' ?
+                            <TouchableOpacity {...props} activeOpacity={0.9} onPress={() => {
+
+                                Toast.show('Please log in as a Customer to access your Cart.', Toast.LONG);
+
+                            }} />
+                            :
+                            <TouchableOpacity {...props} activeOpacity={0.9} />
                     ),
                 }}
             />
@@ -88,7 +115,7 @@ export const BottomNavigations = () => {
                 }}
             />
             <BOTTOM_STACK.Screen
-                name="Chat"
+                name="Messages"
                 component={Chat}
                 options={{
                     tabBarIcon: tabBarIcon(Images.chat),

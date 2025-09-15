@@ -1,17 +1,31 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from 'react-native'
 import React from 'react'
 import { Colors } from '../Constants/Colors'
 import { Fontsize } from '../Constants/Fontsize'
 import { Fonts } from '../Constants/Fonts'
 import { hp, wp } from '../Constants/Responsive'
 import { Images } from '../Assets'
+import { useSelector } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
 
 const PlaceOrderCard = (props) => {
-    console.log('====================================');
-    console.log('props', props);
-    console.log('====================================');
+    const navigation = useNavigation()
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+
+    const handleNavigation = () => {
+        if (userRole == 'Seller' && props?.status == 'active') {
+            navigation.navigate('OrderLists')
+        }
+        else if (
+            userRole === 'Seller' &&
+            (props?.status === 'delivered' || props?.status === 'cancelled')
+        ) {
+            navigation.navigate('DeviceDetail', { check: true })
+        }
+    }
+
     return (
-        <View style={styles.container}>
+        <Pressable style={styles.container} onPress={() => handleNavigation()}>
             {/* Order ID */}
             <Text style={styles.orderIdText} numberOfLines={2}>
                 Order Id <Text style={styles.orderIdValue}>#{props?.orderId}</Text>
@@ -41,8 +55,8 @@ const PlaceOrderCard = (props) => {
             {/* Action Icons */}
 
             <View style={styles.iconRow}>
-                {
-                    props?.status == 'active' ? (
+                {props?.status === 'active' ? (
+                    userRole === 'Customer' ? (
                         <View style={styles.buttonsStyle}>
                             <TouchableOpacity onPress={props?.onCallPress}>
                                 <Image source={Images.whatsapp} style={styles.actionIcon} />
@@ -54,23 +68,29 @@ const PlaceOrderCard = (props) => {
                                 <Image source={Images.whatsapp} style={styles.directionImg} />
                             </TouchableOpacity>
                         </View>
-                    ) : props?.status == 'delivered' ? (
+                    ) : (
+                        <View style={styles.optionView}>
+                            <Image source={Images.option} style={styles.imgStyle} resizeMode="contain" />
+                        </View>
+                    )
+                ) : props?.status === 'delivered' ? (
+                    userRole == 'Customer' ?
                         <View style={styles.reOrderView}>
                             <Text style={styles.reOrder}>Re-Order</Text>
                         </View>
-                    ) : props?.status == 'cancelled' ? (
-                        <View style={styles.DetailView}>
+                        :
+                        <TouchableOpacity style={styles.DetailView} onPress={() => navigation.navigate('Receipt')}>
                             <Image source={Images.receipt} style={styles.img} />
                             <Text style={styles.detailText}>View Receipt</Text>
-                        </View>
-                    ) : null
-                }
-
+                        </TouchableOpacity>
+                ) : props?.status === 'cancelled' ? (
+                    <TouchableOpacity style={styles.DetailView} onPress={() => navigation.navigate('Receipt')}>
+                        <Image source={Images.receipt} style={styles.img} />
+                        <Text style={styles.detailText}>View Receipt</Text>
+                    </TouchableOpacity>
+                ) : null}
             </View>
-
-
-
-        </View>
+        </Pressable>
     )
 }
 
@@ -176,7 +196,7 @@ const styles = StyleSheet.create({
     DetailView: {
         flexDirection: 'row',
         paddingVertical: wp(1),
-        paddingHorizontal: wp(2.5),
+        paddingHorizontal: wp(1.5),
         borderRadius: hp(5),
         borderWidth: wp(.2),
         borderColor: Colors.primary,
@@ -187,10 +207,17 @@ const styles = StyleSheet.create({
         marginLeft: wp(.5),
         color: Colors.primary,
         fontFamily: Fonts.semibold,
-        fontSize: Fontsize.xm1
+        fontSize: Fontsize.xxm
     },
     img: {
-        width: wp(3),
-        height: wp(3),
-    }
+        width: wp(2.6),
+        height: wp(2.6),
+    },
+    optionView: {
+        justifyContent: 'center',
+    },
+    imgStyle: {
+        width: wp(5),
+        height: wp(5),
+    },
 })

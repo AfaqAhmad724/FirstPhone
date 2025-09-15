@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Strings } from '../../Constants/Strings';
 import { hp, wp } from '../../Constants/Responsive';
 import { Fonts } from '../../Constants/Fonts';
@@ -9,23 +9,39 @@ import Btn from '../../Components/Btn';
 import VendorRoleBox from '../../Components/VendorRoleBox';
 import CustomerRoleBox from '../../Components/CustomerRoleBox';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { HandleBackHandler } from '../../Functions/BackHandler';
+import { useDispatch, useSelector } from 'react-redux';
+import Toast from 'react-native-simple-toast';
+import { USER_ROLEDATA } from '../../Redux/Slices/RoleSlice';
 
 const UserRole = ({ navigation }) => {
-    const [selectedId, setSelectedId] = useState(null)
+    const userData = useSelector((state) => state?.ROLE?.userData)
+    console.log('UserData', userData);
+
+    const [selectedId, setSelectedId] = useState(null);
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     HandleBackHandler();
+    // }, []);
 
     const handleUserFlow = () => {
-        if (selectedId == 1) {
-            navigation.navigate('AuthNavigation')
+        if (!selectedId) {
+            Toast.show('Please select a role first!', Toast.SHORT);
+            return;
         }
-        else {
-            navigation.navigate('AuthNavigation')
-            // return null
+
+        if (selectedId === 1) {
+            dispatch(USER_ROLEDATA('Customer'));
+            navigation.navigate('AuthNavigation');
+        } else {
+            dispatch(USER_ROLEDATA('Seller'));
+            navigation.navigate('AuthNavigation');
         }
-    }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
-
             <View style={styles.headerStyle}>
                 <Text style={styles.title}>{Strings.userRoleTitle}</Text>
                 <Text style={styles.subtitle}>{Strings.userRoleSubtitle}</Text>
@@ -38,9 +54,8 @@ const UserRole = ({ navigation }) => {
             </View>
 
             <View style={styles.BtnView}>
-                <Btn title={Strings.getStarted} onPress={() => handleUserFlow()} />
+                <Btn title={Strings.getStarted} onPress={handleUserFlow} />
             </View>
-
         </SafeAreaView>
     );
 };
@@ -83,6 +98,6 @@ const styles = StyleSheet.create({
     BtnView: {
         flex: 1,
         justifyContent: 'flex-end',
-        marginBottom: hp(9)
-    }
+        marginBottom: hp(9),
+    },
 });

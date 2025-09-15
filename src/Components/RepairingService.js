@@ -9,7 +9,7 @@ const RepairingService = (props) => {
     const [isradiopress, setIsRadioPres] = useState(false)
 
     return (
-        <View style={styles.radioContainer}>
+        <View style={[styles.radioContainer, props?.radioContainer]}>
             <TouchableOpacity
                 onPress={() => setIsRadioPres(!isradiopress)}
                 activeOpacity={0.7}>

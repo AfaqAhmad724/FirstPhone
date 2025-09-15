@@ -8,12 +8,15 @@ import { Colors } from '../../Constants/Colors'
 import { Fonts } from '../../Constants/Fonts'
 import { Fontsize } from '../../Constants/Fontsize'
 import { hp, wp } from '../../Constants/Responsive'
+import { useSelector } from 'react-redux'
 
 const DeliveredTabs = () => {
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+    const selectedText = userRole == 'Customer' ? Strings.delieveredOrder : Strings.sellerDeliveredOrder
     const renderItem = ({ item }) => (
         <View>
             <Text style={styles.orderText}>Delivered Orders</Text>
-            <Text style={styles.address}>{Strings.delieveredOrder}</Text>
+            <Text style={styles.address}>{selectedText}</Text>
             <PlaceOrderCard
                 orderId={item.orderId}
                 shopName={item.shopName}

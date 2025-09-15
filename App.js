@@ -3,15 +3,11 @@ import React, { useEffect } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import MainNavigation from './src/Navigations/MainNavigation'
 import { Colors } from './src/Constants/Colors'
+import OnlineOrders from './src/Screens/SellerAppFlow/OnlineOrders'
+import SellerNewListing from './src/Screens/SellerAppFlow/SellerNewListing'
 
 const App = () => {
   useEffect(() => {
-    try {
-      console.log('✅ App Started Successfully');
-    } catch (error) {
-      console.log('❌ App Error:', error);
-    }
-
     // 🔇 Hide all yellow-box warnings
     // LogBox.ignoreAllLogs(true);
 
