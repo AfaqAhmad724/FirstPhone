@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     height: hp(10),
     backgroundColor: Colors.premiumgrey,
     borderRadius: wp(3.4),
-    marginLeft: wp(5.75),
     marginTop: hp(6),
+    marginLeft: wp(0.6),
   },
 
   crown: {
