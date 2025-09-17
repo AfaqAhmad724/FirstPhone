@@ -39,5 +39,13 @@ export const Colors = {
   statusColor: '#8F8F8F',
   whiteColor: "#F8F7F7'",
   dividerColor: '#D0D0D0',
-  lf: '#636363'
+  lf: '#636363',
+  b5: '#B5B5B5',
+  yellowlight: '#E5C530',
+  graydark: '#555555',
+  dimgraay: '#767474',
+  fcred: '#FC544B',
+  numdim: ' #21324327',
+  premiumgrey: '#666666',
+  month: '#848199',
 };

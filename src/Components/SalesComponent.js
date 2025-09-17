@@ -1,98 +1,113 @@
-// // import { StyleSheet, Text, View } from 'react-native';
-// // import React from 'react';
-// // import { hp, wp } from '../Constants/Responsive';
-
-// // const SalesComponent = () => {
-// //   return (
-// //     <View>
-// //       <View style={styles.innerContainer}></View>
-// //     </View>
-// //   );
-// // };
-
-// // export default SalesComponent;
-
-// // const styles = StyleSheet.create({
-// //   innerContainer: {
-// //     backgroundColor: 'red',
-// //     width: wp(47),
-// //     height: hp(15),
-// //     flexDirection: 'row',
-// //   },
-// // });
-
-// import { StyleSheet, Text, View } from 'react-native';
-// import React from 'react';
-// import { hp, wp } from '../Constants/Responsive';
-
-// const SalesComponent = () => {
-//   return (
-//     <View style={styles.innerContainer}>
-//       <View style={styles.box1}></View>
-//       <View style={styles.box2}>
-//         <Text style={styles.textStyle}>Total Sales</Text>
-//         <Text style={styles.textStyle}>123</Text>
-//       </View>
-//     </View>
-//   );
-// };
-
-// export default SalesComponent;
-
-// const styles = StyleSheet.create({
-//   innerContainer: {
-//     backgroundColor: 'white',
-//     width: wp(47),
-//     height: hp(15),
-//     flexDirection: 'row',
-//     alignItems: 'center', // vertically center children
-//     paddingHorizontal: wp(3),
-//     marginVertical: hp(1),
-//     borderWidth: 1,
-//   },
-//   box1: {
-//     width: wp(16),
-//     height: wp(17),
-//     backgroundColor: 'blue',
-//   },
-//   box2: {
-//     marginLeft: wp(4),
-//   },
-//   textStyle: {
-//     color: 'white',
-//     fontSize: wp(3.5),
-//   },
-// });
-
+import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { wp } from '../Constants/Responsive';
+import { wp, hp } from '../Constants/Responsive';
+import { Colors } from '../Constants/Colors';
+import { Fonts } from '../Constants/Fonts';
+import { Fontsize } from '../Constants/Fontsize';
 
-const FourBoxes = () => {
+const SalesComponent = props => {
+  const iconSize = props.iconSize || wp(6);
+  const boxHeight = props.height || hp(13.5); // default height agar prop na mile
+
   return (
-    <View style={styles.container}>
-      <View style={styles.box}></View>
+    <View style={[styles.box, { height: boxHeight }, props.style]}>
+      <View style={styles.row}>
+        {/* Icon Box */}
+        <View
+          style={[
+            styles.colorBox,
+            { backgroundColor: props?.color || Colors.primary },
+          ]}
+        >
+          {props?.icon && (
+            <Image
+              source={props.icon}
+              style={{
+                width: iconSize,
+                height: iconSize,
+                resizeMode: 'contain',
+                tintColor: props?.iconColor || Colors.white,
+              }}
+            />
+          )}
+        </View>
+
+        {/* Text Container */}
+        <View style={styles.textContainer}>
+          <Text
+            style={[
+              styles.saleStyle,
+              props.textStyle,
+              {
+                color: props.salesColor || Colors.black,
+                marginLeft:
+                  props.textStyle?.marginLeft !== undefined
+                    ? props.textStyle.marginLeft
+                    : wp(1.5), // default shift
+              },
+            ]}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            {props?.sales}
+          </Text>
+
+          <Text
+            style={[
+              styles.priceStyle,
+              props.priceStyle,
+              {
+                color: props.priceColor || Colors.b5,
+                marginLeft:
+                  props.priceStyle?.marginLeft !== undefined
+                    ? props.priceStyle.marginLeft
+                    : wp(1), // default shift
+              },
+            ]}
+          >
+            {props?.price}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 };
 
-export default FourBoxes;
+export default SalesComponent;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-
-    marginTop: wp(6),
-  },
   box: {
-    width: '49%',
-    height: 100,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // marginBottom: 10,
-    elevation: 1,
-    backgroundColor: 'red',
+    width: wp(44.2),
+    height: hp(13.5),
+    elevation: 2,
+    backgroundColor: Colors.bg,
+    justifyContent: 'center',
+    paddingHorizontal: wp(2),
+    borderRadius: wp(0.4),
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  colorBox: {
+    width: wp(12),
+    height: wp(11.5),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: wp(2),
+  },
+  textContainer: {
+    marginLeft: wp(1),
+    justifyContent: 'center',
+    marginBottom: wp(2),
+  },
+  saleStyle: {
+    fontFamily: Fonts.medium,
+    fontSize: Fontsize.fz,
+  },
+  priceStyle: {
+    fontFamily: Fonts.semibold,
+    fontSize: wp(4),
+    marginTop: hp(0.1),
   },
 });
