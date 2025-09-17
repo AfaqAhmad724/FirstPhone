@@ -18,6 +18,8 @@ import ChooseShipping from '../Screens/AppFlow/ChooseShipping';
 import ShipingAddress from '../Screens/AppFlow/ShipingAddress';
 import Order from '../Screens/CommonScreens/Order';
 import Profile from '../Screens/CommonScreens/Profile';
+import EditProfile from '../Screens/CommonScreens/EditProfile';
+import MyCartScreen from '../Screens/CommonScreens/MyCartScreen';
 
 export default function FlowNavigation() {
   const FLOW_STACk = createNativeStackNavigator();
@@ -43,6 +45,10 @@ export default function FlowNavigation() {
       <FLOW_STACk.Screen name="ChooseShipping" component={ChooseShipping} />
       <FLOW_STACk.Screen name="ShipingAddress" component={ShipingAddress} />
       <FLOW_STACk.Screen name="Order" component={Order} />
+      <FLOW_STACk.Screen name="EditProfile" component={EditProfile} />
+      <FLOW_STACk.Screen name="MyCartScreen" component={MyCartScreen} />
+
+
 
     </FLOW_STACk.Navigator>
   );

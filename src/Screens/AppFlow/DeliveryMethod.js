@@ -1,7 +1,6 @@
-import { StyleSheet, Text, FlatList, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, FlatList, View } from 'react-native';
 import React from 'react';
 import DeliveryMethodComponent from '../../Components/DeliveryMethodComponent';
-import { Images } from '../../Assets';
 import { Fonts } from '../../Constants/Fonts';
 import { Fontsize } from '../../Constants/Fontsize';
 import { Colors } from '../../Constants/Colors';
@@ -15,6 +14,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DeliveryMethod = () => {
   const navigation = useNavigation();
+  const [selectedId, setSelectedId] = React.useState(null);
+
   return (
     <SafeAreaView style={MyStyling.container}>
       <MainHeader title={'Delivery Method'} />
@@ -27,7 +28,13 @@ const DeliveryMethod = () => {
         <FlatList
           data={options}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <DeliveryMethodComponent item={item} />}
+          renderItem={({ item }) => (
+            <DeliveryMethodComponent
+              item={item}
+              isSelected={item.id === selectedId}
+              onPress={() => setSelectedId(item.id)}
+            />
+          )}
           showsVerticalScrollIndicator={false}
         />
 

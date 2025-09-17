@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         width: wp(41.7),
-        height: hp(5.3),
+        // height: hp(5.3),
         marginTop: 0,
     },
 })

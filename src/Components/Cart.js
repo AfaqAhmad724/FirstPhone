@@ -18,51 +18,67 @@ const Cart = props => {
 
   return (
     <View style={styles.box}>
-      <Image
-        source={props?.image}
-        style={styles.imagestyle}
-        resizeMode="contain"
-      />
-      <View style={styles.rightContent}>
-        <View style={styles.topRow}>
-          <Text style={styles.phonetext} numberOfLines={2}>
-            {props?.phone}
+      {/* LEFT */}
+      <View style={styles.leftSection}>
+        <Image
+          source={props?.image}
+          style={styles.imagestyle}
+          resizeMode="contain"
+        />
+      </View>
+
+      {/* CENTER */}
+      <View style={styles.centerSection}>
+        <Text style={styles.phonetext} numberOfLines={2}>
+          {props?.phone}
+        </Text>
+
+        <View style={styles.boxone}>
+          <Image source={Images.mobile} style={styles.imgmobile} />
+          <Text
+            style={[styles.shopName, { flexShrink: 1, maxWidth: wp('50%') }]}
+            numberOfLines={2}
+            ellipsizeMode="tail">
+            {props?.mobile}
           </Text>
+        </View>
+
+        {/* Quantity Box */}
+        <View style={styles.quantityBox}>
+          {/* Minus */}
+          <TouchableOpacity style={styles.qtyBtn} onPress={decreaseQty}>
+            <Text style={styles.qtyText}>-</Text>
+          </TouchableOpacity>
+
+          {/* Separator Line */}
+          <View style={styles.verticalLine} />
+
+          {/* Quantity Number */}
+          <Text style={styles.qtyNumber}>{quantity}</Text>
+
+          {/* Separator Line */}
+          <View style={styles.verticalLine} />
+
+          {/* Plus */}
+          <TouchableOpacity style={styles.qtyBtn} onPress={increaseQty}>
+            <Text style={styles.qtyText}>+</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* RIGHT */}
+      <View style={styles.rightSection}>
+        <TouchableOpacity>
           <Image
             source={Images.delete}
             style={styles.deleteIcon}
             resizeMode="contain"
           />
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.boxone}>
-          <Image source={Images.mobile} style={styles.imgmobile} />
-          <Text
-            style={[styles.shopName, { flexShrink: 1, maxWidth: wp('55%') }]}
-            numberOfLines={2}
-            ellipsizeMode="tail"
-          >
-            {props?.mobile}
-          </Text>
-        </View>
-
-        <View style={styles.bottomRow}>
-          <View style={styles.quantityBox}>
-            <TouchableOpacity style={styles.qtyBtn} onPress={decreaseQty}>
-              <Text style={styles.qtyText}>-</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.qtyNumber}>{quantity}</Text>
-
-            <TouchableOpacity style={styles.qtyBtn} onPress={increaseQty}>
-              <Text style={styles.qtyText}>+</Text>
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.price} numberOfLines={2}>
-            {props?.priceprop}
-          </Text>
-        </View>
+        <Text style={styles.price} numberOfLines={2}>
+          RS {props?.priceprop}
+        </Text>
       </View>
     </View>
   );
@@ -76,63 +92,63 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.offWhite,
     marginTop: hp(1.5),
     borderRadius: wp(3),
-    padding: wp(3),
+    paddingVertical: hp(1),
+    paddingHorizontal: wp(2),
+  },
+
+  leftSection: {
+    width: wp('20%'),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imagestyle: {
     width: wp('20%'),
     height: wp('25%'),
   },
-  rightContent: {
+
+  centerSection: {
     flex: 1,
-    marginLeft: wp('1.2%'),
-    justifyContent: 'space-between',
-    // height: hp(10.5),
-    // backgroundColor: 'red',
-  },
-  topRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    marginLeft: wp(2),
+    justifyContent: 'space-evenly',
   },
   phonetext: {
     fontFamily: Fonts.semibold,
     color: Colors.black,
     fontSize: Fontsize.xsm,
-    flex: 1,
-    marginRight: wp(2),
   },
-  deleteIcon: {
-    width: wp('6%'),
-    height: wp('6%'),
-    marginLeft: wp(2),
+  boxone: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  imgmobile: {
+    width: wp(4),
+    height: wp(4),
+    resizeMode: 'contain',
+    marginRight: wp(1),
   },
   shopName: {
-    marginLeft: wp(1),
     fontFamily: Fonts.regular,
     fontSize: Fontsize.xs,
     color: Colors.eyecolor,
   },
-  bottomRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginTop: hp(2.4),
-  },
+
   quantityBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 0.5,
-    borderRadius: wp('1'),
+    borderWidth: 0.7,
+    borderRadius: wp(1),
     backgroundColor: Colors.offWhite,
-    padding: wp('0.5%'),
     borderColor: Colors.lf,
-    marginLeft: wp(0.2),
+    alignSelf: 'flex-start',
   },
   qtyBtn: {
-    width: wp('3.2%'),
-    height: wp('3.4%'),
-    borderRadius: wp('1.6%'),
+    width: wp(3.5),
+    height: wp(3.5),
+    borderRadius: wp(3),
     backgroundColor: Colors.mediumGrey,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: wp(2)
   },
   qtyText: {
     fontSize: Fontsize.xxxs,
@@ -141,25 +157,31 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   qtyNumber: {
-    fontSize: Fontsize.xs,
+    marginTop: hp(.4),
+    fontSize: Fontsize.s,
     fontFamily: Fonts.semibold,
-    marginHorizontal: wp('4%'),
     color: Colors.black,
+    marginHorizontal: wp(3),
+  },
+  verticalLine: {
+    width: .5,
+    height: '100%',
+    backgroundColor: Colors.silverGrey,
+  },
+  rightSection: {
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+  deleteIcon: {
+    width: wp(6),
+    height: wp(6),
   },
   price: {
     fontFamily: Fonts.semibold,
     color: Colors.black,
     fontSize: Fontsize.sm,
-    flexShrink: 1,
-    maxWidth: wp('35%'),
-    marginTop: hp(1),
-  },
-  imgmobile: {
-    resizeMode: 'contain',
-  },
-  boxone: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
+    width: wp(26),
+    textAlign: 'right'
+
   },
 });

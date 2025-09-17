@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { hp, wp } from '../Constants/Responsive';
@@ -21,12 +21,23 @@ const CheckBox = props => {
           />
         </TouchableOpacity>
 
-        <Text style={[styles.remember, props?.customTextStyle]}>
-          {props?.agreetext}
-          <Text style={styles.linkText}>{props?.condition}</Text>{' '}
-          {props?.andthe}{' '}
+        <View style={styles.PrivacyMain}>
+          <Pressable onPress={() => setYes(!yes)}>
+
+            <Text style={[styles.remember, props?.customTextStyle]}>
+              {props?.agreetext}{' '}
+            </Text>
+          </Pressable>
+
+          <Text style={styles.linkText}>{props?.condition}</Text>
+
+          <Text style={[styles.remember, props?.customTextStyle]}>
+            {' '}{props?.andthe}{' '}
+          </Text>
+
           <Text style={styles.linkText}>{props?.policytext}</Text>
-        </Text>
+        </View>
+
       </View>
     </View>
   );
@@ -66,4 +77,8 @@ const styles = StyleSheet.create({
     fontSize: wp(3.5),
     fontFamily: Fonts.medium,
   },
+  PrivacyMain: {
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  }
 });

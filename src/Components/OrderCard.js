@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { wp, hp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
 import { Fontsize } from '../Constants/Fontsize';
 import { Fonts } from '../Constants/Fonts';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const OrderCard = ({ data }) => {
   const route = useRoute();
+  const navigation = useNavigation()
   const viewDetail = route?.params?.viewDetail;
   return (
     <View style={styles.card}>
@@ -35,11 +36,11 @@ const OrderCard = ({ data }) => {
           Qty: {data?.quantity}
         </Text>
       </View>
-      {viewDetail && (
-        <View style={styles.DetailView}>
-          <Text style={styles.detailText}>View Detail</Text>
-        </View>
-      )}
+      {/* {viewDetail && ( */}
+      <TouchableOpacity style={styles.DetailView} onPress={() => navigation.navigate('DeviceDetail')}>
+        <Text style={styles.detailText}>View Detail</Text>
+      </TouchableOpacity>
+      {/* )} */}
     </View>
   );
 };
@@ -51,7 +52,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: Colors.offWhite,
     borderRadius: wp(3),
-    padding: wp(3),
+    paddingVertical: hp(1.5),
+    paddingHorizontal: wp(2),
     marginBottom: hp(2),
     alignItems: 'center',
     shadowColor: '#000',
@@ -59,6 +61,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
+
   },
   imageWrapper: {
     width: wp(20),
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
   },
   detailsWrapper: {
     flex: 1,
-    marginLeft: wp(4),
+    marginLeft: wp(3),
   },
   title: {
     width: wp(60),
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
   storeWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: hp(0.5),
+    marginTop: hp(0.3),
   },
   storeIcon: {
     width: wp(4),
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     color: Colors.mediumGrey,
     fontFamily: Fonts.semibold,
     fontSize: Fontsize.xs2,
-    marginTop: hp(0.5),
+    // marginTop: hp(0.5),
   },
   DetailView: {
     paddingVertical: wp(1),

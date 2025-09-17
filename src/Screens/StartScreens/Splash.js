@@ -7,7 +7,7 @@ import { Fonts } from '../../Constants/Fonts';
 const Splash = ({ navigation }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigation.navigate('UserRole');
+            navigation.replace('UserRole');
         }, 3000);
 
         return () => clearTimeout(timer);

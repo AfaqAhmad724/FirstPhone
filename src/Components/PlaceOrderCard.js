@@ -16,11 +16,23 @@ const PlaceOrderCard = (props) => {
         if (userRole == 'Seller' && props?.status == 'active') {
             navigation.navigate('OrderLists')
         }
-        else if (
-            userRole === 'Seller' &&
-            (props?.status === 'delivered' || props?.status === 'cancelled')
-        ) {
-            navigation.navigate('DeviceDetail', { check: true })
+        else if (userRole === 'Seller' && props?.status === 'delivered') {
+            navigation.navigate('OrderLists', { check: 'delivered' })
+        }
+        else if (userRole === 'Seller' && props?.status === 'cancelled') {
+            navigation.navigate('OrderLists', { check: 'cancelled' })
+        }
+        else if (userRole == 'Customer' && props?.status == 'active') {
+            !props?.check ?
+                navigation.navigate('OrderLists')
+                :
+                null
+        }
+        else if (userRole === 'Customer' && props?.status === 'delivered') {
+            navigation.navigate('OrderLists', { check: 'delivered' })
+        }
+        else if (userRole === 'Customer' && props?.status === 'cancelled') {
+            navigation.navigate('OrderLists', { check: 'cancelled' })
         }
     }
 
@@ -54,7 +66,7 @@ const PlaceOrderCard = (props) => {
 
             {/* Action Icons */}
 
-            <View style={styles.iconRow}>
+            <View style={styles.iconRow} onPress={() => navigation.navigate('Order')}>
                 {props?.status === 'active' ? (
                     userRole === 'Customer' ? (
                         <View style={styles.buttonsStyle}>
@@ -75,19 +87,19 @@ const PlaceOrderCard = (props) => {
                     )
                 ) : props?.status === 'delivered' ? (
                     userRole == 'Customer' ?
-                        <View style={styles.reOrderView}>
+                        <TouchableOpacity style={styles.reOrderView} onPress={() => navigation.replace('MyCartScreen')}>
                             <Text style={styles.reOrder}>Re-Order</Text>
-                        </View>
+                        </TouchableOpacity>
                         :
                         <TouchableOpacity style={styles.DetailView} onPress={() => navigation.navigate('Receipt')}>
                             <Image source={Images.receipt} style={styles.img} />
                             <Text style={styles.detailText}>View Receipt</Text>
                         </TouchableOpacity>
                 ) : props?.status === 'cancelled' ? (
-                    <TouchableOpacity style={styles.DetailView} onPress={() => navigation.navigate('Receipt')}>
-                        <Image source={Images.receipt} style={styles.img} />
-                        <Text style={styles.detailText}>View Receipt</Text>
-                    </TouchableOpacity>
+                    <View style={[styles.DetailView, { borderColor: Colors.red }]}>
+                        {/* <Image source={Images.receipt} style={styles.img} /> */}
+                        <Text style={[styles.detailText, { color: Colors.red }]}>Order Cancelled</Text>
+                    </View>
                 ) : null}
             </View>
         </Pressable>
@@ -195,12 +207,12 @@ const styles = StyleSheet.create({
     },
     DetailView: {
         flexDirection: 'row',
-        paddingVertical: wp(1),
-        paddingHorizontal: wp(1.5),
+        paddingVertical: wp(.7),
+        paddingHorizontal: wp(1.3),
         borderRadius: hp(5),
-        borderWidth: wp(.2),
+        borderWidth: wp(.3),
         borderColor: Colors.primary,
-        backgroundColor: Colors.lightGreen,
+        // backgroundColor: Colors.lightGreen,
         justifyContent: 'space-between'
     },
     detailText: {

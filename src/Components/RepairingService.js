@@ -13,14 +13,14 @@ const RepairingService = (props) => {
             <TouchableOpacity
                 onPress={() => setIsRadioPres(!isradiopress)}
                 activeOpacity={0.7}>
-                <View style={styles.radioButtonOuter}>
+                <View style={[styles.radioButtonOuter, props?.radioButtonOuter]}>
                     {
                         isradiopress &&
-                        <View style={styles.radioButtonInner} />
+                        <View style={[styles.radioButtonInner, props?.radioButtonInner]} />
                     }
                 </View>
             </TouchableOpacity>
-            <Text style={styles.titleText}>{props?.title || 'Select'}</Text>
+            <Text style={[styles.titleText, props?.titleStyle]}>{props?.title || 'Select'}</Text>
         </View>
     )
 }

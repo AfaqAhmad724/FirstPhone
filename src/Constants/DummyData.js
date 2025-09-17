@@ -1,4 +1,4 @@
-import { Images } from '../Assets';
+import { Images, Videos } from '../Assets';
 
 export const deviceData = [
   {
@@ -37,6 +37,31 @@ export const deviceData = [
     personName: 'Rolex',
     repairing: false,
   },
+];
+
+export const cartData = [
+  {
+    id: '1',
+    image: Images.phone2,
+    phone: 'iPhone 16 Pro',
+    mobile: 'Mobile Hub Lahore',
+    priceprop: '502,999',
+  },
+  {
+    id: '2',
+    image: Images.phone4,
+    phone: 'iPhone 16 Pro',
+    mobile: 'Mobile Hub Lahore',
+    priceprop: '302,999',
+  },
+  {
+    id: '3',
+    image: Images.phone3,
+    phone: 'iPhone 16 Pro',
+    mobile: 'Mobile Hub Lahore',
+    priceprop: '350,999',
+  },
+
 ];
 export const deviceBrands = [
   {
@@ -477,21 +502,49 @@ export const deviceFeatures = [
   },
 ];
 
+// export const ImagesData = [
+//   {
+//     id: 1,
+//     image: Images.iphone,
+//   },
+//   {
+//     id: 2,
+//     image: Images.iphone,
+//   },
+//   {
+//     id: 3,
+//     image: Images.iphone,
+//   },
+//   {
+//     id: 4,
+//     image: Images.iphone,
+//   },
+// ];
+
 export const ImagesData = [
   {
+    id: 0,
+    type: 'video',
+    video: Videos.iphone,
+  },
+  {
     id: 1,
+    type: 'image',
     image: Images.iphone,
   },
   {
     id: 2,
+    type: 'image',
     image: Images.iphone,
   },
   {
     id: 3,
+    type: 'image',
     image: Images.iphone,
   },
   {
     id: 4,
+    type: 'image',
     image: Images.iphone,
   },
 ];
@@ -637,6 +690,18 @@ export const myOrdersData = [
   //   date: "Mar 11, 2022",
   //   status: "delivered",
   // },
+]
+
+export const orderSingleData = [
+  {
+    id: 1,
+    orderId: "21324325",
+    shopName: "Mobile Hub Lahore",
+    totalPrice: "1,502,999",
+    totalProducts: "7",
+    date: "July 25, 2020",
+    status: "active",
+  },
 ]
 
 export const myOrdersVendorData = [
@@ -805,5 +870,20 @@ export const myListingData = [
     price: 502999,
     image1: Images.phone2,
     status: 'approved'
+  },
+];
+
+export const shippingData = [
+  {
+    id: '1',
+    icon: Images.addressLocation,
+    address: 'Address',
+    status: '1901 Thornridge Cir. Shiloh, Hawaii 81063',
+  },
+  {
+    id: '2',
+    icon: Images.addressLocation,
+    address: 'Office',
+    status: '2715 Ash Dr. San Jose, South Dakota 83475',
   },
 ];

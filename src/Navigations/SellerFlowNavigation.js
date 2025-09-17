@@ -48,6 +48,7 @@ export default function SellerFlowNavigation() {
             <SELLER_FLOW_STACk.Screen name="ShipingAddress" component={ShipingAddress} />
             <SELLER_FLOW_STACk.Screen name="Order" component={Order} />
 
+
         </SELLER_FLOW_STACk.Navigator>
     );
 }

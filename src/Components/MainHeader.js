@@ -19,12 +19,12 @@ const MainHeader = props => {
                 />
             </TouchableOpacity>
             <Text style={styles.setHeading}>{props?.title}</Text>
-            <View style={styles.notification}>
+            <TouchableOpacity style={styles.notification} onPress={() => navigation.navigate('Notifications')}>
                 <Image source={Images.notificationBell} resizeMode='contain' style={styles.img} />
                 <View style={styles.badge}>
                     <Text style={styles.badgeText}>5</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         </View>
     );
 };

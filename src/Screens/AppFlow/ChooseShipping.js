@@ -6,7 +6,7 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import ChooseShippingComponent from '../../Components/ChooseShippingComponent';
 import { Colors } from '../../Constants/Colors';
 import { Fonts } from '../../Constants/Fonts';
@@ -18,42 +18,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MyStyling } from '../../Constants/Styling';
 import { Fontsize } from '../../Constants/Fontsize';
 import MainHeader from '../../Components/MainHeader';
-
-const shippingData = [
-  {
-    id: '1',
-    icon: Images.addressLocation,
-    status: '1901 Thornridge Cir. Shiloh, Hawaii 81063',
-    address: 'Address',
-    dividerColor: Colors.primary,
-    iconColor: Colors.primary,
-  },
-  {
-    id: '2',
-    icon: Images.addressLocation,
-    status: '1901 Thornridge Cir. Shiloh, Hawaii 81063',
-    address: 'Address',
-    dividerColor: Colors.dividerColor,
-    statusColor: Colors.statusColor,
-    color: Colors.statusColor,
-    iconColor: '#656363',
-    addressColor: Colors.black,
-  },
-];
+import { shippingData } from '../../Constants/DummyData';
 
 const ChooseShipping = () => {
   const navigation = useNavigation();
+  const [selectedId, setSelectedId] = useState('1');
 
   const renderItem = ({ item }) => (
     <ChooseShippingComponent
-      icon={item.icon}
-      status={item.status}
-      address={item.address}
-      dividerColor={item.dividerColor}
-      statusColor={item.statusColor}
-      color={item.color}
-      iconColor={item.iconColor}
-      addressColor={item.addressColor}
+      item={item}
+      isSelected={selectedId === item.id}
+      onPress={() => setSelectedId(item.id)}
     />
   );
 
@@ -65,9 +40,10 @@ const ChooseShipping = () => {
       >
         <MainHeader title={'Choose Shipping'} />
         <Text style={styles.headingStyle}>Shipping Address</Text>
+
         <FlatList
           data={shippingData}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
           renderItem={renderItem}
           ListFooterComponent={() => (
             <TouchableOpacity

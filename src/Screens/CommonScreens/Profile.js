@@ -1,9 +1,9 @@
 import {
   Image,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
@@ -14,28 +14,33 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ProfileComponent from '../../Components/ProfileComponent';
 import { Images } from '../../Assets';
 import { useNavigation } from '@react-navigation/native';
+import MainHeader from '../../Components/MainHeader';
+import { MyStyling } from '../../Constants/Styling';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { navigate } from '../../Navigations/RootNavigation';
 
 const Profile = () => {
   const navigation = useNavigation()
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
+    <SafeAreaView style={MyStyling.container}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
+        <MainHeader title={'Profile'} />
         <View style={styles.topstyle}>
           <Text style={styles.accountStyle}>Account</Text>
 
-          <View style={styles.box1}>
+          <TouchableOpacity style={styles.box1} onPress={() => navigation.navigate('EditProfile')}>
             <Image
               source={require('../../Assets/Images/person.png')}
               style={styles.imageStyle}
             />
-            <Text style={styles.nameStyle}>Jose Larry</Text>
+            <Text style={styles.nameStyle} numberOfLines={1}>Jose Larry</Text>
             <MaterialIcons
               name="keyboard-arrow-right"
               size={wp(7)}
               color="black"
               style={styles.iconstyles}
             />
-          </View>
+          </TouchableOpacity>
 
           <View style={styles.divider}></View>
           <Text style={styles.optionStyle}>More Options</Text>
@@ -45,13 +50,17 @@ const Profile = () => {
           icon={Images.notification}
           title="Notifications"
           iconColor={Colors.primary}
+          onPress={() => navigation.navigate('Notifications')}
         />
-        <ProfileComponent title="Change Password" icon={Images.changePswd} />
+        <ProfileComponent title="Change Password" icon={Images.changePswd}
+          onPress={() => navigation.navigate('AuthNavigation', { screen: 'ResetPassword' })}
+        />
         <ProfileComponent
           icon={Images.orders}
           title="My Orders"
           iconColor={Colors.primary}
           onPress={() => navigation.navigate('MyOrders')}
+
         />
         <ProfileComponent
           icon={Images.contactUs}
@@ -87,34 +96,30 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.bg,
-  },
   topstyle: {
-    marginLeft: wp(6),
-    marginTop: hp(6.8),
+    marginTop: hp(4),
   },
   accountStyle: {
     fontFamily: Fonts.semibold,
     fontSize: wp(4.3),
-    marginBottom: hp(2),
+    color: Colors.black,
+    marginBottom: hp(.5),
   },
   box1: {
-    width: wp(88.9),
-    height: wp(13),
+    width: wp(90),
     backgroundColor: '#F8F7F7',
+    paddingVertical: hp(.4),
     borderRadius: wp(1.5),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: wp(1),
-    marginBottom: hp(2),
+    marginBottom: hp(1),
   },
   imageStyle: {
-    width: wp(13.8),
-    height: wp(13.8),
-    borderRadius: wp(13.8) / 2,
+    width: wp(13),
+    height: wp(13),
+    borderRadius: wp(7),
     resizeMode: 'contain',
   },
   nameStyle: {
@@ -122,17 +127,18 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.semibold,
     fontSize: wp(3.79),
     marginLeft: wp(3),
+    color: Colors.black
   },
 
   divider: {
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#A9A6A69E',
-    marginTop: hp(1.3),
-    marginRight: wp(5.6),
+    borderBottomWidth: .7,
+    borderBottomColor: Colors.mediumGrey,
+    marginVertical: hp(1)
   },
   optionStyle: {
     fontFamily: Fonts.semibold,
-    marginTop: wp(2.6),
+    marginTop: wp(1.5),
+    color: Colors.black
   },
   iconstyles: {
     marginRight: 10,

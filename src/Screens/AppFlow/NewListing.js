@@ -18,14 +18,14 @@ import Btn from '../../Components/Btn';
 import { useNavigation } from '@react-navigation/native';
 
 const NewListing = () => {
-  //   const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={MyStyling.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: hp(5) }}
       >
-        {/* <MainHeader title={'Add New Listing'} /> */}
+        <MainHeader title={'Add New Listing'} />
         <View style={{ marginTop: hp(1) }}>
           <RequestFormInputs
             title={'Brand '}
@@ -66,7 +66,7 @@ const NewListing = () => {
           <Btn
             title={'Preview'}
             btnContainer={{ marginTop: hp(5) }}
-            // onPress={() => navigation.navigate('Preview')}
+            onPress={() => navigation.navigate('Preview')}
           />
         </View>
       </ScrollView>

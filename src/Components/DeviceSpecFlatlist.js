@@ -17,7 +17,7 @@ const DeviceSpecFlatlist = (props) => {
                 showsHorizontalScrollIndicator={false}
                 scrollEnabled={props?.isCitySelected ? false : true}
                 renderItem={({ item }) => (
-                    <View style={{ marginRight: wp(2), marginTop: hp(.2), opacity: props.isCitySelected ? 0.5 : 0.9 }} pointerEvents={props?.isCitySelected ? 'none' : 'auto'} >
+                    <View style={{ marginRight: wp(2), marginTop: hp(.2), opacity: props.isCitySelected ? 0.4 : 0.9 }} pointerEvents={props?.isCitySelected ? 'none' : 'auto'} >
                         <DeviceSpecsBox
                             title={item?.name}
                             index={item.id}

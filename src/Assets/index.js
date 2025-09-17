@@ -69,6 +69,10 @@ export const Images = {
   notificationBell: require('./Icons/notificationBell.png'),
   notificationSimple: require('./Icons/notificationSimple.png'),
   termsAndCondition: require('./Icons/termsAndCondition.png'),
+  directionLocation: require('./Icons/directionLocation.png'),
+  cort: require('../Assets/Icons/cort.png'),
+  crown: require('../Assets/Images/crown.png'),
+  clock: require('../Assets/Images/clock.png'),
 
   apple: require('../Assets/Images/Apple.png'),
   iphone: require('../Assets/Images/iphone.png'),
@@ -83,6 +87,7 @@ export const Images = {
   profile: require('../Assets/Images/MyProfile.png'),
   SadMobile: require('../Assets/Images/SadMobile.png'),
   phone4: require('../Assets/Images/phone4.png'),
+  editProfile: require('./Images/editProfile.png'),
   mobile: require('../Assets/Images/MobileHub.png'),
   sideBarImg: require('../Assets/Images/sideBarImg.png'),
   dummyProfile: require('../Assets/Images/dummyProfile.png'),
@@ -99,4 +104,9 @@ export const Images = {
   growth: require('../Assets/Icons/growth.png'),
   orders: require('../Assets/Icons/orders.png'),
   option: require('./Icons/options.png'),
+
 };
+
+export const Videos = {
+  iphone: require('../Assets/Video/Introducing_IPhone.mp4'),
+}

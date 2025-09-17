@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -13,11 +12,16 @@ import Btn from '../../Components/Btn';
 import { MyStyling } from '../../Constants/Styling';
 import { hp, wp } from '../../Constants/Responsive';
 import { Fonts } from '../../Constants/Fonts';
+import MainHeader from '../../Components/MainHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 const DeviceReceipt = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={MyStyling.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <MainHeader title={'Device Receipt Entry'} />
         <View style={styles.innerContainer}>
           <DeviceComponent
             name="Brand"
@@ -49,7 +53,7 @@ const DeviceReceipt = () => {
           </TouchableOpacity>
 
           <View style={styles.btnContainer}>
-            <Btn title="Create Receipt" />
+            <Btn title="Create Receipt" onPress={() => navigation.navigate('Receipt')} />
           </View>
         </View>
       </ScrollView>

@@ -1,45 +1,47 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Fonts } from '../Constants/Fonts';
-import { Fontsize } from '../Constants/Fontsize';
 import { Colors } from '../Constants/Colors';
 import { hp, wp } from '../Constants/Responsive';
 
-const DeliveryMethodComponent = ({ item }) => {
+const DeliveryMethodComponent = ({ item, isSelected, onPress }) => {
   return (
-    <View>
-      <View style={styles.optionBox}>
-        <View style={styles.iconContainerGray}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={onPress}
+    >
+      <View style={styles.row}>
+        <View
+          style={[
+            styles.iconWrapper,
+            isSelected && styles.iconWrapperSelected,
+          ]}
+        >
           <Image
             source={item.icon}
-            style={[
-              styles.imageStyle,
-
-              item.subtitle === 'Secure online payment' && {
-                width: wp(6.5),
-                height: wp(6.5),
-              },
-            ]}
             resizeMode="contain"
+            style={[
+              styles.icon,
+              item.subtitle === 'Secure online payment' && styles.onlinePaymentIcon,
+            ]}
+            tintColor={isSelected ? Colors.primary : Colors.shadowgray}
           />
+
         </View>
-        <View style={styles.textContainer}>
+
+        <View style={styles.textWrapper}>
           <Text
             style={[
-              styles.paystyleBlack,
-              item.subtitle === 'Secure online payment' && {
-                color: Colors.primary,
-              },
+              styles.title,
+              isSelected && styles.titleSelected,
             ]}
           >
             {item.title}
           </Text>
           <Text
             style={[
-              styles.statusStyleGray,
-              item.subtitle === 'Secure online payment' && {
-                color: Colors.primary,
-              },
+              styles.subtitle,
+              isSelected && styles.subtitleSelected,
             ]}
           >
             {item.subtitle}
@@ -49,41 +51,26 @@ const DeliveryMethodComponent = ({ item }) => {
 
       <View
         style={[
-          styles.borderstyle,
-          item.subtitle === 'Secure online payment'
-            ? { borderBottomColor: Colors.primary, opacity: 0.6 }
-            : { borderBottomColor: Colors.shadowgray, opacity: 0.2 },
+          styles.divider,
+          isSelected ? styles.dividerSelected : styles.dividerDefault,
         ]}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
 export default DeliveryMethodComponent;
 
 const styles = StyleSheet.create({
-  innerContainer: {
-    marginTop: hp(10),
-    marginLeft: wp(5.3),
-    marginRight: wp(5.3),
-  },
-  heading: {
-    fontFamily: Fonts.semibold,
-    fontSize: Fontsize.m,
-    marginBottom: hp(0.5),
-    color: Colors.black,
-  },
-  define: {
-    fontFamily: Fonts.regular,
-    fontSize: Fontsize.fz,
-    color: Colors.shadowgray,
-  },
-  optionBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  container: {
     marginVertical: hp(0.6),
   },
-  iconContainerGray: {
+  row: {
+    marginTop: hp(.5),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconWrapper: {
     width: wp(10),
     height: wp(10),
     borderRadius: wp(5),
@@ -91,27 +78,47 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  imageStyle: {
+  iconWrapperSelected: {
+    backgroundColor: Colors.primary + '20',
+  },
+  icon: {
     width: wp(7),
     height: wp(7),
   },
-  textContainer: {
-    marginLeft: wp(3),
-    flex: 1,
+  onlinePaymentIcon: {
+    width: wp(6),
+    height: wp(6),
   },
-  paystyleBlack: {
+  textWrapper: {
+    flex: 1,
+    marginLeft: wp(3),
+  },
+  title: {
     fontFamily: Fonts.medium,
     fontSize: wp(3.5),
     color: Colors.black,
   },
-  statusStyleGray: {
-    color: Colors.shadowgray,
+  titleSelected: {
+    color: Colors.primary,
+  },
+  subtitle: {
     fontFamily: Fonts.regular,
     fontSize: wp(2.8),
+    color: Colors.shadowgray,
   },
-  borderstyle: {
+  subtitleSelected: {
+    color: Colors.primary,
+  },
+  divider: {
     borderBottomWidth: 1,
-    marginLeft: wp(0),
-    marginVertical: hp(1),
+    marginTop: hp(1),
+  },
+  dividerDefault: {
+    borderBottomColor: Colors.shadowgray,
+    opacity: 0.2,
+  },
+  dividerSelected: {
+    borderBottomColor: Colors.primary,
+    opacity: 0.6,
   },
 });

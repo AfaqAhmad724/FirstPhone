@@ -48,7 +48,7 @@ const Receipt = () => {
                         <Text style={styles.totalValue}>{recepitData.totalAmount}</Text>
                     </View>
                 </View>
-                <Btn title={'Download Receipt'} btnContainer={{ marginVertical: hp(10) }} />
+                <Btn title={'Download Receipt'} btnContainer={{ marginVertical: hp(10) }} onPress={() => navigation.navigate('DrawerNavigation')} />
 
 
             </ScrollView>

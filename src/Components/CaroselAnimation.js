@@ -1,54 +1,61 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { Image, StyleSheet, View } from 'react-native'
+import React, { useState, useRef } from 'react'
 import Carousel from 'react-native-reanimated-carousel';
+import Video from 'react-native-video';
 import { ImagesData } from '../Constants/DummyData';
 import { hp, wp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
-import { Extrapolate, interpolate } from 'react-native-reanimated';
 
 const CaroselAnimation = () => {
-    const [activeIndex, setActiveIndex] = useState(0)
+    const [activeIndex, setActiveIndex] = useState(0);
+    const carouselRef = useRef(null);
+
+    const handleVideoEnd = () => {
+        if (carouselRef.current) {
+            carouselRef.current.next();
+        }
+    };
+
     return (
         <View style={styles.mainContainer}>
             <Carousel
+                ref={carouselRef}
                 width={wp(100)}
                 height={wp(84)}
                 data={ImagesData}
                 loop
-                autoPlay
+                autoPlay={activeIndex !== 0}
+                autoPlayInterval={3000}
                 scrollAnimationDuration={2000}
-                onSnapToItem={index => setActiveIndex(index)}
-                customAnimation={(value) => {
-                    'worklet';
-                    return {
-                        opacity: interpolate(
-                            value,
-                            [-1, -0.6, 0, 0.6, 1],
-                            [0, 0.4, 1, 0.4, 0],
-                            Extrapolate.CLAMP
-                        ),
-                        transform: [
-                            {
-                                scale: interpolate(
-                                    value,
-                                    [-1, -0.6, 0, 0.6, 1],
-                                    [0.92, 0.95, 1, 0.95, 0.92],
-                                    Extrapolate.CLAMP
-                                ),
-                            },
-                        ],
-                    };
+                onProgressChange={(_, absoluteProgress) => {
+                    const newIndex = Math.round(absoluteProgress);
+                    if (newIndex !== activeIndex) {
+                        setActiveIndex(newIndex);
+                    }
                 }}
-                renderItem={({ item }) => (
-                    <Image
-                        source={item.image}
-                        style={styles.imgStyle}
-                        resizeMode="contain"
-                    />
-                )}
+                renderItem={({ item, index }) =>
+                    item.type === 'video' ? (
+                        <Video
+                            source={{ uri: item.video }}
+                            style={styles.videoStyle}
+                            resizeMode="contain"
+                            paused={false}
+                            repeat={false}
+                            controls
+                            onEnd={handleVideoEnd}
+                        />
+                    ) : (
+                        <Image
+                            source={item.image}
+                            style={styles.imgStyle}
+                            resizeMode="contain"
+                        />
+                    )
+                }
             />
-            <View
-                style={styles.pagination}>
+
+
+            <View style={styles.pagination}>
                 <View style={styles.paginationContainer}>
                     {ImagesData.map((_, index) => (
                         <View
@@ -61,12 +68,11 @@ const CaroselAnimation = () => {
                     ))}
                 </View>
             </View>
-
         </View>
-    )
-}
+    );
+};
 
-export default CaroselAnimation
+export default CaroselAnimation;
 
 const styles = StyleSheet.create({
     imgStyle: {
@@ -74,10 +80,16 @@ const styles = StyleSheet.create({
         height: wp(84),
         alignSelf: 'center',
     },
+    videoStyle: {
+        width: wp(92),
+        height: wp(84),
+        alignSelf: 'center',
+        backgroundColor: '#000',
+    },
     mainContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: hp(2)
+        marginTop: hp(2),
     },
     pagination: {
         backgroundColor: Colors.bg,
@@ -105,4 +117,4 @@ const styles = StyleSheet.create({
         borderRadius: wp(1),
         backgroundColor: Colors.primary,
     },
-})
+});

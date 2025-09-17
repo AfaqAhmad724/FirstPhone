@@ -53,7 +53,7 @@ export default SearchFilter
 
 const styles = StyleSheet.create({
     scrollView: {
-        paddingBottom: hp(4),
+        paddingBottom: hp(5),
     },
     titleText: {
         fontSize: Fontsize.s,

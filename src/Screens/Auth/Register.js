@@ -1,21 +1,18 @@
 import {
-    SafeAreaView,
     ScrollView,
     StyleSheet,
 } from 'react-native';
 import React from 'react';
 import SignUpBody from '../../Components/SignUpBody';
 import { Colors } from '../../Constants/Colors';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { hp } from '../../Constants/Responsive';
 
 const Register = () => {
     return (
         <SafeAreaView style={styles.fullscreen}>
-            <ScrollView>
-                <SignUpBody
-                    label="Sign Up"
-                    setAccount="Set Up Your Account"
-                    small="Hello there, sign up to continue asdfsadfasdfasd"
-                />
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
+                <SignUpBody />
             </ScrollView>
         </SafeAreaView>
     );

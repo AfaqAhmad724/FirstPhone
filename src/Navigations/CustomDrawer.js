@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     },
     logoutContainer: {
         position: 'absolute',
-        bottom: hp(1)
+        bottom: hp(3)
     },
     rightIcon: {
         width: wp(3.5),
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     divider: {
-        width: wp(60),
+        marginHorizontal: wp(2.5),
         backgroundColor: Colors.silverGrey,
         bottom: hp(1.5),
     }

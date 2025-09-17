@@ -11,8 +11,14 @@ import Btn from './Btn';
 import { Fontsize } from '../Constants/Fontsize';
 import { navigate } from '../Navigations/RootNavigation';
 import { Strings } from '../Constants/Strings';
+import RepairingService from './RepairingService';
+import UploadingBox from './UploadingBox';
+import PickImage from './PickImage';
+import { useSelector } from 'react-redux';
 
 const SignUpBody = props => {
+    const userRole = useSelector((state) => state?.ROLE?.userData)
+
     return (
         <View style={styles.backgroundstyle}>
             <AuthHeader label="Sign Up" />
@@ -53,11 +59,23 @@ const SignUpBody = props => {
                     icon={Images.password}
                     isPassword={true}
                 />
-                <CustomInputText
-                    placeholder="Enter Location"
-                    icon={Images.colorLocation}
-                    isPassword={true}
-                />
+                {userRole == 'Seller' &&
+
+                    <View>
+                        <CustomInputText
+                            placeholder="Enter Location"
+                            icon={Images.colorLocation}
+                        />
+
+                        <RepairingService radioContainer={{ marginTop: hp(2) }} radioButtonInner={styles.radioButtonInner} radioButtonOuter={styles.radioButtonOuter} titleStyle={styles.titleStyle} radioChecked={true} title={Strings.servicesText} />
+
+                        <UploadingBox title={Strings.fronSideCNIC} />
+                        <UploadingBox title={Strings.backSideCNIC} />
+
+                        <Text style={styles.titleText}>{Strings.shopPics}</Text>
+                        <PickImage register={true} />
+                    </View>
+                }
 
                 <CheckBox
                     buttontext="Sign Up"
@@ -67,6 +85,7 @@ const SignUpBody = props => {
                     condition="Terms & Conditions"
                     andthe="and the"
                 />
+
                 <Btn title={'Sign Up'} onPress={() => navigate('Verificationbody', { register: true })} />
                 <View style={styles.accountStyle}>
                     <Text style={styles.lowertext}>
@@ -76,7 +95,6 @@ const SignUpBody = props => {
                         <Text style={styles.logintext}>Login Now</Text>
                     </TouchableOpacity>
                 </View>
-
             </View>
         </View>
     );
@@ -103,12 +121,12 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.semibold,
         // marginLeft: wp(5),
         marginTop: hp(2.5),
-        fontSize: wp(5.3),
-        color: Colors.black
+        fontSize: wp(5.7),
+        color: Colors.black,
+        height: hp(4)
     },
 
     smalltext: {
-        // marginLeft: wp(5.7),
         fontSize: wp(3.1),
     },
 
@@ -117,7 +135,6 @@ const styles = StyleSheet.create({
         height: wp(34),
         resizeMode: 'contain',
         alignSelf: 'center',
-        // marginRight: wp(1.1),
         marginTop: hp(0.7),
     },
 
@@ -154,20 +171,38 @@ const styles = StyleSheet.create({
         backgroundColor: '#4AB95A',
     },
     lowertext: {
-        fontSize: Fontsize.xs,
+        fontSize: Fontsize.xs1,
         fontFamily: Fonts.regular,
         color: Colors.black,
     },
     logintext: {
         marginLeft: wp(0.3),
         color: Colors.primary,
-        fontFamily: Fonts.medium,
-        fontSize: Fontsize.xs
+        fontFamily: Fonts.semibold,
+        fontSize: Fontsize.xs1
     },
     accountStyle: {
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: hp(3)
-    }
+    },
+    titleStyle: {
+        fontSize: Fontsize.xs,
+        fontFamily: Fonts.medium,
+    },
+    radioButtonOuter: {
+        height: hp(2.0),
+        width: hp(2.0),
+    },
+    radioButtonInner: {
+        height: hp(.9),
+        width: hp(.9),
+    },
+    titleText: {
+        marginTop: hp(1.5),
+        fontSize: Fontsize.m,
+        fontFamily: Fonts.regular,
+        color: Colors.gray,
+    },
 });

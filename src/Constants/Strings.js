@@ -7,6 +7,8 @@ export const Strings = {
     customerDesc: "Find and buy the mobiles you need from trusted vendors.",
     signUpText: 'Hello there, sign up to continue',
     setUpAccount: 'Set Up Your Account',
+    fronSideCNIC: 'Upload your CNIC Front side here',
+    backSideCNIC: 'Upload your CNIC Back side here',
 
     vendorTitle: "Vendor",
     vendorDesc: "List your mobiles and reach interested buyers easily",
@@ -26,6 +28,8 @@ export const Strings = {
 
     conditionText: 'Select condition',
     serviceText: 'Repairing Service',
+    servicesText: 'Repairing Services',
+
     PTaApproved: 'PTA Approved',
     selectRam: 'Select RAM option',
     processorInfo: "Enter Processor Info",
@@ -57,9 +61,13 @@ export const Strings = {
 
     orderPlacedDescription: "Thank you! Your order has been placed and is now being processed. You can track your order now.",
     orderPlacedText: "ORDER PLACED SUCCESSFULLY!",
+    orderRequest: 'Thank you! Your request has been submitted.',
+    orderRequestDesc: 'We will notify you when your nearby vendors will list this mobile. ',
 
     listingText: ' Listing Submitted Successfully!',
     listingDescription: 'Your mobile listing has been submitted and is now pending admin approval. Once approved, your listing will go live, and buyers will be able to view and contact you.',
+    unavailalbe: 'This mobile is currently unavailable.',
+    unavailalbeDesc: 'Don’t worry! Submit your request below, and we’ll notify you immediately when it becomes available.',
 
     mainCamera: 'Enter Main Camera Specs',
     ultraWideCamera: 'Enter Ultra Wide Camera Specs',
@@ -80,6 +88,7 @@ export const Strings = {
     selectDate: 'Select Date',
     enterDescription: 'Enter Description',
     addPhotos: 'Add Photos Or Video',
+    shopPics: 'Counter/Shop Pics',
 
     sellerActiveOrder: 'Orders currently being processed .',
     sellerDeliveredOrder: 'Orders successfully delivered to the customer.',

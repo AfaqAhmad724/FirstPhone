@@ -1,8 +1,7 @@
-import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { Colors } from '../../Constants/Colors';
 import ShippingComponent from '../../Components/ShippingComponent';
-import PasswordHeader from '../../Components/PasswordHeader';
 import MainHeader from '../../Components/MainHeader';
 import Btn from '../../Components/Btn';
 import { MyStyling } from '../../Constants/Styling';
@@ -20,37 +19,31 @@ const ShipingAddress = () => {
           <ShippingComponent
             name="Name"
             placeholder="Enter your name"
-            placeholdertextColor={Colors.black}
           />
 
           <ShippingComponent
             name="Email address"
             placeholder="Enter email adress"
-            placeholdertextColor={Colors.mediumGrey}
             keyboardType="email-address"
           />
 
           <ShippingComponent
             name="City"
             placeholder="Enter your city"
-            placeholdertextColor={Colors.mediumGrey}
           />
 
           <ShippingComponent
             name="Street Address"
             placeholder="Enter your street address"
-            placeholdertextColor={Colors.mediumGrey}
           />
           <ShippingComponent
             name="Postal Code"
             placeholder="Enter your postal code"
-            placeholdertextColor={Colors.mediumGrey}
             keyboardType="numeric"
           />
           <ShippingComponent
             name="Phone Number"
             placeholder="Enter your phone number"
-            placeholdertextColor={Colors.mediumGrey}
             keyboardType="numeric"
           />
 

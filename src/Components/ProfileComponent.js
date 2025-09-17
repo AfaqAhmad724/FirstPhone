@@ -36,26 +36,27 @@ export default ProfileComponent;
 
 const styles = StyleSheet.create({
   box1: {
-    width: wp(88.9),
-    height: wp(14.6),
+    width: wp(90),
+    // height: wp(14.6),
+    paddingVertical: hp(1.4),
     backgroundColor: '#F8F7F7',
+    // backgroundColor: 'red',
     borderRadius: wp(1.5),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: wp(4),
-    marginBottom: hp(2),
-    marginLeft: wp(5.8),
+    marginBottom: hp(1.5),
   },
   title: {
     flex: 1,
     marginLeft: wp(3),
     fontFamily: Fonts.semibold,
     fontSize: wp(3.8),
-    color: '#000',
+    color: Colors.black,
   },
   iconImage: {
-    width: wp(6.5),
-    height: wp(6.5),
+    width: wp(6),
+    height: wp(6),
   },
 });

@@ -32,8 +32,7 @@ const DeviceDetail = () => {
                     <DeviceDescription title={'Description'} info={true} />
                     {userRole == 'Customer' ?
                         <AddToCartCounter />
-                        :
-                        !flag &&
+                        : !flag &&
                         <Btn title={'List Now'} onPress={() => navigation.navigate('Order', { type: 'listing' })} />
                     }
                 </View>

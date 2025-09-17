@@ -12,14 +12,14 @@ import { Colors } from '../../Constants/Colors'
 import OrderDetails from '../../Components/OrderDetails'
 import { hp } from '../../Constants/Responsive'
 import { Divider } from 'react-native-elements'
-import { myOrdersData } from '../../Constants/DummyData'
+import { myOrdersData, orderSingleData } from '../../Constants/DummyData'
 
 const TrackOrder = () => {
     return (
         <SafeAreaView style={MyStyling.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <MainHeader title={'Track Order'} />
-                <OrdersList data={myOrdersData} />
+                <OrdersList data={orderSingleData} check={true} />
                 <Text style={styles.orderDetail}>{'Order Details'}</Text>
                 <OrderDetails />
                 <Divider style={styles.divider} />

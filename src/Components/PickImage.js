@@ -5,15 +5,15 @@ import { wp, hp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
 import { Fontsize } from '../Constants/Fontsize';
 
-const PickImage = () => {
+const PickImage = (props) => {
     const [selectedImages, setSelectedImages] = useState([]);
 
     const openImagePicker = () => {
         launchImageLibrary(
             {
-                mediaType: 'photo',
+                mediaType: props?.register ? 'photo' : 'mixed',
                 quality: 1,
-                selectionLimit: 0, // unlimited
+                selectionLimit: 1,
             },
             response => {
                 if (response.didCancel) {
@@ -55,48 +55,6 @@ const PickImage = () => {
 
 export default PickImage;
 
-// const styles = StyleSheet.create({
-//     listContainer: {
-//         // padding: wp(2),
-//         flexDirection: 'row',
-//         flexWrap: 'wrap',
-//         // backgroundColor: 'red'
-//     },
-//     imageBox: {
-//         width: wp(27),
-//         height: wp(25),
-//         // borderWidth: 1,
-//         // borderColor: Colors.primary,
-//         // borderRadius: wp(3),
-//         backgroundColor: Colors.offWhite,
-//         // justifyContent: 'center',
-//         // alignItems: 'center',
-//         margin: wp(1.5),
-//         overflow: 'hidden'
-//     },
-//     noImageBox: {
-//         width: wp(27),
-//         height: wp(25),
-//         borderWidth: 1,
-//         borderColor: Colors.primary,
-//         borderRadius: wp(3),
-//         backgroundColor: Colors.offWhite,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         margin: wp(1.5),
-//         overflow: 'hidden',
-//     },
-//     plus: {
-//         fontSize: Fontsize.xxl,
-//         color: Colors.primary,
-//     },
-//     image: {
-//         width: '100%',
-//         height: '100%',
-//         resizeMode: 'cover',
-//     },
-// });
-
 const styles = StyleSheet.create({
     listContainer: {
         flexDirection: 'row',
@@ -107,8 +65,8 @@ const styles = StyleSheet.create({
         height: wp(24),
         borderRadius: wp(3),
         backgroundColor: Colors.offWhite,
-        margin: wp(1.5),
-        overflow: 'hidden', // rounded corners apply honge
+        margin: wp(1),
+        overflow: 'hidden',
     },
     noImageBox: {
         width: wp(28),
@@ -118,7 +76,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: wp(1.5),
-        // border hata diya, clean look milega
+        borderWidth: wp(.4),
+        borderColor: Colors.primary
     },
     plus: {
         fontSize: Fontsize.xxl,

@@ -52,10 +52,10 @@ export function resetToBottomTab(tabName) {
     }
 }
 
-export const BottomRouteNavigation = (stackName, screen, screen2) => {
+export const BottomRouteNavigation = (stackName, screen, param) => {
     navigationRef.navigate(stackName, {
         screen: screen, params: {
-            screen: screen2
+            screen: param
         }
     })
 }

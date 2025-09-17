@@ -73,7 +73,6 @@ const NumberOfColors = (props) => {
                     <TouchableOpacity
                         key={index}
                         onPress={() => setSelectedColor(item.colorName)}
-                        activeOpacity={0.7}
                     >
                         <View
                             style={[
@@ -97,8 +96,8 @@ export default NumberOfColors
 
 const styles = StyleSheet.create({
     colorsView: {
-        height: hp(2.3),
-        width: hp(2.3),
+        height: hp(3),
+        width: hp(3),
         borderRadius: hp(5),
         marginRight: wp(2),
     },

@@ -6,7 +6,6 @@ import { wp, hp } from '../Constants/Responsive';
 import { Fontsize } from '../Constants/Fontsize';
 import { Fonts } from '../Constants/Fonts';
 import { Strings } from '../Constants/Strings';
-import CustomInputText from './CustomInputText';
 import HomeTextInput from './HomeTextInput';
 import { useNavigation } from '@react-navigation/native';
 
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.primary,
         paddingHorizontal: wp(5),
         paddingVertical: hp(1.5),
-        paddingTop: hp(3),
+        paddingTop: hp(1),
         borderBottomRightRadius: wp(8),
         borderBottomLeftRadius: wp(8)
     },
