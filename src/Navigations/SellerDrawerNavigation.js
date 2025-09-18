@@ -17,10 +17,10 @@ export default function SellerDrawerNavigation() {
                     width: wp(63),
                 },
             }}
-            screenListeners={{
-                drawerOpen: () => StatusBar.setHidden(true, 'fade'),
-                drawerClose: () => StatusBar.setHidden(false, 'fade'),
-            }}
+        // screenListeners={{
+        //     drawerOpen: () => StatusBar.setHidden(true, 'fade'),
+        //     drawerClose: () => StatusBar.setHidden(false, 'fade'),
+        // }}
         >
             <SellerDrawer.Screen
                 name="BottomNavigations"

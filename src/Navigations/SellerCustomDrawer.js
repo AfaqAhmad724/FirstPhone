@@ -3,6 +3,7 @@ import {
     ActivityIndicator,
     Image,
     Pressable,
+    StatusBar,
     StyleSheet,
     Text,
     View,
@@ -17,6 +18,8 @@ import { Fontsize } from '../Constants/Fontsize';
 import { Images } from '../Assets';
 import ConfirmModal from '../Components/CofirmModal';
 import { Divider } from 'react-native-elements';
+import PremiumComponent from '../Components/PremiumComponent';
+import DrawerPremiumPlan from '../Components/DrawerPremiumPlan';
 
 export default function SellerCustomDrawer({ navigation }) {
     const scrollRef = useRef();
@@ -74,6 +77,7 @@ export default function SellerCustomDrawer({ navigation }) {
 
     return (
         <SafeAreaView style={{ backgroundColor: Colors.primary, flex: 1 }}>
+            <StatusBar barStyle={'dark-content'} />
             <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
                 resetScrollToCoords={{ x: 0, y: 0 }}
@@ -87,6 +91,14 @@ export default function SellerCustomDrawer({ navigation }) {
                 />
 
                 <Divider style={styles.divider} />
+
+                <DrawerPremiumPlan
+                    img={Images.crown}
+                    title="Premium Plan"
+                    subtitle="Active"
+                    days={5}
+                    onPress={() => navigation.navigate('Premium')}
+                />
 
                 <View style={styles.container}>
                     <CustomItem
@@ -117,6 +129,11 @@ export default function SellerCustomDrawer({ navigation }) {
                         title={'Customer Listing'}
                         icon={Images.notification}
                         onPress={() => handlePress('CustomerListing')}
+                    />
+                    <CustomItem
+                        title={'Requested Mobile'}
+                        icon={Images.notification}
+                        onPress={() => handlePress('RequestMobile')}
                     />
                     <CustomItem
                         title={'Sales Report'}
@@ -177,8 +194,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     container: {
-        marginHorizontal: wp(2.5),
         flex: 1,
+        marginTop: hp(2),
+        marginHorizontal: wp(2.5),
     },
     itemContainer: {
         flexDirection: 'row',

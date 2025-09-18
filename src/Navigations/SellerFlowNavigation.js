@@ -22,6 +22,11 @@ import SalesReport from '../Screens/SellerAppFlow/SalesReport';
 import CustomerListing from '../Screens/SellerAppFlow/CustomerListing';
 import SellerNewListing from '../Screens/SellerAppFlow/SellerNewListing';
 import DeviceReceipt from '../Screens/SellerAppFlow/DeviceReceipt';
+import MobileRequest from '../Components/MobileRequest';
+import RequestMobile from '../Screens/SellerAppFlow/RequestMobile';
+import OnlineOrders from '../Screens/SellerAppFlow/OnlineOrders';
+import EditProfile from '../Screens/CommonScreens/EditProfile';
+import Premium from '../Screens/SellerAppFlow/Premium';
 
 export default function SellerFlowNavigation() {
     const SELLER_FLOW_STACk = createNativeStackNavigator();
@@ -44,9 +49,11 @@ export default function SellerFlowNavigation() {
             <SELLER_FLOW_STACk.Screen name="NewListing" component={NewListing} />
             <SELLER_FLOW_STACk.Screen name="Preview" component={Preview} />
             <SELLER_FLOW_STACk.Screen name="DeviceReceipt" component={DeviceReceipt} />
-            <SELLER_FLOW_STACk.Screen name="ChooseShipping" component={ChooseShipping} />
-            <SELLER_FLOW_STACk.Screen name="ShipingAddress" component={ShipingAddress} />
+            <SELLER_FLOW_STACk.Screen name="RequestMobile" component={RequestMobile} />
+            <SELLER_FLOW_STACk.Screen name="OnlineOrders" component={OnlineOrders} />
             <SELLER_FLOW_STACk.Screen name="Order" component={Order} />
+            <SELLER_FLOW_STACk.Screen name="EditProfile" component={EditProfile} />
+            <SELLER_FLOW_STACk.Screen name="Premium" component={Premium} />
 
 
         </SELLER_FLOW_STACk.Navigator>

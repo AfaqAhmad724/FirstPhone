@@ -1,49 +1,49 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { wp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
+import { useNavigation } from '@react-navigation/native';
 
 const DashboadComponent = props => {
+  const navigation = useNavigation()
   return (
-    <View>
-      <View style={styles.box}>
-        <Text style={styles.textStyle}>
-          {props?.order}
-          <Text style={styles.subText}>{props?.num}</Text>
-        </Text>
-        <View style={styles.row}>
-          {props?.icon && (
-            <Image
-              source={props.icon}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-          )}
-          <Text style={styles.shopText}>{props?.shopName}</Text>
-        </View>
-
-        {props?.price && (
-          <Text style={styles.greenText}>
-            Total Price: <Text style={styles.subText}>{props.price}</Text>
-          </Text>
+    <TouchableOpacity style={styles.box} onPress={() => navigation.navigate('OrderLists')}>
+      <Text style={styles.textStyle}>
+        {props?.order}
+        <Text style={styles.subText}>{props?.num}</Text>
+      </Text>
+      <View style={styles.row}>
+        {props?.icon && (
+          <Image
+            source={props.icon}
+            style={styles.icon}
+            resizeMode="contain"
+          />
         )}
-
-        {props?.products && (
-          <Text style={styles.greenText}>
-            Total Products: <Text style={styles.subText}>{props.products}</Text>
-          </Text>
-        )}
-
-        {/* Date */}
-        {props?.date && (
-          <Text style={styles.greenText}>
-            Date: <Text style={styles.subText}>{props.date}</Text>
-          </Text>
-        )}
+        <Text style={styles.shopText}>{props?.shopName}</Text>
       </View>
-    </View>
+
+      {props?.price && (
+        <Text style={styles.greenText}>
+          Total Price: <Text style={styles.subText}>{props.price}</Text>
+        </Text>
+      )}
+
+      {props?.products && (
+        <Text style={styles.greenText}>
+          Total Products: <Text style={styles.subText}>{props.products}</Text>
+        </Text>
+      )}
+
+      {/* Date */}
+      {props?.date && (
+        <Text style={styles.greenText}>
+          Date: <Text style={styles.subText}>{props.date}</Text>
+        </Text>
+      )}
+    </TouchableOpacity>
   );
 };
 

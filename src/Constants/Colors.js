@@ -48,4 +48,6 @@ export const Colors = {
   numdim: ' #21324327',
   premiumgrey: '#666666',
   month: '#848199',
+  offWhiteLight: '#FBFAFB',
+  lightgreen: '#E6F8EB',
 };

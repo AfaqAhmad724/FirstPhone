@@ -1,14 +1,19 @@
-import { SafeAreaView, StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 import RequestMobileComponent from '../../Components/RequestMobileComponent';
 import { hp, wp } from '../../Constants/Responsive';
 import { Images } from '../../Assets';
 import { Fonts } from '../../Constants/Fonts';
 import { Colors } from '../../Constants/Colors';
+import { MyStyling } from '../../Constants/Styling';
+import MainHeader from '../../Components/MainHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Fontsize } from '../../Constants/Fontsize';
 
 const RequestMobile = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={MyStyling.container}>
+      <MainHeader title={'Requested Mobile'} />
       <View style={styles.innercontainer}>
         <Text style={styles.heading}>Apple - iPhone 16 Pro</Text>
         <RequestMobileComponent icon={Images.price} />
@@ -65,14 +70,29 @@ const RequestMobile = () => {
 export default RequestMobile;
 
 const styles = StyleSheet.create({
+  // innercontainer: {
+  //   marginTop: hp(5),
+  //   borderWidth: 1,
+  //   borderColor: '#EFEFEF',
+  //   borderRadius: 5,
+  //   elevation: 1
+  // },
   innercontainer: {
-    marginLeft: wp(6),
-    marginTop: hp(9.5),
-    width: wp(88),
+    marginTop: hp(4),
     borderWidth: 1,
     borderColor: '#EFEFEF',
-    borderRadius: 5,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3.5,
   },
+
   heading: {
     fontFamily: Fonts.semibold,
     color: '#4AB95A',
@@ -124,5 +144,7 @@ const styles = StyleSheet.create({
   },
   readStyle: {
     fontFamily: Fonts.medium,
+    fontSize: Fontsize.xu,
+    color: Colors.graylight
   },
 });

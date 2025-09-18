@@ -33,7 +33,7 @@ const DeviceDetail = () => {
                     {userRole == 'Customer' ?
                         <AddToCartCounter />
                         : !flag &&
-                        <Btn title={'List Now'} onPress={() => navigation.navigate('Order', { type: 'listing' })} />
+                        <Btn title={'List Now'} onPress={() => navigation.replace('Order', { type: 'listing' })} />
                     }
                 </View>
             </ScrollView>

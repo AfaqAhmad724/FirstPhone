@@ -20,7 +20,7 @@ export default CustomerDetail
 
 const styles = StyleSheet.create({
     priceContainer: {
-        marginTop: hp(2),
+        marginTop: hp(0),
     },
     priceRow: {
         flexDirection: 'row',

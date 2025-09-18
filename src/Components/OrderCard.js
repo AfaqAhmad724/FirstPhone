@@ -37,7 +37,7 @@ const OrderCard = ({ data }) => {
         </Text>
       </View>
       {/* {viewDetail && ( */}
-      <TouchableOpacity style={styles.DetailView} onPress={() => navigation.navigate('DeviceDetail')}>
+      <TouchableOpacity style={styles.DetailView} onPress={() => navigation.navigate('DeviceDetail', { check: true })}>
         <Text style={styles.detailText}>View Detail</Text>
       </TouchableOpacity>
       {/* )} */}

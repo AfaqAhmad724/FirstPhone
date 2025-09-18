@@ -18,8 +18,10 @@ import MainHeader from '../../Components/MainHeader';
 import { MyStyling } from '../../Constants/Styling';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { navigate } from '../../Navigations/RootNavigation';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
+  const userRole = useSelector((state) => state?.ROLE?.userData)
   const navigation = useNavigation()
   return (
     <SafeAreaView style={MyStyling.container}>
@@ -30,7 +32,7 @@ const Profile = () => {
 
           <TouchableOpacity style={styles.box1} onPress={() => navigation.navigate('EditProfile')}>
             <Image
-              source={require('../../Assets/Images/person.png')}
+              source={userRole == 'Customer' ? Images.profile : Images.shopProfile}
               style={styles.imageStyle}
             />
             <Text style={styles.nameStyle} numberOfLines={1}>Jose Larry</Text>

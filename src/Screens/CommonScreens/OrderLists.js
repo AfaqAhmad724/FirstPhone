@@ -15,6 +15,8 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import OrderStatusDetail from '../../Components/OrderStatusDetail'
 import CustomerDetail from '../../Components/CustomerDetail'
 import { View } from 'react-native-reanimated/lib/typescript/Animated'
+import OrdersList from '../../Components/OrdersList'
+import { myOrdersData } from '../../Constants/DummyData'
 
 const OrderLists = () => {
     const route = useRoute()
@@ -59,13 +61,19 @@ const OrderLists = () => {
                         <CustomerDetail label={'City '} value={'Lahore'} />
                         <CustomerDetail label={'Postal Code'} value={'54782'} />
                         <CustomerDetail label={'Street Address'} value={'Civic Centre, Block D2, Phase 1, Johar Town, Lahore'} />
-                        <CustomerDetail label={'Order Status'} value={'Alex'} />
+                        <CustomerDetail label={'Order Status'} value={'Active'} />
                         <CustomerDetail label={'Payment Method'} value={'Online'} />
                         <CustomerDetail label={'Payment'} value={'Paid'} />
                     </>
                 }
+                {
+                    userRole != 'Seller' &&
+                    <OrderStatusDetail price={'1,508,997'} orderStatus={flag == 'delivered' ? 'Delivered' : flag == 'cancelled' ? 'Cancelled' : 'Active'} payment={'Paid'} />
+                }
 
-                <OrderStatusDetail price={'1,508,997'} orderStatus={flag == 'delivered' ? 'Delivered' : flag == 'cancelled' ? 'Cancelled' : 'Active'} payment={'Paid'} />
+                {userRole == 'Seller' &&
+                    <OrderTotal price={'1,508,997'} shippingCharges={'500'} total={'1,509,497'} />
+                }
 
                 {
                     !flag &&

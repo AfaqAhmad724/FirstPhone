@@ -88,7 +88,9 @@ export const Strings = {
     selectDate: 'Select Date',
     enterDescription: 'Enter Description',
     addPhotos: 'Add Photos Or Video',
-    shopPics: 'Counter/Shop Pics',
+    shopPics: 'Counter / Shop Pics',
+    CNICText: 'CNIC Front & Back ',
+
 
     sellerActiveOrder: 'Orders currently being processed .',
     sellerDeliveredOrder: 'Orders successfully delivered to the customer.',

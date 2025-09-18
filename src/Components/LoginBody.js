@@ -13,10 +13,22 @@ import { Colors } from '../Constants/Colors';
 import Btn from './Btn';
 import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../Navigations/RootNavigation';
+import { useSelector } from 'react-redux';
 
 const LoginBody = () => {
+  const userRole = useSelector((state) => state?.ROLE?.userData)
+
   const navigation = useNavigation();
   const [yes, setYes] = useState(false);
+
+  const handleNavigation = () => {
+    if (userRole == 'Customer') {
+      navigation.navigate('FlowNavigation')
+    }
+    else {
+      navigation.navigate('SellerFlowNavigation')
+    }
+  }
 
   return (
     <View style={styles.backgroundStyle}>
@@ -68,7 +80,7 @@ const LoginBody = () => {
 
         <Btn
           title={'Sign in'}
-          onPress={() => navigation.navigate('FlowNavigation')}
+          onPress={() => handleNavigation()}
         />
 
         <LoginDivider loginwith="Or login with" />

@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { wp, hp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
@@ -10,7 +10,7 @@ const SalesComponent = props => {
   const boxHeight = props.height || hp(13.5); // default height agar prop na mile
 
   return (
-    <View style={[styles.box, { height: boxHeight }, props.style]}>
+    <Pressable style={[styles.box, { height: boxHeight }, props.style]} onPress={props?.onPress}>
       <View style={styles.row}>
         {/* Icon Box */}
         <View
@@ -69,7 +69,7 @@ const SalesComponent = props => {
           </Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

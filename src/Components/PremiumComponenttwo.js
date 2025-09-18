@@ -5,6 +5,7 @@ import { Colors } from '../Constants/Colors';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
 import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
 const LineItem = ({ text }) => (
   <View style={styles.lineRow}>
@@ -16,26 +17,25 @@ const LineItem = ({ text }) => (
 );
 
 const PremiumComponenttwo = props => {
+  const navigation = useNavigation()
   return (
-    <View>
-      <View style={styles.box}>
-        <View style={styles.boxing}>
-          <Text style={styles.price}>PKR 12999</Text>
-          <Text style={styles.monthStyle}>/month</Text>
-        </View>
-        <Text style={styles.basic}>Basic</Text>
-        <Text style={styles.status}>{props?.status}</Text>
-
-        <View style={styles.linesContainer}>
-          <LineItem text={props?.lineone} />
-          <LineItem text={props?.linetwo} />
-          <LineItem text={props?.linethree} />
-        </View>
-
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.buttontext}>Select Plan</Text>
-        </TouchableOpacity>
+    <View style={styles.box}>
+      <View style={styles.boxing}>
+        <Text style={styles.price}>{props.price}</Text>
+        <Text style={styles.monthStyle}>/month</Text>
       </View>
+      <Text style={styles.basic}>{props.status}</Text>
+      <Text style={styles.status}>{props?.description}</Text>
+
+      <View style={styles.linesContainer}>
+        <LineItem text={props?.lineone} />
+        <LineItem text={props?.linetwo} />
+        <LineItem text={props?.linethree} />
+      </View>
+
+      <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SellerDrawerNavigation')}>
+        <Text style={styles.buttontext}>Select Plan</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -44,21 +44,22 @@ export default PremiumComponenttwo;
 
 const styles = StyleSheet.create({
   box: {
-    marginLeft: wp(1.3),
-    width: wp(87.7),
+    width: wp(88),
     height: hp(58),
     backgroundColor: Colors.bg,
     elevation: 7,
     borderRadius: wp(5),
     marginTop: wp(6),
+    paddingHorizontal: wp(8),
+    marginHorizontal: wp(1)
   },
   price: {
-    fontSize: Fontsize.xl,
+    fontSize: Fontsize.xxl,
     fontFamily: Fonts.bold,
     marginTop: wp(16),
   },
   monthStyle: {
-    fontSize: Fontsize.sm,
+    fontSize: Fontsize.sm1,
     color: Colors.month,
     marginTop: wp(19),
     fontFamily: Fonts.medium,
@@ -66,24 +67,19 @@ const styles = StyleSheet.create({
   },
   boxing: {
     flexDirection: 'row',
-    marginLeft: wp(8),
   },
   basic: {
     color: Colors.primary,
-    fontSize: wp(6),
+    fontSize: Fontsize.fs,
     fontFamily: Fonts.semibold,
-    marginLeft: wp(8),
   },
   status: {
-    marginLeft: wp(8),
-    width: wp(72),
     fontSize: Fontsize.xsm1,
     color: Colors.black,
     fontFamily: Fonts.medium,
     marginTop: wp(2),
   },
   linesContainer: {
-    marginLeft: wp(8),
     marginTop: wp(3),
   },
   lineRow: {
@@ -107,9 +103,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: Colors.primary,
-    borderRadius: wp(5),
-    marginHorizontal: wp(15),
-    marginVertical: wp(19),
+    borderRadius: wp(6),
+    marginHorizontal: wp(5),
+    marginTop: hp(9)
   },
   buttontext: {
     textAlign: 'center',

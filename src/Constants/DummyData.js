@@ -712,7 +712,7 @@ export const myOrdersVendorData = [
     totalPrice: "1,502,999",
     totalProducts: "7",
     date: "July 25, 2020",
-    status: "cancelled",
+    status: "delivered",
   },
   {
     id: 2,
@@ -721,7 +721,7 @@ export const myOrdersVendorData = [
     totalPrice: "2,200,500",
     totalProducts: "12",
     date: "Aug 5, 2021",
-    status: "cancelled",
+    status: "delivered",
   },
   {
     id: 3,
@@ -730,7 +730,7 @@ export const myOrdersVendorData = [
     totalPrice: "955,000",
     totalProducts: "5",
     date: "Sep 12, 2021",
-    status: "cancelled",
+    status: "delivered",
   },
 
 ]

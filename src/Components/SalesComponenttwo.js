@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { wp, hp } from '../Constants/Responsive';
 import { Colors } from '../Constants/Colors';
@@ -9,7 +9,7 @@ const SalesComponenttwo = props => {
   const boxSize = wp(12);
 
   return (
-    <View style={[styles.box, props.style]}>
+    <TouchableOpacity style={[styles.box, props.style]} onPress={props?.onPress}>
       <View style={styles.row}>
         <View
           style={[
@@ -36,7 +36,7 @@ const SalesComponenttwo = props => {
           <Text style={styles.priceStyle}>{props?.price}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

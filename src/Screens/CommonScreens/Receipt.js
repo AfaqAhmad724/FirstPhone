@@ -32,6 +32,16 @@ const Receipt = () => {
             setText('Payment Received!')
         }
     }
+
+    const handleNavigation = () => {
+        if (userRole == 'Customer') {
+
+            navigation.navigate('DrawerNavigation')
+        }
+        else {
+            navigation.navigate('SellerDrawerNavigation')
+        }
+    }
     return (
         <SafeAreaView style={[MyStyling.container, { backgroundColor: Colors.veryLightGray, }]}>
             <ScrollView style={{ paddingVertical: hp(2) }} showsVerticalScrollIndicator={false}>
@@ -48,7 +58,7 @@ const Receipt = () => {
                         <Text style={styles.totalValue}>{recepitData.totalAmount}</Text>
                     </View>
                 </View>
-                <Btn title={'Download Receipt'} btnContainer={{ marginVertical: hp(10) }} onPress={() => navigation.navigate('DrawerNavigation')} />
+                <Btn title={'Download Receipt'} btnContainer={{ marginVertical: hp(10) }} onPress={() => handleNavigation()} />
 
 
             </ScrollView>

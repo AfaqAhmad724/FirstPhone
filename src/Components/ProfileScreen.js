@@ -7,9 +7,20 @@ import Btn from './Btn';
 import { Colors } from '../Constants/Colors';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { Strings } from '../Constants/Strings';
+import RepairingService from './RepairingService';
+import UploadingBox from './UploadingBox';
+import PickImage from './PickImage';
+import { Text } from 'react-native';
+import ShopPics from './ShopPics';
+import { Fontsize } from '../Constants/Fontsize';
+import { Fonts } from '../Constants/Fonts';
+import CNICPics from './CNICPics';
 
 const ProfileScreen = () => {
   const navigation = useNavigation()
+  const userRole = useSelector((state) => state?.ROLE?.userData)
   const [profileImage, setProfileImage] = useState(null);
 
   // 📌 Simple Image Picker
@@ -36,7 +47,7 @@ const ProfileScreen = () => {
     <View>
       <TouchableOpacity onPress={openImagePicker} style={styles.imgMain}>
         <Image
-          source={profileImage ? { uri: profileImage } : Images.profile}
+          source={profileImage ? { uri: profileImage } : userRole == 'Customer' ? Images.profile : Images.shopProfile}
           style={styles.ImageStyle}
           resizeMode="cover" />
         <Image
@@ -65,10 +76,40 @@ const ProfileScreen = () => {
           keyboardType="numeric"
         />
 
+        {userRole == 'Seller' &&
+
+          <View>
+
+            <CustomInputText
+              placeholder="Enter Location"
+              icon={Images.colorLocation} />
+
+            <RepairingService radioContainer={{ marginTop: hp(2) }} radioButtonInner={styles.radioButtonInner} radioButtonOuter={styles.radioButtonOuter} titleStyle={styles.titleStyle} radioChecked={true} title={Strings.servicesText} />
+
+            <Text style={styles.titleText}>{Strings.shopPics}</Text>
+
+            <View style={styles.shopPics}>
+              <ShopPics src={Images.shopImg} />
+              <ShopPics src={Images.shopImg1} />
+              <ShopPics src={Images.shopImg1} />
+            </View>
+
+            <Text style={[styles.titleText, { marginTop: hp(2) }]}>{Strings.CNICText}</Text>
+            <View style={styles.shopPics}>
+              <CNICPics src={Images.FrontCNIC} />
+              <CNICPics src={Images.BackCNIC} />
+            </View>
+
+
+
+
+          </View>
+        }
+
         {/* Update Button */}
         <Btn
           title="Update"
-          btnContainer={{ backgroundColor: Colors.primary }}
+          btnContainer={{ backgroundColor: Colors.primary, marginTop: hp(3) }}
           onPress={() => navigation.goBack()}
         />
       </View>
@@ -98,5 +139,17 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: hp('4.9'),
+  },
+  shopPics: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  titleText: {
+    opacity: .8,
+    marginTop: hp(1.5),
+    fontSize: Fontsize.sm,
+    fontFamily: Fonts.regular,
+    color: Colors.gray,
   },
 });

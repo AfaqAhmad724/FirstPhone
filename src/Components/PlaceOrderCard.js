@@ -14,7 +14,10 @@ const PlaceOrderCard = (props) => {
 
     const handleNavigation = () => {
         if (userRole == 'Seller' && props?.status == 'active') {
-            navigation.navigate('OrderLists')
+            !props?.check ?
+                navigation.navigate('OrderLists')
+                :
+                null
         }
         else if (userRole === 'Seller' && props?.status === 'delivered') {
             navigation.navigate('OrderLists', { check: 'delivered' })

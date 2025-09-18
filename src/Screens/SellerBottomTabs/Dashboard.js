@@ -17,16 +17,38 @@ import { Colors } from '../../Constants/Colors';
 import { hp, wp } from '../../Constants/Responsive';
 import SalesComponent from '../../Components/SalesComponent';
 import DashboadComponent from '../../Components/DashboadComponent';
+import { Strings } from '../../Constants/Strings';
 
-const Dashboard = ({}) => {
+const Dashboard = ({ }) => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <SafeAreaView style={[MyStyling.container, { flex: 1 }]}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Image source={Images.menu} />
-        </TouchableOpacity>
+    <SafeAreaView style={MyStyling.container2}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5), paddingTop: hp(.8) }}>
+        <View style={styles.locationStyle}>
+
+          <TouchableOpacity
+            style={styles.menuContainer}
+            onPress={() => navigation.openDrawer()}>
+            <Image source={Images.menu} style={styles.menuIcon} resizeMode="contain" tintColor={Colors.bg} />
+          </TouchableOpacity>
+
+          <View style={styles.locationContainer}>
+            <View style={styles.locationRow}>
+              <Image source={Images.location} style={styles.locationIcon} resizeMode="contain" tintColor={Colors.primary} />
+              <Text style={styles.locationText}>
+                {Strings.locationName}
+              </Text>
+            </View>
+          </View>
+
+          <TouchableOpacity style={styles.notificationContainer} onPress={() => navigation.navigate('Notifications')}>
+            <Image source={Images.notificationSimple} style={styles.bellIcon} resizeMode="contain" tintColor={Colors.primary} />
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>5</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
 
         <View>
           <Text style={styles.heading}>
@@ -110,7 +132,7 @@ const Dashboard = ({}) => {
           <View
             style={{
               flexDirection: 'row',
-
+              justifyContent: 'space-between',
               marginBottom: wp(1),
             }}
           >
@@ -189,7 +211,7 @@ const Dashboard = ({}) => {
         </View>
 
         <View style={{ marginTop: wp(5) }}>
-          <Text style={{ fontFamily: Fonts.semibold }}>Active Orders</Text>
+          <Text style={styles.orderText}>Active Orders</Text>
         </View>
 
         <View style={{ marginTop: hp(1) }}>
@@ -238,10 +260,8 @@ const Dashboard = ({}) => {
             date="July 28, 2020"
           />
         </View>
-
-        <View style={{ marginBottom: hp(10) }}></View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -252,12 +272,13 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.regular,
     fontSize: Fontsize.xsm1,
     color: Colors.dimgraay,
-    marginTop: hp(7),
+    marginTop: hp(3),
     marginLeft: wp(1.2),
   },
   orderText: {
     fontFamily: Fonts.semibold,
-    fontSize: Fontsize.s,
+    fontSize: Fontsize.xsm1,
+    color: Colors.black
     // marginLeft: wp(1),
   },
   todayText: {
@@ -265,6 +286,64 @@ const styles = StyleSheet.create({
     fontSize: Fontsize.s,
     marginTop: wp(0.2),
     color: Colors.dimgraay,
-    marginLeft: wp(49.2),
+  },
+  locationStyle: {
+    marginTop: hp(1),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  menuContainer: {
+    backgroundColor: Colors.primary,
+    padding: wp(2),
+    borderRadius: hp(5),
+  },
+  menuIcon: {
+    width: wp(5),
+    height: wp(5),
+  },
+  locationContainer: {
+    flex: 1,
+    marginLeft: wp(2),
+    marginRight: wp(3),
+  },
+  locationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  locationIcon: {
+    width: wp(3.5),
+    height: wp(3.5),
+    marginRight: wp(1),
+    marginBottom: hp(1.5)
+  },
+  locationText: {
+    color: Colors.dimgraay,
+    fontSize: Fontsize.xs2,
+    fontFamily: Fonts.medium,
+    lineHeight: hp(2),
+  },
+  notificationContainer: {
+    position: 'relative',
+  },
+  bellIcon: {
+    width: wp(6),
+    height: wp(6),
+  },
+  badge: {
+    position: 'absolute',
+    top: -hp(0.6),
+    right: wp(.2),
+    backgroundColor: Colors.red,
+    width: wp(3.5),
+    height: wp(3.5),
+    borderRadius: wp(2.25),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    color: Colors.bg,
+    fontSize: Fontsize.xm1,
+    fontFamily: Fonts.semibold,
   },
 });

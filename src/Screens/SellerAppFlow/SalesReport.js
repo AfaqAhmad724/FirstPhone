@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Fonts } from '../../Constants/Fonts';
 import { hp, wp } from '../../Constants/Responsive';
@@ -8,10 +8,15 @@ import SalesComponent from '../../Components/SalesComponent';
 import { MyStyling } from '../../Constants/Styling';
 import { Colors } from '../../Constants/Colors';
 import SalesComponenttwo from '../../Components/SalesComponenttwo';
+import MainHeader from '../../Components/MainHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 const SalesReport = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={MyStyling.container}>
+      <MainHeader title={'Sales Report'} />
       <View style={styles.innerContainer}>
         <Text style={styles.salesStyle}>Sales Report</Text>
         <View style={styles.lineContainer}>
@@ -49,6 +54,7 @@ const SalesReport = () => {
             fontFamily: Fonts.regular,
             marginLeft: 0,
           }}
+          onPress={() => navigation.navigate('OnlineOrders', { title: 'Pay Online Orders' })}
         />
       </View>
 
@@ -60,6 +66,7 @@ const SalesReport = () => {
           icon={require('../../Assets/Icons/COD.png')}
           iconColor={Colors.bg}
           isGreenBox={true}
+          onPress={() => navigation.navigate('OnlineOrders', { title: 'Cash On Delivery Orders' })}
         />
         <View style={{ marginLeft: wp(2.2) }}>
           <SalesComponenttwo
@@ -73,6 +80,7 @@ const SalesReport = () => {
               marginLeft: wp(4),
             }}
             isGreenBox={true}
+            onPress={() => navigation.navigate('OnlineOrders', { title: 'GoShop Orders' })}
           />
         </View>
       </View>
@@ -84,7 +92,7 @@ export default SalesReport;
 
 const styles = StyleSheet.create({
   innerContainer: {
-    marginTop: hp(8),
+    marginTop: hp(5),
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: wp(92.2),
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
   iconStyle: {},
   boxContainer: {
     flexDirection: 'row',
-    marginTop: hp(2),
+    marginTop: hp(1),
     paddingRight: wp(2),
   },
   boxContainertwo: {

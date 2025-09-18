@@ -5,11 +5,19 @@ import { MyStyling } from '../../Constants/Styling'
 import MyListingFlatlist from '../../Components/MyListingFlatlist'
 import AddListingSection from '../../Components/AddListingSection'
 import MainHeader from '../../Components/MainHeader'
+import PremiumComponent from '../../Components/PremiumComponent'
+import { Images } from '../../Assets'
 
 const ProductListing = () => {
     return (
         <SafeAreaView style={MyStyling.container}>
             <MainHeader title={'My Listing'} />
+            <PremiumComponent
+                img={Images.crown}
+                title="Premium Plan"
+                subtitle="Active"
+                days={20}
+            />
             <AddListingSection />
             <MyListingFlatlist />
         </SafeAreaView>

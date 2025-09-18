@@ -113,18 +113,18 @@ const styles = StyleSheet.create({
     badge: {
         position: 'absolute',
         top: -hp(0.6),
-        right: -wp(.1),
+        right: wp(.2),
         backgroundColor: Colors.red,
-        width: wp(4),
-        height: wp(4),
+        width: wp(3.5),
+        height: wp(3.5),
         borderRadius: wp(2.25),
         alignItems: 'center',
         justifyContent: 'center',
     },
     badgeText: {
         color: Colors.bg,
-        fontSize: Fontsize.xxxs,
-        fontFamily: Fonts.bold,
+        fontSize: Fontsize.xm1,
+        fontFamily: Fonts.semibold,
     },
     mobileModal: {
         marginTop: hp(1),
