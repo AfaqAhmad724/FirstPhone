@@ -31,6 +31,15 @@ const Preview = () => {
         );
     };
 
+    const handleNavigation = () => {
+        if (userRole == 'Customer') {
+            navigation.navigate('Order', { type: 'listing' })
+        }
+        else {
+            navigation.navigate('SellerDrawerNavigation')
+        }
+    }
+
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -43,7 +52,7 @@ const Preview = () => {
                     <DeviceSpecifications data={devicePreviewData} title={'Specifications'} />
                     <DeviceDescription title={'Description'} info={true} />
                 </View>
-                <Btn title={text.buttonText} onPress={() => navigation.navigate('Order', { type: 'listing' })} />
+                <Btn title={text.buttonText} onPress={() => handleNavigation()} />
             </ScrollView>
         </SafeAreaView >
     )

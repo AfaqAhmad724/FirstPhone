@@ -4,11 +4,11 @@ import MyDevicesCard from './MyDevicesCard'
 import { myListingData, orderPlaceData } from '../Constants/DummyData'
 import { hp } from '../Constants/Responsive'
 
-const MyListingFlatlist = () => {
+const MyListingFlatlist = ({ data }) => {
     return (
         <View style={{ marginTop: hp(1) }}>
             <FlatList
-                data={myListingData}
+                data={data}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <MyDevicesCard data={item} />

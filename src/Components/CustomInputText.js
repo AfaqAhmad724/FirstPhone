@@ -30,7 +30,7 @@ const CustomInputText = props => {
       {props?.isPassword && (
         <TouchableOpacity onPress={() => setPass(!pass)}>
           <Feather
-            name={pass ? 'eye' : 'eye-off'}
+            name={pass ? 'eye-off' : 'eye'}
             style={styles.passwordIcon}
             size={wp('3.9%')}
           />

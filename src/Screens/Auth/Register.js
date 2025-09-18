@@ -1,11 +1,11 @@
 import {
+    SafeAreaView,
     ScrollView,
     StyleSheet,
 } from 'react-native';
 import React from 'react';
 import SignUpBody from '../../Components/SignUpBody';
 import { Colors } from '../../Constants/Colors';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { hp } from '../../Constants/Responsive';
 
 const Register = () => {

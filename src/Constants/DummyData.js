@@ -873,6 +873,44 @@ export const myListingData = [
   },
 ];
 
+export const SelerListingData = [
+  {
+    id: 1,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    quantity: 2,
+    image1: Images.phone1,
+    status: 'active'
+
+  },
+  {
+    id: 2,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    image1: Images.phone2,
+    status: 'sold'
+  },
+  {
+    id: 3,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    image1: Images.phone2,
+    status: 'sold'
+  },
+  {
+    id: 4,
+    name: 'iPhone 16 Pro',
+    personName: 'Alex Adam',
+    price: 502999,
+    image1: Images.phone2,
+    status: 'sold'
+  },
+];
+
+
 export const shippingData = [
   {
     id: '1',

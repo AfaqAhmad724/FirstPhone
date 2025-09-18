@@ -104,7 +104,9 @@ export const Images = {
   shopImg: require('../Assets/Images/shopImg.png'),
   shopImg1: require('../Assets/Images/shopImg1.png'),
   Background: require('../Assets/Images/Background.png'),
-  locking: require('../Assets/Images/locking.png'),
+  splashLogo: require('../Assets/Images/splash.gif'),
+  splashBg: require('../Assets/Images/splashBg.png'),
+  SPLASH_LOGO: require('../Assets/Images/splashLogo.gif'),
 
   cht: require('../Assets/Icons/chat.png'),
   prson: require('../Assets/Icons/notperson.png'),

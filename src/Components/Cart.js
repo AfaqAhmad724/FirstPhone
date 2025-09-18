@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 0.7,
-    borderRadius: wp(1),
+    borderRadius: wp(1.3),
     backgroundColor: Colors.offWhite,
     borderColor: Colors.lf,
     alignSelf: 'flex-start',

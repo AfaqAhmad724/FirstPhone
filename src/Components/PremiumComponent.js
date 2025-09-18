@@ -76,12 +76,12 @@ import { Images } from '../Assets';
 import { Image } from 'react-native';
 import { Fontsize } from '../Constants/Fontsize';
 
-const PremiumComponent = ({ img, title, subtitle, days, onPress }) => {
+const PremiumComponent = ({ img, title, subtitle, days, onPress, marginTop }) => {
   return (
     <Pressable onPress={onPress}>
       <ImageBackground
         source={Images.Background}
-        style={styles.box}
+        style={[styles.box, { marginTop: marginTop }]}
         imageStyle={styles.bgImage}
       >
         <Image source={img} style={styles.crown} />

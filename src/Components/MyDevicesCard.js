@@ -10,11 +10,11 @@ import { Strings } from '../Constants/Strings'
 const MyDevicesCard = ({ data }) => {
     const status = data?.status
     const handleStatus = (status) => {
-        return status == 'pending' ? Strings.pending : status == 'approved' ? Strings.approved : Strings?.soldOut
+        return status == 'pending' ? Strings.pending : status == 'approved' ? Strings.approved : status == 'active' ? 'Active' : Strings?.soldOut
     }
     return (
         <View style={styles.card}>
-            <View style={[styles.repairingView, { backgroundColor: status == 'approved' ? Colors.primary : Colors.redOrange }]}>
+            <View style={[styles.repairingView, { backgroundColor: status == 'approved' ? Colors.primary : status == 'active' ? Colors.primary : Colors.redOrange }]}>
                 <Text style={styles.repairing}>{handleStatus(data?.status)}</Text>
             </View>
             {status == 'approved' &&

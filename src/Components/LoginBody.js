@@ -47,7 +47,7 @@ const LoginBody = () => {
           keyboardType="email-address"
           inputContainer={{ marginHorizontal: wp(5) }}
           placeholderTextColor={Colors.emailcolor}
-          style={[styles.emailstyle, { color: 'black' }]}
+          style={[styles.emailstyle]}
         />
         <CustomInputText
           placeholder="Password"
@@ -55,7 +55,7 @@ const LoginBody = () => {
           isPassword={true}
           placeholderTextColor={Colors.emailcolor}
           inputContainer={{ marginHorizontal: wp(5) }}
-          style={[styles.emailstyle, { color: 'black' }]}
+          style={[styles.emailstyle]}
         />
 
         <View style={styles.rememberContainer}>
@@ -63,7 +63,7 @@ const LoginBody = () => {
             <TouchableOpacity onPress={() => setYes(!yes)}>
               <MaterialIcons
                 name={yes ? 'check-box' : 'check-box-outline-blank'}
-                size={wp(4.2)}
+                size={wp(5)}
                 color={Colors.primary}
               />
             </TouchableOpacity>

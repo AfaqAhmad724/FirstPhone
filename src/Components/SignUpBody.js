@@ -15,6 +15,8 @@ import RepairingService from './RepairingService';
 import UploadingBox from './UploadingBox';
 import PickImage from './PickImage';
 import { useSelector } from 'react-redux';
+import * as Progress from 'react-native-progress';
+
 
 const SignUpBody = props => {
     const userRole = useSelector((state) => state?.ROLE?.userData)
@@ -53,11 +55,25 @@ const SignUpBody = props => {
                     icon={Images.password}
                     isPassword={true}
                 />
+                <View style={styles.progressBox}>
+                    <Progress.Bar
+                        progress={0.25}
+                        width={wp(90)}
+                        color={Colors.red}
+                        unfilledColor="#E0E0E0"
+                        borderWidth={0}
+                        height={hp(.8)}
+                        borderRadius={50}
+                    />
+                    <Text style={styles.strengthText}>Weak Password</Text>
+                </View>
 
                 <CustomInputText
                     placeholder="Enter Confirm Password"
                     icon={Images.password}
                     isPassword={true}
+                    inputContainer={{ marginTop: hp(1) }}
+
                 />
                 {userRole == 'Seller' &&
 
@@ -204,5 +220,17 @@ const styles = StyleSheet.create({
         fontSize: Fontsize.m,
         fontFamily: Fonts.regular,
         color: Colors.gray,
+    },
+    progressBox: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        // marginBottom: hp(2),
+        marginTop: hp(.7)
+    },
+    strengthText: {
+        fontSize: Fontsize.xm,
+        fontFamily: Fonts.medium,
+        color: Colors.red,
+        alignSelf: 'flex-end'
     },
 });

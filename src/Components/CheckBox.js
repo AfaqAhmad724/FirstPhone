@@ -24,6 +24,7 @@ const CheckBox = props => {
             size={props?.checkSize || wp(5)}
             color={props?.checkColor || Colors.primary}
             style={styles.checkboxstyle}
+
           />
         </TouchableOpacity>
 
@@ -65,8 +66,8 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.medium,
   },
   checkboxstyle: {
-    marginTop: hp(0.14),
-    marginLeft: wp(1),
+    marginTop: hp(0.1),
+    // marginLeft: wp(1),
   },
   signin: {
     backgroundColor: Colors.primary,

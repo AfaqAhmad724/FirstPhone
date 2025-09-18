@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: hp(4),
+    marginTop: hp(2),
     marginLeft: 0.1,
   },
   vectorStyle: {

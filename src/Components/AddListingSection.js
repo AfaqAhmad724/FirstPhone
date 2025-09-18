@@ -21,7 +21,7 @@ const AddListingSection = () => {
         }
     }
     return (
-        <View style={styles.mainView}>
+        <View style={[styles.mainView, { marginTop: userRole == 'Seller' ? hp(2) : hp(4) }]}>
             <Text style={styles.devices}>Devices</Text>
             <TouchableOpacity style={styles.addView} onPress={() => handleNavigation()}>
                 <Image source={Images.add} style={styles.img} />

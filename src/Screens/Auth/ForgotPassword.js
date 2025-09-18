@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, View } from 'react-native';
 import React from 'react';
 import PasswordHeader from '../../Components/PasswordHeader';
 import { TouchableOpacity } from 'react-native';
@@ -9,10 +9,12 @@ import { hp, wp } from '../../Constants/Responsive';
 import { Fonts } from '../../Constants/Fonts';
 import Btn from '../../Components/Btn';
 import { Images } from '../../Assets';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ForgotPassword = ({ navigation }) => {
   return (
     <SafeAreaView>
+      <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
       <PasswordHeader
         header="Forgot Password"
         islogged="Cannot log in? "

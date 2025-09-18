@@ -23,8 +23,8 @@ const Verificationbody = ({ navigation }) => {
       <Text style={styles.isLogged}>Enter OTP</Text>
       <Text style={styles.define}>Send OTP to mail@gmail.com</Text>
       <CustomInputText
-        placeholder="XXXX"
-        style={[styles.verificationStyle, { color: 'black' }]}
+        placeholder="Enter OTP"
+        style={[styles.verificationStyle]}
         placeholderTextColor={Colors.verificationColor}
         keyboardType="numeric"
       />
