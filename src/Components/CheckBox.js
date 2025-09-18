@@ -1,4 +1,10 @@
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { hp, wp } from '../Constants/Responsive';
@@ -23,7 +29,6 @@ const CheckBox = props => {
 
         <View style={styles.PrivacyMain}>
           <Pressable onPress={() => setYes(!yes)}>
-
             <Text style={[styles.remember, props?.customTextStyle]}>
               {props?.agreetext}{' '}
             </Text>
@@ -32,12 +37,12 @@ const CheckBox = props => {
           <Text style={styles.linkText}>{props?.condition}</Text>
 
           <Text style={[styles.remember, props?.customTextStyle]}>
-            {' '}{props?.andthe}{' '}
+            {' '}
+            {props?.andthe}{' '}
           </Text>
 
           <Text style={styles.linkText}>{props?.policytext}</Text>
         </View>
-
       </View>
     </View>
   );
@@ -56,15 +61,15 @@ const styles = StyleSheet.create({
     marginLeft: wp(0.5),
   },
   linkText: {
-    color: 'green',
+    color: Colors.primary,
     fontFamily: Fonts.medium,
   },
   checkboxstyle: {
-    marginTop: hp(0.12),
+    marginTop: hp(0.14),
     marginLeft: wp(1),
   },
   signin: {
-    backgroundColor: '#4AB95A',
+    backgroundColor: Colors.primary,
     marginTop: hp(2.85),
     marginHorizontal: wp(6),
     paddingVertical: hp(1.7),
@@ -79,6 +84,6 @@ const styles = StyleSheet.create({
   },
   PrivacyMain: {
     flexDirection: 'row',
-    flexWrap: 'wrap'
-  }
+    flexWrap: 'wrap',
+  },
 });
