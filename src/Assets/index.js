@@ -1,6 +1,6 @@
 export const Images = {
   COD: require('./Icons/COD.png'),
-  FAQ: require('./Icons/faq.png'),
+  FAQ: require('./Icons/FAQ.png'),
   pta: require('./Icons/pta.png'),
   ram: require('./Icons/ram.png'),
   add: require('./Icons/add.png'),
