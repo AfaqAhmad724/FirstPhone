@@ -1,6 +1,6 @@
 export const Images = {
   COD: require('./Icons/COD.png'),
-  FAQ: require('./Icons/FAQ.png'),
+  FAQ: require('./Icons/faq.png'),
   pta: require('./Icons/pta.png'),
   ram: require('./Icons/ram.png'),
   add: require('./Icons/add.png'),
@@ -46,6 +46,7 @@ export const Images = {
   delivered: require('./Icons/Delivered.png'),
   inProgress: require('./Icons/inProgress.png'),
   orderPlaced: require('./Icons/orderPlaced.png'),
+  simpleDirection: require('./Icons/simpleDirection.png'),
 
   direction: require('./Icons/direction.png'),
   repairing: require('./Icons/repairing.png'),
@@ -106,7 +107,6 @@ export const Images = {
   Background: require('../Assets/Images/Background.png'),
   splashLogo: require('../Assets/Images/splash.gif'),
   splashBg: require('../Assets/Images/splashBg.png'),
-  SPLASH_LOGO: require('../Assets/Images/splashLogo.gif'),
 
   cht: require('../Assets/Icons/chat.png'),
   prson: require('../Assets/Icons/notperson.png'),

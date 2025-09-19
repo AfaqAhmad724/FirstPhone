@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ChatItemsList from '../../Components/ChatItemsList'
@@ -13,6 +13,7 @@ import { MyStyling } from '../../Constants/Styling'
 const Chat = () => {
     return (
         <SafeAreaView style={MyStyling.container}>
+            <StatusBar backgroundColor={Colors.bg} barStyle={'dark-content'} />
             <MainHeader title={'chat'} />
             <ChatSearchBar />
             <Text style={styles.orderText}>Vendors</Text>

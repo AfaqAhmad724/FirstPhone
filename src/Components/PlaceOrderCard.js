@@ -79,8 +79,13 @@ const PlaceOrderCard = (props) => {
                             <TouchableOpacity onPress={props?.onChatPress}>
                                 <Image source={Images.messages} style={styles.actionIcon} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={props?.onSettingPress}>
-                                <Image source={Images.whatsapp} style={styles.directionImg} />
+                            <TouchableOpacity onPress={props?.onSettingPress} style={{
+                                backgroundColor: '#FCAF23', borderRadius: hp(3), width: hp(2.1),
+                                height: hp(2.1),
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                <Image source={Images.simpleDirection} style={styles.directionImg} tintColor={Colors.bg} />
                             </TouchableOpacity>
                         </View>
                     ) : (
@@ -194,8 +199,8 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     directionImg: {
-        width: hp(2.1),
-        height: hp(2.1),
+        width: hp(1.4),
+        height: hp(1.4),
     },
     reOrderView: {
         backgroundColor: Colors.primary,

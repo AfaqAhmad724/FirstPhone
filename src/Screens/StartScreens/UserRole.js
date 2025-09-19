@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Strings } from '../../Constants/Strings';
 import { hp, wp } from '../../Constants/Responsive';
@@ -42,6 +42,8 @@ const UserRole = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor={Colors.bg} barStyle={'dark-content'} />
+
             <View style={styles.headerStyle}>
                 <Text style={styles.title}>{Strings.userRoleTitle}</Text>
                 <Text style={styles.subtitle}>{Strings.userRoleSubtitle}</Text>

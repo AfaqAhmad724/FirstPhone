@@ -2,7 +2,6 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { wp } from '../Constants/Responsive';
 import { BottomNavigations } from './BottomNavigations';
-import { StatusBar } from 'react-native';
 import SellerCustomDrawer from './SellerCustomDrawer';
 
 const SellerDrawer = createDrawerNavigator();
@@ -17,10 +16,6 @@ export default function SellerDrawerNavigation() {
                     width: wp(63),
                 },
             }}
-        // screenListeners={{
-        //     drawerOpen: () => StatusBar.setHidden(true, 'fade'),
-        //     drawerClose: () => StatusBar.setHidden(false, 'fade'),
-        // }}
         >
             <SellerDrawer.Screen
                 name="BottomNavigations"

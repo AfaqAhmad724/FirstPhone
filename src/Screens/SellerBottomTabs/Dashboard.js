@@ -1,6 +1,7 @@
 import {
   Image,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -18,12 +19,18 @@ import { hp, wp } from '../../Constants/Responsive';
 import SalesComponent from '../../Components/SalesComponent';
 import DashboadComponent from '../../Components/DashboadComponent';
 import { Strings } from '../../Constants/Strings';
+import { useDrawerStatus } from '@react-navigation/drawer';
 
 const Dashboard = ({ }) => {
+  const isDrawerOpen = useDrawerStatus() === 'open';
   const navigation = useNavigation();
 
   return (
     <SafeAreaView style={MyStyling.container2}>
+      <StatusBar
+        backgroundColor={isDrawerOpen ? Colors.primary : Colors.bg}
+        barStyle={isDrawerOpen ? 'light-content' : 'dark-content'} />
+
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5), paddingTop: hp(.8) }}>
         <View style={styles.locationStyle}>
 

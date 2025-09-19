@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Image, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Images } from '../../Assets'
 import { MyStyling } from '../../Constants/Styling'
@@ -11,10 +11,21 @@ import VerticalFlatlist from '../../Components/VerticalFlatlist'
 import HorizontalFlatlist from '../../Components/HorizontalFlatlist'
 import ViewAllDevices from '../../Components/ViewAllDevices'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useDrawerStatus } from '@react-navigation/drawer'
+import { useIsFocused } from '@react-navigation/native'
 
 const Home = () => {
+    const isFocused = useIsFocused(); // 👈
+
     return (
         <SafeAreaView style={MyStyling.container1}>
+            {isFocused && (
+                <StatusBar
+                    backgroundColor={Colors.primary}
+                    barStyle={'light-content'}
+                />
+            )}
+
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
 
                 <CustomerHomeHeader />

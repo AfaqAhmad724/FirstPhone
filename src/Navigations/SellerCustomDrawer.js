@@ -77,7 +77,6 @@ export default function SellerCustomDrawer({ navigation }) {
 
     return (
         <SafeAreaView style={{ backgroundColor: Colors.primary, flex: 1 }}>
-            <StatusBar barStyle={'dark-content'} />
             <KeyboardAwareScrollView
                 showsVerticalScrollIndicator={false}
                 resetScrollToCoords={{ x: 0, y: 0 }}

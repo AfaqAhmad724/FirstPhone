@@ -17,10 +17,6 @@ export default function DrawerNavigation() {
                     width: wp(63),
                 },
             }}
-            screenListeners={{
-                drawerOpen: () => StatusBar.setHidden(true, 'fade'),
-                drawerClose: () => StatusBar.setHidden(false, 'fade'),
-            }}
         >
             <Drawer.Screen
                 name="BottomNavigations"

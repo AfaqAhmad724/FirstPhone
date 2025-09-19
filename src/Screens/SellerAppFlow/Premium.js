@@ -27,12 +27,15 @@ const Premium = () => {
 
   return (
     <SafeAreaView style={MyStyling.container}>
-      <PremiumComponent
-        img={Images.crown}
-        title="Premium Plan"
-        subtitle="Active"
-        days={20}
-      />
+      <View style={{ marginTop: hp(6) }}>
+
+        <PremiumComponent
+          img={Images.crown}
+          title="Premium Plan"
+          subtitle="Active"
+          days={20}
+        />
+      </View>
 
       <Carousel
         loop

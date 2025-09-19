@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: wp(4),
         marginTop: hp(2),
         marginBottom: hp(1),
-        height: hp(5),
+        height: hp(6),
     },
     input: {
         flex: 1,

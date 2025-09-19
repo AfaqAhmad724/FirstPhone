@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Image, ImageBackground, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Image, ImageBackground, SafeAreaView, StatusBar } from 'react-native';
 import { wp, hp } from '../../Constants/Responsive';
 import { MyStyling } from '../../Constants/Styling';
 import { Colors } from '../../Constants/Colors';
@@ -9,13 +9,15 @@ const Splash = ({ navigation }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigation.replace('UserRole');
-        }, 5000);
+        }, 3500);
 
         return () => clearTimeout(timer);
     }, [navigation]);
 
     return (
         <SafeAreaView style={MyStyling.container1}>
+            <StatusBar backgroundColor={Colors.primary} barStyle={'light-content'} />
+
             <ImageBackground
                 source={require('../../Assets/Images/splashBg.png')}
                 style={styles.bg}

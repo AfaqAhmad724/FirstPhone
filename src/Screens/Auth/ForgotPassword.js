@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ForgotPassword = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.bg }}>
       <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
       <PasswordHeader
         header="Forgot Password"

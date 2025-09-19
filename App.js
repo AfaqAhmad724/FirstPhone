@@ -16,7 +16,7 @@ const App = () => {
   }, []);
   return (
     <SafeAreaProvider>
-      <StatusBar backgroundColor={Colors.primary} barStyle={'dark-content'} />
+      <StatusBar backgroundColor={Colors.bg} barStyle={'dark-content'} />
       <MainNavigation />
     </SafeAreaProvider>
   );
