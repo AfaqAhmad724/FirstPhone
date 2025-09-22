@@ -107,6 +107,7 @@ export const Images = {
   Background: require('../Assets/Images/Background.png'),
   splashLogo: require('../Assets/Images/splash.gif'),
   splashBg: require('../Assets/Images/splashBg.png'),
+  animatedLogo: require('../Assets/Logo.gif'),
 
   cht: require('../Assets/Icons/chat.png'),
   prson: require('../Assets/Icons/notperson.png'),
@@ -114,7 +115,6 @@ export const Images = {
   growth: require('../Assets/Icons/growth.png'),
   orders: require('../Assets/Icons/orders.png'),
   option: require('./Icons/options.png'),
-
 };
 
 export const Videos = {

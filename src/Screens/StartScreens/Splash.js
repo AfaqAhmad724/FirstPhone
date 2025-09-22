@@ -24,10 +24,9 @@ const Splash = ({ navigation }) => {
                 resizeMode="cover">
                 <View style={styles.center}>
                     <Image
-                        source={Images.splashLogo}
+                        source={Images.animatedLogo}
                         style={styles.logo}
                         resizeMode="contain"
-                        tintColor={Colors.bg}
                     />
                 </View>
             </ImageBackground>

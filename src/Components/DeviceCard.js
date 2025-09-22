@@ -31,19 +31,19 @@ const DeviceCard = (data) => {
 
             <Image source={data?.image} style={styles.img} resizeMode='contain' />
 
-            <Text style={styles.titleText}>{data?.title}</Text>
+            <Text style={styles.titleText} numberOfLines={1}>{data?.title}</Text>
 
             <View style={styles.shopView}>
                 {
                     userRole == 'Customer' ?
                         <View style={styles.ShopAndPerson}>
                             <Image source={Images.shopName} style={styles.shopImg} resizeMode='contain' />
-                            <Text style={styles.shopText} numberOfLines={2}>{data?.shopName}</Text>
+                            <Text style={styles.shopText} numberOfLines={1}>{data?.shopName}</Text>
                         </View>
                         :
                         <View style={styles.ShopAndPerson}>
                             <Image source={Images.personName} style={styles.personImg} resizeMode='contain' />
-                            <Text style={styles.shopText} numberOfLines={2}>{data?.personName}</Text>
+                            <Text style={styles.shopText} numberOfLines={1}>{data?.personName}</Text>
                         </View>
                 }
             </View>
@@ -53,7 +53,7 @@ const DeviceCard = (data) => {
                 <View style={styles.priceBox}>
                     <Text style={styles.rsText}>Rs</Text>
                     <View style={{ flexShrink: 1, }}>
-                        <Text style={styles.priceText} numberOfLines={2}>
+                        <Text style={styles.priceText} numberOfLines={1}>
                             {data?.price}
                         </Text>
                     </View>
@@ -67,7 +67,7 @@ const DeviceCard = (data) => {
                         resizeMode="contain"
                     />
                     <View style={{ flexDirection: "row", flexShrink: 1, }}>
-                        <Text style={[styles.distanceText, { flexShrink: 1 }]} numberOfLines={2}>
+                        <Text style={[styles.distanceText, { flexShrink: 1 }]} numberOfLines={1}>
                             {data?.distance}
                         </Text>
                         <Text style={styles.distanceText}> km</Text>
@@ -134,10 +134,11 @@ const styles = StyleSheet.create({
     },
 
     shopText: {
+        flex: 1,
         color: Colors.gray,
         fontFamily: Fonts.medium,
-        fontSize: Fontsize.xs,
-        marginHorizontal: wp(1)
+        fontSize: Fontsize.xxs1,
+        marginHorizontal: wp(1),
     },
 
     shopView: {
@@ -148,7 +149,8 @@ const styles = StyleSheet.create({
     priceView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        alignItems: 'center',
+        // backgroundColor: 'red'
     },
 
     priceBox: {
@@ -174,7 +176,7 @@ const styles = StyleSheet.create({
         width: "40%",
         flexDirection: 'row',
         alignItems: 'flex-start',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
 
     distanceText: {
@@ -184,13 +186,13 @@ const styles = StyleSheet.create({
     },
 
     menuIcon: {
-        width: wp(3.5),
-        height: wp(3.5),
+        width: wp(3.7),
+        height: wp(3.7),
         marginRight: wp(.5),
     },
     shopImg: {
-        width: wp(3.8),
-        height: wp(3.8)
+        width: wp(3.5),
+        height: wp(3.5)
     },
     personImg: {
         width: wp(3.3),

@@ -401,16 +401,28 @@ export const deviceSpecsData = [
     productTitle: 'iPhone 17 Pro Max',
   },
   {
-    id: 3,
-    image: Images.storage,
-    brandTitle: 'Storage',
-    productTitle: '256GB',
+    id: 4,
+    image: Images.price,
+    brandTitle: 'Shop',
+    productTitle: 'Madina Mobile Market',
+  },
+  {
+    id: 4,
+    image: Images.price,
+    brandTitle: 'Location',
+    productTitle: '10 Km',
   },
   {
     id: 4,
     image: Images.price,
     brandTitle: 'Price (PKR)',
     productTitle: '502,999',
+  },
+  {
+    id: 3,
+    image: Images.storage,
+    brandTitle: 'Storage',
+    productTitle: '256GB',
   },
   {
     id: 5,

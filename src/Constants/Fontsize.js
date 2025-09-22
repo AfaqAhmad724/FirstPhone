@@ -21,6 +21,7 @@ export const Fontsize = {
   xs1: wp(3.1),
   fz: wp(3.1),
   xs: wp(3), // 12px
+  xxs1: wp(2.9),
   xxs: wp(2.8),
   xu: wp(2.6),
   xxxs: wp(2.4),
