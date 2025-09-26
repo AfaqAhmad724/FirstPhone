@@ -1,4 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  SafeAreaView,
+} from 'react-native';
 import React, { useState } from 'react';
 import AuthHeader from './AuthHeader';
 import { hp, wp } from '../Constants/Responsive';
@@ -13,25 +20,37 @@ import { Colors } from '../Constants/Colors';
 import Btn from './Btn';
 import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../Navigations/RootNavigation';
-import { useSelector } from 'react-redux';
+import { emailRegex } from '../Constants/Regex';
 
 const LoginBody = () => {
-  const userRole = useSelector((state) => state?.ROLE?.userData)
-
   const navigation = useNavigation();
-  const [yes, setYes] = useState(false);
+  const [checkBox, setCheckBox] = useState(false);
 
-  const handleNavigation = () => {
-    if (userRole == 'Customer') {
-      navigation.navigate('FlowNavigation')
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [error, setError] = useState({
+    emailError: '',
+    passwordError: '',
+  });
+
+  const handleLogin = () => {
+    if (!form.email) {
+      setError({ emailError: 'Please enter email', passwordError: '' });
+    } else if (!emailRegex.test(form.email)) {
+      setError({ emailError: 'Please enter a valid email', passwordError: '' });
+    } else if (!form.password) {
+      setError({ emailError: '', passwordError: 'Please enter password' });
+    } else {
+      setError({ emailError: '', passwordError: '' });
+      navigation.navigate('FlowNavigation');
     }
-    else {
-      navigation.navigate('SellerFlowNavigation')
-    }
-  }
+  };
 
   return (
-    <View style={styles.backgroundStyle}>
+    <SafeAreaView style={styles.backgroundStyle}>
       <AuthHeader label="Login" />
       <View style={styles.innerContainer}>
         <Text style={styles.setHeading}>Welcome Back</Text>
@@ -40,30 +59,41 @@ const LoginBody = () => {
           source={require('../Assets/Images/Logo.png')}
           style={styles.firstPhoneStyle}
         />
-
         <CustomInputText
           placeholder="Email"
           icon={Images.email}
           keyboardType="email-address"
           inputContainer={{ marginHorizontal: wp(5) }}
           placeholderTextColor={Colors.emailcolor}
-          style={[styles.emailstyle]}
+          style={styles.emailstyle}
+          value={form.email}
+          onChangeText={text =>
+            setForm({ ...form, email: text, emailError: '' })
+          }
+          error={error.emailError}
+          errorStyle={{ marginLeft: wp(5.7), color: 'red' }}
         />
+
         <CustomInputText
           placeholder="Password"
           icon={Images.password}
           isPassword={true}
-          placeholderTextColor={Colors.emailcolor}
           inputContainer={{ marginHorizontal: wp(5) }}
-          style={[styles.emailstyle]}
+          style={styles.emailstyle}
+          value={form.password}
+          onChangeText={text =>
+            setForm({ ...form, password: text, passwordError: '' })
+          }
+          error={error.passwordError}
+          errorStyle={{ marginLeft: wp(5.7), color: 'red' }}
         />
 
         <View style={styles.rememberContainer}>
           <View style={styles.rememberRow}>
-            <TouchableOpacity onPress={() => setYes(!yes)}>
+            <TouchableOpacity onPress={() => setCheckBox(!checkBox)}>
               <MaterialIcons
-                name={yes ? 'check-box' : 'check-box-outline-blank'}
-                size={wp(5)}
+                name={checkBox ? 'check-box' : 'check-box-outline-blank'}
+                size={wp(4.2)}
                 color={Colors.primary}
               />
             </TouchableOpacity>
@@ -78,10 +108,7 @@ const LoginBody = () => {
           </TouchableOpacity>
         </View>
 
-        <Btn
-          title={'Sign in'}
-          onPress={() => handleNavigation()}
-        />
+        <Btn title={'Sign in'} onPress={handleLogin} />
 
         <LoginDivider loginwith="Or login with" />
 
@@ -89,12 +116,12 @@ const LoginBody = () => {
 
         <View style={styles.signUpView}>
           <Text style={styles.accountText}>If you Don't have an account</Text>
-          <TouchableOpacity style={{}} onPress={() => navigate('Register')}>
+          <TouchableOpacity onPress={() => navigate('Register')}>
             <Text style={styles.signUpText}>Sign Up Now</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -157,7 +184,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   forgotText: {
     color: Colors.primary,
     fontSize: Fontsize.xs2,
@@ -181,5 +207,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: hp(5),
     justifyContent: 'center',
+  },
+  emailstyle: {
+    fontFamily: Fonts.medium,
+    fontSize: Fontsize.s,
   },
 });

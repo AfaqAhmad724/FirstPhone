@@ -1,25 +1,41 @@
-import { Image, StatusBar, StyleSheet, View } from 'react-native';
-import React from 'react';
+import { StatusBar, StyleSheet, View, Text } from 'react-native';
+import React, { useState } from 'react';
 import PasswordHeader from '../../Components/PasswordHeader';
-import { TouchableOpacity } from 'react-native';
-import { Text } from 'react-native';
-import CustomInputText from '../../Components/CustomInputText';
 import { Colors } from '../../Constants/Colors';
 import { hp, wp } from '../../Constants/Responsive';
 import { Fonts } from '../../Constants/Fonts';
 import Btn from '../../Components/Btn';
 import { Images } from '../../Assets';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomInputText from '../../Components/CustomInputText';
+import { MyStyling } from '../../Constants/Styling';
+import { emailRegex } from '../../Constants/Regex';
 
 const ForgotPassword = ({ navigation }) => {
+  const [form, setForm] = useState({
+    email: '',
+  });
+
+  const [errors, setErrors] = useState({
+    emailError: '',
+  });
+
+  const handleSendCode = () => {
+    if (!form.email) {
+      setErrors({ ...errors, emailError: 'Please enter email' });
+    } else if (!emailRegex.test(form.email)) {
+      setErrors({ ...errors, emailError: 'Please enter a valid email' });
+    } else {
+      setErrors({ ...errors, emailError: '' });
+      navigation.navigate('Verificationbody');
+    }
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.bg }}>
+    <SafeAreaView style={MyStyling.container}>
       <StatusBar backgroundColor={Colors.bg} barStyle="dark-content" />
-      <PasswordHeader
-        header="Forgot Password"
-        islogged="Cannot log in? "
-        iconStyle={{ marginLeft: wp(5) }}
-      />
+
+      <PasswordHeader header="Forgot Password" islogged="Cannot log in? " />
 
       <Text style={styles.isLogged}>Cannot log In?</Text>
 
@@ -30,9 +46,14 @@ const ForgotPassword = ({ navigation }) => {
       <CustomInputText
         placeholder="Email"
         icon={Images.email}
-        placeholderTextColor={'#9F9F9F'}
+        placeholderTextColor={Colors.mediumGrey}
         keyboardType="email-address"
-        inputContainer={{ marginHorizontal: wp(6) }}
+        value={form.email}
+        onChangeText={text => {
+          setForm({ ...form, email: text });
+          setErrors({ ...errors, emailError: '' });
+        }}
+        error={errors.emailError}
       />
 
       <View style={{ marginTop: 11 }}>
@@ -40,7 +61,7 @@ const ForgotPassword = ({ navigation }) => {
           title="Send Verification Code"
           bgColor={Colors.secondary}
           btnContainer={{ backgroundColor: Colors.secondary }}
-          onPress={() => navigation.navigate('Verificationbody')}
+          onPress={handleSendCode}
         />
       </View>
     </SafeAreaView>
@@ -52,32 +73,14 @@ export default ForgotPassword;
 const styles = StyleSheet.create({
   isLogged: {
     color: Colors.logblack,
-    marginLeft: wp(5.5),
     fontSize: wp(5.6),
     fontFamily: Fonts.medium,
     marginTop: hp(2.7),
   },
   define: {
-    marginLeft: wp(5.9),
     color: Colors.emailcolor,
     fontSize: wp(3.4),
     width: wp(82),
     fontFamily: Fonts.regular,
-  },
-  emailstyle: {
-    color: Colors.emailcolor,
-  },
-  signIn: {
-    marginHorizontal: wp(6),
-    paddingVertical: hp(1.7),
-    borderRadius: wp(2),
-    backgroundColor: Colors.secondary,
-  },
-
-  buttonText: {
-    textAlign: 'center',
-    color: Colors.bg,
-    fontSize: wp(3.5),
-    fontFamily: Fonts.medium,
   },
 });
