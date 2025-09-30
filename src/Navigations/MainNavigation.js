@@ -14,11 +14,15 @@ export default function MainNavigation() {
     <NavigationContainer ref={navigationRef}>
       <MAIN_STACK.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName="StartNavigation">
+        initialRouteName="StartNavigation"
+      >
         <MAIN_STACK.Screen name="StartNavigation" component={StartNavigation} />
         <MAIN_STACK.Screen name="AuthNavigation" component={AuthNavigation} />
         <MAIN_STACK.Screen name="FlowNavigation" component={FlowNavigation} />
-        <MAIN_STACK.Screen name="SellerFlowNavigation" component={SellerFlowNavigation} />
+        <MAIN_STACK.Screen
+          name="SellerFlowNavigation"
+          component={SellerFlowNavigation}
+        />
       </MAIN_STACK.Navigator>
     </NavigationContainer>
   );

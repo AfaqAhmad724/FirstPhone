@@ -20,13 +20,15 @@ import Order from '../Screens/CommonScreens/Order';
 import Profile from '../Screens/CommonScreens/Profile';
 import EditProfile from '../Screens/CommonScreens/EditProfile';
 import MyCartScreen from '../Screens/CommonScreens/MyCartScreen';
+import AllDevices from '../Screens/AppFlow/AllDevices';
 
 export default function FlowNavigation() {
   const FLOW_STACk = createNativeStackNavigator();
   return (
     <FLOW_STACk.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName="DrawerNavigation">
+      initialRouteName="DrawerNavigation"
+    >
       <FLOW_STACk.Screen name="DrawerNavigation" component={DrawerNavigation} />
       <FLOW_STACk.Screen name="DeviceDetail" component={DeviceDetail} />
       <FLOW_STACk.Screen name="SearchFilter" component={SearchFilter} />
@@ -47,9 +49,7 @@ export default function FlowNavigation() {
       <FLOW_STACk.Screen name="Order" component={Order} />
       <FLOW_STACk.Screen name="EditProfile" component={EditProfile} />
       <FLOW_STACk.Screen name="MyCartScreen" component={MyCartScreen} />
-
-
-
+      <FLOW_STACk.Screen name="AllDevices" component={AllDevices} />
     </FLOW_STACk.Navigator>
   );
 }

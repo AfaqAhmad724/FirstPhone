@@ -1,23 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import HistorySearchBar from '../../Components/HistorySearchBar'
-import SearchHistoryBody from '../../Components/SearchHistoryBody'
-import MainHeader from '../../Components/MainHeader'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { MyStyling } from '../../Constants/Styling'
-import VerticalFlatlist from '../../Components/VerticalFlatlist'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import HistorySearchBar from '../../Components/HistorySearchBar';
+import SearchHistoryBody from '../../Components/SearchHistoryBody';
+import MainHeader from '../../Components/MainHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { MyStyling } from '../../Constants/Styling';
+import VerticalFlatlist from '../../Components/VerticalFlatlist';
 
 const SearchHistory = () => {
-    return (
-        <SafeAreaView style={MyStyling.container}>
-            <MainHeader title={'Search History '} />
-            <HistorySearchBar />
-            <SearchHistoryBody />
-            <VerticalFlatlist />
-        </SafeAreaView>
-    )
-}
+  return (
+    <SafeAreaView style={MyStyling.container}>
+      <MainHeader title={'Search History '} />
+      <HistorySearchBar />
+      <SearchHistoryBody />
+      <VerticalFlatlist />
+    </SafeAreaView>
+  );
+};
 
-export default SearchHistory
+export default SearchHistory;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
