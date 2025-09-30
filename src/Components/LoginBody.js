@@ -21,6 +21,7 @@ import Btn from './Btn';
 import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../Navigations/RootNavigation';
 import { emailRegex } from '../Constants/Regex';
+import CheckBox from './CheckBox';
 
 const LoginBody = () => {
   const navigation = useNavigation();

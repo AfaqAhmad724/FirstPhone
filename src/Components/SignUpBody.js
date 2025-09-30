@@ -9,7 +9,6 @@ import { Colors } from '../Constants/Colors';
 import { Images } from '../Assets';
 import Btn from './Btn';
 import { Fontsize } from '../Constants/Fontsize';
-import { navigate } from '../Navigations/RootNavigation';
 import { Strings } from '../Constants/Strings';
 import RepairingService from './RepairingService';
 import UploadingBox from './UploadingBox';
@@ -25,8 +24,11 @@ import {
   digitRegex,
   specialCharRegex,
 } from '../Constants/Regex';
+import Toast from 'react-native-simple-toast';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUpBody = props => {
+  const navigation = useNavigation();
   const userRole = useSelector(state => state?.ROLE?.userData);
 
   const [form, setForm] = useState({
@@ -52,6 +54,8 @@ const SignUpBody = props => {
     confirmPasswordError: '',
     locationError: '',
   });
+
+  const [checkBox, setCheckBox] = useState(false);
 
   const checkPasswordStrength = password => {
     if (!password) {
@@ -139,8 +143,10 @@ const SignUpBody = props => {
       setErrors({ ...errors, confirmPasswordError: 'Passwords do not match' });
     } else if (userRole === 'Seller' && !form.location) {
       setErrors({ ...errors, locationError: 'Please enter location' });
+    } else if (!checkBox) {
+      Toast.show('Please agree to Terms & Conditions first', Toast.SHORT);
     } else {
-      navigate('Verificationbody', { register: true });
+      navigation.navigate('Verificationbody', { register: true });
     }
   };
 
@@ -259,19 +265,20 @@ const SignUpBody = props => {
         )}
 
         <CheckBox
-          buttontext="Sign Up"
-          logintext="Login Now"
-          policytext="Privacy Policy"
           agreetext=" I agree to "
           condition="Terms & Conditions"
           andthe="and the"
+          policytext="Privacy Policy"
+          buttontext="Sign Up"
+          logintext="Login Now"
+          checked={checkBox}
+          onPress={() => setCheckBox(!checkBox)}
         />
-
         <Btn title={'Sign Up'} onPress={handleSignUp} />
 
         <View style={styles.accountStyle}>
           <Text style={styles.lowertext}>If you have an account </Text>
-          <TouchableOpacity onPress={() => navigate('Login')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Text style={styles.logintext}>Login Now</Text>
           </TouchableOpacity>
         </View>
