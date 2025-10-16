@@ -10,10 +10,13 @@ import { Fontsize } from '../../Constants/Fontsize';
 import { MyStyling } from '../../Constants/Styling';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
+import Api from '../Services/Api_Services';
+import Toast from 'react-native-simple-toast';
 
 const Verificationbody = ({ navigation }) => {
   const route = useRoute();
   const register = route?.params?.register;
+  const userData = route?.params?.userData;
 
   const [form, setForm] = useState({
     otp: '',
@@ -24,14 +27,62 @@ const Verificationbody = ({ navigation }) => {
   });
 
   const handleContinue = () => {
-    if (!form.otp) {
+    const otp = form.otp.trim();
+
+    if (!otp) {
       setErrors({ ...errors, otpError: 'Please enter OTP' });
-    } else if (form.otp.length < 4) {
-      setErrors({ ...errors, otpError: 'OTP must be at least 4 digits' });
-    } else {
-      setErrors({ ...errors, otpError: '' });
-      navigation.navigate(register ? 'Login' : 'ResetPassword');
+      return;
+    } else if (otp.length !== 4) {
+      setErrors({ ...errors, otpError: 'OTP must be 4 digits' });
+      return;
     }
+
+    setErrors({ ...errors, otpError: '' });
+
+    // const payload = {
+    //   email: userData?.email,
+    //   otp: otp,
+    //   name: userData?.name,
+    //   type: 'customer',
+    //   password: userData?.password,s
+    //   phone: userData?.phone,
+    // };
+
+    // console.log('Verifying OTP with payload:', payload);
+    // Api.verifyOtp(payload)
+    const payload = {
+      email: userData?.email,
+      otp: otp,
+      name: userData?.name,
+      type: 'customer',
+      password: userData?.password,
+      phone: userData?.phone,
+    };
+    console.log(payload);
+    Api.verifyOtp(payload)
+
+      .then(res => {
+        console.log('OTP verification response:', res?.data);
+        if (res?.status === 200) {
+          Toast.show(
+            res?.data?.message || 'OTP verified successfully',
+            Toast.SHORT,
+          );
+          navigation.navigate('Login');
+        } else {
+          Toast.show(
+            res?.data?.message || 'OTP verification failed',
+            Toast.SHORT,
+          );
+        }
+      })
+      .catch(error => {
+        console.log('OTP verification error:', error?.response?.data);
+        Toast.show(
+          error?.response?.data?.message || 'OTP validation failed',
+          Toast.SHORT,
+        );
+      });
   };
 
   return (
@@ -40,7 +91,7 @@ const Verificationbody = ({ navigation }) => {
       <PasswordHeader header="Verification" islogged="Enter OTP" />
 
       <Text style={styles.isLogged}>Enter OTP</Text>
-      <Text style={styles.define}>Send OTP to mail@gmail.com</Text>
+      <Text style={styles.define}>Send OTP to {userData?.email}</Text>
 
       <CustomInputText
         placeholder="Enter OTP"
@@ -48,6 +99,7 @@ const Verificationbody = ({ navigation }) => {
         placeholderTextColor={Colors.verificationColor}
         keyboardType="numeric"
         value={form.otp}
+        maxLength={4}
         onChangeText={text => setForm({ ...form, otp: text })}
         error={errors.otpError}
       />
@@ -59,15 +111,6 @@ const Verificationbody = ({ navigation }) => {
           btnContainer={{ backgroundColor: Colors.secondary }}
           onPress={handleContinue}
         />
-      </View>
-
-      <View style={styles.resendWrapper}>
-        <Text style={styles.resendContainer}>
-          Resend
-          <Text style={styles.bracket}> (</Text>
-          <Text style={styles.number}>50</Text>
-          <Text style={styles.bracket}>)</Text>
-        </Text>
       </View>
     </SafeAreaView>
   );

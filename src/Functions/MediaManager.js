@@ -1,103 +1,97 @@
-import ImagePicker from 'react-native-image-crop-picker';
-import { RequestGalleryPermission } from '../Permissions/GalleryPermission';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 const selectImage = async onDocumentSelected => {
-  const result = await RequestGalleryPermission();
-  if (result == 'granted') {
-    ImagePicker.openPicker({
-      cropping: true,
-      compressImageQuality: 1,
-    })
-      .then(image => {
-        let document = {
-          name: image?.filename || `temp_image_${Date.now()}.jpg`,
-          type: image?.mime,
-          uri: image?.path,
-        };
-        onDocumentSelected(document);
-      })
-      .catch(error => {
-        console.log('Media Manager Select Image', error);
-      });
-  }
+  const options = {
+    mediaType: 'photo',
+    quality: 1,
+  };
+
+  launchImageLibrary(options, response => {
+    if (response.didCancel) {
+      console.log('User cancelled image picker');
+    } else if (response.errorCode) {
+      console.log('ImagePicker Error: ', response.errorMessage);
+    } else {
+      const asset = response.assets[0];
+      const document = {
+        uri: asset.uri,
+        type: asset.type,
+        name: asset.fileName || `temp_image_${Date.now()}.jpg`,
+      };
+      onDocumentSelected(document);
+    }
+  });
 };
 
 const selectVideo = async onDocumentSelected => {
-  const result = await RequestGalleryPermission();
-  if (result == 'granted') {
-    ImagePicker.openPicker({
-      mediaType: 'video',
-    })
-      .then(video => {
-        let document = {
-          name: video?.filename || `temp_video_${Date.now()}.mp4`,
-          type: video?.mime,
-          uri: video?.path,
-        };
-        onDocumentSelected(document);
-      })
-      .catch(error => {
-        console.log('New Post Select Image', error);
-      });
-  }
+  const options = {
+    mediaType: 'video',
+    videoQuality: 'high',
+  };
+
+  launchImageLibrary(options, response => {
+    if (response.didCancel) {
+      console.log('User cancelled video picker');
+    } else if (response.errorCode) {
+      console.log('VideoPicker Error: ', response.errorMessage);
+    } else {
+      const asset = response.assets[0];
+      const document = {
+        uri: asset.uri,
+        type: asset.type,
+        name: asset.fileName || `temp_video_${Date.now()}.mp4`,
+      };
+      onDocumentSelected(document);
+    }
+  });
 };
 
 const takePicture = async onDocumentSelected => {
-  try {
-    const result = await RequestGalleryPermission();
-    if (result === 'granted') {
-      ImagePicker.openCamera({
-        compressImageQuality: 1,
-        mediaType: 'photo',
-      })
-        .then(image => {
-          let photo = {
-            uri: image?.path,
-            type: image?.mime,
-            name: image?.filename || `temp_image_${Date.now()}.jpg`,
-          };
-          onDocumentSelected(photo);
-        })
-        .catch(e => {
-          if (e.message === 'User cancelled image selection') {
-            console.log('User cancelled image selection');
-          } else {
-            console.error(e);
-          }
-        });
+  const options = {
+    mediaType: 'photo',
+    quality: 1,
+    saveToPhotos: true,
+  };
+
+  launchCamera(options, response => {
+    if (response.didCancel) {
+      console.log('User cancelled camera');
+    } else if (response.errorCode) {
+      console.log('Camera Error: ', response.errorMessage);
+    } else {
+      const asset = response.assets[0];
+      const document = {
+        uri: asset.uri,
+        type: asset.type,
+        name: asset.fileName || `temp_image_${Date.now()}.jpg`,
+      };
+      onDocumentSelected(document);
     }
-  } catch (error) {
-    console.error('Error in takePicture:', error);
-  }
+  });
 };
 
 const TakeVideo = async onDocumentSelected => {
-  try {
-    const result = await RequestGalleryPermission();
-    if (result == 'granted') {
-      ImagePicker.openCamera({
-        mediaType: 'video',
-        videoQuality: 'high',
-      })
-        .then(video => {
-          let document = {
-            uri: video?.path,
-            type: video?.mime,
-            name: video?.filename || `temp_video_${Date.now()}.mp4`,
-          };
-          onDocumentSelected(document);
-        })
-        .catch(e => {
-          if (e.message === 'User cancelled image selection') {
-            console.log('User cancelled image selection');
-          } else {
-            console.error(e);
-          }
-        });
+  const options = {
+    mediaType: 'video',
+    videoQuality: 'high',
+    saveToPhotos: true,
+  };
+
+  launchCamera(options, response => {
+    if (response.didCancel) {
+      console.log('User cancelled video recording');
+    } else if (response.errorCode) {
+      console.log('Video Camera Error: ', response.errorMessage);
+    } else {
+      const asset = response.assets[0];
+      const document = {
+        uri: asset.uri,
+        type: asset.type,
+        name: asset.fileName || `temp_video_${Date.now()}.mp4`,
+      };
+      onDocumentSelected(document);
     }
-  } catch (error) {
-    console.error('Error in TakeVideo:', error);
-  }
+  });
 };
 
 export { selectImage, selectVideo, takePicture, TakeVideo };

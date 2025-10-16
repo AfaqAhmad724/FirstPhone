@@ -70,13 +70,6 @@ const RequestMobile = () => {
 export default RequestMobile;
 
 const styles = StyleSheet.create({
-  // innercontainer: {
-  //   marginTop: hp(5),
-  //   borderWidth: 1,
-  //   borderColor: '#EFEFEF',
-  //   borderRadius: 5,
-  //   elevation: 1
-  // },
   innercontainer: {
     marginTop: hp(4),
     borderWidth: 1,
@@ -145,6 +138,6 @@ const styles = StyleSheet.create({
   readStyle: {
     fontFamily: Fonts.medium,
     fontSize: Fontsize.xu,
-    color: Colors.graylight
+    color: Colors.graylight,
   },
 });

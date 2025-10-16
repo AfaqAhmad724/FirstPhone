@@ -5,9 +5,6 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  PermissionsAndroid,
-  Platform,
-  Alert,
 } from 'react-native';
 import React, { useState } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -17,38 +14,6 @@ import { Fontsize } from '../Constants/Fontsize';
 
 const PickImage = props => {
   const [selectedImages, setSelectedImages] = useState([]);
-
-  const requestStoragePermission = async () => {
-    if (Platform.OS === 'android') {
-      try {
-        const permission =
-          Platform.Version >= 33
-            ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES
-            : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
-
-        const granted = await PermissionsAndroid.request(permission, {
-          title: 'Storage Permission',
-          message: 'App needs access to your gallery to upload CNIC.',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Deny',
-          buttonPositive: 'Allow',
-        });
-
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          openImagePicker();
-        } else {
-          Alert.alert(
-            'Permission Denied',
-            'You need to allow storage permission to upload image.',
-          );
-        }
-      } catch (err) {
-        console.warn(err);
-      }
-    } else {
-      openImagePicker();
-    }
-  };
 
   const openImagePicker = () => {
     launchImageLibrary(
@@ -62,7 +27,7 @@ const PickImage = props => {
           console.log('User cancelled image picker');
         } else if (response.errorCode) {
           console.log('ImagePicker Error: ', response.errorMessage);
-        } else {
+        } else if (response.assets && response.assets.length > 0) {
           const uris = response.assets.map(asset => asset.uri);
           setSelectedImages(prev => [...prev, ...uris]);
         }
@@ -83,10 +48,7 @@ const PickImage = props => {
       numColumns={3}
       renderItem={({ item }) =>
         item === 'add' ? (
-          <TouchableOpacity
-            style={styles.noImageBox}
-            onPress={requestStoragePermission} // check permission before opening gallery
-          >
+          <TouchableOpacity style={styles.noImageBox} onPress={openImagePicker}>
             <Text style={styles.plus}>+</Text>
           </TouchableOpacity>
         ) : (

@@ -18,7 +18,6 @@ const Cart = props => {
 
   return (
     <View style={styles.box}>
-      {/* LEFT */}
       <View style={styles.leftSection}>
         <Image
           source={props?.image}
@@ -27,7 +26,6 @@ const Cart = props => {
         />
       </View>
 
-      {/* CENTER */}
       <View style={styles.centerSection}>
         <Text style={styles.phonetext} numberOfLines={2}>
           {props?.phone}
@@ -38,35 +36,29 @@ const Cart = props => {
           <Text
             style={[styles.shopName, { flexShrink: 1, maxWidth: wp('50%') }]}
             numberOfLines={2}
-            ellipsizeMode="tail">
+            ellipsizeMode="tail"
+          >
             {props?.mobile}
           </Text>
         </View>
 
-        {/* Quantity Box */}
         <View style={styles.quantityBox}>
-          {/* Minus */}
           <TouchableOpacity style={styles.qtyBtn} onPress={decreaseQty}>
             <Text style={styles.qtyText}>-</Text>
           </TouchableOpacity>
 
-          {/* Separator Line */}
           <View style={styles.verticalLine} />
 
-          {/* Quantity Number */}
           <Text style={styles.qtyNumber}>{quantity}</Text>
 
-          {/* Separator Line */}
           <View style={styles.verticalLine} />
 
-          {/* Plus */}
           <TouchableOpacity style={styles.qtyBtn} onPress={increaseQty}>
             <Text style={styles.qtyText}>+</Text>
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* RIGHT */}
       <View style={styles.rightSection}>
         <TouchableOpacity>
           <Image
@@ -148,7 +140,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.mediumGrey,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: wp(2)
+    marginHorizontal: wp(2),
   },
   qtyText: {
     fontSize: Fontsize.xxxs,
@@ -157,14 +149,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   qtyNumber: {
-    marginTop: hp(.4),
+    marginTop: hp(0.4),
     fontSize: Fontsize.s,
     fontFamily: Fonts.semibold,
     color: Colors.black,
     marginHorizontal: wp(3),
   },
   verticalLine: {
-    width: .5,
+    width: 0.5,
     height: '100%',
     backgroundColor: Colors.silverGrey,
   },
@@ -181,7 +173,6 @@ const styles = StyleSheet.create({
     color: Colors.black,
     fontSize: Fontsize.sm,
     width: wp(26),
-    textAlign: 'right'
-
+    textAlign: 'right',
   },
 });

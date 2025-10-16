@@ -108,6 +108,9 @@ export const Images = {
   splashLogo: require('../Assets/Images/splash.gif'),
   splashBg: require('../Assets/Images/splashBg.png'),
   animatedLogo: require('../Assets/Logo.gif'),
+  Alexlogo: require('../Assets/Images/Alex.png'),
+  clip: require('../Assets/Images/clip.png'),
+  dataImage: require('../Assets/Images/dataSending.png'),
 
   cht: require('../Assets/Icons/chat.png'),
   prson: require('../Assets/Icons/notperson.png'),
@@ -119,4 +122,4 @@ export const Images = {
 
 export const Videos = {
   iphone: require('../Assets/Video/Introducing_IPhone.mp4'),
-}
+};

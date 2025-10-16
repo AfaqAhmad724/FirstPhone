@@ -26,6 +26,7 @@ import {
 } from '../Constants/Regex';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
+import Api from '../Screens/Services/Api_Services';
 
 const SignUpBody = props => {
   const navigation = useNavigation();
@@ -56,6 +57,7 @@ const SignUpBody = props => {
   });
 
   const [checkBox, setCheckBox] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const checkPasswordStrength = password => {
     if (!password) {
@@ -98,6 +100,7 @@ const SignUpBody = props => {
   };
 
   const handleSignUp = () => {
+    // Form Validation
     if (!form.name) {
       setErrors({ ...errors, nameError: 'Please enter name' });
     } else if (!nameRegex.test(form.name)) {
@@ -146,8 +149,63 @@ const SignUpBody = props => {
     } else if (!checkBox) {
       Toast.show('Please agree to Terms & Conditions first', Toast.SHORT);
     } else {
-      navigation.navigate('Verificationbody', { register: true });
+      registerUserApi(); // ✅ Only call API here
     }
+  };
+
+  // const registerUserApi = () => {
+  //   setIsLoading(true);
+  //   const formData = new FormData();
+  //   formData.append('email', form?.email);
+  //   formData.append('type', 'customer');
+  //   console.log('@formdata', formData);
+  //   Api.register(formData)
+  //     .then(res => {
+  //       setIsLoading(false);
+  //       if (res?.status === 200) {
+  //         Toast.show(res?.data?.message, Toast.SHORT);
+  //         navigation.navigate('Verificationbody', {
+  //           register: true,
+  //           userData: form,
+  //         });
+  //       }
+  //     })
+  //     .catch(error => {
+  //       setIsLoading(false);
+  //       Toast.show(error?.response?.data?.message, Toast.SHORT);
+  //     });
+  // };
+
+  const registerUserApi = () => {
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append('email', form?.email);
+    formData.append('type', 'customer');
+
+    console.log('@formdata', formData);
+
+    Api.register(formData)
+      .then(res => {
+        if (res?.status === 200) {
+          Toast.show(res?.data?.message, Toast.SHORT);
+          navigation.navigate('Verificationbody', {
+            register: true,
+            userData: form,
+          });
+        } else {
+          Toast.show('Something went wrong', Toast.SHORT);
+        }
+      })
+      .catch(error => {
+        Toast.show(
+          error?.response?.data?.message || 'Error occurred',
+          Toast.SHORT,
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -274,7 +332,7 @@ const SignUpBody = props => {
           checked={checkBox}
           onPress={() => setCheckBox(!checkBox)}
         />
-        <Btn title={'Sign Up'} onPress={handleSignUp} />
+        <Btn title={'Sign Up'} onPress={handleSignUp} loading={isLoading} />
 
         <View style={styles.accountStyle}>
           <Text style={styles.lowertext}>If you have an account </Text>
@@ -370,6 +428,5 @@ const styles = StyleSheet.create({
     marginTop: hp(1.5),
     fontSize: Fontsize.m,
     fontFamily: Fonts.regular,
-    color: Colors.gray,
   },
 });

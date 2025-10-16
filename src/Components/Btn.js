@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   title: {
-    // marginLeft: wp(2),
     textAlign: 'center',
     color: Colors.bg,
     fontFamily: Fonts.medium,

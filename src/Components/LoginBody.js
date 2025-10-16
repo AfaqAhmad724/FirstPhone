@@ -21,11 +21,13 @@ import Btn from './Btn';
 import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../Navigations/RootNavigation';
 import { emailRegex } from '../Constants/Regex';
-import CheckBox from './CheckBox';
+import Toast from 'react-native-simple-toast';
+import Api from '../Screens/Services/Api_Services';
 
 const LoginBody = () => {
   const navigation = useNavigation();
   const [checkBox, setCheckBox] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     email: '',
@@ -40,14 +42,46 @@ const LoginBody = () => {
   const handleLogin = () => {
     if (!form.email) {
       setError({ emailError: 'Please enter email', passwordError: '' });
+      Toast.show('Please enter email', Toast.SHORT);
+      return;
     } else if (!emailRegex.test(form.email)) {
       setError({ emailError: 'Please enter a valid email', passwordError: '' });
+      Toast.show('Please enter a valid email', Toast.SHORT);
+      return;
     } else if (!form.password) {
       setError({ emailError: '', passwordError: 'Please enter password' });
+      Toast.show('Please enter password', Toast.SHORT);
+      return;
     } else {
       setError({ emailError: '', passwordError: '' });
-      navigation.navigate('FlowNavigation');
+      setLoading(true);
+      loginApi();
     }
+  };
+
+  const loginApi = () => {
+    const formData = new FormData();
+    formData.append('email', form?.email);
+    formData.append('password', form?.password);
+    formData.append('type', 'customer');
+
+    Api.login(formData)
+      .then(res => {
+        if (res?.status === 200) {
+          Toast.show(res?.data?.message || 'Login successful', Toast.SHORT);
+          navigation.navigate('FlowNavigation');
+        } else {
+          Toast.show('Login failed, please try again', Toast.SHORT);
+        }
+      })
+      .catch(error => {
+        console.log('Login Error:', error);
+        Toast.show(
+          error?.response?.data?.message || 'Something went wrong',
+          Toast.SHORT,
+        );
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -60,6 +94,7 @@ const LoginBody = () => {
           source={require('../Assets/Images/Logo.png')}
           style={styles.firstPhoneStyle}
         />
+
         <CustomInputText
           placeholder="Email"
           icon={Images.email}
@@ -109,10 +144,9 @@ const LoginBody = () => {
           </TouchableOpacity>
         </View>
 
-        <Btn title={'Sign in'} onPress={handleLogin} />
+        <Btn title={'Sign in'} onPress={handleLogin} loader={loading} />
 
         <LoginDivider loginwith="Or login with" />
-
         <ButtonGoogleApple google="Google" apple="Apple" />
 
         <View style={styles.signUpView}>

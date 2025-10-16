@@ -21,6 +21,8 @@ import Profile from '../Screens/CommonScreens/Profile';
 import EditProfile from '../Screens/CommonScreens/EditProfile';
 import MyCartScreen from '../Screens/CommonScreens/MyCartScreen';
 import AllDevices from '../Screens/AppFlow/AllDevices';
+import Messages from '../Screens/CommonScreens/UserTalk';
+import UserTalk from '../Screens/CommonScreens/UserTalk';
 
 export default function FlowNavigation() {
   const FLOW_STACk = createNativeStackNavigator();
@@ -50,6 +52,7 @@ export default function FlowNavigation() {
       <FLOW_STACk.Screen name="EditProfile" component={EditProfile} />
       <FLOW_STACk.Screen name="MyCartScreen" component={MyCartScreen} />
       <FLOW_STACk.Screen name="AllDevices" component={AllDevices} />
+      <FLOW_STACk.Screen name="UserTalk" component={UserTalk} />
     </FLOW_STACk.Navigator>
   );
 }

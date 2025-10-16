@@ -50,4 +50,8 @@ export const Colors = {
   month: '#848199',
   offWhiteLight: '#FBFAFB',
   lightgreen: '#E6F8EB',
+  lightgraay: '#797C7B',
+  messageColor: '#F3F6F6',
+  messagingGrey: '#A1A1A1',
+  headerColor: '#F0F2F2',
 };
