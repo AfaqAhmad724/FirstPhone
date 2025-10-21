@@ -17,8 +17,14 @@ import {
   specialCharRegex,
   uppercase,
 } from '../../Constants/Regex';
+import { useRoute } from '@react-navigation/native';
+import Api from '../Services/Api_Services';
+import Toast from 'react-native-simple-toast';
 
 const ResetPassword = ({ navigation }) => {
+  const route = useRoute();
+  const email = route?.params?.email;
+
   const [form, setForm] = useState({
     password: '',
     confirmPassword: '',
@@ -34,6 +40,8 @@ const ResetPassword = ({ navigation }) => {
     label: '',
     color: Colors.red,
   });
+
+  const [loading, setLoading] = useState(false);
 
   const checkPasswordStrength = password => {
     if (!password) {
@@ -78,44 +86,80 @@ const ResetPassword = ({ navigation }) => {
     }
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (!form.password) {
       setError({ ...error, passwordError: 'Please enter password' });
+      return;
     } else if (form.password.length < 8) {
       setError({
         ...error,
         passwordError: 'Password must be at least 8 characters',
       });
+      return;
     } else if (!lowercase.test(form.password)) {
       setError({
         ...error,
         passwordError: 'Password must contain at least one lowercase letter',
       });
+      return;
     } else if (!uppercase.test(form.password)) {
       setError({
         ...error,
         passwordError: 'Password must contain at least one uppercase letter',
       });
+      return;
     } else if (!digitRegex.test(form.password)) {
       setError({
         ...error,
         passwordError: 'Password must contain at least one number',
       });
+      return;
     } else if (!specialCharRegex.test(form.password)) {
       setError({
         ...error,
         passwordError: 'Password must contain at least one special character',
       });
+      return;
     } else if (!form.confirmPassword) {
       setError({
         ...error,
         confirmPasswordError: 'Please enter confirm password',
       });
+      return;
     } else if (form.confirmPassword !== form.password) {
       setError({ ...error, confirmPasswordError: 'Passwords do not match' });
-    } else {
-      setError({ passwordError: '', confirmPasswordError: '' });
-      navigation.navigate('Login');
+      return;
+    }
+
+    setError({ passwordError: '', confirmPasswordError: '' });
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', form.password);
+      formData.append('type', 'customer');
+
+      const res = await Api.resetPassword(formData);
+      console.log('Reset Password Response:', res?.data);
+
+      if (res?.status === 200 && res?.data?.status === 'success') {
+        Toast.show(
+          res?.data?.message || 'Password reset successfully!',
+          Toast.SHORT,
+        );
+        navigation.navigate('Login');
+      } else {
+        Toast.show(res?.data?.message || 'Password reset failed', Toast.LONG);
+      }
+    } catch (error) {
+      console.log('Reset password error:', error?.response?.data || error);
+      Toast.show(
+        error?.response?.data?.message || 'Something went wrong',
+        Toast.LONG,
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -176,10 +220,11 @@ const ResetPassword = ({ navigation }) => {
 
       <View style={styles.btnbox}>
         <Btn
-          title="Continue"
+          title={loading ? 'Resetting...' : 'Continue'}
           bgColor={Colors.black}
           btnContainer={{ backgroundColor: Colors.secondary }}
           onPress={handleContinue}
+          disabled={loading}
         />
       </View>
     </SafeAreaView>

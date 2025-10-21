@@ -54,12 +54,12 @@ const LoginBody = () => {
       return;
     } else {
       setError({ emailError: '', passwordError: '' });
-      setLoading(true);
       loginApi();
     }
   };
 
   const loginApi = () => {
+    setLoading(true);
     const formData = new FormData();
     formData.append('email', form?.email);
     formData.append('password', form?.password);

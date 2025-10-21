@@ -19,9 +19,11 @@ export const requests = {
 
 const Api = {
   register: data => requests.post('register', data),
-  verifyOtp: data => requests.post('verifyOtp', data),
+  verifyOtp: data => requests.post('forgot-password/verify-otp', data),
   login: data => requests.post('login', data),
-  forgotPassword: data => requests.post('forgot-password/reset', data),
+  forgotPassword: data => requests.post('forgot-password/send-otp', data),
+  resetPassword: data => requests.post('forgot-password/reset', data),
+  resendOtp: data => requests.post('forgot-password/send-otp', data),
 };
 
 export default Api;

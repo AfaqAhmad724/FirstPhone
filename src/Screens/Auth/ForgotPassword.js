@@ -5,29 +5,45 @@ import { Colors } from '../../Constants/Colors';
 import { hp, wp } from '../../Constants/Responsive';
 import { Fonts } from '../../Constants/Fonts';
 import Btn from '../../Components/Btn';
-import { Images } from '../../Assets';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomInputText from '../../Components/CustomInputText';
 import { MyStyling } from '../../Constants/Styling';
-import { emailRegex } from '../../Constants/Regex';
+import Toast from 'react-native-simple-toast';
+import Api from '../Services/Api_Services';
 
 const ForgotPassword = ({ navigation }) => {
-  const [form, setForm] = useState({
-    email: '',
-  });
+  const [form, setForm] = useState({ email: '' });
+  const [errors, setErrors] = useState({ emailError: '' });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [errors, setErrors] = useState({
-    emailError: '',
-  });
-
-  const handleSendCode = () => {
+  const handleSendCode = async () => {
     if (!form.email) {
       setErrors({ ...errors, emailError: 'Please enter email' });
-    } else if (!emailRegex.test(form.email)) {
-      setErrors({ ...errors, emailError: 'Please enter a valid email' });
-    } else {
-      setErrors({ ...errors, emailError: '' });
-      navigation.navigate('Verificationbody');
+      return;
+    }
+
+    setErrors({ ...errors, emailError: '' });
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append('email', form.email);
+    formData.append('type', 'customer');
+
+    try {
+      const res = await Api.forgotPassword(formData);
+      console.log('@forgotPasswordData', res?.data);
+
+      if (res?.data?.status === 'success') {
+        Toast.show(res?.data?.message || 'Verification code sent', Toast.SHORT);
+        navigation.navigate('Verificationbody', { email: form.email });
+      } else {
+        Toast.show(res?.data?.message || 'Something went wrong', Toast.SHORT);
+      }
+    } catch (error) {
+      console.log('ForgotPassword API Error:', error?.response?.data || error);
+      Toast.show('Error occurred while sending code', Toast.SHORT);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -45,7 +61,6 @@ const ForgotPassword = ({ navigation }) => {
 
       <CustomInputText
         placeholder="Email"
-        icon={Images.email}
         placeholderTextColor={Colors.mediumGrey}
         keyboardType="email-address"
         value={form.email}
@@ -58,10 +73,11 @@ const ForgotPassword = ({ navigation }) => {
 
       <View style={{ marginTop: 11 }}>
         <Btn
-          title="Send Verification Code"
+          title={isLoading ? 'Sending...' : 'Send Verification Code'}
           bgColor={Colors.secondary}
           btnContainer={{ backgroundColor: Colors.secondary }}
           onPress={handleSendCode}
+          loading={isLoading}
         />
       </View>
     </SafeAreaView>

@@ -54,4 +54,5 @@ export const Colors = {
   messageColor: '#F3F6F6',
   messagingGrey: '#A1A1A1',
   headerColor: '#F0F2F2',
+  verificationSend: '#848A94',
 };

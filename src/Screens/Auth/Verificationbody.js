@@ -1,88 +1,113 @@
-import { StatusBar, StyleSheet, View, Text } from 'react-native';
-import React, { useState } from 'react';
+import {
+  StatusBar,
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import React, { useState, useEffect } from 'react';
 import PasswordHeader from '../../Components/PasswordHeader';
 import { Colors } from '../../Constants/Colors';
 import { hp, wp } from '../../Constants/Responsive';
 import { Fonts } from '../../Constants/Fonts';
 import CustomInputText from '../../Components/CustomInputText';
 import Btn from '../../Components/Btn';
-import { Fontsize } from '../../Constants/Fontsize';
 import { MyStyling } from '../../Constants/Styling';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
 import Api from '../Services/Api_Services';
 import Toast from 'react-native-simple-toast';
+import { Fontsize } from '../../Constants/Fontsize';
 
 const Verificationbody = ({ navigation }) => {
   const route = useRoute();
-  const register = route?.params?.register;
-  const userData = route?.params?.userData;
+  const email = route?.params?.email;
 
-  const [form, setForm] = useState({
-    otp: '',
-  });
+  const [form, setForm] = useState({ otp: '' });
+  const [errors, setErrors] = useState({ otpError: '' });
+  const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState(50);
+  const [resendEnabled, setResendEnabled] = useState(false);
 
-  const [errors, setErrors] = useState({
-    otpError: '',
-  });
+  useEffect(() => {
+    let interval = null;
+    if (timer > 0) {
+      interval = setInterval(() => {
+        setTimer(prev => prev - 1);
+      }, 1000);
+    } else {
+      setResendEnabled(true);
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [timer]);
 
-  const handleContinue = () => {
-    const otp = form.otp.trim();
+  const handleContinue = async () => {
+    const otp = form.otp;
 
     if (!otp) {
-      setErrors({ ...errors, otpError: 'Please enter OTP' });
+      setErrors({ otpError: 'Please enter the OTP' });
       return;
     } else if (otp.length !== 4) {
-      setErrors({ ...errors, otpError: 'OTP must be 4 digits' });
+      setErrors({ otpError: 'OTP must be 4 digits' });
       return;
     }
 
-    setErrors({ ...errors, otpError: '' });
+    setErrors({ otpError: '' });
+    setLoading(true);
 
-    // const payload = {
-    //   email: userData?.email,
-    //   otp: otp,
-    //   name: userData?.name,
-    //   type: 'customer',
-    //   password: userData?.password,s
-    //   phone: userData?.phone,
-    // };
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('otp', otp);
+    formData.append('type', 'customer');
 
-    // console.log('Verifying OTP with payload:', payload);
-    // Api.verifyOtp(payload)
-    const payload = {
-      email: userData?.email,
-      otp: otp,
-      name: userData?.name,
-      type: 'customer',
-      password: userData?.password,
-      phone: userData?.phone,
-    };
-    console.log(payload);
-    Api.verifyOtp(payload)
+    try {
+      const res = await Api.verifyOtp(formData);
+      console.log('Verify OTP Response:', res?.data);
 
-      .then(res => {
-        console.log('OTP verification response:', res?.data);
-        if (res?.status === 200) {
-          Toast.show(
-            res?.data?.message || 'OTP verified successfully',
-            Toast.SHORT,
-          );
-          navigation.navigate('Login');
-        } else {
-          Toast.show(
-            res?.data?.message || 'OTP verification failed',
-            Toast.SHORT,
-          );
-        }
-      })
-      .catch(error => {
-        console.log('OTP verification error:', error?.response?.data);
-        Toast.show(
-          error?.response?.data?.message || 'OTP validation failed',
-          Toast.SHORT,
-        );
-      });
+      const data = res?.data || res;
+      if (res?.status === 200 && data?.status === 'success') {
+        Toast.show(data?.message || 'OTP verified successfully!', Toast.SHORT);
+        navigation.navigate('ResetPassword', { email });
+      } else {
+        Toast.show(data?.message || 'Invalid or expired OTP', Toast.LONG);
+      }
+    } catch (error) {
+      console.log('OTP verification error:', error?.response?.data || error);
+      Toast.show(
+        error?.response?.data?.message || 'OTP verification failed',
+        Toast.LONG,
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResend = async () => {
+    if (!resendEnabled) return;
+
+    setResendEnabled(false);
+    setTimer(50);
+
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('type', 'customer');
+    formData.append('otp', form.otp);
+
+    try {
+      const res = await Api.resendOtp(formData);
+      console.log('Resend OTP Response:', res?.data);
+
+      const data = res?.data || res;
+      if (res?.status === 200 && data?.status === 'success') {
+        Toast.show(data?.message || 'New OTP sent successfully!', Toast.SHORT);
+      } else {
+        Toast.show(data?.message || 'Failed to resend OTP', Toast.LONG);
+      }
+    } catch (error) {
+      console.log('Resend OTP error:', error?.response?.data || error);
+      Toast.show('Error while resending OTP', Toast.LONG);
+    }
   };
 
   return (
@@ -91,7 +116,7 @@ const Verificationbody = ({ navigation }) => {
       <PasswordHeader header="Verification" islogged="Enter OTP" />
 
       <Text style={styles.isLogged}>Enter OTP</Text>
-      <Text style={styles.define}>Send OTP to {userData?.email}</Text>
+      <Text style={styles.define}>Sent OTP to {email}</Text>
 
       <CustomInputText
         placeholder="Enter OTP"
@@ -106,12 +131,24 @@ const Verificationbody = ({ navigation }) => {
 
       <View style={{ marginTop: hp(1.9) }}>
         <Btn
-          title="Continue"
-          bgColor={Colors.secondary}
-          btnContainer={{ backgroundColor: Colors.secondary }}
-          onPress={handleContinue}
+          title={loading ? 'Verifying...' : 'Continue'}
+          bgColor={form.otp.length > 0 ? Colors.primary : Colors.secondary}
+          btnContainer={{
+            backgroundColor:
+              form.otp.length > 0 ? Colors.primary : Colors.secondary,
+            opacity: form.otp.length > 0 ? 3 : 0.3,
+          }}
+          onPress={form.otp.length > 0 && !loading ? handleContinue : null}
+          disabled={loading || form.otp.length === 0}
         />
       </View>
+
+      <TouchableOpacity onPress={handleResend} disabled={!resendEnabled}>
+        <Text style={[styles.resendColor, !resendEnabled && { opacity: 0.5 }]}>
+          Resend (
+          <Text style={{ color: Colors.verificationSend }}>{timer}</Text>)
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -127,7 +164,7 @@ const styles = StyleSheet.create({
   },
   define: {
     color: Colors.black,
-    fontSize: Fontsize.sm,
+    fontSize: wp(3.4),
     width: wp(82),
     fontFamily: Fonts.regular,
   },
@@ -135,24 +172,11 @@ const styles = StyleSheet.create({
     color: Colors.verificationColor,
     marginLeft: wp(2),
   },
-  resendWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginTop: hp(2),
-  },
-  resendContainer: {
+  resendColor: {
+    fontFamily: Fonts.regular,
     color: Colors.primary,
-    fontFamily: Fonts.medium,
-    fontSize: 12,
-  },
-  number: {
-    color: '#848A94',
-    fontFamily: Fonts.regular,
-    fontSize: 12,
-  },
-  bracket: {
-    color: 'green',
-    fontFamily: Fonts.regular,
-    fontSize: 12,
+    fontSize: Fontsize.xs2,
+    alignSelf: 'flex-end',
+    marginTop: wp(3),
   },
 });
