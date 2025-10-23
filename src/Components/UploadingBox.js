@@ -5,19 +5,26 @@ import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
 import { Fontsize } from '../Constants/Fontsize';
 import { selectImage } from '../Functions/MediaManager';
+
 const UploadingBox = props => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+
   const handleImageSelection = image => {
-    setSelectedImage(image.uri);
-    setImageSize({ width: image.width, height: image.height });
-  };
-  return (
-    <TouchableOpacity
-      style={styles.uploadBox}
-      onPress={() =>
-        selectImage(image => handleImageSelection(image, props.title))
+    if (image?.uri) {
+      setSelectedImage(image.uri);
+      if (image.width && image.height) {
+        setImageSize({ width: image.width, height: image.height });
       }
-    >
+    }
+  };
+
+  const onPressUpload = () => {
+    selectImage(image => handleImageSelection(image, props.title));
+  };
+
+  return (
+    <TouchableOpacity style={styles.uploadBox} onPress={onPressUpload}>
       {selectedImage ? (
         <Image
           source={{ uri: selectedImage }}
@@ -36,6 +43,7 @@ const UploadingBox = props => {
     </TouchableOpacity>
   );
 };
+
 export default UploadingBox;
 
 const styles = StyleSheet.create({

@@ -75,7 +75,7 @@ const ForgotPassword = ({ navigation }) => {
         <Btn
           title={isLoading ? 'Sending...' : 'Send Verification Code'}
           bgColor={Colors.secondary}
-          btnContainer={{ backgroundColor: Colors.secondary }}
+          btnContainer={{ backgroundColor: form.email.length > 0 ? Colors.primary : Colors.secondary, }}
           onPress={handleSendCode}
           loading={isLoading}
         />

@@ -20,7 +20,7 @@ const RepairingService = (props) => {
                     }
                 </View>
             </TouchableOpacity>
-            <Text style={[styles.titleText, props?.titleStyle]}>{props?.title || 'Select'}</Text>
+            <Text style={[styles.titleText, props?.titleStyle]}>{props?.title || 'Repairing Services'}</Text>
         </View>
     )
 }
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.primary,
     },
     titleText: {
-        fontSize: Fontsize.s,
-        fontFamily: Fonts.regular,
+        fontSize: Fontsize.xs1,
+        fontFamily: Fonts.medium,
         color: Colors.black,
     },
 })

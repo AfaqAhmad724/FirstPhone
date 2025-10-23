@@ -25,6 +25,9 @@ const ResetPassword = ({ navigation }) => {
   const route = useRoute();
   const email = route?.params?.email;
 
+  console.log('email11', email);
+
+
   const [form, setForm] = useState({
     password: '',
     confirmPassword: '',
@@ -143,14 +146,15 @@ const ResetPassword = ({ navigation }) => {
       const res = await Api.resetPassword(formData);
       console.log('Reset Password Response:', res?.data);
 
-      if (res?.status === 200 && res?.data?.status === 'success') {
+      const data = res?.data
+      if (data?.status === 200 && data?.status === 'success') {
         Toast.show(
-          res?.data?.message || 'Password reset successfully!',
+          data?.message || 'Password reset successfully!',
           Toast.SHORT,
         );
         navigation.navigate('Login');
       } else {
-        Toast.show(res?.data?.message || 'Password reset failed', Toast.LONG);
+        Toast.show(data?.message || 'Password reset failed', Toast.LONG);
       }
     } catch (error) {
       console.log('Reset password error:', error?.response?.data || error);
@@ -222,7 +226,7 @@ const ResetPassword = ({ navigation }) => {
         <Btn
           title={loading ? 'Resetting...' : 'Continue'}
           bgColor={Colors.black}
-          btnContainer={{ backgroundColor: Colors.secondary }}
+          btnContainer={{ backgroundColor: form.password.length > 0 ? Colors.primary : Colors.secondary, }}
           onPress={handleContinue}
           disabled={loading}
         />
