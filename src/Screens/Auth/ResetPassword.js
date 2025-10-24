@@ -17,16 +17,14 @@ import {
   specialCharRegex,
   uppercase,
 } from '../../Constants/Regex';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import Api from '../Services/Api_Services';
 import Toast from 'react-native-simple-toast';
 
-const ResetPassword = ({ navigation }) => {
+const ResetPassword = () => {
+  const navigation = useNavigation()
   const route = useRoute();
   const email = route?.params?.email;
-
-  console.log('email11', email);
-
 
   const [form, setForm] = useState({
     password: '',
@@ -142,26 +140,21 @@ const ResetPassword = ({ navigation }) => {
       formData.append('email', email);
       formData.append('password', form.password);
       formData.append('type', 'customer');
-
       const res = await Api.resetPassword(formData);
-      console.log('Reset Password Response:', res?.data);
 
       const data = res?.data
-      if (data?.status === 200 && data?.status === 'success') {
-        Toast.show(
-          data?.message || 'Password reset successfully!',
-          Toast.SHORT,
-        );
-        navigation.navigate('Login');
+      if (data?.status === 200 || data?.status === 'success') {
+        Toast.show(data?.message || 'Password reset successfully!', Toast.SHORT);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Login' }],
+        });
       } else {
         Toast.show(data?.message || 'Password reset failed', Toast.LONG);
       }
     } catch (error) {
       console.log('Reset password error:', error?.response?.data || error);
-      Toast.show(
-        error?.response?.data?.message || 'Something went wrong',
-        Toast.LONG,
-      );
+      Toast.show(error?.response?.data?.message || 'Something went wrong', Toast.LONG);
     } finally {
       setLoading(false);
     }

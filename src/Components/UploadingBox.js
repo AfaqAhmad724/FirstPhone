@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Colors } from '../Constants/Colors';
 import { hp, wp } from '../Constants/Responsive';
 import { Fonts } from '../Constants/Fonts';
@@ -9,8 +9,14 @@ import { selectImage } from '../Functions/MediaManager';
 const UploadingBox = props => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+  const setImage = props?.front ? props?.setFrontCnic : props?.setBackCnic;
 
   const handleImageSelection = image => {
+    if (typeof setImage === 'function') {
+      setImage(image);
+    } else {
+      console.log('No image setter function passed to UploadingBox');
+    }
     if (image?.uri) {
       setSelectedImage(image.uri);
       if (image.width && image.height) {

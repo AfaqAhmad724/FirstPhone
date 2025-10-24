@@ -39,6 +39,10 @@ const SignUpBody = props => {
     password: '',
     confirmPassword: '',
     location: '',
+    repairing: '',
+    cnic_front: '',
+    cnic_back: '',
+    shopPics: [],
   });
 
   const [strength, setStrength] = useState({
@@ -54,6 +58,7 @@ const SignUpBody = props => {
     passwordError: '',
     confirmPasswordError: '',
     locationError: '',
+    shopePics: ''
   });
 
   const [checkBox, setCheckBox] = useState(false);
@@ -148,7 +153,8 @@ const SignUpBody = props => {
     } else if (!checkBox) {
       Toast.show('Please agree to Terms & Conditions first', Toast.SHORT);
     } else {
-      registerUserApi();
+      // registerUserApi();
+      navigation.navigate('Verificationbody', { register: true, userData: form });
     }
   };
 
@@ -156,12 +162,18 @@ const SignUpBody = props => {
     try {
       setIsLoading(true);
       const formData = new FormData();
-      formData.append('email', form?.email);
-      formData.append('type', 'customer');
+      if (userRole == 'Customer') {
+        formData.append('email', form?.email);
+        formData.append('type', 'customer');
+      }
+      else {
+        formData.append('email', form?.email);
+        formData.append('type', 'vendor');
+      }
       const res = await Api.register(formData);
       console.log('response', JSON.stringify(res, null, 2));
 
-      if (res?.status === 200) {
+      if (res?.status === 200 || res?.status == 'success') {
         Toast.show(res?.data?.message || 'OTP sent successfully!', Toast.SHORT);
         navigation.navigate('Verificationbody', { register: true, userData: form });
       } else {
@@ -176,6 +188,26 @@ const SignUpBody = props => {
     }
     finally { setIsLoading(false) }
   };
+
+  const setRepairingService = (value) => {
+    setForm((prev) => ({ ...prev, repairing: value }))
+  }
+
+  const setFrontCnic = (image) => {
+    console.log('front cnic image', JSON.stringify(image));
+
+    setForm((img) => ({ ...img, cnic_front: image }))
+  }
+  const setBackCnic = (image) => {
+    console.log('back cnic image', JSON.stringify(image));
+
+    setForm((img) => ({ ...img, cnic_back: image }))
+  }
+  const setShopPics = (value) => {
+    console.log('shopics repsoien', value);
+
+    setForm((img) => ({ ...img, shopPics: value }))
+  }
 
   return (
     <View style={styles.backgroundStyle}>
@@ -275,11 +307,11 @@ const SignUpBody = props => {
               }}
               error={errors.locationError}
             />
-            <RepairingService />
-            <UploadingBox title={Strings.fronSideCNIC} />
-            <UploadingBox title={Strings.backSideCNIC} />
+            <RepairingService repairing={form?.repairing} setRepairing={setRepairingService} />
+            <UploadingBox title={Strings.fronSideCNIC} setFrontCnic={setFrontCnic} frontCnic={form.cnic_front} front />
+            <UploadingBox title={Strings.backSideCNIC} setBackCnic={setBackCnic} backCnic={form.cnic_back} />
             <Text style={styles.titleText}>{Strings.shopPics}</Text>
-            <PickImage register={true} />
+            <PickImage register={true} setShopIcs={setShopPics} shopPics={form.shopPics} />
           </>
         )}
 

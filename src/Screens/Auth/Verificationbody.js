@@ -26,8 +26,12 @@ const Verificationbody = ({ navigation }) => {
   const userData = data.userData;
   const check = data.register;
   const email = data?.email
+  const userRole = useSelector(state => state?.ROLE?.userData);
 
-  console.log('email', userData?.email);
+
+  console.log('email', JSON.stringify(userData, null, 2));
+  console.log('shoppics', JSON.stringify(userData?.shopPics, null, 2));
+
 
   const [form, setForm] = useState({ otp: '' });
   const [errors, setErrors] = useState({ otpError: '' });
@@ -53,13 +57,90 @@ const Verificationbody = ({ navigation }) => {
     });
   };
 
+  // const handleRegisterVerification = async () => {
+  //   const otp = form.otp;
+
+  //   if (!otp) {
+  //     setErrors({ otpError: 'Please enter the OTP' });
+  //     return;
+  //   } else if (otp.length !== 4) {
+  //     setErrors({ otpError: 'OTP must be 4 digits' });
+  //     return;
+  //   }
+
+  //   setErrors({ otpError: '' });
+  //   setLoading(true);
+
+  //   const formData = new FormData();
+
+
+  //   try {
+  //     let res;
+
+  //     if (check && userRole == 'Customer') {
+  //       formData.append('name', userData?.name);
+  //       formData.append('email', userData?.email);
+  //       formData.append('phone', userData?.phone);
+  //       formData.append('password', userData?.password);
+  //       formData.append('otp', otp);
+  //       formData.append('type', 'customer');
+  //       res = await Api.registerVerifyOtp(formData);
+  //     } else if (check && userRole == 'Seller') {
+  //       formData.append('name', userData?.name);
+  //       formData.append('email', userData?.email);
+  //       formData.append('phone', userData?.phone);
+  //       formData.append('password', userData?.password);
+  //       formData.append('cnic_front', userData?.cnic_front);
+  //       formData.append('cnic_back', userData?.cnic_back);
+  //       formData.append('image', userData?.shopPics);
+  //       formData.append('location', userData?.location);
+  //       formData.append('repair_service', userData?.repairing);
+  //       formData.append('otp', otp);
+  //       formData.append('type', 'customer');
+
+
+  //       res = await Api.registerVerifyOtp(formData);
+  //     }
+  //     else {
+  //       formData.append('otp', otp);
+  //       formData.append('email', email);
+  //       formData.append('type', 'customer');
+  //       res = await Api.verifyOtp(formData);
+  //     }
+
+  //     const data = res?.data;
+
+  //     if (res?.status === 200 && (data?.status === 'success' || data?.status === 200)) {
+  //       Toast.show(data?.message || 'OTP verified successfully!', Toast.SHORT);
+  //       navigation.navigate(check ? 'Login' : 'ResetPassword', { email: email });
+  //       if (check) {
+  //         navigation.navigate('Login');
+  //       } else {
+  //         navigation.navigate('ResetPassword', { email });
+  //       }
+
+  //     } else {
+  //       Toast.show(data?.message || 'Invalid or expired OTP', Toast.LONG);
+  //     }
+
+  //   } catch (error) {
+  //     console.log('OTP verification error:', error?.response?.data || error);
+  //     Toast.show(
+  //       error?.response?.data?.message || 'OTP verification failed',
+  //       Toast.LONG
+  //     );
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleRegisterVerification = async () => {
     const otp = form.otp;
 
     if (!otp) {
       setErrors({ otpError: 'Please enter the OTP' });
       return;
-    } else if (otp.length !== 4) {
+    } else if (!/^\d{4}$/.test(otp)) {
       setErrors({ otpError: 'OTP must be 4 digits' });
       return;
     }
@@ -69,11 +150,10 @@ const Verificationbody = ({ navigation }) => {
 
     const formData = new FormData();
 
-
     try {
       let res;
 
-      if (check) {
+      if (check && userRole === 'Customer') {
         formData.append('name', userData?.name);
         formData.append('email', userData?.email);
         formData.append('phone', userData?.phone);
@@ -81,29 +161,45 @@ const Verificationbody = ({ navigation }) => {
         formData.append('otp', otp);
         formData.append('type', 'customer');
         res = await Api.registerVerifyOtp(formData);
-      } else {
+      }
+      else if (check && userRole === 'Seller') {
+        formData.append('name', userData?.name);
+        formData.append('email', userData?.email);
+        formData.append('phone', userData?.phone);
+        formData.append('password', userData?.password);
+        formData.append('cnic_front', userData?.cnic_front);
+        formData.append('cnic_back', userData?.cnic_back);
+        formData.append('image', userData?.shopPics);
+        formData.append('location', userData?.location);
+        formData.append('repair_service', 1);
+        formData.append('type', 'vendor');
+        formData.append('otp', otp);
+        res = await Api.registerVerifyOtp(formData);
+      }
+      else {
         formData.append('otp', otp);
         formData.append('email', email);
         formData.append('type', 'customer');
         res = await Api.verifyOtp(formData);
       }
 
+      console.log('formdata', JSON.stringify(formData, null, 2));
+
       const data = res?.data;
-      console.log('data', JSON.stringify(data, null, 2));
+
+      console.log('register response', JSON.stringify(res, null, 2));
 
       if (res?.status === 200 && (data?.status === 'success' || data?.status === 200)) {
         Toast.show(data?.message || 'OTP verified successfully!', Toast.SHORT);
-        // navigation.navigate(check ? 'Login' : 'ResetPassword',{email:email});
+
         if (check) {
           navigation.navigate('Login');
         } else {
           navigation.navigate('ResetPassword', { email });
         }
-
       } else {
         Toast.show(data?.message || 'Invalid or expired OTP', Toast.LONG);
       }
-
     } catch (error) {
       console.log('OTP verification error:', error?.response?.data || error);
       Toast.show(
@@ -114,6 +210,7 @@ const Verificationbody = ({ navigation }) => {
       setLoading(false);
     }
   };
+
 
 
   const handleResend = async () => {
@@ -132,8 +229,6 @@ const Verificationbody = ({ navigation }) => {
         formData.append('type', 'customer');
         res = await Api.resendOtp(formData);
       }
-
-      console.log('Resend OTP Response:', JSON.stringify(res, null, 2));
       const data = res?.data
       if (data?.status === 200 && data?.status === 'success') {
         Toast.show(data?.message || 'New OTP sent successfully!', Toast.SHORT);

@@ -63,10 +63,12 @@ const LoginBody = () => {
     const formData = new FormData();
     formData.append('email', form?.email);
     formData.append('password', form?.password);
-    formData.append('type', 'customer');
+    formData.append('type', 'vendor');
 
     Api.login(formData)
       .then(res => {
+        console.log('Vendor Response', JSON.stringify(res, null, 2));
+
         if (res?.status === 200) {
           Toast.show(res?.data?.message || 'Login successful', Toast.SHORT);
           navigation.navigate('FlowNavigation');

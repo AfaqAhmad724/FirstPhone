@@ -6,16 +6,16 @@ import { Fontsize } from '../Constants/Fontsize'
 import { Fonts } from '../Constants/Fonts'
 
 const RepairingService = (props) => {
-    const [isradiopress, setIsRadioPres] = useState(false)
+    const setRepairing = props?.setRepairing
 
     return (
         <View style={[styles.radioContainer, props?.radioContainer]}>
             <TouchableOpacity
-                onPress={() => setIsRadioPres(!isradiopress)}
+                onPress={() => setRepairing(!props?.repairing)}
                 activeOpacity={0.7}>
                 <View style={[styles.radioButtonOuter, props?.radioButtonOuter]}>
                     {
-                        isradiopress &&
+                        props?.repairing &&
                         <View style={[styles.radioButtonInner, props?.radioButtonInner]} />
                     }
                 </View>

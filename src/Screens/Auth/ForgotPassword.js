@@ -31,9 +31,8 @@ const ForgotPassword = ({ navigation }) => {
 
     try {
       const res = await Api.forgotPassword(formData);
-      console.log('@forgotPasswordData', res?.data);
 
-      if (res?.data?.status === 'success') {
+      if (res?.data?.status == 'success' || res?.data?.status == 200) {
         Toast.show(res?.data?.message || 'Verification code sent', Toast.SHORT);
         navigation.navigate('Verificationbody', { email: form.email });
       } else {
