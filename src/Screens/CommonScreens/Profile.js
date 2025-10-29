@@ -6,36 +6,75 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Fonts } from '../../Constants/Fonts';
 import { hp, wp } from '../../Constants/Responsive';
 import { Colors } from '../../Constants/Colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ProfileComponent from '../../Components/ProfileComponent';
 import { Images } from '../../Assets';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import MainHeader from '../../Components/MainHeader';
 import { MyStyling } from '../../Constants/Styling';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { navigate } from '../../Navigations/RootNavigation';
 import { useSelector } from 'react-redux';
+import Api from '../Services/Api_Services';
 
 const Profile = () => {
-  const userRole = useSelector((state) => state?.ROLE?.userData)
-  const navigation = useNavigation()
+  const userRole = useSelector(state => state?.ROLE?.userData);
+  const navigation = useNavigation();
+
+  const [profileData, setProfileData] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getPrfileData();
+    }, []),
+  );
+  const getPrfileData = () => {
+    setIsLoading(true);
+    Api.getProfile()
+      .then(res => {
+        if (res?.status == 200) {
+          console.log('@@@res in profile', res?.data?.data);
+          setProfileData(res?.data?.data);
+        }
+      })
+      .catch(error => {
+        console.log(
+          'getProfile Error',
+          JSON.stringify(error.response?.data?.message),
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
   return (
     <SafeAreaView style={MyStyling.container}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: hp(5) }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: hp(5) }}
+      >
         <MainHeader title={'Profile'} />
         <View style={styles.topstyle}>
           <Text style={styles.accountStyle}>Account</Text>
 
-          <TouchableOpacity style={styles.box1} onPress={() => navigation.navigate('EditProfile')}>
+          <TouchableOpacity
+            style={styles.box1}
+            onPress={() => navigation.navigate('EditProfile')}
+          >
             <Image
-              source={userRole == 'Customer' ? Images.profile : Images.shopProfile}
+              source={
+                userRole == 'Customer' ? Images.profile : Images.shopProfile
+              }
               style={styles.imageStyle}
             />
-            <Text style={styles.nameStyle} numberOfLines={1}>Jose Larry</Text>
+            <Text style={styles.nameStyle} numberOfLines={1}>
+              Jose Larry
+            </Text>
             <MaterialIcons
               name="keyboard-arrow-right"
               size={wp(7)}
@@ -54,15 +93,18 @@ const Profile = () => {
           iconColor={Colors.primary}
           onPress={() => navigation.navigate('Notifications')}
         />
-        <ProfileComponent title="Change Password" icon={Images.changePswd}
-          onPress={() => navigation.navigate('AuthNavigation', { screen: 'ResetPassword' })}
+        <ProfileComponent
+          title="Change Password"
+          icon={Images.changePswd}
+          onPress={() =>
+            navigation.navigate('AuthNavigation', { screen: 'ResetPassword' })
+          }
         />
         <ProfileComponent
           icon={Images.orders}
           title="My Orders"
           iconColor={Colors.primary}
           onPress={() => navigation.navigate('MyOrders')}
-
         />
         <ProfileComponent
           icon={Images.contactUs}
@@ -105,12 +147,12 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.semibold,
     fontSize: wp(4.3),
     color: Colors.black,
-    marginBottom: hp(.5),
+    marginBottom: hp(0.5),
   },
   box1: {
     width: wp(90),
     backgroundColor: '#F8F7F7',
-    paddingVertical: hp(.4),
+    paddingVertical: hp(0.4),
     borderRadius: wp(1.5),
     flexDirection: 'row',
     alignItems: 'center',
@@ -129,18 +171,18 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.semibold,
     fontSize: wp(3.79),
     marginLeft: wp(3),
-    color: Colors.black
+    color: Colors.black,
   },
 
   divider: {
-    borderBottomWidth: .7,
+    borderBottomWidth: 0.7,
     borderBottomColor: Colors.mediumGrey,
-    marginVertical: hp(1)
+    marginVertical: hp(1),
   },
   optionStyle: {
     fontFamily: Fonts.semibold,
     marginTop: wp(1.5),
-    color: Colors.black
+    color: Colors.black,
   },
   iconstyles: {
     marginRight: 10,

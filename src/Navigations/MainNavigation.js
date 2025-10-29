@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import StartNavigation from './StartNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -7,9 +7,18 @@ import AuthNavigation from './AuthNavigation';
 import FlowNavigation from './FlowNavigation';
 import { navigationRef } from './RootNavigation';
 import SellerFlowNavigation from './SellerFlowNavigation';
+import { useSelector } from 'react-redux';
+import { configAxiosHeaders } from '../Screens/Services/Api_Services';
 
 export default function MainNavigation() {
   const MAIN_STACK = createNativeStackNavigator();
+  const userData = useSelector(state => state?.AUTH?.userData);
+  console.log('@USERDATA', userData);
+  useEffect(() => {
+    if (userData?.token) {
+      configAxiosHeaders(userData.token);
+    }
+  }, [userData]);
   return (
     <NavigationContainer ref={navigationRef}>
       <MAIN_STACK.Navigator

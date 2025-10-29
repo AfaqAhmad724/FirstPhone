@@ -22,16 +22,20 @@ import { useNavigation } from '@react-navigation/native';
 import { navigate } from '../Navigations/RootNavigation';
 import { emailRegex } from '../Constants/Regex';
 import Toast from 'react-native-simple-toast';
-import Api from '../Screens/Services/Api_Services';
+import Api, { configAxiosHeaders } from '../Screens/Services/Api_Services';
+import { useDispatch, useSelector } from 'react-redux';
+import { USER_DATA } from '../Redux/Slices/AuthSlice';
 
 const LoginBody = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [checkBox, setCheckBox] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const userData = useSelector(state => state);
+  console.log('@ssssdata', userData);
   const [form, setForm] = useState({
-    email: '',
-    password: '',
+    email: 'afaq.ranglerz@gmail.com',
+    password: '12345678@Aa',
   });
 
   const [error, setError] = useState({
@@ -63,13 +67,16 @@ const LoginBody = () => {
     const formData = new FormData();
     formData.append('email', form?.email);
     formData.append('password', form?.password);
-    formData.append('type', 'vendor');
+    formData.append('type', 'customer');
 
     Api.login(formData)
-      .then(res => {
-        console.log('Vendor Response', JSON.stringify(res, null, 2));
-
+      .then(async res => {
         if (res?.status === 200) {
+          const token = res?.data?.token;
+          const userData = res?.data?.data?.user;
+          await configAxiosHeaders(token);
+          console.log('@RESS ', userData);
+          dispatch(USER_DATA(userData));
           Toast.show(res?.data?.message || 'Login successful', Toast.SHORT);
           navigation.navigate('FlowNavigation');
         } else {
@@ -77,7 +84,7 @@ const LoginBody = () => {
         }
       })
       .catch(error => {
-        console.log('Login Error:', error);
+        console.log('Login Error:', error?.response);
         Toast.show(
           error?.response?.data?.message || 'Something went wrong',
           Toast.SHORT,

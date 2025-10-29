@@ -26,7 +26,8 @@ const Api = {
   forgotPassword: data => requests.post('forgot-password/send-otp', data),
   resetPassword: data => requests.post('forgot-password/reset', data),
   resendOtp: data => requests.post('forgot-password/send-otp', data),
-
+  getProfile: () => requests.get('getProfile'),
+  updateProfile: data => requests.post('updateProfile', data),
 };
 
 export default Api;
