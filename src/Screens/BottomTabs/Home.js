@@ -19,17 +19,20 @@ import HorizontalFlatlist from '../../Components/HorizontalFlatlist';
 import ViewAllDevices from '../../Components/ViewAllDevices';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused } from '@react-navigation/native';
-import Api from '../Services/Api_Services';
+import Api, { configAxiosHeaders } from '../Services/Api_Services';
 import Toast from 'react-native-simple-toast';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const isFocused = useIsFocused();
   const [isLoading, setIsLoading] = useState(false);
   const [nearbyData, setNearbyData] = useState([]);
+  const userData = useSelector(s => s?.AUTH?.userData);
 
   useEffect(() => {
-    if (isFocused) getNearby();
-  }, [isFocused]);
+    userData?.token && configAxiosHeaders(userData.token);
+    isFocused && getNearby();
+  }, [isFocused, userData]);
 
   const getNearby = () => {
     const latitude = 31.5204;
