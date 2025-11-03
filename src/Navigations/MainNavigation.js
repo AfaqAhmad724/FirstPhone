@@ -13,7 +13,6 @@ import { configAxiosHeaders } from '../Screens/Services/Api_Services';
 export default function MainNavigation() {
   const MAIN_STACK = createNativeStackNavigator();
   const userData = useSelector(state => state?.AUTH?.userData);
-  console.log('@USERDATA', userData);
   useEffect(() => {
     if (userData?.token) {
       configAxiosHeaders(userData.token);

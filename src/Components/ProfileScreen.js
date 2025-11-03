@@ -16,6 +16,7 @@ import { Fonts } from '../Constants/Fonts';
 import CNICPics from './CNICPics';
 import Toast from 'react-native-simple-toast'; // ✅ Toast import
 import Api from '../Screens/Services/Api_Services';
+import Config from '../Screens/Services/Config';
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -23,9 +24,9 @@ const ProfileScreen = () => {
   const userData = useSelector(state => state?.AUTH?.userData);
 
   const [profileImage, setProfileImage] = useState(null);
-  const [name, setName] = useState(userData?.name || '');
-  const [email, setEmail] = useState(userData?.email || '');
-  const [phone, setPhone] = useState(userData?.phone || '');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -74,7 +75,7 @@ const ProfileScreen = () => {
       },
     );
   };
-
+  console.log('@profile', profileImage);
   // ✅ Update Profile API Call
   const handleUpdateProfile = async () => {
     if (!name || !email || !phone) {
@@ -89,11 +90,11 @@ const ProfileScreen = () => {
       formData.append('name', name);
       formData.append('email', email);
       formData.append('phone', phone);
-      formData.append('type', userRole || 'customer');
+      formData.append('type', 'customer');
 
       if (profileImage) {
         formData.append('image', {
-          uri: profileImage,
+          uri: profileImage?.uri,
           type: profileImage.type || 'image/jpeg',
           name: profileImage.fileName || 'profile.jpg',
         });
@@ -107,7 +108,7 @@ const ProfileScreen = () => {
       Toast.show('Profile updated successfully!', Toast.SHORT);
       navigation.goBack();
     } catch (error) {
-      console.log('❌ Update Error:', error?.response?.data);
+      console.log('❌ Update Error:', JSON.stringify(error, null, 2));
       Toast.show('Failed to update profile', Toast.SHORT);
     } finally {
       setLoading(false);
@@ -116,14 +117,13 @@ const ProfileScreen = () => {
 
   return (
     <View>
-      {/* Profile Image */}
       <TouchableOpacity onPress={openImagePicker} style={styles.imgMain}>
         <Image
           source={
             profileImage
-              ? { uri: profileImage }
-              : profileImage
-              ? { uri: profileImage }
+              ? typeof profileImage === 'string'
+                ? { uri: Config.domain + profileImage } // server image
+                : { uri: profileImage.uri } // local image picker
               : userRole === 'customer'
               ? Images.profile
               : Images.shopProfile

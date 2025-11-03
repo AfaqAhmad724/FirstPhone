@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Images } from '../../Assets';
 import { MyStyling } from '../../Constants/Styling';
 import { Colors } from '../../Constants/Colors';
@@ -19,10 +19,39 @@ import HorizontalFlatlist from '../../Components/HorizontalFlatlist';
 import ViewAllDevices from '../../Components/ViewAllDevices';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused } from '@react-navigation/native';
+import Api from '../Services/Api_Services';
+import Toast from 'react-native-simple-toast';
 
 const Home = () => {
   const isFocused = useIsFocused();
+  const [isLoading, setIsLoading] = useState(false);
+  const [nearbyData, setNearbyData] = useState([]);
 
+  useEffect(() => {
+    if (isFocused) getNearby();
+  }, [isFocused]);
+
+  const getNearby = () => {
+    const latitude = 31.5204;
+    const longitude = 74.3587;
+    const radius = 1000;
+
+    setIsLoading(true);
+    Api.getNearby(latitude, longitude, radius)
+      .then(res => {
+        if (res?.status === 200) {
+          console.log('✅ Nearby Data:', res?.data?.data);
+          setNearbyData(res?.data?.data || []);
+        } else {
+          Toast.show('No nearby data found', Toast.SHORT);
+        }
+      })
+      .catch(error => {
+        console.log('❌ getNearby Error:', error?.response?.data);
+        Toast.show('Failed to fetch nearby data', Toast.SHORT);
+      })
+      .finally(() => setIsLoading(false));
+  };
   return (
     <SafeAreaView style={MyStyling.container1}>
       {isFocused && (
@@ -45,7 +74,7 @@ const Home = () => {
 
         <ViewAllDevices title={'Nearby'} />
         <View style={{ paddingHorizontal: wp(5) }}>
-          <VerticalFlatlist />
+          <VerticalFlatlist data={nearbyData} isLoading={isLoading} />
         </View>
 
         <ViewAllDevices title={'Top Selling'} />

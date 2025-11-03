@@ -20,6 +20,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { navigate } from '../../Navigations/RootNavigation';
 import { useSelector } from 'react-redux';
 import Api from '../Services/Api_Services';
+import Config from '../Services/Config';
 
 const Profile = () => {
   const userRole = useSelector(state => state?.ROLE?.userData);
@@ -68,12 +69,15 @@ const Profile = () => {
           >
             <Image
               source={
-                userRole == 'Customer' ? Images.profile : Images.shopProfile
+                profileData?.image
+                  ? { uri: Config.domain + profileData?.image } // ✅ when image exists from server
+                  : Images.profile // ✅ fallback image
               }
               style={styles.imageStyle}
             />
+
             <Text style={styles.nameStyle} numberOfLines={1}>
-              Jose Larry
+              {profileData?.name || 'User'}
             </Text>
             <MaterialIcons
               name="keyboard-arrow-right"

@@ -28,6 +28,11 @@ const Api = {
   resendOtp: data => requests.post('forgot-password/send-otp', data),
   getProfile: () => requests.get('getProfile'),
   updateProfile: data => requests.post('updateProfile', data),
+  // 👇 ADD THIS FUNCTION
+  getNearby: (latitude, longitude, radius = 1000) =>
+    requests.get1(
+      `listings/nearby?latitude=${latitude}&longitude=${longitude}&radius=${radius}`,
+    ),
 };
 
 export default Api;

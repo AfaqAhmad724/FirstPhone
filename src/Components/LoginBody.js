@@ -31,8 +31,6 @@ const LoginBody = () => {
   const navigation = useNavigation();
   const [checkBox, setCheckBox] = useState(false);
   const [loading, setLoading] = useState(false);
-  const userData = useSelector(state => state);
-  console.log('@ssssdata', userData);
   const [form, setForm] = useState({
     email: 'afaq.ranglerz@gmail.com',
     password: '12345678@Aa',
@@ -75,7 +73,6 @@ const LoginBody = () => {
           const token = res?.data?.token;
           const userData = res?.data?.data?.user;
           await configAxiosHeaders(token);
-          console.log('@RESS ', userData);
           dispatch(USER_DATA(userData));
           Toast.show(res?.data?.message || 'Login successful', Toast.SHORT);
           navigation.navigate('FlowNavigation');
