@@ -84,7 +84,7 @@ export const Images = {
   phone3: require('../Assets/Images/phone3.png'),
   google: require('../Assets/Images/google.png'),
   phone4: require('../Assets/Images/phone4.png'),
-  delete: require('../Assets/Images/Delete.png'),
+  delete: require('../Assets/Images/delete.png'),
   editProfile: require('./Images/editProfile.png'),
   mobile: require('../Assets/Images/MobileHub.png'),
   phoneImage: require('../Assets/Images/phone.png'),

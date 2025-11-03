@@ -9,8 +9,7 @@ const Register = () => {
     <SafeAreaView style={styles.fullscreen}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: hp(5) }}
-      >
+        contentContainerStyle={{ paddingBottom: hp(5) }}>
         <SignUpBody />
       </ScrollView>
     </SafeAreaView>

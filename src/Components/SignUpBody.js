@@ -28,8 +28,9 @@ import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
 import Api from '../Screens/Services/Api_Services';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import GoogleAutoCompleteInput from './GoogleAutoCompleteInput';
 
-const GOOGLE_MAPS_APIKEY = 'AIzaSyAmo0zd59UzkD-G53-J8h31miMVc1ioO9I';
+const GOOGLE_MAPS_APIKEY = 'AIzaSyBuqZO_NrSp3c7lSpGdI3tpVV8h7UdLMFM';
 const SignUpBody = props => {
   const navigation = useNavigation();
   const userRole = useSelector(state => state?.ROLE?.userData);
@@ -154,11 +155,11 @@ const SignUpBody = props => {
     } else if (!checkBox) {
       Toast.show('Please agree to Terms & Conditions first', Toast.SHORT);
     } else {
-      // registerUserApi();
-      navigation.navigate('Verificationbody', {
-        register: true,
-        userData: form,
-      });
+      registerUserApi();
+      // navigation.navigate('Verificationbody', {
+      //   register: true,
+      //   userData: form,
+      // });
     }
   };
 
@@ -199,20 +200,13 @@ const SignUpBody = props => {
   const setRepairingService = value => {
     setForm(prev => ({ ...prev, repairing: value }));
   };
-
   const setFrontCnic = image => {
-    console.log('front cnic image', JSON.stringify(image));
-
     setForm(img => ({ ...img, cnic_front: image }));
   };
   const setBackCnic = image => {
-    console.log('back cnic image', JSON.stringify(image));
-
     setForm(img => ({ ...img, cnic_back: image }));
   };
   const setShopPics = value => {
-    console.log('shopics repsoien', value);
-
     setForm(img => ({ ...img, shopPics: value }));
   };
 
@@ -304,25 +298,89 @@ const SignUpBody = props => {
 
         {userRole === 'Seller' && (
           <>
-            <CustomInputText
-              placeholder="Enter Location"
+            <GoogleAutoCompleteInput
               icon={Images.colorLocation}
+              placeholder="Enter Location"
               value={form.location}
-              onChangeText={text => {
-                setForm({ ...form, location: text });
-                setErrors({ ...errors, locationError: '' });
+              // onChangeText={text => {
+              //   console.log('text', text);
+
+              //   // Prevent unnecessary re-renders
+              //   if (text !== form.location) {
+              //     setForm(prev => ({ ...prev, location: text }));
+              //     if (errors.locationError) {
+              //       setErrors(prev => ({ ...prev, locationError: '' }));
+              //     }
+              //   }
+              // }}
+              onSelectLocation={(address, details) => {
+                console.log('address', address);
+                console.log('detail', details);
+
+                setForm(prev => ({
+                  ...prev,
+                  location: address,
+                  // lat: details?.geometry?.location?.lat || 0,
+                  // lng: details?.geometry?.location?.lng || 0,
+                }));
               }}
               error={errors.locationError}
             />
+
+
+
+            {/* Google Autocomplete below */}
+            {/* <GooglePlacesAutocomplete
+              placeholder="Search your location"
+              fetchDetails={true}
+              enablePoweredByContainer={false}
+              query={{
+                key: GOOGLE_MAPS_APIKEY,
+                language: 'en',
+              }}
+              predefinedPlaces={[]}
+              onPress={(data, details = null) => {
+                if (details?.geometry?.location) {
+                  const address = details.formatted_address;
+                  setForm({ ...form, location: address });
+                }
+              }}
+              styles={{
+                textInputContainer: {
+                  width: '100%',
+                  alignSelf: 'center',
+                },
+                textInput: {
+                  height: 50,
+                  color: '#5d5d5d',
+                  fontSize: Fontsize.m,
+                },
+                listView: {
+                  backgroundColor: '#fff',
+                },
+                description: {
+                  color: Colors.grey,
+                },
+              }}
+              textInputProps={{
+                placeholderTextColor: Colors.gray,
+              }}
+              minLength={2}
+              debounce={300}
+              onFail={(e) => console.warn('Google Place Failed:', e)}
+            /> */}
+
+
+
             <RepairingService
               repairing={form?.repairing}
               setRepairing={setRepairingService}
             />
             <UploadingBox
+              front={true}
               title={Strings.fronSideCNIC}
               setFrontCnic={setFrontCnic}
               frontCnic={form.cnic_front}
-              front
             />
             <UploadingBox
               title={Strings.backSideCNIC}

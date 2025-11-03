@@ -57,83 +57,6 @@ const Verificationbody = ({ navigation }) => {
     });
   };
 
-  // const handleRegisterVerification = async () => {
-  //   const otp = form.otp;
-
-  //   if (!otp) {
-  //     setErrors({ otpError: 'Please enter the OTP' });
-  //     return;
-  //   } else if (otp.length !== 4) {
-  //     setErrors({ otpError: 'OTP must be 4 digits' });
-  //     return;
-  //   }
-
-  //   setErrors({ otpError: '' });
-  //   setLoading(true);
-
-  //   const formData = new FormData();
-
-
-  //   try {
-  //     let res;
-
-  //     if (check && userRole == 'Customer') {
-  //       formData.append('name', userData?.name);
-  //       formData.append('email', userData?.email);
-  //       formData.append('phone', userData?.phone);
-  //       formData.append('password', userData?.password);
-  //       formData.append('otp', otp);
-  //       formData.append('type', 'customer');
-  //       res = await Api.registerVerifyOtp(formData);
-  //     } else if (check && userRole == 'Seller') {
-  //       formData.append('name', userData?.name);
-  //       formData.append('email', userData?.email);
-  //       formData.append('phone', userData?.phone);
-  //       formData.append('password', userData?.password);
-  //       formData.append('cnic_front', userData?.cnic_front);
-  //       formData.append('cnic_back', userData?.cnic_back);
-  //       formData.append('image', userData?.shopPics);
-  //       formData.append('location', userData?.location);
-  //       formData.append('repair_service', userData?.repairing);
-  //       formData.append('otp', otp);
-  //       formData.append('type', 'customer');
-
-
-  //       res = await Api.registerVerifyOtp(formData);
-  //     }
-  //     else {
-  //       formData.append('otp', otp);
-  //       formData.append('email', email);
-  //       formData.append('type', 'customer');
-  //       res = await Api.verifyOtp(formData);
-  //     }
-
-  //     const data = res?.data;
-
-  //     if (res?.status === 200 && (data?.status === 'success' || data?.status === 200)) {
-  //       Toast.show(data?.message || 'OTP verified successfully!', Toast.SHORT);
-  //       navigation.navigate(check ? 'Login' : 'ResetPassword', { email: email });
-  //       if (check) {
-  //         navigation.navigate('Login');
-  //       } else {
-  //         navigation.navigate('ResetPassword', { email });
-  //       }
-
-  //     } else {
-  //       Toast.show(data?.message || 'Invalid or expired OTP', Toast.LONG);
-  //     }
-
-  //   } catch (error) {
-  //     console.log('OTP verification error:', error?.response?.data || error);
-  //     Toast.show(
-  //       error?.response?.data?.message || 'OTP verification failed',
-  //       Toast.LONG
-  //     );
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleRegisterVerification = async () => {
     const otp = form.otp;
 
@@ -210,7 +133,6 @@ const Verificationbody = ({ navigation }) => {
       setLoading(false);
     }
   };
-
 
 
   const handleResend = async () => {

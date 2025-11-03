@@ -32,8 +32,8 @@ const LoginBody = () => {
   const [checkBox, setCheckBox] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    email: 'afaq.ranglerz@gmail.com',
-    password: '12345678@Aa',
+    email: '',
+    password: '',
   });
 
   const [error, setError] = useState({
