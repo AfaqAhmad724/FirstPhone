@@ -130,7 +130,7 @@ const PickImage = props => {
       {
         mediaType: props?.register ? 'photo' : 'mixed',
         quality: 1,
-        selectionLimit: 0, // you can also use 0 for unlimited
+        selectionLimit: 1, // you can also use 0 for unlimited
       },
       response => {
         console.log('response', JSON.stringify(response?.assets, null, 2));
@@ -152,7 +152,8 @@ const PickImage = props => {
           setSelectedImages(prev => [...prev, ...newUris]);
 
           // Update parent state (append, not replace)
-          setShopPics(prev => [...(prev || []), ...newImages]);
+          // setShopPics(prev => [...(prev || []), ...newImages]);
+          setShopPics([...selectedImages, ...newImages]);
         }
       },
     );
