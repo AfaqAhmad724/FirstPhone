@@ -33,6 +33,7 @@ const CustomInputText = props => {
           value={props?.value}
           onChangeText={props?.onChangeText}
           multiline={props?.multiline || false}
+          returnKeyType={props?.returnKeyType}
         />
         {props?.isPassword && (
           <TouchableOpacity onPress={() => setPass(!pass)}>

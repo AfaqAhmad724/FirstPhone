@@ -10,11 +10,13 @@ import CustomInputText from '../../Components/CustomInputText';
 import { MyStyling } from '../../Constants/Styling';
 import Toast from 'react-native-simple-toast';
 import Api from '../Services/Api_Services';
+import { useSelector } from 'react-redux';
 
 const ForgotPassword = ({ navigation }) => {
   const [form, setForm] = useState({ email: '' });
   const [errors, setErrors] = useState({ emailError: '' });
   const [isLoading, setIsLoading] = useState(false);
+  const userRole = useSelector(state => state?.ROLE?.userData);
 
   const handleSendCode = async () => {
     if (!form.email) {
@@ -27,7 +29,9 @@ const ForgotPassword = ({ navigation }) => {
 
     const formData = new FormData();
     formData.append('email', form.email);
-    formData.append('type', 'customer');
+    formData.append('type', userRole == 'Customer' ? 'customer' : 'vendor');
+
+    console.log('forgotpassword', JSON.stringify(formData, null, 2));
 
     try {
       const res = await Api.forgotPassword(formData);

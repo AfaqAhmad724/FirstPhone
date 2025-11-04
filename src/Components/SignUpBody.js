@@ -40,7 +40,7 @@ const SignUpBody = props => {
     phone: '',
     password: '',
     confirmPassword: '',
-    location: '',
+    location: 'Lahore',
     repairing: '',
     cnic_front: '',
     cnic_back: '',
@@ -163,6 +163,9 @@ const SignUpBody = props => {
     }
   };
 
+  console.log('formm', JSON.stringify(form, null, 2));
+  console.log('formm', JSON.stringify(form.shopPics, null, 2));
+
   const registerUserApi = async () => {
     try {
       setIsLoading(true);
@@ -207,6 +210,7 @@ const SignUpBody = props => {
     setForm(img => ({ ...img, cnic_back: image }));
   };
   const setShopPics = value => {
+    console.log('value', JSON.stringify(value, null, 2));
     setForm(img => ({ ...img, shopPics: value }));
   };
 
@@ -302,17 +306,17 @@ const SignUpBody = props => {
               icon={Images.colorLocation}
               placeholder="Enter Location"
               value={form.location}
-              // onChangeText={text => {
-              //   console.log('text', text);
+              onChangeText={text => {
+                console.log('text', text);
 
-              //   // Prevent unnecessary re-renders
-              //   if (text !== form.location) {
-              //     setForm(prev => ({ ...prev, location: text }));
-              //     if (errors.locationError) {
-              //       setErrors(prev => ({ ...prev, locationError: '' }));
-              //     }
-              //   }
-              // }}
+                // Prevent unnecessary re-renders
+                if (text !== form.location) {
+                  setForm(prev => ({ ...prev, location: text }));
+                  if (errors.locationError) {
+                    setErrors(prev => ({ ...prev, locationError: '' }));
+                  }
+                }
+              }}
               onSelectLocation={(address, details) => {
                 console.log('address', address);
                 console.log('detail', details);
@@ -326,8 +330,6 @@ const SignUpBody = props => {
               }}
               error={errors.locationError}
             />
-
-
 
             {/* Google Autocomplete below */}
             {/* <GooglePlacesAutocomplete
@@ -395,127 +397,6 @@ const SignUpBody = props => {
             />
           </>
         )}
-
-        {/* {userRole === 'Seller' && (
-          <>
-            <View
-              style={{
-                marginTop: hp(2),
-                borderWidth: 1,
-                borderColor: Colors.verificationColor,
-                borderRadius: wp(1.8),
-                overflow: 'hidden', // 👈 prevents suggestion clipping
-              }}
-            >
-              <GooglePlacesAutocomplete
-                placeholder="Search for an address..."
-                styles={{
-                  textInput: {
-                    // backgroundColor: colors.crmBackgroundColor,
-                    // paddingRight: moderateScale(10),
-                    // paddingLeft: moderateScale(10),
-                    // margin: moderateScale(5),
-                    // height: DeviceInfo.isTablet()
-                    //   ? moderateScale(50)
-                    //   : moderateScale(50),
-                    // color: '#000',
-                    // fontSize: moderateScale(14),
-                    // borderRadius: moderateScale(8),
-                  },
-                  // textInputContainer: {
-                  //   height: moderateScale(50),
-                  //   alignItems: 'center',
-                  // },
-                  // container: {
-                  //   marginTop: moderateScale(10),
-                  //   marginHorizontal: moderateScale(5),
-                  // },
-                  // description: {
-                  //   fontWeight: '400',
-                  //   color: '#000',
-                  //   fontSize: moderateScale(13),
-                  // },
-                  // row: {
-                  //   backgroundColor: 'white',
-                  //   borderBottomColor: '#E9E8E8',
-                  // },
-                }}
-                debounce={200}
-                keyboardShouldPersistTaps="always" // I added this
-                minLength={1}
-                timeout={1000} // I added this
-                listViewDisplayed="auto"
-                predefinedPlaces={[]} // I added this
-                GooglePlacesDetailsQuery={{
-                  fields: 'geometry',
-                }}
-                textInputProps={{
-                  placeholderTextColor: 'gray',
-                  // onFocus: () => {
-                  //   googlePlaceAutoCompleteRef.current?.setAddressText('');
-                  //   setShowMap(false);
-                  // },
-                }}
-                // ref={googlePlaceAutoCompleteRef}
-                // renderRightButton={() =>
-                //   googlePlaceAutoCompleteRef.current?.getAddressText() ? (
-                //     <TouchableOpacity
-                //       style={{
-                //         justifyContent: 'center',
-                //         paddingHorizontal: moderateScale(5),
-                //       }}
-                //       onPress={() => {
-                //         setShowMap(false);
-                //         googlePlaceAutoCompleteRef.current?.setAddressText('');
-                //       }}
-                //     >
-                //       <Text
-                //         style={{ color: 'red', fontSize: moderateScale(14) }}
-                //       >
-                //         Remove
-                //       </Text>
-                //     </TouchableOpacity>
-                //   ) : null
-                // }
-                enablePoweredByContainer={false}
-                fetchDetails
-                autoFocus={true}
-                onFail={error => console.error(error)}
-                onPress={(data, details = null) => {
-                  // setMapData(details);
-                  // setData(data);
-                  // setShowMap(true);
-                }}
-                query={{
-                  key: GOOGLE_MAPS_APIKEY,
-                  language: 'en',
-                }}
-              />
-            </View>
-
-            <RepairingService
-              repairing={form?.repairing}
-              setRepairing={setRepairingService}
-            />
-            <UploadingBox
-              title={Strings.fronSideCNIC}
-              setFrontCnic={setFrontCnic}
-              frontCnic={form.cnic_front}
-              front
-            />
-            <UploadingBox
-              title={Strings.backSideCNIC}
-              setBackCnic={setBackCnic}
-              backCnic={form.cnic_back}
-            />
-            <Text style={styles.titleText}>{Strings.shopPics}</Text>
-            <PickImage
-              register={true}
-              setShopIcs={setShopPics}
-              shopPics={form.shopPics}
-            />
-          </>
-        )} */}
 
         <CheckBox
           agreetext=" I agree to "

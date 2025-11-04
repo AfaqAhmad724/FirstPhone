@@ -20,11 +20,14 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Api from '../Services/Api_Services';
 import Toast from 'react-native-simple-toast';
+import { useSelector } from 'react-redux';
 
 const ResetPassword = () => {
   const navigation = useNavigation()
   const route = useRoute();
   const email = route?.params?.email;
+  const userRole = useSelector(state => state?.ROLE?.userData);
+
 
   const [form, setForm] = useState({
     password: '',
@@ -139,7 +142,7 @@ const ResetPassword = () => {
       const formData = new FormData();
       formData.append('email', email);
       formData.append('password', form.password);
-      formData.append('type', 'customer');
+      formData.append('type', userRole == 'Customer' ? 'customer' : 'vendor');
       const res = await Api.resetPassword(formData);
 
       const data = res?.data

@@ -3,16 +3,18 @@ import AuthSlice from "./Slices/AuthSlice";
 import { persistReducer, persistStore } from 'redux-persist'
 import RoleSlice from "./Slices/RoleSlice";
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import RememberMeSlice from "./Slices/RememberMeSlice";
 
 const rootReducers = combineReducers({
     AUTH: AuthSlice,
-    ROLE: RoleSlice
+    ROLE: RoleSlice,
+    REMEMBERME: RememberMeSlice
 })
 
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['AUTH', 'ROLE']
+    whitelist: ['AUTH', 'ROLE', 'REMEMBERME']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducers)

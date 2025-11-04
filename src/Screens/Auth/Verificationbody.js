@@ -29,7 +29,7 @@ const Verificationbody = ({ navigation }) => {
   const userRole = useSelector(state => state?.ROLE?.userData);
 
 
-  console.log('email', JSON.stringify(userData, null, 2));
+  console.log('userData', JSON.stringify(userData, null, 2));
   console.log('shoppics', JSON.stringify(userData?.shopPics, null, 2));
 
 
@@ -90,11 +90,37 @@ const Verificationbody = ({ navigation }) => {
         formData.append('email', userData?.email);
         formData.append('phone', userData?.phone);
         formData.append('password', userData?.password);
-        formData.append('cnic_front', userData?.cnic_front);
-        formData.append('cnic_back', userData?.cnic_back);
-        formData.append('image', userData?.shopPics);
+        // formData.append('cnic_front', userData?.cnic_front);
+        // formData.append('cnic_back', userData?.cnic_back);
+        if (userData?.cnic_front?.uri) {
+          formData.append('cnic_front', {
+            uri: userData.cnic_front.uri,
+            type: userData.cnic_front.type || 'image/jpeg',
+            name: userData.cnic_front.name || 'cnic_front.jpg',
+          });
+        }
+
+        if (userData?.cnic_back?.uri) {
+          formData.append('cnic_back', {
+            uri: userData.cnic_back.uri,
+            type: userData.cnic_back.type || 'image/jpeg',
+            name: userData.cnic_back.name || 'cnic_back.jpg',
+          });
+        }
+
+        // formData.append('image[]', userData?.shopPics);
+        if (userData?.shopPics?.length > 0) {
+          userData.shopPics.forEach((img, index) => {
+            formData.append('image[]', {
+              uri: img.uri,
+              type: img.type || 'image/jpeg',
+              name: img.name || `shop_${index}.jpg`,
+            });
+          });
+        }
+
         formData.append('location', userData?.location);
-        formData.append('repair_service', 1);
+        formData.append('repair_service', userData.repairing ? 1 : 0);
         formData.append('type', 'vendor');
         formData.append('otp', otp);
         res = await Api.registerVerifyOtp(formData);
@@ -102,7 +128,7 @@ const Verificationbody = ({ navigation }) => {
       else {
         formData.append('otp', otp);
         formData.append('email', email);
-        formData.append('type', 'customer');
+        formData.append('type', userRole == 'Customer' ? 'customer' : 'vendor');
         res = await Api.verifyOtp(formData);
       }
 
@@ -144,11 +170,11 @@ const Verificationbody = ({ navigation }) => {
       let res;
       if (check) {
         formData.append('email', userData?.email);
-        formData.append('type', 'customer');
+        formData.append('type', userRole == 'Customer' ? 'customer' : 'vendor');
         res = await Api.registerResendOtp(formData);
       } else {
         formData.append('email', email);
-        formData.append('type', 'customer');
+        formData.append('type', userRole == 'Customer' ? 'customer' : 'vendor');
         res = await Api.resendOtp(formData);
       }
       const data = res?.data

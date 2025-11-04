@@ -25,15 +25,24 @@ import Toast from 'react-native-simple-toast';
 import Api, { configAxiosHeaders } from '../Screens/Services/Api_Services';
 import { useDispatch, useSelector } from 'react-redux';
 import { USER_DATA } from '../Redux/Slices/AuthSlice';
+import { ClearCustomerCredentials, ClearVendorCredentials, SavedCustomerCredentials, SavedVendorCredentials } from '../Redux/Slices/RememberMeSlice';
 
 const LoginBody = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [checkBox, setCheckBox] = useState(false);
   const [loading, setLoading] = useState(false);
+  const rememberMe = useSelector((state) => state.REMEMBERME)
+  const userRole = useSelector(state => state?.ROLE?.userData);
+  console.log('UserRole', userRole);
+
+  const emailValue = rememberMe?.email ? rememberMe?.email : ''
+  const passwordValue = rememberMe?.password ? rememberMe?.password : ''
+  const isCheck = rememberMe?.rememberMe ? rememberMe?.rememberMe : false
+
+  const [checkBox, setCheckBox] = useState(isCheck);
   const [form, setForm] = useState({
-    email: '',
-    password: '',
+    email: emailValue,
+    password: passwordValue,
   });
 
   const [error, setError] = useState({
@@ -62,18 +71,52 @@ const LoginBody = () => {
 
   const loginApi = () => {
     setLoading(true);
+
     const formData = new FormData();
+
     formData.append('email', form?.email);
     formData.append('password', form?.password);
-    formData.append('type', 'customer');
+    formData.append('type', userRole === 'Customer' ? 'customer' : 'vendor');
+
+    console.log('formdata', formData);
 
     Api.login(formData)
       .then(async res => {
-        if (res?.status === 200) {
+        console.log('response', JSON.stringify(res, null, 2));
+
+        if (res?.status == 200 || res?.data?.status == 'success') {
           const token = res?.data?.token;
           const userData = res?.data?.data?.user;
+
           await configAxiosHeaders(token);
           dispatch(USER_DATA(userData));
+
+          if (userRole === 'Customer') {
+            if (checkBox) {
+              dispatch(
+                SavedCustomerCredentials({
+                  email: form.email,
+                  password: form.password,
+                  rememberMe: checkBox,
+                }),
+              );
+            } else {
+              dispatch(ClearCustomerCredentials());
+            }
+          } else {
+            if (checkBox) {
+              dispatch(
+                SavedVendorCredentials({
+                  email: form.email,
+                  password: form.password,
+                  rememberMe: checkBox,
+                }),
+              );
+            } else {
+              dispatch(ClearVendorCredentials());
+            }
+          }
+
           Toast.show(res?.data?.message || 'Login successful', Toast.SHORT);
           navigation.navigate('FlowNavigation');
         } else {
@@ -89,6 +132,7 @@ const LoginBody = () => {
       })
       .finally(() => setLoading(false));
   };
+
 
   return (
     <SafeAreaView style={styles.backgroundStyle}>
@@ -112,6 +156,7 @@ const LoginBody = () => {
           onChangeText={text =>
             setForm({ ...form, email: text, emailError: '' })
           }
+          returnKeyType={'next'}
           error={error.emailError}
           errorStyle={{ marginLeft: wp(5.7), color: 'red' }}
         />
@@ -126,6 +171,7 @@ const LoginBody = () => {
           onChangeText={text =>
             setForm({ ...form, password: text, passwordError: '' })
           }
+          returnKeyType={'done'}
           error={error.passwordError}
           errorStyle={{ marginLeft: wp(5.7), color: 'red' }}
         />
