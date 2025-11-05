@@ -11,6 +11,7 @@ import { MyStyling } from '../../Constants/Styling';
 import Toast from 'react-native-simple-toast';
 import Api from '../Services/Api_Services';
 import { useSelector } from 'react-redux';
+import { emailRegex } from '../../Constants/Regex';
 
 const ForgotPassword = ({ navigation }) => {
   const [form, setForm] = useState({ email: '' });
@@ -21,6 +22,10 @@ const ForgotPassword = ({ navigation }) => {
   const handleSendCode = async () => {
     if (!form.email) {
       setErrors({ ...errors, emailError: 'Please enter email' });
+      return;
+    }
+    else if (!emailRegex.test(form.email)) {
+      setErrors({ ...errors, emailError: 'Please enter a valid email' });
       return;
     }
 

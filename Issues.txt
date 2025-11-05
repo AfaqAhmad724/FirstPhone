@@ -1,4 +1,4 @@
-1-GoogleAutoComplete Issue
+1-GoogleAutoComplete Issue(null cannot be cast to non-null type kotlin.Double)
 Answer: node-moduels/react-native/libraries/Network/XML_HttpRequest_new.js
 Change: this.timeout -> this.timeout || 0
 Link: https://github.com/FaridSafi/react-native-google-places-autocomplete/issues/974

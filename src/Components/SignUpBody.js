@@ -109,52 +109,78 @@ const SignUpBody = props => {
   const handleSignUp = () => {
     if (!form.name) {
       setErrors({ ...errors, nameError: 'Please enter name' });
+      return
     } else if (!nameRegex.test(form.name)) {
       setErrors({ ...errors, nameError: 'Name must contain only letters' });
+      return
     } else if (!form.email) {
       setErrors({ ...errors, emailError: 'Please enter email' });
+      return
     } else if (!emailRegex.test(form.email)) {
       setErrors({ ...errors, emailError: 'Please enter a valid email' });
+      return
     } else if (!form.phone) {
       setErrors({ ...errors, phoneError: 'Please enter a phone number' });
+      return
     } else if (!phoneRegex.test(form.phone)) {
       setErrors({ ...errors, phoneError: 'Phone number must be 11 digits' });
+      return
     } else if (!form.password) {
       setErrors({ ...errors, passwordError: 'Please enter password' });
+      return
     } else if (form.password.length < 8) {
       setErrors({
         ...errors,
         passwordError: 'Password must be at least 8 characters',
       });
+      return
     } else if (!uppercase.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one uppercase letter',
       });
+      return
     } else if (!lowercase.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one lowercase letter',
       });
+      return
     } else if (!digitRegex.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one number',
       });
+      return
     } else if (!specialCharRegex.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one special character',
       });
+      return
     } else if (!form.confirmPassword) {
       setErrors({ ...errors, confirmPasswordError: 'Please confirm password' });
+      return
     } else if (form.confirmPassword !== form.password) {
       setErrors({ ...errors, confirmPasswordError: 'Passwords do not match' });
+      return
     } else if (userRole === 'Seller' && !form.location) {
       setErrors({ ...errors, locationError: 'Please enter location' });
+      return
+    } else if (!form.cnic_front) {
+      Toast.show('Please upload the front side of your CNIC', Toast.SHORT);
+      return
+    } else if (!form.cnic_back) {
+      Toast.show('Please upload the back side of your CNIC', Toast.SHORT);
+      return
+    } else if (form.shopPics.length == 0) {
+      Toast.show('Please upload at least one shop photo', Toast.SHORT);
+      return
     } else if (!checkBox) {
       Toast.show('Please agree to Terms & Conditions first', Toast.SHORT);
-    } else {
+      return
+    }
+    else {
       registerUserApi();
       // navigation.navigate('Verificationbody', {
       //   register: true,
@@ -213,6 +239,9 @@ const SignUpBody = props => {
     console.log('value', JSON.stringify(value, null, 2));
     setForm(img => ({ ...img, shopPics: value }));
   };
+
+  console.log('location@@@', form.location);
+
 
   return (
     <View style={styles.backgroundStyle}>
@@ -331,7 +360,6 @@ const SignUpBody = props => {
               error={errors.locationError}
             />
 
-            {/* Google Autocomplete below */}
             {/* <GooglePlacesAutocomplete
               placeholder="Search your location"
               fetchDetails={true}

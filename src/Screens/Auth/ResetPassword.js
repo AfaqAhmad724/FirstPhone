@@ -28,7 +28,6 @@ const ResetPassword = () => {
   const email = route?.params?.email;
   const userRole = useSelector(state => state?.ROLE?.userData);
 
-
   const [form, setForm] = useState({
     password: '',
     confirmPassword: '',
