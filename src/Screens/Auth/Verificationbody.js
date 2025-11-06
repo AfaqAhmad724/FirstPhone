@@ -142,7 +142,7 @@ const Verificationbody = ({ navigation }) => {
         Toast.show(data?.message || 'OTP verified successfully!', Toast.SHORT);
 
         if (check) {
-          navigation.navigate('Login');
+          navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
         } else {
           navigation.navigate('ResetPassword', { email });
         }

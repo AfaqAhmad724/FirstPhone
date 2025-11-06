@@ -167,13 +167,13 @@ const SignUpBody = props => {
     } else if (userRole === 'Seller' && !form.location) {
       setErrors({ ...errors, locationError: 'Please enter location' });
       return
-    } else if (!form.cnic_front) {
+    } else if (userRole === 'Seller' && !form.cnic_front) {
       Toast.show('Please upload the front side of your CNIC', Toast.SHORT);
       return
-    } else if (!form.cnic_back) {
+    } else if (userRole === 'Seller' && !form.cnic_back) {
       Toast.show('Please upload the back side of your CNIC', Toast.SHORT);
       return
-    } else if (form.shopPics.length == 0) {
+    } else if (userRole === 'Seller' && form.shopPics.length == 0) {
       Toast.show('Please upload at least one shop photo', Toast.SHORT);
       return
     } else if (!checkBox) {
@@ -311,9 +311,12 @@ const SignUpBody = props => {
             height={hp(0.8)}
             borderRadius={50}
           />
-          <Text style={[styles.strengthText, { color: strength.color }]}>
-            {strength.label}
-          </Text>
+          {
+            form.password &&
+            <Text style={[styles.strengthText, { color: strength.color }]}>
+              {strength.label}
+            </Text>
+          }
         </View>
 
         <CustomInputText
@@ -435,11 +438,21 @@ const SignUpBody = props => {
           onPress={() => setCheckBox(!checkBox)}
         />
 
+        <View>
+          <Text style={{ color: Colors.red, fontSize: Fontsize.sm, marginTop: hp(1) }}>Note : After you sign up, a verification OTP will be sent to your email.
+            If you don’t see it in your inbox, please check your Spam or Junk folder.
+          </Text>
+        </View>
+
         <Btn title={'Sign Up'} onPress={handleSignUp} loader={isLoading} />
 
         <View style={styles.accountStyle}>
           <Text style={styles.lowertext}>If you have an account </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <TouchableOpacity onPress={() => navigation.reset({
+            index: 0,
+            routes: [{ name: 'Login' }],
+          })
+          }>
             <Text style={styles.logintext}>Login Now</Text>
           </TouchableOpacity>
         </View>
