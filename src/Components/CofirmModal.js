@@ -17,16 +17,16 @@ export default function LogoutModal({ visible, onCancel, onConfirm }) {
       <View style={styles.overlay}>
         <View style={styles.container}>
           {/* Icon */}
-          <View style={styles.iconWrapper}>
-            <Image
-              source={Images.sideBarImg}
-              style={styles.icon}
-              resizeMode="contain"
-            />
-          </View>
+          {/* <View style={styles.iconWrapper}> */}
+          <Image
+            source={Images.Logo}
+            style={styles.icon}
+            resizeMode='contain'
+          />
+          {/* </View> */}
 
           {/* Title */}
-          <Text style={styles.title}>Confirm Logout</Text>
+          {/* <Text style={styles.title}>Confirm Logout</Text> */}
           <Text style={styles.description}>
             Are you sure you want to Logout?
           </Text>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     width: wp(90),
     backgroundColor: Colors.bg,
     borderRadius: wp(5),
-    paddingVertical: wp(5),
+    paddingVertical: wp(6),
     alignItems: 'center',
     elevation: 8,
   },
@@ -78,9 +78,10 @@ const styles = StyleSheet.create({
     marginBottom: hp(2),
   },
   icon: {
-    width: wp(17),
-    height: wp(17),
-    tintColor: Colors.bg,
+    width: wp(50),
+    height: wp(20),
+    tintColor: Colors.primary,
+    // backgroundColor: 'red'
   },
   title: {
     fontFamily: Fonts.semibold,

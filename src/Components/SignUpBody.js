@@ -40,7 +40,7 @@ const SignUpBody = props => {
     phone: '',
     password: '',
     confirmPassword: '',
-    location: 'Lahore',
+    location: '',
     repairing: '',
     cnic_front: '',
     cnic_back: '',

@@ -34,15 +34,20 @@ const LoginBody = () => {
   const rememberMe = useSelector((state) => state.REMEMBERME)
   const userRole = useSelector(state => state?.ROLE?.userData);
   console.log('UserRole', userRole);
+  console.log('Remember Me', rememberMe);
 
-  const emailValue = rememberMe?.email ? rememberMe?.email : ''
-  const passwordValue = rememberMe?.password ? rememberMe?.password : ''
-  const isCheck = rememberMe?.rememberMe ? rememberMe?.rememberMe : false
+  const customerEmailValue = rememberMe?.customer?.email ? rememberMe?.customer?.email : ''
+  const customerPasswordValue = rememberMe?.customer?.password ? rememberMe?.customer?.password : ''
+  const vendorEmailValue = rememberMe?.vendor?.email ? rememberMe?.vendor?.email : ''
+  const vendorPasswordValue = rememberMe?.vendor?.password ? rememberMe?.vendor?.password : ''
+  const customerIsCheck = rememberMe?.customer?.rememberMe ? rememberMe?.customer?.rememberMe : false
+  const vendorIsCheck = rememberMe?.vendor?.rememberMe ? rememberMe?.vendor?.rememberMe : false
 
-  const [checkBox, setCheckBox] = useState(isCheck);
+
+  const [checkBox, setCheckBox] = useState(userRole == 'Customer' ? customerIsCheck : vendorIsCheck);
   const [form, setForm] = useState({
-    email: emailValue,
-    password: passwordValue,
+    email: userRole == 'Customer' ? customerEmailValue : vendorEmailValue,
+    password: userRole == 'Customer' ? customerPasswordValue : vendorPasswordValue,
   });
 
   const [error, setError] = useState({
@@ -91,7 +96,7 @@ const LoginBody = () => {
           await configAxiosHeaders(token);
           dispatch(USER_DATA(userData));
 
-          if (userRole === 'Customer') {
+          if (userRole == 'Customer') {
             if (checkBox) {
               dispatch(
                 SavedCustomerCredentials({
