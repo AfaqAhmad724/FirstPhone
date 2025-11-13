@@ -109,78 +109,77 @@ const SignUpBody = props => {
   const handleSignUp = () => {
     if (!form.name) {
       setErrors({ ...errors, nameError: 'Please enter name' });
-      return
+      return;
     } else if (!nameRegex.test(form.name)) {
       setErrors({ ...errors, nameError: 'Name must contain only letters' });
-      return
+      return;
     } else if (!form.email) {
       setErrors({ ...errors, emailError: 'Please enter email' });
-      return
+      return;
     } else if (!emailRegex.test(form.email)) {
       setErrors({ ...errors, emailError: 'Please enter a valid email' });
-      return
+      return;
     } else if (!form.phone) {
       setErrors({ ...errors, phoneError: 'Please enter a phone number' });
-      return
+      return;
     } else if (!phoneRegex.test(form.phone)) {
       setErrors({ ...errors, phoneError: 'Phone number must be 11 digits' });
-      return
+      return;
     } else if (!form.password) {
       setErrors({ ...errors, passwordError: 'Please enter password' });
-      return
+      return;
     } else if (form.password.length < 8) {
       setErrors({
         ...errors,
         passwordError: 'Password must be at least 8 characters',
       });
-      return
+      return;
     } else if (!uppercase.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one uppercase letter',
       });
-      return
+      return;
     } else if (!lowercase.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one lowercase letter',
       });
-      return
+      return;
     } else if (!digitRegex.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one number',
       });
-      return
+      return;
     } else if (!specialCharRegex.test(form.password)) {
       setErrors({
         ...errors,
         passwordError: 'Password must contain at least one special character',
       });
-      return
+      return;
     } else if (!form.confirmPassword) {
       setErrors({ ...errors, confirmPasswordError: 'Please confirm password' });
-      return
+      return;
     } else if (form.confirmPassword !== form.password) {
       setErrors({ ...errors, confirmPasswordError: 'Passwords do not match' });
-      return
+      return;
     } else if (userRole === 'Seller' && !form.location) {
       setErrors({ ...errors, locationError: 'Please enter location' });
-      return
+      return;
     } else if (userRole === 'Seller' && !form.cnic_front) {
       Toast.show('Please upload the front side of your CNIC', Toast.SHORT);
-      return
+      return;
     } else if (userRole === 'Seller' && !form.cnic_back) {
       Toast.show('Please upload the back side of your CNIC', Toast.SHORT);
-      return
+      return;
     } else if (userRole === 'Seller' && form.shopPics.length == 0) {
       Toast.show('Please upload at least one shop photo', Toast.SHORT);
-      return
+      return;
     } else if (!checkBox) {
       Toast.show('Please agree to Terms & Conditions first', Toast.SHORT);
-      return
-    }
-    else {
+      return;
+    } else {
       registerUserApi();
       // navigation.navigate('Verificationbody', {
       //   register: true,
@@ -241,7 +240,32 @@ const SignUpBody = props => {
   };
 
   console.log('location@@@', form.location);
+  const onPlaceSelected = (data, details = null) => {
+    const latitude = details.geometry.location.lat;
+    const longitude = details.geometry.location.lng;
+    const streetName = details.formatted_address;
+    // setShowUserLocation(false);
+    // setRegion({
+    //   latitude: latitude,
+    //   longitude: longitude,
+    //   latitudeDelta: 0.02305,
+    //   longitudeDelta: 0.010525,
+    // });
+    // setAddress({
+    //   streetName: streetName,
+    //   latitude: latitude,
+    //   longitude: longitude,
+    // });
 
+    // if (details) {
+    //   animateToRegion({
+    //     latitude: latitude,
+    //     longitude: longitude,
+    //     latitudeDelta: 0.02305,
+    //     longitudeDelta: 0.010525,
+    //   });
+    // }
+  };
 
   return (
     <View style={styles.backgroundStyle}>
@@ -311,12 +335,11 @@ const SignUpBody = props => {
             height={hp(0.8)}
             borderRadius={50}
           />
-          {
-            form.password &&
+          {form.password && (
             <Text style={[styles.strengthText, { color: strength.color }]}>
               {strength.label}
             </Text>
-          }
+          )}
         </View>
 
         <CustomInputText
@@ -334,34 +357,19 @@ const SignUpBody = props => {
 
         {userRole === 'Seller' && (
           <>
-            <GoogleAutoCompleteInput
-              icon={Images.colorLocation}
-              placeholder="Enter Location"
-              value={form.location}
-              onChangeText={text => {
-                console.log('text', text);
-
-                // Prevent unnecessary re-renders
-                if (text !== form.location) {
-                  setForm(prev => ({ ...prev, location: text }));
-                  if (errors.locationError) {
-                    setErrors(prev => ({ ...prev, locationError: '' }));
-                  }
-                }
-              }}
-              onSelectLocation={(address, details) => {
-                console.log('address', address);
-                console.log('detail', details);
-
-                setForm(prev => ({
-                  ...prev,
-                  location: address,
-                  // lat: details?.geometry?.location?.lat || 0,
-                  // lng: details?.geometry?.location?.lng || 0,
-                }));
-              }}
-              error={errors.locationError}
-            />
+            <View style={{ zIndex: 999 }}>
+              <GoogleAutoCompleteInput
+                icon={Images.colorLocation}
+                placeholder="Enter Location"
+                onSelectLocation={(address, details) => {
+                  setForm(prev => ({
+                    ...prev,
+                    location: address,
+                  }));
+                  setErrors(prev => ({ ...prev, locationError: '' }));
+                }}
+              />
+            </View>
 
             {/* <GooglePlacesAutocomplete
               placeholder="Search your location"
@@ -403,8 +411,6 @@ const SignUpBody = props => {
               onFail={(e) => console.warn('Google Place Failed:', e)}
             /> */}
 
-
-
             <RepairingService
               repairing={form?.repairing}
               setRepairing={setRepairingService}
@@ -439,8 +445,16 @@ const SignUpBody = props => {
         />
 
         <View>
-          <Text style={{ color: Colors.red, fontSize: Fontsize.sm, marginTop: hp(1) }}>Note : After you sign up, a verification OTP will be sent to your email.
-            If you don’t see it in your inbox, please check your Spam or Junk folder.
+          <Text
+            style={{
+              color: Colors.red,
+              fontSize: Fontsize.sm,
+              marginTop: hp(1),
+            }}
+          >
+            Note : After you sign up, a verification OTP will be sent to your
+            email. If you don’t see it in your inbox, please check your Spam or
+            Junk folder.
           </Text>
         </View>
 
@@ -448,11 +462,14 @@ const SignUpBody = props => {
 
         <View style={styles.accountStyle}>
           <Text style={styles.lowertext}>If you have an account </Text>
-          <TouchableOpacity onPress={() => navigation.reset({
-            index: 0,
-            routes: [{ name: 'Login' }],
-          })
-          }>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'Login' }],
+              })
+            }
+          >
             <Text style={styles.logintext}>Login Now</Text>
           </TouchableOpacity>
         </View>

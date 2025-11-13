@@ -3,15 +3,19 @@ import React from 'react';
 import SignUpBody from '../../Components/SignUpBody';
 import { Colors } from '../../Constants/Colors';
 import { hp } from '../../Constants/Responsive';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const Register = () => {
   return (
     <SafeAreaView style={styles.fullscreen}>
-      <ScrollView
+      <KeyboardAwareScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: hp(5) }}>
+        enableOnAndroid={true}
+        extraScrollHeight={hp(5)}
+        contentContainerStyle={{ paddingBottom: hp(5), flexGrow: 1 }}
+      >
         <SignUpBody />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
