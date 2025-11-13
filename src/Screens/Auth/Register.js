@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import React from 'react';
 import SignUpBody from '../../Components/SignUpBody';
 import { Colors } from '../../Constants/Colors';
@@ -13,6 +13,7 @@ const Register = () => {
         enableOnAndroid={true}
         extraScrollHeight={hp(5)}
         contentContainerStyle={{ paddingBottom: hp(5), flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled" // ✅ ensures taps on autocomplete suggestions register
       >
         <SignUpBody />
       </KeyboardAwareScrollView>

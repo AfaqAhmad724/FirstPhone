@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import React, { useState } from 'react';
 import CustomInputText from './CustomInputText';
 import CheckBox from './CheckBox';
@@ -268,110 +275,115 @@ const SignUpBody = props => {
   };
 
   return (
-    <View style={styles.backgroundStyle}>
-      <AuthHeader label="Sign Up" />
-      <View style={styles.innerContainer}>
-        <Text style={styles.setheading}>{Strings.setUpAccount}</Text>
-        <Text style={styles.smalltext}>{Strings.signUpText}</Text>
-        <Image source={Images.Logo} style={styles.firstphonestyle} />
+    <ScrollView
+      contentContainerStyle={styles.scrollContainer}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.backgroundStyle}>
+        <AuthHeader label="Sign Up" />
+        <View style={styles.innerContainer}>
+          <Text style={styles.setheading}>{Strings.setUpAccount}</Text>
+          <Text style={styles.smalltext}>{Strings.signUpText}</Text>
+          <Image source={Images.Logo} style={styles.firstphonestyle} />
 
-        <CustomInputText
-          placeholder="Enter Name"
-          icon={Images.personName}
-          value={form.name}
-          onChangeText={text => {
-            setForm({ ...form, name: text });
-            setErrors({ ...errors, nameError: '' });
-          }}
-          error={errors.nameError}
-        />
-
-        <CustomInputText
-          placeholder="Enter Email"
-          icon={Images.email}
-          keyboardType="email-address"
-          value={form.email}
-          onChangeText={text => {
-            setForm({ ...form, email: text });
-            setErrors({ ...errors, emailError: '' });
-          }}
-          error={errors.emailError}
-        />
-
-        <CustomInputText
-          placeholder="Enter Phone Number"
-          icon={Images.phone}
-          keyboardType="numeric"
-          value={form.phone}
-          onChangeText={text => {
-            setForm({ ...form, phone: text });
-            setErrors({ ...errors, phoneError: '' });
-          }}
-          error={errors.phoneError}
-        />
-
-        <CustomInputText
-          placeholder="Enter Password"
-          icon={Images.password}
-          isPassword={true}
-          value={form.password}
-          onChangeText={text => {
-            setForm({ ...form, password: text });
-            setErrors({ ...errors, passwordError: '' });
-            checkPasswordStrength(text);
-          }}
-          autoCorrect={false}
-          style={{ color: Colors.mediumGrey }}
-          error={errors.passwordError}
-        />
-
-        <View style={styles.progressBox}>
-          <Progress.Bar
-            progress={strength.progress}
-            width={wp(90)}
-            color={strength.color}
-            unfilledColor="#E0E0E0"
-            borderWidth={0}
-            height={hp(0.8)}
-            borderRadius={50}
+          <CustomInputText
+            placeholder="Enter Name"
+            icon={Images.personName}
+            value={form.name}
+            onChangeText={text => {
+              setForm({ ...form, name: text });
+              setErrors({ ...errors, nameError: '' });
+            }}
+            error={errors.nameError}
           />
-          {form.password && (
-            <Text style={[styles.strengthText, { color: strength.color }]}>
-              {strength.label}
-            </Text>
-          )}
-        </View>
 
-        <CustomInputText
-          placeholder="Enter Confirm Password"
-          icon={Images.password}
-          isPassword={true}
-          inputContainer={{ marginTop: hp(1) }}
-          value={form.confirmPassword}
-          onChangeText={text => {
-            setForm({ ...form, confirmPassword: text });
-            setErrors({ ...errors, confirmPasswordError: '' });
-          }}
-          error={errors.confirmPasswordError}
-        />
+          <CustomInputText
+            placeholder="Enter Email"
+            icon={Images.email}
+            keyboardType="email-address"
+            value={form.email}
+            onChangeText={text => {
+              setForm({ ...form, email: text });
+              setErrors({ ...errors, emailError: '' });
+            }}
+            error={errors.emailError}
+          />
 
-        {userRole === 'Seller' && (
-          <>
-            <View style={{ zIndex: 999 }}>
-              <GoogleAutoCompleteInput
-                icon={Images.colorLocation}
-                placeholder="Enter Location"
-                onSelectLocation={(address, details) => {
-                  setForm(prev => ({
-                    ...prev,
-                    location: address,
-                  }));
-                  setErrors(prev => ({ ...prev, locationError: '' }));
-                }}
-              />
-            </View>
+          <CustomInputText
+            placeholder="Enter Phone Number"
+            icon={Images.phone}
+            keyboardType="numeric"
+            value={form.phone}
+            onChangeText={text => {
+              setForm({ ...form, phone: text });
+              setErrors({ ...errors, phoneError: '' });
+            }}
+            error={errors.phoneError}
+          />
 
-            {/* <GooglePlacesAutocomplete
+          <CustomInputText
+            placeholder="Enter Password"
+            icon={Images.password}
+            isPassword={true}
+            value={form.password}
+            onChangeText={text => {
+              setForm({ ...form, password: text });
+              setErrors({ ...errors, passwordError: '' });
+              checkPasswordStrength(text);
+            }}
+            autoCorrect={false}
+            style={{ color: Colors.mediumGrey }}
+            error={errors.passwordError}
+          />
+
+          <View style={styles.progressBox}>
+            <Progress.Bar
+              progress={strength.progress}
+              width={wp(90)}
+              color={strength.color}
+              unfilledColor="#E0E0E0"
+              borderWidth={0}
+              height={hp(0.8)}
+              borderRadius={50}
+            />
+            {form.password && (
+              <Text style={[styles.strengthText, { color: strength.color }]}>
+                {strength.label}
+              </Text>
+            )}
+          </View>
+
+          <CustomInputText
+            placeholder="Enter Confirm Password"
+            icon={Images.password}
+            isPassword={true}
+            inputContainer={{ marginTop: hp(1) }}
+            value={form.confirmPassword}
+            onChangeText={text => {
+              setForm({ ...form, confirmPassword: text });
+              setErrors({ ...errors, confirmPasswordError: '' });
+            }}
+            error={errors.confirmPasswordError}
+          />
+
+          {userRole === 'Seller' && (
+            <>
+              <View>
+                <GoogleAutoCompleteInput
+                  icon={Images.colorLocation}
+                  placeholder="Enter Location"
+                  onSelectLocation={(address, details) => {
+                    setForm(prev => ({
+                      ...prev,
+                      location: address,
+                    }));
+                    setErrors(prev => ({ ...prev, locationError: '' }));
+                  }}
+                />
+              </View>
+
+              {/* <GooglePlacesAutocomplete
               placeholder="Search your location"
               fetchDetails={true}
               enablePoweredByContainer={false}
@@ -411,76 +423,81 @@ const SignUpBody = props => {
               onFail={(e) => console.warn('Google Place Failed:', e)}
             /> */}
 
-            <RepairingService
-              repairing={form?.repairing}
-              setRepairing={setRepairingService}
-            />
-            <UploadingBox
-              front={true}
-              title={Strings.fronSideCNIC}
-              setFrontCnic={setFrontCnic}
-              frontCnic={form.cnic_front}
-            />
-            <UploadingBox
-              title={Strings.backSideCNIC}
-              setBackCnic={setBackCnic}
-              backCnic={form.cnic_back}
-            />
-            <Text style={styles.titleText}>{Strings.shopPics}</Text>
-            <PickImage
-              register={true}
-              setShopIcs={setShopPics}
-              shopPics={form.shopPics}
-            />
-          </>
-        )}
+              <RepairingService
+                repairing={form?.repairing}
+                setRepairing={setRepairingService}
+              />
+              <UploadingBox
+                front={true}
+                title={Strings.fronSideCNIC}
+                setFrontCnic={setFrontCnic}
+                frontCnic={form.cnic_front}
+              />
+              <UploadingBox
+                title={Strings.backSideCNIC}
+                setBackCnic={setBackCnic}
+                backCnic={form.cnic_back}
+              />
+              <Text style={styles.titleText}>{Strings.shopPics}</Text>
+              <PickImage
+                register={true}
+                setShopIcs={setShopPics}
+                shopPics={form.shopPics}
+              />
+            </>
+          )}
 
-        <CheckBox
-          agreetext=" I agree to "
-          condition="Terms & Conditions"
-          andthe="and the"
-          policytext="Privacy Policy"
-          checked={checkBox}
-          onPress={() => setCheckBox(!checkBox)}
-        />
+          <CheckBox
+            agreetext=" I agree to "
+            condition="Terms & Conditions"
+            andthe="and the"
+            policytext="Privacy Policy"
+            checked={checkBox}
+            onPress={() => setCheckBox(!checkBox)}
+          />
 
-        <View>
-          <Text
-            style={{
-              color: Colors.red,
-              fontSize: Fontsize.sm,
-              marginTop: hp(1),
-            }}
-          >
-            Note : After you sign up, a verification OTP will be sent to your
-            email. If you don’t see it in your inbox, please check your Spam or
-            Junk folder.
-          </Text>
-        </View>
+          <View>
+            <Text
+              style={{
+                color: Colors.red,
+                fontSize: Fontsize.sm,
+                marginTop: hp(1),
+              }}
+            >
+              Note : After you sign up, a verification OTP will be sent to your
+              email. If you don’t see it in your inbox, please check your Spam
+              or Junk folder.
+            </Text>
+          </View>
 
-        <Btn title={'Sign Up'} onPress={handleSignUp} loader={isLoading} />
+          <Btn title={'Sign Up'} onPress={handleSignUp} loader={isLoading} />
 
-        <View style={styles.accountStyle}>
-          <Text style={styles.lowertext}>If you have an account </Text>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.reset({
-                index: 0,
-                routes: [{ name: 'Login' }],
-              })
-            }
-          >
-            <Text style={styles.logintext}>Login Now</Text>
-          </TouchableOpacity>
+          <View style={styles.accountStyle}>
+            <Text style={styles.lowertext}>If you have an account </Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                })
+              }
+            >
+              <Text style={styles.logintext}>Login Now</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default SignUpBody;
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: hp(5),
+  },
   backgroundStyle: {
     flex: 1,
     backgroundColor: Colors?.primary,
