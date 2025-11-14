@@ -1,22 +1,26 @@
-import { SafeAreaView, StyleSheet } from 'react-native';
-import React from 'react';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import React, { useRef } from 'react';
 import SignUpBody from '../../Components/SignUpBody';
 import { Colors } from '../../Constants/Colors';
 import { hp } from '../../Constants/Responsive';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const Register = () => {
+  const scrollRef = useRef(null);
   return (
     <SafeAreaView style={styles.fullscreen}>
       <KeyboardAwareScrollView
+        ref={scrollRef}
         showsVerticalScrollIndicator={false}
         enableOnAndroid={true}
-        extraScrollHeight={hp(5)}
-        contentContainerStyle={{ paddingBottom: hp(5), flexGrow: 1 }}
-        keyboardShouldPersistTaps="handled" // ✅ ensures taps on autocomplete suggestions register
+        extraScrollHeight={hp(30)}
+        // contentContainerStyle={{ paddingBottom: hp(5), flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+        enableAutomaticScroll={true} // ensures TextInput scrolls into view
       >
-        <SignUpBody />
+        <SignUpBody scrollRef={scrollRef} />
       </KeyboardAwareScrollView>
+
     </SafeAreaView>
   );
 };

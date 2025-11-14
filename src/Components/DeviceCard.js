@@ -32,7 +32,9 @@ const DeviceCard = ({ data }) => {
       )}
 
       <Image
-        source={{ uri: data?.image }}
+        // source={{ uri: data?.image }}
+        source={data?.image}
+
         style={styles.img}
         resizeMode="contain"
       />

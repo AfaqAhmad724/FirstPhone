@@ -14,7 +14,9 @@ const HorizontalFlatlist = () => {
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <View style={{ width: wp(45) }}>
-                        <DeviceCard {...item} />
+                        {/* <DeviceCard {...item} /> */}
+                        <DeviceCard data={item} />
+
                     </View>
                 )} />
         </View>

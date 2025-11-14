@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.medium,
     fontSize: Fontsize.s,
     marginLeft: wp(0.5),
+    color: Colors.gray
   },
   linkText: {
     color: Colors.primary,

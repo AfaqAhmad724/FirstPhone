@@ -7,7 +7,8 @@ import { hp, wp } from '../Constants/Responsive';
 const VerticalFlatlist = ({ data, isloading }) => {
   return (
     <FlatList
-      data={data}
+      // data={data}
+      data={deviceData}
       numColumns={2}
       keyExtractor={(_, index) => index.toString()}
       showsVerticalScrollIndicator={false}

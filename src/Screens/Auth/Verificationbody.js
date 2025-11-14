@@ -29,8 +29,8 @@ const Verificationbody = ({ navigation }) => {
   const userRole = useSelector(state => state?.ROLE?.userData);
 
 
-  console.log('userData', JSON.stringify(userData, null, 2));
-  console.log('shoppics', JSON.stringify(userData?.shopPics, null, 2));
+  // console.log('userData', JSON.stringify(userData, null, 2));
+  // console.log('shoppics', JSON.stringify(userData?.shopPics, null, 2));
 
 
   const [form, setForm] = useState({ otp: '' });
@@ -150,6 +150,8 @@ const Verificationbody = ({ navigation }) => {
         Toast.show(data?.message || 'Invalid or expired OTP', Toast.LONG);
       }
     } catch (error) {
+      console.log('formdata!!!!', JSON.stringify(formData, null, 2));
+
       console.log('OTP verification error:', error?.response?.data || error);
       Toast.show(
         error?.response?.data?.message || 'OTP verification failed',
